@@ -22,11 +22,11 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { lead: "be ready for the", emphasis: "real world?", answer: "Let them experience it." },
-  { lead: "lead with", emphasis: "confidence?", answer: "Let them experience it." },
-  { lead: "solve problems that", emphasis: "matter?", answer: "Let them experience it." },
-  { lead: "work with people", emphasis: "unlike themselves?", answer: "Let them experience it." },
-  { lead: "make an impact beyond", emphasis: "the classroom?", answer: "Let them experience it." },
+  { lead: "become a", emphasis: "confident leader?", answer: "We'll help them get there!" },
+  { lead: "find", emphasis: "their voice?", answer: "We'll help them get there!" },
+  { lead: "think", emphasis: "independently?", answer: "We'll help them get there!" },
+  { lead: "lead with", emphasis: "purpose?", answer: "We'll help them get there!" },
+  { lead: "make a difference in", emphasis: "the real world?", answer: "We'll help them get there!" },
 ];
 
 const steps = [
@@ -69,21 +69,13 @@ const faqs = [
   { question: "What happens in a typical TYA session?", answer: "Every session starts with a Mission — a real-feeling challenge that gives young people a reason to use the skill. They work in their Pod, take on roles, make decisions, reflect and try again. It is active, social and structured, not another class where they sit and listen." },
   { question: "How do I know if TYA is right for my child?", answer: "TYA is designed for ages 6–14, with experiences adapted for different stages. It works especially well for young people who are curious, thoughtful, energetic, shy, outspoken or still finding their place — the programme makes room for different ways of contributing." },
   { question: "How do parents see progress?", answer: "You receive a written TYA Growth Card every month. It is not a grade or a certificate — it is a clear snapshot of five behaviours the coach actually observed: confidence, collaboration, decision making, adaptability and ownership." },
-  { question: "How are safety and consistency handled?", answer: "Batches are intentionally small: twelve young people, one coach and one assistant. Coaches are verified, pick-up is named, and every centre follows the same term structure so parents know what week one is building towards." },
+  { question: "How are safety and consistency handled?", answer: "Batches are intentionally structured for 30 young people, with coach-led Pods and clear roles for participation. Coaches are verified, pick-up is named, and every centre follows the same term structure so parents know what week one is building towards." },
 ];
 
 function Logo({ reversed = false }: { reversed?: boolean }) {
   return (
     <a href="#top" className={`flex items-center gap-3 ${reversed ? "text-[#fffdf9]" : "text-[#3e4245]"}`} aria-label="TYA Club home">
-      <span className="relative flex h-10 w-8 items-center justify-center">
-        <span className="absolute bottom-0 h-8 w-6 -skew-x-[22deg] rounded-[5px_5px_10px_10px] bg-current" />
-        <span className="absolute top-1 h-2.5 w-2.5 rounded-full bg-[#f6d77a]" />
-        <span className="absolute bottom-2 left-1.5 h-[2px] w-4 rotate-[31deg] bg-[#f6d77a]" />
-      </span>
-      <span className="leading-none">
-        <span className="block text-[1.15rem] font-bold tracking-[.28em]">TYA.</span>
-        <span className="block pt-1 text-[.57rem] font-bold tracking-[.32em] opacity-70">CLUB</span>
-      </span>
+      <img src={reversed ? "/manus-storage/tya-logo-gold-transparent_b4d5c758.png" : "/manus-storage/tya-logo-black-transparent_34aef484.png"} alt="TYA Club" className="h-10 w-auto max-w-[150px] object-contain" />
     </a>
   );
 }
@@ -114,7 +106,7 @@ export default function Home() {
 
   return (
     <div id="top" className="min-h-screen overflow-hidden bg-[#e9e6e1] text-[#3e4245]">
-      <div className="bg-[#3e4245] px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[.16em] text-[#f6d77a] sm:text-xs">Admissions open · 12 young people per batch · Book a free trial</div>
+      <div className="flex min-h-[70px] items-center justify-between gap-4 bg-[#f6d77a] px-4 py-3 sm:min-h-[92px] sm:px-8 lg:px-16"><span className="hidden text-[10px] font-bold uppercase tracking-[.18em] text-[#3e4245]/70 sm:block">Admissions open · 2026 term</span><p className="text-center text-[clamp(1.35rem,3vw,2.5rem)] font-bold leading-none tracking-[-.045em] text-[#16255a]"><span className="text-[#f28d63]">[</span> 30 seats <span className="text-[#f28d63]">]</span> per batch.</p><div className="flex items-center gap-3"><button className="hidden rounded-lg bg-[#16255a] px-4 py-3 text-xs font-bold text-[#fffdf9] shadow-[0_5px_0_rgba(22,37,90,.18)] transition hover:-translate-y-0.5 sm:block" onClick={() => setTrialOpen(true)}>Enquire now</button><img src="/manus-storage/tya-logo-black-transparent_34aef484.png" alt="TYA Club" className="h-10 w-auto max-w-[100px] object-contain" /></div></div>
 
       <header className="relative z-40 border-b border-[#3e4245]/10 bg-[#e9e6e1]/90 backdrop-blur-md">
         <div className="container flex h-[76px] items-center justify-between">
@@ -141,14 +133,14 @@ export default function Home() {
         <section className="grain hero-grid relative overflow-hidden border-b border-[#3e4245]/10 bg-[#e9e6e1]">
           <div className="container grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
             <div className="relative z-10 max-w-[680px]">
-              <div className="reveal mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.17em] text-[#7a6316]"><span className="h-2 w-2 rounded-full bg-[#f28d63]" /> An after-school club for ages 6–14</div>
+              <div className="reveal mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.17em] text-[#7a6316]"><span className="h-2 w-2 rounded-full bg-[#f28d63]" /> Transforming young adults into future greatness</div>
               <h1 className="reveal reveal-2 text-balance text-[clamp(3.55rem,7vw,6.7rem)] font-medium leading-[.91] tracking-[-.055em] text-[#3e4245]">Want your child to<br /><span className="font-display italic text-[#7a6316]">{line.lead}</span><br /><span className="relative inline-block">{line.emphasis}<span className="absolute -bottom-2 left-0 h-1 w-3/4 bg-[#f28d63]" /></span></h1>
               <p className="reveal reveal-3 mt-9 max-w-[500px] text-lg leading-8 text-[#6e7478]">{line.answer} Real missions, small Pods and a monthly view of the progress that matters beyond school.</p>
               <div className="reveal reveal-3 mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <button className="btn-dark rounded-full px-6 py-4 text-sm font-bold" onClick={() => setTrialOpen(true)}>Book a free trial <ArrowRight className="ml-2 inline" size={16} /></button>
                 <a href="#how-it-works" className="group inline-flex items-center gap-2 px-2 py-3 text-sm font-bold">See how it works <ArrowDownRight className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" size={16} /></a>
               </div>
-              <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 border-t border-[#3e4245]/15 pt-5 text-xs font-semibold text-[#6e7478]"><span className="flex items-center gap-2"><ShieldCheck size={15} className="text-[#0e9c8c]" /> Verified coaches</span><span className="flex items-center gap-2"><Users size={15} className="text-[#0e9c8c]" /> 12 per batch</span><span className="flex items-center gap-2"><NotebookPen size={15} className="text-[#0e9c8c]" /> Monthly Growth Card</span></div>
+              <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 border-t border-[#3e4245]/15 pt-5 text-xs font-semibold text-[#6e7478]"><span className="flex items-center gap-2"><ShieldCheck size={15} className="text-[#0e9c8c]" /> Verified coaches</span><span className="flex items-center gap-2"><Users size={15} className="text-[#0e9c8c]" /> 30 per batch</span><span className="flex items-center gap-2"><NotebookPen size={15} className="text-[#0e9c8c]" /> Monthly Growth Card</span></div>
             </div>
 
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
@@ -180,7 +172,7 @@ export default function Home() {
 
         <section id="programmes" className="container py-24 lg:py-32">
           <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end"><div><SectionLabel>Why TYA</SectionLabel><h2 className="mt-5 max-w-[540px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">The skills that make the <span className="font-display italic text-[#7a6316]">difference.</span></h2></div><p className="max-w-[510px] text-lg leading-8 text-[#6e7478]">TYA is where young people practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p></div>
-          <div className="mt-16 grid gap-4 md:grid-cols-3"><article className="card-sheen rounded-[1.5rem] bg-[#3e4245] p-7 text-[#fffdf9] md:col-span-2 md:min-h-[250px]"><div className="relative z-10 flex h-full flex-col justify-between"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a] text-[#3e4245]"><ShieldCheck size={20} /></span><span className="section-kicker text-[#f6d77a]">01 · Safe by design</span></div><div className="mt-12"><h3 className="text-3xl font-semibold tracking-[-.03em]">Small enough to know every voice.</h3><p className="mt-3 max-w-[470px] leading-7 text-white/65">Twelve young people. One coach and one assistant. Named pick-up. A space where being heard is part of the experience.</p></div></div></article><article className="rounded-[1.5rem] bg-[#dce7e3] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#0e9c8c] text-[#fffdf9]"><HeartHandshake size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Friends first.<br />Confidence follows.</p><p className="mt-3 text-sm leading-6 text-[#6e7478]">A Pod makes room for quiet thinkers, natural leaders and everyone in between.</p></article><article className="rounded-[1.5rem] border border-[#3e4245]/12 bg-[#f6d77a] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#3e4245] text-[#f6d77a]"><NotebookPen size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Progress you can<br />actually see.</p><p className="mt-3 text-sm leading-6 text-[#3e4245]/70">A coach-written Growth Card comes home every month.</p></article><article className="rounded-[1.5rem] border border-[#3e4245]/12 bg-[#fdfcf9] p-7 md:col-span-2 md:min-h-[250px]"><div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10"><div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f28d63]"><Compass size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">The real world, in<br />a safe place to try.</p></div><p className="max-w-[300px] text-sm leading-6 text-[#6e7478]">Water crises, negotiations, business decisions, community challenges. Every Mission gives skills a reason to matter.</p></div></article></div>
+          <div className="mt-16 grid gap-4 md:grid-cols-3"><article className="card-sheen rounded-[1.5rem] bg-[#16255a] p-7 text-[#fffdf9] md:col-span-2 md:min-h-[250px]"><div className="relative z-10 flex h-full flex-col justify-between"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a] text-[#16255a]"><ShieldCheck size={20} /></span><span className="section-kicker text-[#f6d77a]">01 · Built for growth</span></div><div className="mt-12"><h3 className="text-3xl font-semibold tracking-[-.03em]">Room for every young adult to lead.</h3><p className="mt-3 max-w-[470px] leading-7 text-white/65">Thirty young people, guided by a coach-led Pod model. A space where being heard is part of the experience.</p></div></div></article><article className="rounded-[1.5rem] bg-[#dce7e3] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#0e9c8c] text-[#fffdf9]"><HeartHandshake size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Friends first.<br />Confidence follows.</p><p className="mt-3 text-sm leading-6 text-[#6e7478]">A Pod makes room for quiet thinkers, natural leaders and everyone in between.</p></article><article className="rounded-[1.5rem] border border-[#3e4245]/12 bg-[#f6d77a] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#16255a] text-[#f6d77a]"><NotebookPen size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Progress you can<br />actually see.</p><p className="mt-3 text-sm leading-6 text-[#3e4245]/70">A coach-written Growth Card comes home every month.</p></article><article className="rounded-[1.5rem] border border-[#3e4245]/12 bg-[#fdfcf9] p-7 md:col-span-2 md:min-h-[250px]"><div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10"><div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f28d63]"><Compass size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">The real world, in<br />a safe place to try.</p></div><p className="max-w-[300px] text-sm leading-6 text-[#6e7478]">Water crises, negotiations, business decisions, community challenges. Every Mission gives skills a reason to matter.</p></div></article></div>
         </section>
 
         <section id="how-it-works" className="grain bg-[#fdfcf9] py-24 lg:py-32"><div className="container"><div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end"><div><SectionLabel>How TYA works</SectionLabel><h2 className="mt-5 max-w-[660px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">Four steps. One journey. A stronger, more capable <span className="font-display italic text-[#7a6316]">young person.</span></h2></div><p className="max-w-[340px] text-lg leading-7 text-[#6e7478]">Every Pod experience combines real challenges, practical skills, teamwork and responsibility.</p></div><div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{steps.map((step) => { const Icon = step.icon; return <article key={step.number} className="step-card rounded-[1.5rem] border border-[#3e4245]/10 bg-[#e9e6e1] p-6"><div className="flex items-start justify-between"><span className="text-sm font-bold text-[#7a6316]">{step.number}</span><span className="grid h-11 w-11 place-items-center rounded-full" style={{ backgroundColor: step.color }}><Icon size={19} /></span></div><h3 className="mt-14 text-2xl font-semibold tracking-[-.03em]">{step.title}</h3><p className="mt-3 text-sm font-bold text-[#7a6316]">{step.eyebrow}</p><p className="mt-4 text-sm leading-6 text-[#6e7478]">{step.copy}</p><a className="mt-7 inline-flex items-center gap-2 text-sm font-bold" href="#curriculum">Explore skills <ArrowRight size={15} /></a></article>; })}</div></div></section>
