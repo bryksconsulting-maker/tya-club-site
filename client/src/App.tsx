@@ -6,12 +6,14 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Parents from "./pages/Parents";
+import Programme from "./pages/Programme";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/parents" component={Parents} />
+      <Route path="/programmes/:slug" component={Programme} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

@@ -121,6 +121,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .marquee { overflow: hidden; white-space: nowrap; }
 .marquee-track { display: inline-flex; gap: 3rem; animation: marquee 22s linear infinite; }
 @keyframes marquee { to { transform: translateX(-50%); } }
+.success-pop { animation: success-pop 420ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes success-pop { from { opacity: 0; transform: scale(.86) rotate(-6deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
