@@ -15,6 +15,7 @@ import Experience from "./pages/Experience";
 import Centres from "./pages/Centres";
 import Contact from "./pages/Contact";
 import Franchise from "./pages/Franchise";
+import { WhatsAppFloat } from "./components/SiteChrome";
 
 function Router() {
   return (
@@ -41,8 +42,9 @@ export default function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light" switchable>
         <TooltipProvider>
-          <Toaster position="bottom-right" />
+          <Toaster position="top-right" />
           <Router />
+          <WhatsAppFloat />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

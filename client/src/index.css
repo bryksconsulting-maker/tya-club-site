@@ -168,6 +168,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .form-card label > span { display: block; font-size: .78rem; font-weight: 700; }
 .theme-input { border: 1px solid rgba(62,66,69,.16); background: rgba(233,230,225,.45); color: #3e4245; outline: none; }
 .theme-input:focus { border-color: #7a6316; box-shadow: 0 0 0 3px rgba(122,99,22,.12); }
+.field-error { display: block; min-height: 1.15rem; margin-top: .35rem; color: #b9472c; font-size: .72rem; font-weight: 700; line-height: 1.35; }
+.field-invalid { border-color: #c95538 !important; box-shadow: 0 0 0 3px rgba(201,85,56,.12) !important; }
 .theme-toggle { display: inline-flex; gap: .15rem; border: 1px solid rgba(62,66,69,.16); border-radius: 999px; padding: .2rem; background: rgba(253,252,249,.75); }
 .theme-toggle button { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; padding: .42rem .62rem; color: #6e7478; font-size: .68rem; font-weight: 700; }
 .theme-toggle button.active { background: #16255a; color: #fffdf9; }
@@ -198,6 +200,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .stage-intro p { color: rgba(22,37,90,.75); }
 .dark .faq-list, .dark .faq-item { border-color: rgba(255,255,255,.16); }
 .dark .theme-input { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #f8f3e8; }
+.dark .field-error { color: #ff9c7f; }
 .dark .contact-line b { color: #f8f3e8; }
 .dark .growth-chip { background: #18213a; }
 .dark .site-footer { background: #0b1020; }

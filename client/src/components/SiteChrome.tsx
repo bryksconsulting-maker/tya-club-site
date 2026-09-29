@@ -53,4 +53,4 @@ export function SiteFooter() {
 
 export function WhatsAppFloat() { return <a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" aria-label="Chat with TYA Club on WhatsApp" className="whatsapp-float fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full px-4 py-3 text-sm font-bold text-white"><MessageCircle size={18} /> <span className="hidden sm:inline">WhatsApp us</span></a>; }
 
-export function PageShell({ children }: { children: React.ReactNode }) { return <div className="site-shell min-h-screen"><SiteHeader /><main>{children}</main><SiteFooter /><WhatsAppFloat /></div>; }
+export function PageShell({ children }: { children: React.ReactNode }) { return <div className="site-shell min-h-screen"><SiteHeader /><main>{children}</main><SiteFooter /></div>; }
