@@ -48,7 +48,15 @@ function GithubPagesLinks() {
     const rewriteImages = () => {
       document.querySelectorAll<HTMLImageElement>('img[src^="/manus-storage/"]').forEach((image) => {
         const key = image.getAttribute("src")?.replace(/^\/manus-storage\//, "");
-        if (key) image.src = `${base}/images/${key}`;
+        if (!key || image.dataset.githubPagesRewritten === "true") return;
+        image.dataset.githubPagesRewritten = "true";
+        image.src = `${base}/images/${key}`;
+        image.addEventListener("error", () => {
+          if (image.dataset.githubPagesFallback === "true") return;
+          const svgKey = key.replace(/\.(jpe?g|png)$/i, ".svg");
+          image.dataset.githubPagesFallback = "true";
+          image.src = `${base}/images/${svgKey}`;
+        }, { once: true });
       });
     };
 
