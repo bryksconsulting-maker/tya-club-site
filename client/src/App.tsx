@@ -17,6 +17,33 @@ import Contact from "./pages/Contact";
 import Franchise from "./pages/Franchise";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
+function GithubPagesLinks() {
+  useEffect(() => {
+    const base = "/tya-club-site";
+
+    const handleClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest("a");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || !href.startsWith("/") || href.startsWith(base + "/") || href === base) return;
+      if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+
+      event.preventDefault();
+      window.history.pushState({}, "", base + (href === "/" ? "/" : href));
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
+  return null;
+}
+
 function Router() {
   const base = window.location.pathname.startsWith("/tya-club-site")
     ? "/tya-club-site"
@@ -48,6 +75,7 @@ export default function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light" switchable>
         <TooltipProvider>
+          <GithubPagesLinks />
           <Toaster position="top-right" />
           <Router />
           <WhatsAppFloat />
