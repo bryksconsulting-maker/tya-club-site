@@ -81,7 +81,7 @@ const faqs = [
 function Logo({ reversed = false }: { reversed?: boolean }) {
   return (
     <a href="#top" className={`flex items-center gap-3 ${reversed ? "text-[#fffdf9]" : "text-[#3e4245]"}`} aria-label="TYA Club home">
-      {reversed ? <img src="/manus-storage/tya-final-lockup-gold_f7fef4fd.png" alt="TYA Club" className="h-12 w-auto max-w-[160px] object-contain" /> : <><img src="/manus-storage/tya-final-lockup-charcoal_be589545.png" alt="TYA Club" className="logo-light h-10 w-auto max-w-[150px] object-contain" /><img src="/manus-storage/tya-final-lockup-gold_f7fef4fd.png" alt="TYA Club" className="logo-dark h-10 w-auto max-w-[150px] object-contain" /></>}
+      {reversed ? <img src="/tya-logo-gold.svg" alt="TYA Club" className="h-12 w-auto max-w-[160px] object-contain" /> : <><img src="/tya-logo-charcoal.svg" alt="TYA Club" className="logo-light h-10 w-auto max-w-[150px] object-contain" /><img src="/tya-logo-gold.svg" alt="TYA Club" className="logo-dark h-10 w-auto max-w-[150px] object-contain" /></>}
     </a>
   );
 }
@@ -177,7 +177,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><Sparkles size={18} /></span></div>
               </div>
-              <div className="absolute -bottom-6 -right-6 z-10 w-44 rotate-[-5deg] rounded-2xl bg-[#f28d63] p-4 shadow-xl"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#3e4245]/65">This month</p><p className="mt-2 text-2xl font-bold leading-none">Shows up<br />with ideas.</p><div className="mt-3 h-1 w-20 rounded-full bg-[#3e4245]/30" /></div>
+              
             </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#6e7478]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
