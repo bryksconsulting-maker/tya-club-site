@@ -135,7 +135,7 @@ export default function Curriculum() {
                 <ChevronLeft size={16} />
               </button>
               <div className="min-w-0 flex-1">
-                <p className="what-they-learn-skill">{learningSkills[skillPosition]}</p>
+                <p className="what-they-learn-skill">{learningSkills[skillPositionIndex]}</p>
               </div>
               <button
                 className="what-they-learn-arrow"
@@ -158,4 +158,4 @@ export default function Curriculum() {
 
     <section className="soft-panel overflow-hidden py-20 lg:py-24"><div className="container"><SectionLabel>What parents say</SectionLabel><h2 className="mt-5 max-w-[700px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">Real experiences. <span className="font-display italic text-[#7a6316]">Shared.</span></h2><div className="-mx-4 mt-12 flex snap-x gap-5 overflow-x-auto px-4 pb-5 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">{compositeTestimonials.map((testimonial) => <article key={testimonial.place} className="w-[min(86vw,420px)] shrink-0 snap-start rounded-[1.5rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-6 shadow-sm sm:p-7"><img src={testimonial.image} alt={testimonial.alt} className="mb-6 h-20 w-20 rounded-full object-cover" /><p className="text-lg leading-8">“{testimonial.quote}”</p><p className="mt-6 text-sm font-bold">{testimonial.name}</p><p className="mt-1 text-xs uppercase tracking-[.12em] text-[#7a6316]">{testimonial.place}</p><p className="mt-4 text-[9px] font-semibold uppercase tracking-[.1em] text-muted-copy">Composite story · Representative portrait</p></article>)}</div></div></section>
     <section className="soft-panel py-24 lg:py-32"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic text-[#7a6316]">see.</span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
-  </PageShell>;
+  </PageShell>;}
