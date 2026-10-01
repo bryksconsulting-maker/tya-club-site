@@ -200,8 +200,6 @@ export default function Home() {
                 <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-7 w-7 object-contain" /></span></div>
               </div>
             </div>
-              </div>
-            </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#6e7478]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
