@@ -165,12 +165,12 @@ export default function Home() {
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
               <div className="relative rotate-[2deg] rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-4 shadow-[0_24px_70px_rgba(62,66,69,.14)]">
                 <div className="overflow-hidden rounded-[1.25rem] bg-[#3e4245]">
-                  <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission 07</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
+                  <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission {String(heroIndex + 1).padStart(2, "0")}</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
                   <div className="relative min-h-[330px] p-6">
                     <div className="absolute right-5 top-5 h-28 w-28 rounded-full bg-[#0e9c8c]/35 blur-[1px]" />
                     <img src="/manus-storage/tya-final-symbol-coral_616181ad.png" alt="" aria-hidden="true" className="absolute right-8 top-7 h-24 w-auto object-contain opacity-45" />
-                    <span className="relative z-10 text-xs font-bold uppercase tracking-[.16em] text-white/45">The water crisis</span>
-                    <h2 className="relative z-10 mt-12 max-w-[270px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9]">Find a way forward<br /><span className="font-display italic text-[#f6d77a]">together.</span></h2>
+                    <span className="relative z-10 text-xs font-bold uppercase tracking-[.16em] text-white/45">{line.lead} {line.emphasis}</span>
+                    <h2 className="relative z-10 mt-12 max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9]">{line.answer}</h2>
                     <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/15" /></div>
                     <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/45">Pod 04 · Arena</div>
                   </div>
