@@ -180,7 +180,7 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
-              <div className="absolute -right-14 -top-14 z-20 grid h-28 w-28 place-items-center rounded-full border-2 border-white/70 shadow-[0_12px_35px_rgba(62,66,69,.16)] transition-colors duration-500" style={{ backgroundColor: line.circle }}>
+              <div className="absolute right-0 top-0 z-20 grid h-28 w-28 place-items-center rounded-full border-2 border-white/70 shadow-[0_12px_35px_rgba(62,66,69,.16)] transition-colors duration-500" style={{ backgroundColor: line.circle }}>
                 <img src={`${LOGO_BASE}tya-logo-dark-icon.svg?v=2`} alt="TYA" className="h-12 w-12 object-contain" />
               </div>
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
