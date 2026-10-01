@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import { Mail, MessageCircle, Moon, Phone, Sun } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 
+const LOGO_BASE = import.meta.env.BASE_URL;
+
 export const CONTACT_EMAIL = "hello@thetyaclub.com";
 export const GENERAL_EMAIL = "thetyaclub@gmail.com";
 export const PRIMARY_PHONE = "+91 888 666 5295";
@@ -23,7 +25,7 @@ export function SiteHeader() {
   return <>
     <header className="site-header sticky top-0 z-40 border-b">
       <div className="container flex min-h-[76px] items-center justify-between gap-5">
-        <Link href="/" className="shrink-0" aria-label="TYA Club home"><img src="/tya-logo-charcoal.svg" alt="TYA Club" className="logo-light h-11 w-auto max-w-[150px] object-contain" /><img src="/tya-logo-gold.svg" alt="TYA Club" className="logo-dark h-11 w-auto max-w-[150px] object-contain" /></Link>
+        <Link href="/" className="shrink-0" aria-label="TYA Club home"><img src={`${LOGO_BASE}tya-logo-charcoal.svg`} alt="TYA Club" className="logo-light h-11 w-auto max-w-[150px] object-contain" /><img src={`${LOGO_BASE}tya-logo-gold.svg`} alt="TYA Club" className="logo-dark h-11 w-auto max-w-[150px] object-contain" /></Link>
         <nav className="hidden items-center gap-5 text-[13px] font-bold xl:flex" aria-label="Primary navigation">
           <Link className="nav-link" href="/about">About</Link>
           <Link className="nav-link" href="/how-it-works">How TYA works</Link>
