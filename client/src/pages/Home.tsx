@@ -2,6 +2,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { ThemeToggle } from "../components/SiteChrome";
 import { isValidIndianPhone } from "../lib/validation";
+
+const LOGO_BASE = import.meta.env.BASE_URL;
 import {
   ArrowDownRight,
   ArrowRight,
@@ -81,7 +83,7 @@ const faqs = [
 function Logo({ reversed = false }: { reversed?: boolean }) {
   return (
     <a href="#top" className={`flex items-center gap-3 ${reversed ? "text-[#fffdf9]" : "text-[#3e4245]"}`} aria-label="TYA Club home">
-      {reversed ? <img src="/tya-logo-gold.svg" alt="TYA Club" className="h-12 w-auto max-w-[160px] object-contain" /> : <><img src="/tya-logo-charcoal.svg" alt="TYA Club" className="logo-light h-10 w-auto max-w-[150px] object-contain" /><img src="/tya-logo-gold.svg" alt="TYA Club" className="logo-dark h-10 w-auto max-w-[150px] object-contain" /></>}
+      {reversed ? <img src={`${LOGO_BASE}tya-logo-gold.svg`} alt="TYA Club" className="h-12 w-auto max-w-[160px] object-contain" /> : <><img src={`${LOGO_BASE}tya-logo-charcoal.svg`} alt="TYA Club" className="logo-light h-10 w-auto max-w-[150px] object-contain" /><img src="/tya-logo-gold.svg" alt="TYA Club" className="logo-dark h-10 w-auto max-w-[150px] object-contain" /></>}
     </a>
   );
 }
