@@ -37,7 +37,7 @@ jobs:
 
 
       - name: Build site
-        run: pnpm build 2>&1 | tee build.log
+        run: set -o pipefail && pnpm build 2>&1 | tee build.log
         env:
           GITHUB_ACTIONS: true
 
