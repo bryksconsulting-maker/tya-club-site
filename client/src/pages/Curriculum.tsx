@@ -15,12 +15,32 @@ type Stage = keyof typeof stages;
 
 export default function Curriculum() {
   const [stage, setStage] = useState<Stage>("Class 6 to 9");
-  const [index, setIndex] = useState(0);
-  useEffect(() => { const timer = window.setInterval(() => setIndex((value) => (value + 1) % outcomes.length), 4200); return () => window.clearInterval(timer); }, []);
+  const [order, setOrder] = useState<number[]>(() => outcomes.map((_, i) => i));
+  const [position, setPosition] = useState(0);
+  const index = order[position];
   const item = outcomes[index];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setPosition((value) => {
+        if (value + 1 < outcomes.length) return value + 1;
+        setOrder(() => {
+          const next = outcomes.map((_, i) => i);
+          for (let i = next.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [next[i], next[j]] = [next[j], next[i]];
+          }
+          return next;
+        });
+        return 0;
+      });
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return <PageShell>
     <PageHero eyebrow="What they learn" title={<>Not just knowledge. <span className="font-display italic text-[#f6d77a]">Capability.</span></>} intro="A purposeful curriculum that moves from self-awareness to social responsibility, through Missions that make every skill feel useful." />
-    <section className="container py-24 lg:py-32"><div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end"><div><SectionLabel>Three stages</SectionLabel><h2 className="mt-5 max-w-[650px] text-balance text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The right challenge for the <span className="font-display italic text-[#7a6316]">right moment.</span></h2></div><div className="stage-tabs">{(Object.keys(stages) as Stage[]).map((name) => <button key={name} className={stage === name ? "active" : ""} onClick={() => setStage(name)}>{name}</button>)}</div></div><div className="mt-14 grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-stretch"><div className="content-card stage-intro"><span className="text-xs font-bold uppercase tracking-[.15em] text-[#f28d63]">{stage}</span><h3 className="mt-7 text-4xl font-medium">{stages[stage][0]}</h3><p className="mt-5 text-lg leading-8 text-muted-copy">{stages[stage][1]}</p><Link className="btn-dark mt-8 inline-flex rounded-full px-5 py-3 text-sm font-bold" href={`/programmes/${stage === "Class 6 to 9" ? "class-6-to-9" : stage === "Class 10 to 12" ? "class-10-to-12" : "grads"}`}>Explore this programme <ArrowRight className="ml-2" size={15} /></Link></div><div className="outcome-card"><button className="outcome-control" aria-label="Previous learning outcome" onClick={() => setIndex((index - 1 + outcomes.length) % outcomes.length)}><ChevronLeft size={18} /></button><div className="min-h-[240px] flex-1"><span className="text-xs font-bold uppercase tracking-[.16em] text-[#f6d77a]">Capability {String(index + 1).padStart(2, "0")} / {outcomes.length}</span><h3 className="mt-10 max-w-[620px] text-4xl font-medium leading-[.98] sm:text-6xl">{item[0]}</h3><p className="mt-5 max-w-[500px] text-lg leading-8 text-white/65">{item[1]}</p></div><button className="outcome-control" aria-label="Next learning outcome" onClick={() => setIndex((index + 1) % outcomes.length)}><ChevronRight size={18} /></button></div></div><div className="mt-7 flex flex-wrap gap-2">{outcomes.map((_, i) => <button key={i} onClick={() => setIndex(i)} aria-label={`Show capability ${i + 1}`} className={`h-2 rounded-full transition-all ${i === index ? "w-9 bg-[#f28d63]" : "w-2 bg-[#3e4245]/25"}`} />)}</div></section>
+    <section className="container py-24 lg:py-32"><div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end"><div><SectionLabel>Three stages</SectionLabel><h2 className="mt-5 max-w-[650px] text-balance text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The right challenge for the <span className="font-display italic text-[#7a6316]">right moment.</span></h2></div><div className="stage-tabs">{(Object.keys(stages) as Stage[]).map((name) => <button key={name} className={stage === name ? "active" : ""} onClick={() => setStage(name)}>{name}</button>)}</div></div><div className="mt-14 grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-stretch"><div className="content-card stage-intro"><span className="text-xs font-bold uppercase tracking-[.15em] text-[#f28d63]">{stage}</span><h3 className="mt-7 text-4xl font-medium">{stages[stage][0]}</h3><p className="mt-5 text-lg leading-8 text-muted-copy">{stages[stage][1]}</p><Link className="btn-dark mt-8 inline-flex rounded-full px-5 py-3 text-sm font-bold" href={`/programmes/${stage === "Class 6 to 9" ? "class-6-to-9" : stage === "Class 10 to 12" ? "class-10-to-12" : "grads"}`}>Explore this programme <ArrowRight className="ml-2" size={15} /></Link></div><div className="outcome-card"><button className="outcome-control" aria-label="Previous learning outcome" onClick={() => setPosition((position - 1 + order.length) % order.length)}><ChevronLeft size={18} /></button><div className="min-h-[240px] flex-1"><span className="text-xs font-bold uppercase tracking-[.16em] text-[#f6d77a]">Capability {String(position + 1).padStart(2, "0")} / {outcomes.length}</span><h3 className="mt-10 max-w-[620px] text-4xl font-medium leading-[.98] sm:text-6xl">{item[0]}</h3><p className="mt-5 max-w-[500px] text-lg leading-8 text-white/65">{item[1]}</p></div><button className="outcome-control" aria-label="Next learning outcome" onClick={() => setPosition((position + 1) % order.length)}><ChevronRight size={18} /></button></div></div><div className="mt-7 flex flex-wrap gap-2">{outcomes.map((_, i) => <button key={i} onClick={() => setPosition(order.indexOf(i))} aria-label={`Show capability ${i + 1}`} className={`h-2 rounded-full transition-all ${order[position] === i ? "w-9 bg-[#f28d63]" : "w-2 bg-[#3e4245]/25"}`} />)}</div></section>
     <section className="soft-panel py-24 lg:py-32"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic text-[#7a6316]">see.</span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
   </PageShell>;
 }
