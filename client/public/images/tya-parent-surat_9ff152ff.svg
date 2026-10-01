@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<rect width="900" height="900" fill="#dce7e3"/>
+<circle cx="90" cy="120" r="210" fill="#f6d77a"/>
+<circle cx="790" cy="760" r="230" fill="#f28d63"/>
+<rect x="55" y="55" width="790" height="790" rx="55" fill="#fdfcf9"/>
+<rect x="105" y="105" width="690" height="610" rx="38" fill="#e8eee9"/>
+<circle cx="450" cy="345" r="135" fill="#a66e53"/>
+<path d="M315 330c5-150 265-180 275 10-35-55-80-75-130-75-55 0-105 22-145 65z" fill="#282828"/>
+<circle cx="400" cy="350" r="11" fill="#252525"/><circle cx="500" cy="350" r="11" fill="#252525"/>
+<path d="M382 318h38M480 318h38" stroke="#282828" stroke-width="9" stroke-linecap="round"/>
+<path d="M450 360l-13 62 25 4" fill="none" stroke="#754c43" stroke-width="5"/>
+<path d="M410 438q40 35 80 0" fill="none" stroke="#754c43" stroke-width="6" stroke-linecap="round"/>
+<circle cx="450" cy="300" r="8" fill="#a83e45"/>
+<path d="M285 720q30-185 165-190h0q135 5 165 190z" fill="#789185"/>
+<rect x="120" y="735" width="660" height="92" rx="24" fill="#16255a"/>
+<text x="155" y="772" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#f6d77a" letter-spacing="2">TYA CLUB · ILLUSTRATIVE PARENT</text>
+<text x="155" y="805" font-family="Arial,sans-serif" font-size="20" fill="#fffdf9">DEMO PLACEHOLDER · SURAT</text>
+</svg>
