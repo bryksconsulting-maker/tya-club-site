@@ -180,26 +180,37 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
-              <div className="absolute -right-8 -top-8 grid h-28 w-28 place-items-center rounded-full border border-[#3e4245]/10 shadow-sm transition-colors duration-500" style={{ backgroundColor: line.circle }}><img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="" className="h-12 w-12 object-contain" /></div>
+              <div className="absolute -right-8 -top-8 z-20 grid h-28 w-28 place-items-center rounded-full border-2 border-white/70 shadow-[0_12px_35px_rgba(62,66,69,.16)] transition-colors duration-500" style={{ backgroundColor: line.circle }}>
+                <img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-12 w-12 object-contain" />
+              </div>
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
-              <div className="relative h-[515px] rotate-[2deg] rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-4 shadow-[0_24px_70px_rgba(62,66,69,.14)]">
-                <div className="overflow-hidden rounded-[1.25rem] bg-[#3e4245]">
-                  <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
-                  <div className="relative h-[330px] overflow-hidden">
-                    <img src={`${LOGO_BASE}images/${line.image}`} alt="" className="absolute inset-0 h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-[#16255a]/38" />
-                    <div className="absolute right-5 top-5 h-28 w-28 rounded-full bg-white/10 blur-[1px]" />
-                    <div className="relative z-10 h-full p-6">
-                      <span className="text-xs font-bold uppercase tracking-[.16em] text-white/75">{line.lead} {line.emphasis}</span>
-                      <h2 className="mt-12 min-h-[120px] max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9] drop-shadow-md">{line.answer}</h2>
-                      <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/30" /></div>
-                      <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/75">Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")} · Arena</div>
+              <div className="relative h-[515px] rotate-[2deg] overflow-hidden rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] shadow-[0_24px_70px_rgba(62,66,69,.14)]">
+                <div className="flex h-14 items-center justify-between bg-[#16255a] px-6 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]">
+                  <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span>
+                  <span className="flex items-center gap-1.5 text-white/65"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span>
+                </div>
+                <div className="relative h-[230px] overflow-hidden bg-[#e9e6e1]">
+                  <img src={`${LOGO_BASE}images/${line.image}`} alt="" className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#16255a]/25 to-transparent" />
+                  <div className="absolute bottom-5 left-6 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#16255a] shadow-sm">
+                    TYA Mission
+                  </div>
+                </div>
+                <div className="flex h-[231px] flex-col justify-between bg-[#fdfcf9] px-7 py-6">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">{line.lead} {line.emphasis}</p>
+                    <h2 className="mt-3 max-w-[410px] text-[2rem] font-semibold leading-[1.02] tracking-[-.035em] text-[#16255a] sm:text-[2.15rem]">{line.answer}</h2>
+                  </div>
+                  <div>
+                    <div className="mb-4 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#e9e6e1]" /></div>
+                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[.15em] text-[#6e7478]">
+                      <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")} · Learn · Try · Own</span>
+                      <img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-7 w-7 object-contain" />
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-7 w-7 object-contain" /></span></div>
               </div>
-            </div>
+            </div>            </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#6e7478]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
