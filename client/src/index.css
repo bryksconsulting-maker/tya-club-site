@@ -151,6 +151,110 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .outcome-card { display: flex; align-items: center; gap: 1rem; min-height: 320px; border-radius: 1.5rem; background: #16255a; color: #fffdf9; padding: 2rem; }
 .outcome-control { display: grid; width: 2.75rem; height: 2.75rem; flex-shrink: 0; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: #f6d77a; transition: .18s ease; }
 .outcome-control:hover { background: rgba(255,255,255,.1); transform: scale(1.04); }
+.what-they-learn-section { background: #e9e6e1; }
+.what-they-learn-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .9fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  min-height: 420px;
+  padding: 3rem 2.5rem;
+  background: #f1eee7;
+  border: 1px solid rgba(62,66,69,.06);
+}
+.what-they-learn-board::before,
+.what-they-learn-board::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1px;
+  height: 46%;
+  background: #b9cbe7;
+  transform: translateY(-50%);
+}
+.what-they-learn-board::before { left: 33.33%; }
+.what-they-learn-board::after { right: 33.33%; }
+.what-they-learn-side { position: relative; z-index: 1; min-width: 0; text-align: center; }
+.what-they-learn-rule { height: 1px; width: min(100%, 250px); margin-inline: auto; background: rgba(62,66,69,.72); }
+.what-they-learn-side-inner {
+  display: flex;
+  min-height: 132px;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 1.5rem .25rem;
+}
+.what-they-learn-statement-title,
+.what-they-learn-skill {
+  color: #16255a;
+  font-size: .73rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.what-they-learn-statement-copy {
+  margin-top: .45rem;
+  color: #3e4245;
+  font-size: .69rem;
+  line-height: 1.45;
+}
+.what-they-learn-skill { text-transform: none; font-size: .76rem; }
+.what-they-learn-arrow {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(62,66,69,.14);
+  border-radius: 999px;
+  color: #16255a;
+  opacity: .72;
+  transition: .18s ease;
+}
+.what-they-learn-arrow:hover { background: rgba(22,37,90,.08); opacity: 1; }
+.what-they-learn-count {
+  display: block;
+  margin-top: .65rem;
+  color: #7a6316;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+.what-they-learn-centre {
+  position: relative;
+  z-index: 2;
+  min-height: 285px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.25rem;
+  background: #e5e2da;
+  box-shadow: 0 10px 30px rgba(62,66,69,.05);
+}
+.what-they-learn-centre-kicker { color: #3e4245; font-size: 1.15rem; line-height: 1; }
+.what-they-learn-centre-kicker em { color: #7a6316; font-family: 'Instrument Serif', serif; font-size: 1.3em; }
+.what-they-learn-centre h2 { margin-top: .2rem; color: #3e4245; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; line-height: .9; letter-spacing: -.05em; }
+.what-they-learn-centre p { margin-top: 1.2rem; max-width: 360px; color: #6e7478; font-size: .78rem; line-height: 1.6; }
+.what-they-learn-centre-meta { display: flex; gap: .5rem; margin-top: 1.25rem; }
+.what-they-learn-centre-meta span { border: 1px solid rgba(62,66,69,.12); border-radius: 999px; padding: .35rem .6rem; color: #7a6316; font-size: .57rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.what-they-learn-note { margin-top: 1.2rem; text-align: center; color: #3e4245; font-size: .78rem; font-weight: 600; }
+.what-they-learn-note span { color: #16255a; font-weight: 800; }
+
+@media (max-width: 900px) {
+  .what-they-learn-board { grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 1.25rem; }
+  .what-they-learn-board::before,
+  .what-they-learn-board::after { display: none; }
+  .what-they-learn-centre { order: -1; min-height: 250px; }
+  .what-they-learn-side-inner { min-height: 105px; }
+}
+@media (min-width: 901px) {
+  .what-they-learn-arrow { opacity: 0; }
+  .what-they-learn-side:hover .what-they-learn-arrow,
+  .what-they-learn-side:focus-within .what-they-learn-arrow { opacity: .72; }
+}
+
 .growth-chip { border-radius: 999px; background: #fdfcf9; padding: 1rem; text-align: center; font-size: .82rem; font-weight: 700; }
 .faq-list { border-top: 1px solid rgba(62,66,69,.15); }
 .faq-item { border-bottom: 1px solid rgba(62,66,69,.15); }
