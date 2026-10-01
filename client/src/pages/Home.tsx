@@ -181,7 +181,7 @@ export default function Home() {
 
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
               <div className="absolute -right-8 -top-8 z-20 grid h-28 w-28 place-items-center rounded-full border-2 border-white/70 shadow-[0_12px_35px_rgba(62,66,69,.16)] transition-colors duration-500" style={{ backgroundColor: line.circle }}>
-                <img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-12 w-12 object-contain" />
+                <img src={`${LOGO_BASE}tya-logo-dark-icon.svg?v=2`} alt="TYA" className="h-12 w-12 object-contain" />
               </div>
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
               <div className="relative h-[515px] rotate-[2deg] overflow-hidden rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] shadow-[0_24px_70px_rgba(62,66,69,.14)]">
@@ -190,7 +190,7 @@ export default function Home() {
                   <span className="flex items-center gap-1.5 text-white/65"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span>
                 </div>
                 <div className="relative h-[230px] overflow-hidden bg-[#e9e6e1]">
-                  <img src={`${LOGO_BASE}images/${line.image}`} alt="" className="h-full w-full object-cover" />
+                  <img src={`${LOGO_BASE}images/${line.image}?v=2`} alt="" className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#16255a]/25 to-transparent" />
                   <div className="absolute bottom-5 left-6 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#16255a] shadow-sm">
                     TYA Mission
