@@ -10,15 +10,15 @@ export const compositeTestimonials = [
     quote: "The biggest change was not that he became louder. He started listening, making a choice and following through with the group.",
     name: "Composite parent story",
     place: "Surat · Class 6 to 9 family",
-    image: "/manus-storage/tya-parent-surat_9ff152ff.jpg",
-    alt: "AI-generated representative portrait of an Indian parent in Surat",
+    image: "/manus-storage/tya-parent-surat_9ff152ff.svg",
+    alt: "AI-generated illustrative portrait of an Indian parent in Surat",
   },
   {
     quote: "Our graduate began talking about work choices with more clarity and ownership. TYA gave us a shared language without making us manage every decision.",
     name: "Composite parent story",
     place: "Hyderabad · Graduate family",
-    image: "/manus-storage/tya-parent-grad_fb84ef6a.jpg",
-    alt: "AI-generated representative portrait of Indian parents of a graduate",
+    image: "/manus-storage/tya-parent-grad_fb84ef6a.svg",
+    alt: "AI-generated illustrative portrait of an Indian parent in a graduate family",
   },
 ] as const;
 
