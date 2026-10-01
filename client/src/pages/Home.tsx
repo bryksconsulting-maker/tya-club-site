@@ -27,14 +27,14 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience." },
-  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication." },
-  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality." },
-  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership." },
-  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement." },
-  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence." },
-  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills." },
-  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA." },
+  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience.", image: "tya-indian-mission_3a12c7e2.jpg" },
+  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication.", image: "tya-indian-workshop_df24eeba.jpg" },
+  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality.", image: "tya-indian-collaboration_2d800b48.jpg" },
+  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership.", image: "tya-indian-collaboration_2d800b48.jpg" },
+  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement.", image: "tya-indian-mission_3a12c7e2.jpg" },
+  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence.", image: "tya-indian-workshop_df24eeba.jpg" },
+  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills.", image: "tya-indian-workshop_df24eeba.jpg" },
+  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA.", image: "tya-indian-mission_3a12c7e2.jpg" },
 ];
 
 const steps = [
@@ -93,7 +93,8 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
 }
 
 export default function Home() {
-  const [heroIndex, setHeroIndex] = useState(0);
+  const [heroOrder, setHeroOrder] = useState<number[]>(() => Array.from({ length: heroLines.length }, (_, index) => index));
+  const [heroPosition, setHeroPosition] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [trialOpen, setTrialOpen] = useState(false);
   const [trialSubmitted, setTrialSubmitted] = useState(false);
@@ -103,11 +104,27 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setHeroIndex((current) => (current + 1) % heroLines.length), 3600);
+    const timer = window.setInterval(() => {
+      setHeroPosition((current) => {
+        const next = current + 1;
+        if (next >= heroOrder.length) {
+          setHeroOrder((currentOrder) => {
+            const shuffled = [...currentOrder];
+            for (let index = shuffled.length - 1; index > 0; index -= 1) {
+              const swapIndex = Math.floor(Math.random() * (index + 1));
+              [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+            }
+            return shuffled;
+          });
+          return 0;
+        }
+        return next;
+      });
+    }, 3600);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [heroOrder.length]);
 
-  const line = heroLines[heroIndex];
+  const line = heroLines[heroOrder[heroPosition]];
 
   function handleTrialSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -153,8 +170,8 @@ export default function Home() {
           <div className="container grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
             <div className="relative z-10 max-w-[680px]">
               <div className="reveal mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.17em] text-[#7a6316]"><span className="h-2 w-2 rounded-full bg-[#f28d63]" /> Transforming young adults into future greatness</div>
-              <h1 className="reveal reveal-2 text-balance text-[clamp(3.55rem,7vw,6.7rem)] font-medium leading-[.91] tracking-[-.055em] text-[#3e4245]">Want them to<br /><span className="font-display italic text-[#7a6316]">{line.lead}</span><br /><span className="relative inline-block">{line.emphasis}<span className="absolute -bottom-2 left-0 h-1 w-3/4 bg-[#f28d63]" /></span></h1>
-              <p className="reveal reveal-3 mt-9 max-w-[500px] text-lg leading-8 text-[#6e7478]">{line.answer} Real Missions, coach-led Pods and a monthly view of progress beyond school.</p>
+              <h1 className="reveal reveal-2 h-[275px] overflow-hidden text-balance text-[clamp(3.55rem,7vw,6.7rem)] font-medium leading-[.91] tracking-[-.055em] text-[#3e4245] sm:h-[295px] lg:h-[280px]">Want them to<br /><span className="font-display italic text-[#7a6316]">{line.lead}</span><br /><span className="relative inline-block">{line.emphasis}<span className="absolute -bottom-2 left-0 h-1 w-3/4 bg-[#f28d63]" /></span></h1>
+              <p className="reveal reveal-3 mt-9 min-h-[64px] max-w-[500px] text-lg leading-8 text-[#6e7478]">{line.answer} Real Missions, coach-led Pods and a monthly view of progress beyond school.</p>
               <div className="reveal reveal-3 mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <button className="btn-dark rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-2 inline" size={16} /></button>
                 <a href="#how-it-works" className="group inline-flex items-center gap-2 px-2 py-3 text-sm font-bold">See how it works <ArrowDownRight className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" size={16} /></a>
@@ -165,21 +182,23 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
               <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-[#f28d63]/40 bg-[#f28d63]/20 hero-orb" />
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
-              <div className="relative rotate-[2deg] rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-4 shadow-[0_24px_70px_rgba(62,66,69,.14)]">
+              <div className="relative h-[515px] rotate-[2deg] rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-4 shadow-[0_24px_70px_rgba(62,66,69,.14)]">
                 <div className="overflow-hidden rounded-[1.25rem] bg-[#3e4245]">
-                  <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission {String(heroIndex + 1).padStart(2, "0")}</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
-                  <div className="relative min-h-[330px] p-6">
+                  <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
+                  <div className="relative h-[330px] overflow-hidden">
+                    <img src={`/manus-storage/${line.image}`} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45" />
+                    <div className="absolute inset-0 bg-[#16255a]/70" />
                     <div className="absolute right-5 top-5 h-28 w-28 rounded-full bg-[#0e9c8c]/35 blur-[1px]" />
-                    
-                    <span className="relative z-10 text-xs font-bold uppercase tracking-[.16em] text-white/45">{line.lead} {line.emphasis}</span>
-                    <h2 className="relative z-10 mt-12 max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9]">{line.answer}</h2>
-                    <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/15" /></div>
-                    <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/45">Pod 04 · Arena</div>
+                    <div className="relative z-10 h-full p-6">
+                      <span className="text-xs font-bold uppercase tracking-[.16em] text-white/55">{line.lead} {line.emphasis}</span>
+                      <h2 className="mt-12 min-h-[120px] max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9]">{line.answer}</h2>
+                      <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/15" /></div>
+                      <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/55">Pod 04 · Arena</div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><Sparkles size={18} /></span></div>
               </div>
-              
             </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#6e7478]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
