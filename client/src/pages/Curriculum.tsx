@@ -46,32 +46,7 @@ const learningSkills = [
 ] as const;
 
 export default function Curriculum() {
-  const [stage, setStage] = useState<Stage>("Class 6 to 9");
-  const [order, setOrder] = useState<number[]>(() => outcomes.map((_, i) => i));
-  const [position, setPosition] = useState(0);
-  const index = order[position];
-  const item = outcomes[index];
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setPosition((value) => {
-        if (value + 1 < outcomes.length) return value + 1;
-        setOrder(() => {
-          const next = outcomes.map((_, i) => i);
-          for (let i = next.length - 1; i > 0; i -= 1) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [next[i], next[j]] = [next[j], next[i]];
-          }
-          return next;
-        });
-        return 0;
-      });
-    }, 4200);
-    return () => window.clearInterval(timer);
-  }, []);
-
-
-  const [outcomePosition, setOutcomePosition] = useState(0);
+    const [outcomePosition, setOutcomePosition] = useState(0);
   const [skillPosition, setSkillPosition] = useState(0);
   const [outcomeOrder, setOutcomeOrder] = useState<number[]>(() => outcomes.map((_, i) => i));
   const [skillOrder, setSkillOrder] = useState<number[]>(() => learningSkills.map((_, i) => i));
@@ -101,8 +76,6 @@ export default function Curriculum() {
     }, 4200);
     return () => window.clearInterval(timer);
   }, []);
-
-  const skill = learningSkills[skillPositionIndex];
 
   return <PageShell>
     <PageHero
