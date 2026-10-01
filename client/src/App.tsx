@@ -42,6 +42,22 @@ function GithubPagesLinks() {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
+  useEffect(() => {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+    const rewriteImages = () => {
+      document.querySelectorAll<HTMLImageElement>('img[src^="/manus-storage/"]').forEach((image) => {
+        const key = image.getAttribute("src")?.replace(/^\/manus-storage\//, "");
+        if (key) image.src = `${base}/images/${key}`;
+      });
+    };
+
+    rewriteImages();
+    const observer = new MutationObserver(rewriteImages);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return null;
 }
 
