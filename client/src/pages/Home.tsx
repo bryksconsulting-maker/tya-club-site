@@ -27,14 +27,14 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience.", image: "tya-indian-mission_3a12c7e2.jpg" },
-  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication.", image: "tya-indian-workshop_df24eeba.jpg" },
-  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality.", image: "tya-indian-collaboration_2d800b48.jpg" },
-  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership.", image: "tya-indian-collaboration_2d800b48.jpg" },
-  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement.", image: "tya-indian-mission_3a12c7e2.jpg" },
-  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence.", image: "tya-indian-workshop_df24eeba.jpg" },
-  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills.", image: "tya-indian-workshop_df24eeba.jpg" },
-  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA.", image: "tya-indian-mission_3a12c7e2.jpg" },
+  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience.", image: "mission-resilience.svg", circle: "#f6d77a" },
+  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication.", image: "mission-communication.svg", circle: "#f28d63" },
+  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality.", image: "mission-individuality.svg", circle: "#dce7e3" },
+  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership.", image: "mission-leadership.svg", circle: "#f6d77a" },
+  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement.", image: "mission-judgement.svg", circle: "#f28d63" },
+  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence.", image: "mission-empathy.svg", circle: "#b7cfca" },
+  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills.", image: "mission-lifeskills.svg", circle: "#f6d77a" },
+  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA.", image: "mission-future.svg", circle: "#dce7e3" },
 ];
 
 const steps = [
@@ -180,21 +180,26 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
-              <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-[#f28d63]/40 bg-[#f28d63]/20 hero-orb" />
+              <div className="absolute -right-8 -top-8 grid h-28 w-28 place-items-center rounded-full border border-[#3e4245]/10 shadow-sm transition-colors duration-500" style={{ backgroundColor: line.circle }}><img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="" className="h-12 w-12 object-contain" /></div>
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
               <div className="relative h-[515px] rotate-[2deg] rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] p-4 shadow-[0_24px_70px_rgba(62,66,69,.14)]">
                 <div className="overflow-hidden rounded-[1.25rem] bg-[#3e4245]">
                   <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]"><span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span><span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span></div>
                   <div className="relative h-[330px] overflow-hidden">
-                    <img src={`/manus-storage/${line.image}`} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45" />
-                    <div className="absolute inset-0 bg-[#16255a]/70" />
-                    <div className="absolute right-5 top-5 h-28 w-28 rounded-full bg-[#0e9c8c]/35 blur-[1px]" />
+                    <img src={`${LOGO_BASE}images/${line.image}`} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-[#16255a]/38" />
+                    <div className="absolute right-5 top-5 h-28 w-28 rounded-full bg-white/10 blur-[1px]" />
                     <div className="relative z-10 h-full p-6">
-                      <span className="text-xs font-bold uppercase tracking-[.16em] text-white/55">{line.lead} {line.emphasis}</span>
-                      <h2 className="mt-12 min-h-[120px] max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9]">{line.answer}</h2>
-                      <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/15" /></div>
-                      <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/55">Pod 04 · Arena</div>
+                      <span className="text-xs font-bold uppercase tracking-[.16em] text-white/75">{line.lead} {line.emphasis}</span>
+                      <h2 className="mt-12 min-h-[120px] max-w-[320px] text-4xl font-medium leading-[.95] tracking-[-.04em] text-[#fffdf9] drop-shadow-md">{line.answer}</h2>
+                      <div className="absolute bottom-7 left-6 right-6 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-white/30" /></div>
+                      <div className="absolute bottom-4 right-6 text-[10px] font-bold uppercase tracking-[.17em] text-white/75">Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")} · Arena</div>
                     </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-7 w-7 object-contain" /></span></div>
+              </div>
+            </div>
                   </div>
                 </div>
                 <div className="flex items-center justify-between px-2 pb-1 pt-5"><div><p className="text-xs font-bold uppercase tracking-[.16em] text-[#7a6316]">What grows here</p><p className="mt-1 text-xl font-semibold">Judgment · empathy · courage</p></div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#f6d77a]"><Sparkles size={18} /></span></div>
