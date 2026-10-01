@@ -205,12 +205,12 @@ export default function Home() {
                     <div className="mb-4 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#f6d77a]" /><span className="h-1.5 rounded-full bg-[#e9e6e1]" /></div>
                     <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[.15em] text-[#6e7478]">
                       <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")} · Learn · Try · Own</span>
-                      <img src={`${LOGO_BASE}tya-logo-dark-icon.svg`} alt="TYA" className="h-7 w-7 object-contain" />
+                      <img src={`${LOGO_BASE}tya-logo-dark-icon.svg?v=2`} alt="TYA" className="h-7 w-7 object-contain" />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>            </div>
+            </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#6e7478]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
