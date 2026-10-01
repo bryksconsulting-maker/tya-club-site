@@ -2,9 +2,11 @@ import { ArrowRight, Check, Download, Mail, MessageCircle, Sparkles, X } from "l
 import { useState } from "react";
 import { Link, useRoute } from "wouter";
 import { ThemeToggle } from "../components/SiteChrome";
+
+const LOGO_BASE = import.meta.env.BASE_URL;
 import { isValidEmail } from "../lib/validation";
 
-const logo = "/manus-storage/tya-final-lockup-charcoal_be589545.png";
+const logo = `${LOGO_BASE}tya-logo-charcoal.svg`;
 const whatsappHref = "https://wa.me/918886665295?text=Hi%20TYA%20Club%2C%20I%27d%20like%20to%20know%20more%20about%20a%20programme.";
 const brochureUrls = {
   "class-6-to-9": "/manus-storage/tya-class-6-to-9-brochure_8996744d.pdf",
@@ -48,7 +50,7 @@ const programmes = {
 type ProgrammeKey = keyof typeof programmes;
 
 function Header() {
-  return <header className="sticky top-0 z-40 border-b border-[#3e4245]/10 bg-[#e9e6e1]/90 backdrop-blur-md"><div className="container flex h-[76px] items-center justify-between"><Link href="/"><><img src={logo} alt="TYA Club" className="logo-light h-12 w-auto max-w-[160px] object-contain" /><img src="/manus-storage/tya-final-lockup-gold_f7fef4fd.png" alt="TYA Club" className="logo-dark h-12 w-auto max-w-[160px] object-contain" /></></Link><nav className="hidden items-center gap-6 text-sm font-semibold lg:flex"><Link className="nav-link" href="/">Home</Link><Link className="nav-link" href="/about">About</Link><Link className="nav-link" href="/how-it-works">How it works</Link><Link className="nav-link" href="/curriculum">Curriculum</Link><Link className="nav-link" href="/parents">For parents</Link></nav><ThemeToggle /><a className="btn-primary hidden rounded-full px-5 py-3 text-sm font-bold lg:inline-flex" href={whatsappHref} target="_blank" rel="noreferrer">Ask about a trial <MessageCircle className="ml-2 inline" size={15} /></a><a className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#f6d77a] lg:hidden" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Ask about a TYA trial on WhatsApp"><MessageCircle size={18} /></a></div></header>;
+  return <header className="sticky top-0 z-40 border-b border-[#3e4245]/10 bg-[#e9e6e1]/90 backdrop-blur-md"><div className="container flex h-[76px] items-center justify-between"><Link href="/"><><img src={logo} alt="TYA Club" className="logo-light h-12 w-auto max-w-[160px] object-contain" /><img src={`${LOGO_BASE}tya-logo-gold.svg` alt="TYA Club" className="logo-dark h-12 w-auto max-w-[160px] object-contain" /></></Link><nav className="hidden items-center gap-6 text-sm font-semibold lg:flex"><Link className="nav-link" href="/">Home</Link><Link className="nav-link" href="/about">About</Link><Link className="nav-link" href="/how-it-works">How it works</Link><Link className="nav-link" href="/curriculum">Curriculum</Link><Link className="nav-link" href="/parents">For parents</Link></nav><ThemeToggle /><a className="btn-primary hidden rounded-full px-5 py-3 text-sm font-bold lg:inline-flex" href={whatsappHref} target="_blank" rel="noreferrer">Ask about a trial <MessageCircle className="ml-2 inline" size={15} /></a><a className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#f6d77a] lg:hidden" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Ask about a TYA trial on WhatsApp"><MessageCircle size={18} /></a></div></header>;
 }
 
 export default function Programme() {
