@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<rect width="900" height="900" fill="#e8dce8"/>
+<circle cx="90" cy="760" r="220" fill="#f6d77a"/>
+<circle cx="800" cy="120" r="220" fill="#dce7e3"/>
+<rect x="55" y="55" width="790" height="790" rx="55" fill="#fdfcf9"/>
+<rect x="105" y="105" width="690" height="610" rx="38" fill="#e9e6e1"/>
+<circle cx="450" cy="345" r="135" fill="#b87f60"/>
+<path d="M305 320c20-155 280-165 290 5-55-65-105-80-150-80-55 0-100 20-140 75z" fill="#30261f"/>
+<circle cx="400" cy="350" r="11" fill="#252525"/><circle cx="500" cy="350" r="11" fill="#252525"/>
+<circle cx="410" cy="355" r="48" fill="none" stroke="#353535" stroke-width="7"/><circle cx="490" cy="355" r="48" fill="none" stroke="#353535" stroke-width="7"/><path d="M458 355h-16" stroke="#353535" stroke-width="7"/>
+<path d="M450 365l-12 55 24 4" fill="none" stroke="#80574a" stroke-width="5"/>
+<path d="M410 440q40 28 80 0" fill="none" stroke="#80574a" stroke-width="6" stroke-linecap="round"/>
+<path d="M285 720q30-185 165-190h0q135 5 165 190z" fill="#506585"/>
+<rect x="120" y="735" width="660" height="92" rx="24" fill="#16255a"/>
+<text x="155" y="772" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#f6d77a" letter-spacing="2">TYA CLUB · ILLUSTRATIVE PARENT</text>
+<text x="155" y="805" font-family="Arial,sans-serif" font-size="20" fill="#fffdf9">DEMO PLACEHOLDER · GRADUATE FAMILY</text>
+</svg>
