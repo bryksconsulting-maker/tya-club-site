@@ -185,9 +185,9 @@ export default function Home() {
               </div>
               <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#0e9c8c]/30 bg-[#0e9c8c]/15 hero-orb delay" />
               <div className="relative h-[515px] rotate-[2deg] overflow-hidden rounded-[2rem] border border-[#3e4245]/10 bg-[#fdfcf9] shadow-[0_24px_70px_rgba(62,66,69,.14)]">
-                <div className="flex h-14 items-center justify-between bg-[#16255a] px-6 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]">
+                <div className="relative flex h-14 items-center bg-[#16255a] px-6 text-[10px] font-bold uppercase tracking-[.17em] text-[#f6d77a]">
                   <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span>
-                  <span className="flex items-center gap-1.5 text-white/65"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span>
+                  <span className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap text-white/65"><span className="h-1.5 w-1.5 rounded-full bg-[#f28d63]" /> In progress</span>
                 </div>
                 <div className="relative h-[230px] overflow-hidden bg-[#e9e6e1]">
                   <img src={`${LOGO_BASE}images/${line.image}?v=2`} alt="" className="h-full w-full object-cover" />
