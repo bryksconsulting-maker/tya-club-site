@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -18,22 +18,28 @@ import Franchise from "./pages/Franchise";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
 function Router() {
+  const base = window.location.pathname.startsWith("/tya-club-site")
+    ? "/tya-club-site"
+    : "";
+
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/parents" component={Parents} />
-      <Route path="/parent-guides" component={ParentGuides} />
-      <Route path="/about" component={About} />
-      <Route path="/how-it-works" component={HowItWorks} />
-      <Route path="/curriculum" component={Curriculum} />
-      <Route path="/experience" component={Experience} />
-      <Route path="/centres" component={Centres} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/franchise" component={Franchise} />
-      <Route path="/programmes/:slug" component={Programme} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <WouterRouter base={base}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/parents" component={Parents} />
+        <Route path="/parent-guides" component={ParentGuides} />
+        <Route path="/about" component={About} />
+        <Route path="/how-it-works" component={HowItWorks} />
+        <Route path="/curriculum" component={Curriculum} />
+        <Route path="/experience" component={Experience} />
+        <Route path="/centres" component={Centres} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/franchise" component={Franchise} />
+        <Route path="/programmes/:slug" component={Programme} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </WouterRouter>
   );
 }
 
