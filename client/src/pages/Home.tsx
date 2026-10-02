@@ -212,7 +212,7 @@ export default function Home() {
                     <div className="absolute bottom-16 left-5 right-5 flex justify-center text-center text-sm font-medium leading-6 sm:bottom-[4.5rem] sm:left-8 sm:right-8 sm:text-base"><span>{line.response}</span></div>
                     {line.learn && <div className="absolute bottom-9 left-5 right-5 flex justify-center text-center text-sm leading-6 text-white/70 sm:bottom-11 sm:left-8 sm:right-8 sm:text-base"><span>{line.learn}</span></div>}
                   </div>
-                  <div className="absolute bottom-[5.25rem] left-8 right-8 flex gap-1.5 sm:bottom-[7rem] sm:left-12 sm:right-12">
+                  <div className="absolute bottom-[6.5rem] left-8 right-8 flex gap-1.5 sm:bottom-[7.5rem] sm:left-12 sm:right-12">
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={`h-1 flex-1 ${index <= heroPosition ? "bg-[#E4B42A]" : "bg-white/35"}`} />)}
                   </div>
                 </div>
