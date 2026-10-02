@@ -140,7 +140,7 @@ export default function Home() {
   return (
     <div id="top" className="min-h-screen overflow-hidden bg-[#F3F0EA] text-[#2B2F32]">
       <header className="relative z-40 border-b border-[#2B2F32]/10 bg-[#E4B42A]">
-        <div className="container flex min-h-[92px] items-center justify-between gap-8">
+        <div className="container flex min-h-[92px] items-center justify-between gap-4 lg:gap-8">
           <Logo />
           <nav className="hidden items-center gap-7 text-sm font-semibold uppercase tracking-[.02em] lg:flex" aria-label="Primary navigation">
             <a className="nav-link" href="/about">About</a>
@@ -151,7 +151,10 @@ export default function Home() {
             <a className="nav-link" href="/franchise">Franchise</a>
             <a className="nav-link" href="/contact">Contact us</a>
           </nav>
-          <button className="rounded-full p-2 lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button className="rounded-full p-2 lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
+          </div>
         </div>
         {menuOpen && <nav className="container flex flex-col gap-4 border-t border-[#2B2F32]/15 py-5 lg:hidden" aria-label="Mobile navigation">
           {[['About', '/about'], ['Why TYA?', '/how-it-works'], ['Note for parents', '/parents'], ['Curriculum', '/curriculum'], ['TYA Experience', '/experience'], ['Franchise', '/franchise'], ['Contact us', '/contact']].map(([label, href]) => <a key={href} className="text-base font-semibold uppercase" href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
