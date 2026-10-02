@@ -361,3 +361,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .growth-chip { background: #18213a; }
 .dark .site-footer { background: #0b1020; }
 .dark .hero-grid { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); }
+
+/* Exact brand-color utility aliases used by page-level components */
+[class*="bg-[#F3F0EA]"] { background-color: var(--brand-bg) !important; }
+[class*="bg-[#FFFFFF]"] { background-color: var(--brand-card) !important; }
+[class*="bg-[#2B2F32]"] { background-color: var(--brand-ink) !important; }
+[class*="bg-[#E4B42A]"] { background-color: var(--brand-butter) !important; }
+[class*="bg-[#F28D63]"] { background-color: var(--brand-coral) !important; }
+[class*="text-[#2B2F32]"] { color: var(--brand-ink) !important; }
+[class*="text-[#F3F0EA]"] { color: var(--brand-ivory) !important; }
+[class*="text-[#E4B42A]"] { color: var(--brand-butter) !important; }
+[class*="text-[#F28D63]"] { color: var(--brand-coral) !important; }
+.dark [class*="bg-[#F3F0EA]"] { background-color: var(--brand-bg) !important; }
+.dark [class*="bg-[#FFFFFF]"] { background-color: var(--brand-card) !important; }
+.dark [class*="bg-[#2B2F32]"] { background-color: var(--brand-ink) !important; }
+.dark [class*="text-[#2B2F32]"] { color: var(--brand-ivory) !important; }
+.dark [class*="text-[#F3F0EA]"] { color: var(--brand-ivory) !important; }
