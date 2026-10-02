@@ -303,6 +303,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .experience-faq-toggle svg { transition: transform .18s ease; }
 .experience-faq-answer { max-width: 650px; padding: 0 2rem 1.15rem 0; color: var(--brand-muted); font-size: .76rem; line-height: 1.75; }
 .dark .experience-faq-intro h1 span { color: var(--brand-butter); }
+.testimonial-stories { position: relative; overflow: hidden; background: var(--brand-bg); padding-block: clamp(4rem, 8vw, 7rem); }
+.testimonial-stories::before { position: absolute; inset: 0 0 auto; height: .7rem; background: var(--brand-butter); content: ""; }
+.testimonial-stories-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.testimonial-stories-heading > p { display: inline-flex; align-items: center; gap: .45rem; color: var(--brand-muted); font-size: .67rem; }
+.testimonial-stories-track { display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-inline: contain; scroll-padding-inline: 0; scroll-snap-type: x mandatory; margin-top: 1.5rem; padding: .25rem 0 1rem; scrollbar-color: var(--brand-coral-text) color-mix(in srgb, var(--brand-ink) 12%, transparent); scrollbar-width: thin; }
+.testimonial-stories-track:focus-visible { outline: 3px solid var(--brand-coral-text); outline-offset: 4px; }
+.testimonial-story-card { position: relative; display: flex; min-height: clamp(400px, 48vw, 560px); flex: 0 0 min(100%, 940px); flex-direction: column; scroll-snap-align: start; border-top: .45rem solid var(--brand-butter); border-radius: .3rem; background: var(--brand-card); padding: clamp(2rem, 6.5vw, 4.5rem); color: var(--brand-ink); }
+.testimonial-story-kicker { color: var(--brand-muted); font-size: .75rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.testimonial-story-card blockquote { max-width: 780px; margin-top: clamp(1.5rem, 3vw, 2.25rem); color: var(--brand-ink); font-size: clamp(1.8rem, 4.6vw, 3.5rem); font-weight: 700; line-height: 1.08; letter-spacing: -.045em; }
+.testimonial-story-card blockquote span { color: var(--brand-coral-text); }
+.testimonial-story-byline { margin-top: 1.5rem; color: var(--brand-muted); font-size: .8rem; }
+.testimonial-story-note { margin-top: auto; padding-top: 1.6rem; color: var(--brand-muted); font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.testimonial-story-card::after { position: absolute; bottom: 2rem; left: clamp(2rem, 6.5vw, 4.5rem); width: 6.2rem; height: .38rem; background: var(--brand-coral); content: ""; }
 @media (max-width: 760px) {
   .experience-faq-section { padding-block: 3.5rem 4.5rem; }
   .experience-faq-layout { grid-template-columns: minmax(0, 1fr); gap: 2.75rem; }
@@ -310,6 +323,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .experience-faq-intro h1 { max-width: 440px; font-size: clamp(2.45rem, 11vw, 3.6rem); }
   .experience-question-form { max-width: 440px; }
   .experience-faq-trigger { padding-block: .95rem; font-size: .8rem; }
+  .testimonial-stories-heading { align-items: flex-start; flex-direction: column; gap: .6rem; }
+  .testimonial-story-card { min-height: 400px; flex-basis: min(92vw, 940px); padding: 1.75rem; }
+  .testimonial-story-card blockquote { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+  .testimonial-story-card::after { left: 1.75rem; bottom: 1.5rem; }
 }
 .parent-guides-page { padding-bottom: 5.5rem; background: var(--brand-bg); }
 .parent-guides-intro { padding: 2rem 0 1.2rem; }
