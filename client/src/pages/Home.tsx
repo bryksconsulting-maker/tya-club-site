@@ -101,7 +101,7 @@ function shuffleLearningSkills() {
 const faqs = [
   { question: "What happens in a typical TYA session?", answer: "Every session starts with a Mission — a real-feeling challenge that gives young people a reason to use the skill. They work in their Pod, take on roles, make decisions, reflect and try again. It is active, social and structured, not another class where they sit and listen." },
   { question: "How do I know if TYA is right for my young person?", answer: "TYA is organised into three stages: Class 6 to 9, Class 10 to 12 and Grads. Each stage adapts the Missions and language to where the learner is — from building confidence and communication to career, financial and future planning." },
-  { question: "How do parents see progress?", answer: "You receive a written TYA Growth Card every month. It is not a grade or a certificate — it is a clear snapshot of five behaviours the coach actually observed: confidence, collaboration, decision making, adaptability and ownership." },
+  { question: "How do parents see progress?", answer: "You receive a written TYA Growth Card every month. It is not a grade or a certificate — it is a clear snapshot of six behaviours the coach actually observed: confidence, communication, collaboration, decision making, adaptability and ownership." },
   { question: "How are safety and consistency handled?", answer: "Batches are intentionally structured for 30 young people, with coach-led Pods and clear roles for participation. Coaches are verified, pick-up is named, and every centre follows the same term structure so parents know what week one is building towards." },
 ];
 
