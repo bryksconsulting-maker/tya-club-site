@@ -372,6 +372,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .centre-opened { color: var(--brand-muted); font-size: .62rem; }
 .centre-detail-main > h1 { margin-top: .55rem; color: var(--brand-ink); font-size: clamp(1.8rem, 3.2vw, 2.55rem); font-weight: 800; line-height: 1.05; letter-spacing: -.05em; }
 .centre-address { max-width: 690px; margin-top: .55rem; color: var(--brand-muted); font-size: .72rem; line-height: 1.65; }
+.centre-detail-summary { max-width: 690px; margin-top: .3rem; color: var(--brand-muted); font-size: .67rem; line-height: 1.65; }
 .centre-stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin-top: 1rem; }
 .centre-stat-card { min-width: 0; border: 1px solid color-mix(in srgb, var(--brand-ink) 13%, transparent); border-radius: .65rem; background: var(--brand-card); padding: .65rem .7rem; }
 .centre-stat-card > p { display: flex; align-items: center; gap: .32rem; color: var(--brand-muted); font-size: .48rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }

@@ -41,6 +41,12 @@ export default function Centres() {
 
   const trialHref = centreWhatsappHref(centre);
   const trial = centre.nextTrial;
+  const centreSummary = [
+    centre.detail,
+    centre.batchSize === null ? "Batch size to be confirmed" : `Batches of ${centre.batchSize} young people`,
+    centre.mentorCount === null ? "Mentor count to be confirmed" : `${centre.mentorCount} verified mentors`,
+    centre.programmesThisTerm === null ? "Term programmes to be confirmed" : `${centre.programmesThisTerm} programmes this term`,
+  ].join(" · ");
   const stats = [
     { label: "Batch size", value: centre.batchSize ? `${centre.batchSize} to a batch` : "To be confirmed", Icon: Users },
     { label: "Timings", value: centre.timings ?? "To be confirmed", Icon: Clock3 },
@@ -71,10 +77,11 @@ export default function Centres() {
           <div className="centre-detail-main">
             <div className="centre-status-row">
               <span className="centre-status-pill">{centre.admissionsStatus}</span>
-              <span className="centre-opened">Opened {centre.openedYear ?? "year to be confirmed"}</span>
+              <span className="centre-opened">{centre.openedYear === null ? "Opening year to be confirmed" : `Opened ${centre.openedYear}`}</span>
             </div>
             <h1>TYA Club {centre.locality}</h1>
-            <p className="centre-address">{centre.address}. {centre.detail}. {centre.batchSize ? `${centre.batchSize} young people per batch` : "Batch size to be confirmed"}; {centre.mentorCount === null ? "mentor count to be confirmed" : `${centre.mentorCount} verified mentors`}; {centre.programmesThisTerm === null ? "term programme count to be confirmed" : `${centre.programmesThisTerm} programmes running this term`}.</p>
+            <p className="centre-address">{centre.address}</p>
+            <p className="centre-detail-summary">{centreSummary}</p>
 
             <div className="centre-stat-grid" aria-label="Centre information">
               {stats.map(({ label, value, Icon }) => <div className="centre-stat-card" key={label}>
