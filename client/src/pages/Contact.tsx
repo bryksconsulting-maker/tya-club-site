@@ -8,7 +8,12 @@ type ContactErrors = Partial<Record<keyof ContactFields, string>>;
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
-  const [fields, setFields] = useState<ContactFields>({ name: "", email: "", phone: "", message: "" });
+  const [fields, setFields] = useState<ContactFields>(() => ({
+    name: "",
+    email: "",
+    phone: "",
+    message: new URLSearchParams(window.location.search).get("question") ?? "",
+  }));
   const [errors, setErrors] = useState<ContactErrors>({});
 
   const updateField = (field: keyof ContactFields, value: string) => {

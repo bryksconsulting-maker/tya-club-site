@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { ChevronDown, Mail } from "lucide-react";
-import { PageHero, PageShell, SectionLabel, CONTACT_EMAIL } from "../components/SiteChrome";
+import { useState, type FormEvent } from "react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { useLocation } from "wouter";
+import { PageShell, SectionLabel } from "../components/SiteChrome";
 
 const faqs = [
   ["What happens in a typical TYA session?", "Every session starts with a Mission — a real-feeling challenge that gives young people a reason to use the skill. They work in their Pod, take on roles, make decisions, reflect and try again. It is active, social and structured — not another class where they sit and listen."],
@@ -19,11 +20,63 @@ const faqs = [
 ] as const;
 
 export default function Experience() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   const [question, setQuestion] = useState("");
+  const [, setLocation] = useLocation();
+
+  const askQuestion = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const typedQuestion = question.trim();
+    if (typedQuestion) setLocation(`/contact?question=${encodeURIComponent(typedQuestion)}`);
+  };
+
   return <PageShell>
-    <PageHero eyebrow="The TYA experience" title={<>Good questions deserve <span className="font-display italic text-[#f6d77a]">proper</span> answers.</>} intro="The practical details that help young people and parents understand what happens inside a TYA Pod." />
-    <section className="container grid gap-12 py-24 lg:grid-cols-[.65fr_1.35fr] lg:py-32"><div className="lg:sticky lg:top-28 lg:self-start"><SectionLabel>FAQs</SectionLabel><h2 className="mt-5 text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">What you want to <span className="font-display italic text-[#7a6316]">know.</span></h2><p className="mt-7 text-lg leading-8 text-muted-copy">Still have a question? Write to the team and we’ll help you find the right answer.</p><a className="btn-dark mt-7 inline-flex rounded-full px-5 py-3 text-sm font-bold" href={`mailto:${CONTACT_EMAIL}`}>Ask the TYA team <Mail className="ml-2" size={15} /></a></div><div className="faq-list">{faqs.map(([q, a], index) => <div className="faq-item" key={q}><button className="faq-trigger" onClick={() => setOpen(open === index ? null : index)} aria-expanded={open === index}><span><span className="mr-3 text-xs font-bold text-[#f28d63]">{String(index + 1).padStart(2, "0")}</span>{q}</span><ChevronDown className={open === index ? "rotate-180" : ""} size={18} /></button>{open === index && <p className="faq-answer single">{a}</p>}</div>)}</div></section>
-    <section className="soft-panel py-20"><div className="container max-w-3xl"><SectionLabel>Ask your own question</SectionLabel><h2 className="mt-4 text-4xl font-medium">What would make the decision easier?</h2><form className="mt-7 flex flex-col gap-3 sm:flex-row" onSubmit={(e) => { e.preventDefault(); window.location.href = `mailto:${CONTACT_EMAIL}?subject=Question for TYA Club&body=${encodeURIComponent(question)}`; }}><input className="theme-input flex-1 rounded-full px-5 py-3" required value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="Type your question here" /><button className="btn-dark rounded-full px-6 py-3 text-sm font-bold" type="submit">Send question</button></form></div></section>
+    <section className="experience-faq-section">
+      <div className="container experience-faq-layout">
+        <div className="experience-faq-intro">
+          <SectionLabel>The TYA experience</SectionLabel>
+          <h1>Good questions deserve <span>proper</span> answers.</h1>
+          <p>Not marketing promises. The practical details that help you decide if TYA is right for your young person.</p>
+          <form className="experience-question-form" onSubmit={askQuestion}>
+            <label className="sr-only" htmlFor="experience-question">Type a question for TYA Club</label>
+            <input
+              id="experience-question"
+              type="text"
+              maxLength={500}
+              required
+              value={question}
+              onChange={(event) => setQuestion(event.target.value)}
+              placeholder="Type your question"
+            />
+            <button type="submit" aria-label="Ask us anything">
+              <span>Ask us anything</span>
+              <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          </form>
+        </div>
+
+        <div className="experience-faq-list">
+          {faqs.map(([q, a], index) => {
+            const isOpen = open === index;
+            const answerId = `experience-answer-${index + 1}`;
+            return <article className="experience-faq-item" key={q}>
+              <h2>
+                <button
+                  className="experience-faq-trigger"
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                >
+                  <span>{q}</span>
+                  <span className="experience-faq-toggle"><ChevronDown className={isOpen ? "rotate-180" : ""} size={14} aria-hidden="true" /></span>
+                </button>
+              </h2>
+              {isOpen && <p className="experience-faq-answer" id={answerId}>{a}</p>}
+            </article>;
+          })}
+        </div>
+      </div>
+    </section>
   </PageShell>;
 }
