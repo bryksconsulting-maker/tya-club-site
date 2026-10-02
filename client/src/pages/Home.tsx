@@ -201,7 +201,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-1 -right-1 h-28 w-44 rounded-[1.2rem] bg-[#F28D63] shadow-[0_12px_25px_rgba(62,66,69,.12)]" />
             </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#656A6D]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
