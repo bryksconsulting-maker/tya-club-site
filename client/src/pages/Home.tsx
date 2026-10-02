@@ -6,6 +6,7 @@ import { isValidIndianPhone } from "../lib/validation";
 const LOGO_BASE = import.meta.env.BASE_URL;
 import {
   ArrowDownRight,
+  ArrowLeft,
   ArrowRight,
   Check,
   CheckCircle2,
@@ -18,6 +19,8 @@ import {
   MessageCircle,
   NotebookPen,
   Phone,
+  Pause,
+  Play,
   ShieldCheck,
   Sparkles,
   Target,
@@ -44,34 +47,56 @@ const steps = [
   { number: "04", title: "Make an impact", eyebrow: "What you learn travels with you.", copy: "Turn learning into community, civic and environmental action — while building a visible record of growth.", icon: Leaf, color: "#F3F0EA" },
 ];
 
-const curriculum = {
-  "Class 6 to 9": [
-    ["Leadership", "Speak up, listen and take responsibility."],
-    ["Communication", "Share ideas and understand another point of view."],
-    ["Problem solving", "Try, learn, adapt and keep going."],
-    ["Self-awareness", "Notice feelings, strengths and growing edges."],
-    ["Growth orientation", "Treat challenges as chances to get better."],
-    ["Friendship", "Build trust through play and shared missions."],
-  ],
-  "Class 10 to 12": [
-    ["Critical thinking", "Ask better questions before choosing a path."],
-    ["Decision making", "Consider options and learn from outcomes."],
-    ["Negotiation", "Find a way forward when people disagree."],
-    ["Digital & AI literacy", "Use new tools with judgment and purpose."],
-    ["Entrepreneurship", "Turn an idea into a useful next step."],
-    ["Civic awareness", "See how individual action can shift a community."],
-  ],
-  "Grads": [
-    ["Career & future planning", "Map strengths, options and the next meaningful step."],
-    ["Leadership", "Lead conversations, projects and people with purpose."],
-    ["Financial literacy", "Make informed decisions about money and opportunity."],
-    ["Entrepreneurship", "Turn a useful idea into sustainable action."],
-    ["Digital & AI literacy", "Use emerging tools with judgment and responsibility."],
-    ["Professional ethics", "Build trust through principled decisions."],
-  ],
-} as const;
+const learningIdeas = [
+  ["A voice of their own.", "Confidence to speak, listen and be heard."],
+  ["The confidence to walk into a room.", "Comfortable in new rooms, new places and new situations."],
+  ["The courage to start.", "Turning ideas into action."],
+  ["The skill to figure things out.", "Even when nobody gives them the answer."],
+  ["Leadership, without the title.", "And knows when to let someone else lead."],
+  ["The grit to keep going.", "Especially when things get difficult."],
+  ["Room for different views.", "Different opinions don’t have to mean divided people."],
+  ["A mind of their own.", "Not just follows the crowd."],
+  ["A heart that cares beyond itself.", "Community. People. Planet."],
+  ["The habit of extending a hand.", "See a problem. Step up."],
+  ["You win and I win.", "It’s not my way or the highway. Everyone can win."],
+  ["A global mindset.", "They’ve learned to look beyond their own little corner of the world."],
+  ["A reason to give back.", "Because once you’ve experienced what you can do, you start looking for where you’re needed next."],
+  ["The courage to believe there’s a way through.", "Even when the moment feels bigger than everything else."],
+] as const;
 
-type CurriculumTab = keyof typeof curriculum;
+const learningSkills = [
+  "Leadership",
+  "Analytical / Critical Thinking",
+  "Communication",
+  "Stress Management",
+  "Self Awareness & Emotional Intelligence",
+  "Problem Solving",
+  "Growth Orientation",
+  "Careers & Future Planning",
+  "Digital & AI Literacy",
+  "Entrepreneurship",
+  "Financial Literacy",
+  "Decision Making",
+  "Negotiation",
+  "Planning & Strategy",
+  "Innovation & Creativity",
+  "Time Management",
+  "Ethics, Morals & Values (Religion, Faith)",
+  "Environment / Social Responsibility",
+  "Friendship",
+  "Civic awareness",
+  "Project Management",
+  "Building Social Enterprises",
+] as const;
+
+function shuffleLearningSkills() {
+  const remaining = learningSkills.filter((skill) => skill !== "Communication");
+  for (let index = remaining.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [remaining[index], remaining[swapIndex]] = [remaining[swapIndex], remaining[index]];
+  }
+  return ["Communication", ...remaining];
+}
 
 const faqs = [
   { question: "What happens in a typical TYA session?", answer: "Every session starts with a Mission — a real-feeling challenge that gives young people a reason to use the skill. They work in their Pod, take on roles, make decisions, reflect and try again. It is active, social and structured, not another class where they sit and listen." },
@@ -100,7 +125,10 @@ export default function Home() {
   const [trialSubmitted, setTrialSubmitted] = useState(false);
   const [trialPhone, setTrialPhone] = useState("");
   const [trialPhoneError, setTrialPhoneError] = useState("");
-  const [curriculumTab, setCurriculumTab] = useState<CurriculumTab>("Class 6 to 9");
+  const [learningIdeaIndex, setLearningIdeaIndex] = useState(0);
+  const [learningSkillOrder] = useState(() => shuffleLearningSkills());
+  const [learningSkillIndex, setLearningSkillIndex] = useState(0);
+  const [learningCarouselsPaused, setLearningCarouselsPaused] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
@@ -123,6 +151,15 @@ export default function Home() {
     }, 3600);
     return () => window.clearInterval(timer);
   }, [heroOrder.length]);
+
+  useEffect(() => {
+    if (learningCarouselsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      setLearningIdeaIndex((current) => (current + 1) % learningIdeas.length);
+      setLearningSkillIndex((current) => (current + 1) % learningSkillOrder.length);
+    }, 5200);
+    return () => window.clearInterval(timer);
+  }, [learningCarouselsPaused, learningSkillOrder.length]);
 
   const line = heroLines[heroOrder[heroPosition]];
 
@@ -301,7 +338,54 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="curriculum" className="container py-24 lg:py-32"><div className="grid gap-14 lg:grid-cols-[.72fr_1.28fr] lg:items-start"><div><SectionLabel>What they learn</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">Not just <span className="font-display italic text-[#2B2F32]">knowledge.</span><br />Capability.</h2><p className="mt-7 max-w-[410px] text-lg leading-8 text-[#656A6D]">A purposeful curriculum that moves from self-awareness to social responsibility, through missions that make every skill feel useful.</p><div className="mt-9 flex items-start gap-3 border-l-2 border-[#F28D63] pl-4 text-sm leading-6 text-[#656A6D]"><span className="font-bold text-[#2B2F32]">18+ skills</span><span>·</span><span>Delivered through stories, roles and missions — never worksheets alone.</span></div></div><div><div className="flex flex-wrap gap-2 border-b border-[#2B2F32]/15 pb-5">{(Object.keys(curriculum) as CurriculumTab[]).map((tab) => <button key={tab} onClick={() => setCurriculumTab(tab)} className={`rounded-full px-5 py-3 text-sm font-bold transition ${curriculumTab === tab ? "bg-[#2B2F32] text-[#fffdf9]" : "bg-[#FFFFFF] text-[#656A6D] hover:bg-[#F3F0EA]"}`}>{tab}</button>)}</div><a className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#2B2F32]" href={`/programmes/${curriculumTab === "Class 6 to 9" ? "class-6-to-9" : curriculumTab === "Class 10 to 12" ? "class-10-to-12" : "grads"}`}>Explore the {curriculumTab} programme <ArrowRight size={15} /></a><div className="grid gap-x-8 gap-y-0 sm:grid-cols-2">{curriculum[curriculumTab].map(([title, copy], index) => <div key={title} className="group border-b border-[#2B2F32]/12 py-6"><div className="flex items-start gap-4"><span className="mt-1 text-xs font-bold text-[#F28D63]">0{index + 1}</span><div><h3 className="text-lg font-bold">{title}</h3><p className="mt-2 text-sm leading-6 text-[#656A6D]">{copy}</p></div></div></div>)}</div></div></div></section>
+        <section id="curriculum" className="bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
+          <div className="container">
+            <SectionLabel>What they learn</SectionLabel>
+            <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
+              <div className="grid grid-cols-1 items-center gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,360px)_minmax(0,1fr)] lg:gap-10">
+                <div className="order-2 min-w-0 lg:order-1">
+                  <div className="flex min-h-[150px] flex-col justify-center border-y border-[#2B2F32]/35 px-3 py-5 text-center sm:min-h-[170px] lg:min-h-[190px]">
+                    <div key={learningIdeaIndex} className="learning-carousel-copy">
+                      <h3 className="text-xs font-bold uppercase leading-5 tracking-[.12em] text-[#2B2F32] sm:text-sm">{learningIdeas[learningIdeaIndex][0]}</h3>
+                      <p className="mt-3 text-sm leading-6 text-[#656A6D]">{learningIdeas[learningIdeaIndex][1]}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <button type="button" aria-label="Previous learning idea" onClick={() => setLearningIdeaIndex((current) => (current - 1 + learningIdeas.length) % learningIdeas.length)} className="learning-carousel-arrow"><ArrowLeft size={15} /></button>
+                    <span className="text-[10px] font-bold uppercase tracking-[.12em] text-[#656A6D]">{String(learningIdeaIndex + 1).padStart(2, "0")} / {learningIdeas.length}</span>
+                    <button type="button" aria-label="Next learning idea" onClick={() => setLearningIdeaIndex((current) => (current + 1) % learningIdeas.length)} className="learning-carousel-arrow"><ArrowRight size={15} /></button>
+                  </div>
+                </div>
+
+                <article className="order-1 mx-auto flex min-h-[285px] w-full max-w-[360px] flex-col justify-center rounded-[.75rem] bg-[#E5E2DA] p-6 shadow-sm sm:col-span-2 sm:min-h-[310px] sm:p-8 lg:order-2 lg:col-span-1 lg:aspect-square lg:min-h-0" aria-labelledby="curriculum-card-title">
+                  <h2 id="curriculum-card-title" className="text-balance text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#2B2F32] sm:text-4xl">Not just <span className="font-display italic text-[#7a6316]">knowledge.</span><br />Capability.</h2>
+                  <p className="mt-5 text-xs leading-5 text-[#656A6D] sm:text-sm sm:leading-6">A purposeful curriculum that moves from self-awareness to social responsibility, through missions that make every skill feel useful.</p>
+                  <div className="mt-6 flex items-start gap-3 border-t border-[#2B2F32]/15 pt-4 text-[10px] leading-4 text-[#656A6D]">
+                    <span className="shrink-0 font-bold text-[#2B2F32]">18+<br />skills</span>
+                    <span>Delivered through stories, roles and missions — never worksheets alone.</span>
+                  </div>
+                </article>
+
+                <div className="order-3 min-w-0">
+                  <div className="flex min-h-[150px] flex-col items-center justify-center border-y border-[#2B2F32]/35 px-3 py-5 text-center sm:min-h-[170px] lg:min-h-[190px]">
+                    <p className="learning-carousel-copy text-sm font-bold uppercase leading-6 tracking-[.1em] text-[#2B2F32] sm:text-base" key={learningSkillIndex}>{learningSkillOrder[learningSkillIndex]}</p>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <button type="button" aria-label="Previous skill" onClick={() => setLearningSkillIndex((current) => (current - 1 + learningSkillOrder.length) % learningSkillOrder.length)} className="learning-carousel-arrow"><ArrowLeft size={15} /></button>
+                    <span className="text-[10px] font-bold uppercase tracking-[.12em] text-[#656A6D]">{String(learningSkillIndex + 1).padStart(2, "0")} / {learningSkillOrder.length}</span>
+                    <button type="button" aria-label="Next skill" onClick={() => setLearningSkillIndex((current) => (current + 1) % learningSkillOrder.length)} className="learning-carousel-arrow"><ArrowRight size={15} /></button>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 flex justify-center">
+                <button type="button" aria-pressed={learningCarouselsPaused} onClick={() => setLearningCarouselsPaused((paused) => !paused)} className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[11px] font-semibold text-[#656A6D] transition hover:bg-[#FFFFFF] hover:text-[#2B2F32]">
+                  {learningCarouselsPaused ? <Play size={13} /> : <Pause size={13} />}
+                  {learningCarouselsPaused ? "Resume rotation" : "Pause rotation"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section id="parents" className="bg-[#2B2F32] py-24 text-[#fffdf9] lg:py-32"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic text-[#E4B42A]">grade.</span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><div className="relative mx-auto w-full max-w-[520px]"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-[#F28D63]" /><div className="relative rotate-[3deg] rounded-[1.5rem] bg-[#FFFFFF] p-6 text-[#2B2F32] shadow-[0_24px_80px_rgba(0,0,0,.22)] sm:p-9"><div className="flex items-start justify-between border-b border-[#2B2F32]/12 pb-6"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#2B2F32]">TYA Growth Card</p><h3 className="mt-2 text-2xl font-bold">Aarav</h3><p className="text-sm text-[#656A6D]">TYA Pod · Monthly snapshot</p></div><span className="grid h-12 w-12 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span></div><div className="space-y-5 py-7">{[['Confidence', 82], ['Communication', 76], ['Collaboration', 92], ['Decision making', 72], ['Adaptability', 81], ['Ownership', 62]].map(([label, value]) => <div key={label as string}><div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-[.12em]"><span>{label as string}</span><span className="text-[#2B2F32]">{value as number}%</span></div><div className="h-2 overflow-hidden rounded-full bg-[#F3F0EA]"><div className="h-full rounded-full bg-[#2B2F32]" style={{ width: `${value}%` }} /></div></div>)}</div><div className="rounded-xl bg-[#F3F0EA] p-4"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#F28D63]">TYA moment</p><p className="mt-2 text-sm leading-6">“In the Water Crisis Mission, Aarav proposed a compromise both Pods accepted — and volunteered to present it.”</p></div><p className="mt-5 text-center text-[10px] font-bold uppercase tracking-[.15em] text-[#656A6D]">Written by the coach who was in the room</p></div></div></div></div></section>
 
