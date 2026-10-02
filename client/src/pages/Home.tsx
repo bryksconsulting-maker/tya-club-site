@@ -178,7 +178,7 @@ export default function Home() {
 
       <main>
         <section className="grain hero-grid relative overflow-hidden border-b border-[#2B2F32]/10 bg-[#F3F0EA]">
-          <div className="container grid min-h-[790px] items-center gap-12 py-12 lg:grid-cols-[1.08fr_.92fr] lg:py-16">
+          <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[790px] lg:grid-cols-[1.08fr_.92fr] lg:py-16">
             <div className="relative z-10 max-w-[680px]">
               <div className="reveal mb-10 flex items-center gap-3 text-[15px] font-medium text-[#2B2F32]"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
               <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em] text-[#2B2F32]">
@@ -205,14 +205,14 @@ export default function Home() {
               <div className="absolute -right-1 -top-7 h-28 w-28 rounded-full border border-[#F28D63]/50 bg-[#F28D63]/20" />
               <div className="absolute -bottom-2 -left-5 h-32 w-32 rounded-full border border-[#2B2F32]/15 bg-[#F3F0EA] hero-orb delay" />
               <div className="relative rotate-[2deg] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-[0_24px_70px_rgba(62,66,69,.14)]">
-                <div className="relative min-h-[570px] bg-[#2B2F32] px-10 pb-9 pt-10 text-white sm:px-14">
+                <div className="relative min-h-[500px] bg-[#2B2F32] px-5 pb-9 pt-8 text-white sm:min-h-[570px] sm:px-14 sm:pt-10">
                   <div className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Mission {String(heroOrder[heroPosition] + 1)}:</div>
                   <div className="contents">
-                    <div className="absolute left-8 right-8 top-1/2 flex -translate-y-1/2 justify-center text-center text-2xl font-semibold leading-tight sm:text-3xl"><span>{line.statement}</span></div>
-                    <div className="absolute bottom-20 left-8 right-8 flex justify-center text-center text-sm font-medium leading-6 sm:text-base"><span>{line.response}</span></div>
-                    {line.learn && <div className="absolute bottom-10 left-8 right-8 flex justify-center text-center text-sm leading-6 text-white/70 sm:text-base"><span>{line.learn}</span></div>}
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 justify-center text-center text-xl font-semibold leading-[1.15] sm:left-8 sm:right-8 sm:text-3xl"><span>{line.statement}</span></div>
+                    <div className="absolute bottom-16 left-5 right-5 flex justify-center text-center text-sm font-medium leading-6 sm:bottom-[4.5rem] sm:left-8 sm:right-8 sm:text-base"><span>{line.response}</span></div>
+                    {line.learn && <div className="absolute bottom-9 left-5 right-5 flex justify-center text-center text-sm leading-6 text-white/70 sm:bottom-11 sm:left-8 sm:right-8 sm:text-base"><span>{line.learn}</span></div>}
                   </div>
-                  <div className="absolute bottom-28 left-12 right-12 flex gap-1.5">
+                  <div className="absolute bottom-[5.25rem] left-8 right-8 flex gap-1.5 sm:bottom-[7rem] sm:left-12 sm:right-12">
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={`h-1 flex-1 ${index <= heroPosition ? "bg-[#E4B42A]" : "bg-white/35"}`} />)}
                   </div>
                 </div>
