@@ -209,11 +209,55 @@ export default function Home() {
         </section>
 
         <section id="programmes" className="container py-24 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end"><div><SectionLabel>Why TYA</SectionLabel><h2 className="mt-5 max-w-[540px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">The skills that make the <span className="font-display italic text-[#2B2F32]">difference.</span></h2></div><p className="max-w-[510px] text-lg leading-8 text-[#656A6D]">TYA is where young people practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p></div>
-          <div className="mt-16 grid gap-4 md:grid-cols-3"><article className="card-sheen rounded-[1.5rem] bg-[#2B2F32] p-7 text-[#fffdf9] md:col-span-2 md:min-h-[250px]"><div className="relative z-10 flex h-full flex-col justify-between"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A] text-[#2B2F32]"><ShieldCheck size={20} /></span><span className="section-kicker text-[#E4B42A]">01 · Built for growth</span></div><div className="mt-12"><h3 className="text-3xl font-semibold tracking-[-.03em]">Room for every young adult to lead.</h3><p className="mt-3 max-w-[470px] leading-7 text-white/65">Thirty young people, guided by a coach-led Pod model. A space where being heard is part of the experience.</p></div></div></article><article className="rounded-[1.5rem] bg-[#F3F0EA] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#2B2F32] text-[#fffdf9]"><HeartHandshake size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Friends first.<br />Confidence follows.</p><p className="mt-3 text-sm leading-6 text-[#656A6D]">A Pod makes room for quiet thinkers, natural leaders and everyone in between.</p></article><article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#E4B42A] p-7 md:min-h-[250px]"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#2B2F32] text-[#E4B42A]"><NotebookPen size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">Progress you can<br />actually see.</p><p className="mt-3 text-sm leading-6 text-[#2B2F32]/70">A coach-written Growth Card comes home every month.</p></article><article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#FFFFFF] p-7 md:col-span-2 md:min-h-[250px]"><div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10"><div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#F28D63]"><Compass size={20} /></span><p className="mt-12 text-2xl font-semibold leading-tight">The real world, in<br />a safe place to try.</p></div><p className="max-w-[300px] text-sm leading-6 text-[#656A6D]">Water crises, negotiations, business decisions, community challenges. Every Mission gives skills a reason to matter.</p></div></article></div>
-        </section>
+          <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+            <div>
+              <SectionLabel>Why TYA</SectionLabel>
+              <h2 className="mt-5 max-w-[540px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">The skills that make the <span className="font-display italic text-[#2B2F32]">difference.</span></h2>
+            </div>
+            <p className="max-w-[510px] text-lg leading-8 text-[#656A6D]">TYA is where young people practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
+          </div>
 
-        <section className="container pb-24 lg:pb-32"><div className="grid gap-5 lg:grid-cols-[1.2fr_.8fr]"><div className="group relative overflow-hidden rounded-[1.5rem] bg-[#2B2F32]"><img src="/manus-storage/tya-indian-mission_3a12c7e2.jpg" alt="Indian young people working together during a creative workshop" className="h-[330px] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2B2F32] via-[#2B2F32]/75 to-transparent p-7 pt-24"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Inside a Mission</p><p className="mt-2 max-w-[380px] text-2xl font-semibold leading-tight text-[#fffdf9]">They do not just hear about the skill. They use it.</p></div></div><div className="flex flex-col justify-between rounded-[1.5rem] bg-[#F3F0EA] p-7"><div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span><h3 className="mt-12 text-3xl font-semibold leading-tight tracking-[-.03em]">A real room.<br />A real challenge.</h3></div><div><p className="text-sm leading-6 text-[#656A6D]">The experience becomes tangible for parents when they can picture the room: a table, a team and an idea taking shape.</p><a className="mt-5 inline-flex items-center gap-2 text-sm font-bold" href="/parents">See the parent view <ArrowRight size={15} /></a></div></div></div></section>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            <article className="card-sheen rounded-[1.5rem] bg-[#2B2F32] p-7 text-[#fffdf9] md:col-span-2 md:min-h-[250px]">
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A] text-[#2B2F32]"><ShieldCheck size={20} /></span><span className="section-kicker text-[#E4B42A]">01 · Built for growth</span></div>
+                <div className="mt-12"><h3 className="text-3xl font-semibold tracking-[-.03em]">Room for every young adult to learn.</h3><p className="mt-3 max-w-[470px] leading-7 text-white/65">Thirty young adults, facilitated by a coach. A space where everyone is given the opportunity to lead, learn, express and experience.</p></div>
+              </div>
+            </article>
+
+            <article className="rounded-[1.5rem] bg-[#DCEAE6] p-7 md:min-h-[250px]">
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-[#0F9F8F] text-white"><HeartHandshake size={20} /></span>
+              <h3 className="mt-12 text-2xl font-semibold leading-tight">Friends first.<br />Confidence follows.</h3>
+              <p className="mt-3 text-sm leading-6 text-[#656A6D]">Every Pod creates an ecosystem of sharing and comfort. Quiet thinkers, natural thinkers and everyone in between have a conducive atmosphere to learn and grow.</p>
+            </article>
+
+            <article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#E4B42A] p-7 md:min-h-[250px]">
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-[#2B2F32] text-[#E4B42A]"><NotebookPen size={20} /></span>
+              <h3 className="mt-12 text-2xl font-semibold leading-tight">Progress you can<br />actually see.</h3>
+              <p className="mt-3 text-sm leading-6 text-[#2B2F32]/70">A coach-written Growth Card comes home every month. But that’s not all. You will see the transformation practically.</p>
+            </article>
+
+            <article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#FFFFFF] p-7 md:col-span-2 md:min-h-[250px]">
+              <div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10">
+                <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#F28D63]"><Compass size={20} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight">The real world.<br />A safe place to try.</h3></div>
+                <p className="max-w-[330px] text-sm leading-6 text-[#656A6D]">Negotiations, business decisions, career and emotional problems, and community challenges. TYA gives them a chance to prepare before they face them in real life. Every Mission gives skills a reason to matter.</p>
+              </div>
+            </article>
+
+            <article className="group relative overflow-hidden rounded-[1.5rem] bg-[#2B2F32] md:col-span-2 md:min-h-[250px]">
+              <img src="/manus-storage/tya-indian-mission_3a12c7e2.jpg" alt="Young people working together during a TYA Mission" className="h-full min-h-[250px] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2B2F32] via-[#2B2F32]/75 to-transparent p-7 pt-24">
+                <h3 className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Inside a Mission</h3>
+                <p className="mt-2 max-w-[520px] text-lg font-medium leading-6 text-[#fffdf9]">We call each scenario — everything they might face in life — a Mission. We help them gain the skills to face it. They do not just hear about the skills. They use them.</p>
+              </div>
+            </article>
+
+            <article className="flex flex-col justify-between rounded-[1.5rem] bg-[#DCEAE6] p-7 md:min-h-[250px]">
+              <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight tracking-[-.03em]">Tangible Missions.</h3></div>
+              <p className="mt-6 text-sm leading-6 text-[#656A6D]">The model helps young adults and parents experience tangible outcomes.</p>
+            </article>
+          </div>
+        </section>
 
         <section id="how-it-works" className="grain bg-[#FFFFFF] py-24 lg:py-32"><div className="container"><div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end"><div><SectionLabel>How TYA works</SectionLabel><h2 className="mt-5 max-w-[660px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">Four steps. One journey. A stronger, more capable <span className="font-display italic text-[#2B2F32]">young person.</span></h2></div><p className="max-w-[340px] text-lg leading-7 text-[#656A6D]">Every Pod experience combines real challenges, practical skills, teamwork and responsibility.</p></div><div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{steps.map((step) => { const Icon = step.icon; return <article key={step.number} className="step-card rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-6"><div className="flex items-start justify-between"><span className="text-sm font-bold text-[#2B2F32]">{step.number}</span><span className="grid h-11 w-11 place-items-center rounded-full" style={{ backgroundColor: step.color }}><Icon size={19} /></span></div><h3 className="mt-14 text-2xl font-semibold tracking-[-.03em]">{step.title}</h3><p className="mt-3 text-sm font-bold text-[#2B2F32]">{step.eyebrow}</p><p className="mt-4 text-sm leading-6 text-[#656A6D]">{step.copy}</p><a className="mt-7 inline-flex items-center gap-2 text-sm font-bold" href="#curriculum">Explore skills <ArrowRight size={15} /></a></article>; })}</div></div></section>
 
