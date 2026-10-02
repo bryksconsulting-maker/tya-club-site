@@ -1,4 +1,5 @@
 import type React from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { Mail, MessageCircle, Moon, Phone, Sun } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
@@ -53,6 +54,31 @@ export function SiteFooter() {
   return <footer className="site-footer border-t py-14"><div className="container grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr] md:items-end"><div><Link href="/"><img src={`${LOGO_BASE}tya-logo-lockup-coral.svg`} alt="TYA Club" className="h-14 w-auto max-w-[170px] object-contain" /></Link><p className="mt-5 max-w-[360px] text-sm leading-6 text-white/60">Where skills become confidence. A learning community for young people to practise the capabilities school cannot grade.</p></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Contact</p><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`mailto:${CONTACT_EMAIL}`}><Mail size={15} /> {CONTACT_EMAIL}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${PRIMARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {PRIMARY_PHONE}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${SECONDARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {SECONDARY_PHONE}</a></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Explore</p><Link className="block text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><Link className="block text-white/80 hover:text-[#f6d77a]" href="/centres">Find a centre</Link><Link className="block text-white/80 hover:text-[#f6d77a]" href="/franchise">Franchise with TYA</Link><a className="block text-white/80 hover:text-[#f6d77a]" href="https://www.facebook.com/thetyaclub" target="_blank" rel="noreferrer">Facebook</a><a className="block text-white/80 hover:text-[#f6d77a]" href="https://www.instagram.com/tya.club/" target="_blank" rel="noreferrer">Instagram</a></div></div><div className="container mt-10 flex flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/45 sm:flex-row sm:justify-between"><span>© 2026 TYA Club</span><a href={`mailto:${GENERAL_EMAIL}`}>{GENERAL_EMAIL}</a></div></footer>;
 }
 
-export function WhatsAppFloat() { return <a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" aria-label="Chat with TYA Club on WhatsApp" className="whatsapp-float fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full px-4 py-3 text-sm font-bold text-white"><MessageCircle size={18} /> <span className="hidden sm:inline">WhatsApp us</span></a>; }
+export function WhatsAppFloat() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="fixed bottom-5 right-5 z-50">
+      {expanded ? (
+        <div className="whatsapp-float flex items-center gap-2 rounded-full px-4 py-3 text-sm font-bold text-white">
+          <a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" aria-label="Chat with TYA Club on WhatsApp" className="flex items-center gap-2">
+            <MessageCircle size={18} />
+            <span>WhatsApp us</span>
+          </a>
+          <button type="button" onClick={() => setExpanded(false)} aria-label="Collapse WhatsApp contact" className="ml-1 rounded-full p-1 text-white/80 hover:text-white">×</button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          aria-label="Expand WhatsApp contact"
+          className="whatsapp-float flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg"
+        >
+          <MessageCircle size={23} />
+        </button>
+      )}
+    </div>
+  );
+}
 
 export function PageShell({ children }: { children: React.ReactNode }) { return <div className="site-shell min-h-screen"><SiteHeader /><main>{children}</main><SiteFooter /></div>; }
