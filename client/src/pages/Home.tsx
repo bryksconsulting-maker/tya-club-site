@@ -173,13 +173,13 @@ export default function Home() {
               <p className="reveal reveal-3 mt-8 max-w-[650px] text-[18px] font-medium leading-[1.5] text-[#2B2F32]">
                 It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
               </p>
-              <form className="reveal reveal-3 mt-9 flex max-w-[545px] items-center gap-3 rounded-none border-[4px] border-[#2B2F32] bg-white p-2" onSubmit={(event) => { event.preventDefault(); window.location.href = "/centres"; }}>
-                <Compass size={21} className="ml-3 shrink-0 text-[#F28D63]" />
-                <div className="min-w-0 flex-1">
+              <form className="reveal reveal-3 mt-9 flex max-w-[545px] items-center gap-2 rounded-[1.25rem] border-2 border-[#2B2F32] bg-[#F3F0EA] p-2 shadow-[0_12px_30px_rgba(43,47,50,.1)] sm:gap-3" onSubmit={(event) => { event.preventDefault(); window.location.href = "/centres"; }}>
+                <Compass size={21} className="ml-1 shrink-0 rounded-full bg-[#F28D63]/15 p-2 text-[#F28D63]" />
+                <div className="min-w-0 flex-1 rounded-[.9rem] bg-white px-3 py-2.5 sm:px-2 sm:py-2">
                   <p className="text-[9px] font-bold uppercase tracking-[.17em] text-[#656A6D]">Find your centre</p>
                   <input aria-label="Enter pin code or city" className="w-full border-0 bg-transparent p-0 text-sm font-semibold outline-none" placeholder="Enter pin code or city" />
                 </div>
-                <button type="submit" className="rounded-lg bg-[#E4B42A] px-7 py-4 text-sm font-bold text-[#2B2F32]">Search</button>
+                <button type="submit" className="rounded-[.9rem] bg-[#E4B42A] px-4 py-3 text-sm font-bold text-[#2B2F32] transition-colors sm:px-6 sm:py-3.5">Search</button>
               </form>
             </div>
 
