@@ -357,7 +357,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <article className="order-1 mx-auto flex min-h-[285px] w-full max-w-[360px] flex-col justify-center rounded-[.75rem] bg-[#E5E2DA] p-6 shadow-sm sm:col-span-2 sm:min-h-[310px] sm:p-8 lg:order-2 lg:col-span-1 lg:aspect-square lg:min-h-0" aria-labelledby="curriculum-card-title">
+                <article className="order-1 mx-auto flex min-h-[285px] w-full max-w-[360px] flex-col justify-center rounded-[.75rem] bg-[#e5e2da] p-6 shadow-sm sm:col-span-2 sm:min-h-[310px] sm:p-8 lg:order-2 lg:col-span-1 lg:aspect-square lg:min-h-0" aria-labelledby="curriculum-card-title">
                   <h2 id="curriculum-card-title" className="text-balance text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#2B2F32] sm:text-4xl">Not just <span className="font-display italic text-[#7a6316]">knowledge.</span><br />Capability.</h2>
                   <p className="mt-5 text-xs leading-5 text-[#656A6D] sm:text-sm sm:leading-6">A purposeful curriculum that moves from self-awareness to social responsibility, through missions that make every skill feel useful.</p>
                   <div className="mt-6 flex items-start gap-3 border-t border-[#2B2F32]/15 pt-4 text-[10px] leading-4 text-[#656A6D]">
