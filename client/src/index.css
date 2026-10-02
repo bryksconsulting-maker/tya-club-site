@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -27,8 +28,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: 'DM Sans', sans-serif;
-  --font-display: 'Instrument Serif', serif;
+  --font-sans: 'Poppins', sans-serif;
+  --font-display: 'Poppins', sans-serif;
 }
 
 :root {
@@ -69,7 +70,7 @@ body {
   margin: 0;
   background: var(--brand-bg);
   color: var(--brand-ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -87,7 +88,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   @media (min-width: 1024px) { .container { max-width: 1220px; padding-inline: 2.5rem; } }
 }
 
-.font-display { font-family: 'Instrument Serif', serif; }
+.font-display { font-family: 'Poppins', sans-serif; }
 .text-balance { text-wrap: balance; }
 .section-kicker { letter-spacing: .17em; text-transform: uppercase; font-size: .69rem; font-weight: 700; }
 
