@@ -86,7 +86,7 @@ export default function Curriculum() {
 
     <section className="what-they-learn-section py-16 lg:py-24">
       <div className="container">
-        <SectionLabel>6.3.3 · What they learn?</SectionLabel>
+        <SectionLabel>What they learn?</SectionLabel>
         <div className="what-they-learn-board mt-6 lg:mt-8">
           <div className="what-they-learn-side">
             <div className="what-they-learn-rule" />
@@ -150,9 +150,6 @@ export default function Curriculum() {
           </div>
         </div>
 
-        <div className="what-they-learn-note">
-          <span>In the centre.</span> Same data as above. Both side carousels change periodically.
-        </div>
       </div>
     </section>
 
