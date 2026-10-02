@@ -27,14 +27,14 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience." },
-  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication." },
-  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality." },
-  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership." },
-  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement." },
-  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence." },
-  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills." },
-  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA." },
+  { statement: "Want them to handle challenges?", response: "We help navigate them.", learn: "They learn Resilience." },
+  { statement: "Want them to speak with confidence?", response: "It starts here.", learn: "They learn Communication." },
+  { statement: "Want them to discover who they are?", response: "We nurture it.", learn: "They learn Individuality." },
+  { statement: "Want them to lead, not just follow?", response: "We give them room.", learn: "They learn Leadership." },
+  { statement: "Want them to make better decisions?", response: "We let them think on their own.", learn: "They learn Judgement." },
+  { statement: "Want them to handle emotions better?", response: "We help them understand feelings.", learn: "They learn Emotional Intelligence." },
+  { statement: "Want them to handle life, not just exams?", response: "We prepare them.", learn: "They learn Life Skills." },
+  { statement: "Want them to become future-ready?", response: "Welcome to TYA.", learn: "" },
 ];
 
 const steps = [
@@ -189,8 +189,10 @@ export default function Home() {
               <div className="relative rotate-[2deg] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-[0_24px_70px_rgba(62,66,69,.14)]">
                 <div className="relative min-h-[570px] bg-[#2B2F32] px-10 pb-9 pt-10 text-white sm:px-14">
                   <div className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Mission {String(heroOrder[heroPosition] + 1)}:</div>
-                  <div className="mt-20 max-w-[420px] text-[clamp(2.6rem,5vw,4.5rem)] font-medium leading-[1.08] tracking-[-.04em]">
-                    {line.lead} {line.emphasis}
+                  <div className="mt-16 max-w-[500px] space-y-3 text-[17px] leading-7 sm:text-[18px]">
+                    <div className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E4B42A]" /><span>{line.statement}</span></div>
+                    <div className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E4B42A]" /><span>{line.response}</span></div>
+                    <div className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E4B42A]" /><span>{line.learn}</span></div>
                   </div>
                   <div className="absolute bottom-28 left-12 right-12 flex gap-1.5">
                     {Array.from({ length: 11 }).map((_, index) => <span key={index} className={`h-1 flex-1 ${index < 6 ? "bg-[#E4B42A]" : "bg-white/80"}`} />)}
