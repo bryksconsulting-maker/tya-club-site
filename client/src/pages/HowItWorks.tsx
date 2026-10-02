@@ -12,9 +12,9 @@ const whyBlocks = [
 ] as const;
 const steps = [
   ["01", "Find your Pod", "Find your people. Find your space.", "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about."],
-  ["02", "Commit to the journey", "Show up. Get involved. Grow.", "Every TYA experience is thoughtfully designed for the age group. Real transformation happens when you participate, stay curious and commit."],
-  ["03", "Engage. Explore. Express.", "Discover what you think. Discover who you are.", "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience."],
-  ["04", "Evolve. Make an impact.", "Take what you learn beyond TYA.", "Turn ideas into action in your community and the world around you, while building confidence, responsibility and a record of personal development."],
+  ["02", "Commit to the journey", "Show up. Get involved. Grow.", "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey."],
+  ["03", "Engage. Explore. Express.", "Discover what you think. Discover who you are.", "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught."],
+  ["04", "Evolve. Make an impact.", "Take what you learn beyond TYA.", "Turn ideas into action. Apply your learning in your community and the world around you, while building confidence, responsibility and a growing record of personal development."],
 ] as const;
 
 export default function HowItWorks() {
