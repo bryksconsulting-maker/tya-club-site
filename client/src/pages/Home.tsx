@@ -27,14 +27,14 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience.", image: "mission-resilience.svg", circle: "#E4B42A" },
-  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication.", image: "mission-communication.svg", circle: "#F28D63" },
-  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality.", image: "mission-individuality.svg", circle: "#F3F0EA" },
-  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership.", image: "mission-leadership.svg", circle: "#E4B42A" },
-  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement.", image: "mission-judgement.svg", circle: "#F28D63" },
-  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence.", image: "mission-empathy.svg", circle: "#F3F0EA" },
-  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills.", image: "mission-lifeskills.svg", circle: "#E4B42A" },
-  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA.", image: "mission-future.svg", circle: "#F3F0EA" },
+  { lead: "handle", emphasis: "challenges?", answer: "We help navigate them. They learn Resilience." },
+  { lead: "speak with", emphasis: "confidence?", answer: "It starts here. They learn Communication." },
+  { lead: "discover who", emphasis: "they are?", answer: "We nurture it. They learn Individuality." },
+  { lead: "lead, not just", emphasis: "follow?", answer: "We give them room. They learn Leadership." },
+  { lead: "make better", emphasis: "decisions?", answer: "We let them think on their own. They learn Judgement." },
+  { lead: "handle emotions", emphasis: "better?", answer: "We help them understand feelings. They learn Emotional Intelligence." },
+  { lead: "handle life,", emphasis: "not just exams?", answer: "We prepare them. They learn Life Skills." },
+  { lead: "become", emphasis: "future-ready?", answer: "Welcome to TYA." },
 ];
 
 const steps = [
@@ -139,83 +139,75 @@ export default function Home() {
 
   return (
     <div id="top" className="min-h-screen overflow-hidden bg-[#F3F0EA] text-[#2B2F32]">
-      <div className="flex min-h-[70px] items-center justify-between gap-4 bg-[#E4B42A] px-4 py-3 sm:min-h-[92px] sm:px-8 lg:px-16"><span className="hidden text-[10px] font-bold uppercase tracking-[.18em] text-[#2B2F32]/70 sm:block">Admissions open · 2026 term</span><p className="text-center text-[clamp(1.35rem,3vw,2.5rem)] font-bold leading-none tracking-[-.045em] text-[#2B2F32]"><span className="text-[#F28D63]">[</span> 30 seats <span className="text-[#F28D63]">]</span> per batch.</p><div className="flex items-center gap-3"><button className="hidden rounded-lg bg-[#2B2F32] px-4 py-3 text-xs font-bold text-[#fffdf9] shadow-[0_5px_0_rgba(22,37,90,.18)] transition hover:-translate-y-0.5 sm:block" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Enquire now</button><img src={`${LOGO_BASE}tya-logo-gold-icon.svg`} alt="TYA Club mark" className="h-11 w-7 object-contain" /></div></div>
-
-      <header className="relative z-40 border-b border-[#2B2F32]/10 bg-[#F3F0EA]/90 backdrop-blur-md">
-        <div className="container flex h-[76px] items-center justify-between">
+      <header className="relative z-40 border-b border-[#2B2F32]/10 bg-[#E4B42A]">
+        <div className="container flex min-h-[92px] items-center justify-between gap-8">
           <Logo />
-          <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex" aria-label="Primary navigation">
+          <nav className="hidden items-center gap-7 text-sm font-semibold uppercase tracking-[.02em] lg:flex" aria-label="Primary navigation">
             <a className="nav-link" href="/about">About</a>
-            <a className="nav-link" href="/how-it-works">How it works</a>
-            <a className="nav-link" href="/parents">For parents</a>
+            <a className="nav-link" href="/how-it-works">Why TYA?</a>
+            <a className="nav-link" href="/parents">Note for parents</a>
             <a className="nav-link" href="/curriculum">Curriculum</a>
-            <a className="nav-link" href="/experience">FAQs</a>
+            <a className="nav-link" href="/experience">TYA Experience</a>
+            <a className="nav-link" href="/franchise">Franchise</a>
+            <a className="nav-link" href="/contact">Contact us</a>
           </nav>
-          <div className="hidden items-center gap-3 lg:flex">
-            <ThemeToggle />
-            <a className="btn-ghost flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold" href="/centres"><Compass size={15} /> Find a centre</a>
-            <button className="btn-primary rounded-full px-5 py-3 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-1 inline" size={15} /></button>
-          </div>
           <button className="rounded-full p-2 lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
         </div>
-        {menuOpen && <nav className="container flex flex-col gap-4 border-t border-[#2B2F32]/10 py-5 lg:hidden" aria-label="Mobile navigation">
-          {[['About', '/about'], ['How it works', '/how-it-works'], ['For parents', '/parents'], ['Curriculum', '/curriculum'], ['FAQs', '/experience']].map(([label, href]) => <a key={href} className="text-base font-semibold" href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
-          <ThemeToggle />
-          <button className="btn-primary mt-2 w-full rounded-full px-5 py-3 text-sm font-bold" onClick={() => { setMenuOpen(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-1 inline" size={15} /></button>
+        {menuOpen && <nav className="container flex flex-col gap-4 border-t border-[#2B2F32]/15 py-5 lg:hidden" aria-label="Mobile navigation">
+          {[['About', '/about'], ['Why TYA?', '/how-it-works'], ['Note for parents', '/parents'], ['Curriculum', '/curriculum'], ['TYA Experience', '/experience'], ['Franchise', '/franchise'], ['Contact us', '/contact']].map(([label, href]) => <a key={href} className="text-base font-semibold uppercase" href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
         </nav>}
       </header>
 
       <main>
         <section className="grain hero-grid relative overflow-hidden border-b border-[#2B2F32]/10 bg-[#F3F0EA]">
-          <div className="container grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
+          <div className="container grid min-h-[790px] items-center gap-12 py-12 lg:grid-cols-[1.08fr_.92fr] lg:py-16">
             <div className="relative z-10 max-w-[680px]">
-              <div className="reveal mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[.17em] text-[#2B2F32]"><span className="h-2 w-2 rounded-full bg-[#F28D63]" /> Transforming young adults into future greatness</div>
-              <h1 className="reveal reveal-2 h-[275px] overflow-hidden text-balance text-[clamp(3.55rem,7vw,6.7rem)] font-medium leading-[.91] tracking-[-.055em] text-[#2B2F32] sm:h-[295px] lg:h-[280px]">Want them to<br /><span className="font-display italic text-[#2B2F32]">{line.lead}</span><br /><span className="relative inline-block">{line.emphasis}<span className="absolute -bottom-2 left-0 h-1 w-3/4 bg-[#F28D63]" /></span></h1>
-              <p className="reveal reveal-3 mt-9 min-h-[64px] max-w-[500px] text-lg leading-8 text-[#656A6D]">{line.answer} Real Missions, coach-led Pods and a monthly view of progress beyond school.</p>
-              <div className="reveal reveal-3 mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <button className="btn-dark rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-2 inline" size={16} /></button>
-                <a href="#how-it-works" className="group inline-flex items-center gap-2 px-2 py-3 text-sm font-bold">See how it works <ArrowDownRight className="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" size={16} /></a>
-              </div>
-              <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 border-t border-[#2B2F32]/15 pt-5 text-xs font-semibold text-[#656A6D]"><span className="flex items-center gap-2"><ShieldCheck size={15} className="text-[#2B2F32]" /> Verified coaches</span><span className="flex items-center gap-2"><Users size={15} className="text-[#2B2F32]" /> 30 per batch</span><span className="flex items-center gap-2"><NotebookPen size={15} className="text-[#2B2F32]" /> Monthly Growth Card</span></div>
+              <div className="reveal mb-10 flex items-center gap-3 text-[15px] font-medium text-[#2B2F32]"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
+              <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em] text-[#2B2F32]">
+                <span className="block">TYA CLUB</span>
+                <span className="mt-1 block text-[.47em] font-medium leading-[1.05] tracking-[-.025em]">Transforming Young Adults</span>
+              </h1>
+              <p className="reveal reveal-3 mt-7 max-w-[650px] text-[18px] font-medium leading-[1.5] text-[#2B2F32]">
+                TYA Club is designed to help young adults develop<br className="hidden sm:block" /> the mindset and life skills that go beyond the classroom.
+              </p>
+              <p className="reveal reveal-3 mt-8 max-w-[650px] text-[18px] font-medium leading-[1.5] text-[#2B2F32]">
+                It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
+              </p>
+              <form className="reveal reveal-3 mt-9 flex max-w-[545px] items-center gap-3 rounded-none border-[4px] border-[#2B2F32] bg-white p-2" onSubmit={(event) => { event.preventDefault(); window.location.href = "/centres"; }}>
+                <Compass size={21} className="ml-3 shrink-0 text-[#F28D63]" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[9px] font-bold uppercase tracking-[.17em] text-[#656A6D]">Find your centre</p>
+                  <input aria-label="Enter pin code or city" className="w-full border-0 bg-transparent p-0 text-sm font-semibold outline-none" placeholder="Enter pin code or city" />
+                </div>
+                <button type="submit" className="rounded-lg bg-[#E4B42A] px-7 py-4 text-sm font-bold text-[#2B2F32]">Search</button>
+              </form>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[510px] lg:ml-auto">
-              <div className="absolute right-0 top-0 z-20 grid h-28 w-28 place-items-center rounded-full border-2 border-white/70 shadow-[0_12px_35px_rgba(62,66,69,.16)] transition-colors duration-500" style={{ backgroundColor: line.circle }}>
-                <img src={`${LOGO_BASE}tya-logo-dark-icon.svg?v=2`} alt="TYA" className="h-12 w-12 object-contain" />
-              </div>
-              <div className="absolute -bottom-7 -left-9 h-32 w-32 rounded-full border border-[#2B2F32]/30 bg-[#2B2F32]/15 hero-orb delay" />
-              <div className="relative h-[515px] rotate-[2deg] overflow-hidden rounded-[2rem] border border-[#2B2F32]/10 bg-[#FFFFFF] shadow-[0_24px_70px_rgba(62,66,69,.14)]">
-                <div className="relative flex h-14 items-center bg-[#2B2F32] px-6 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">
-                  <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")}</span>
-                  <span className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap text-white/65"><span className="h-1.5 w-1.5 rounded-full bg-[#F28D63]" /> In progress</span>
-                </div>
-                <div className="relative h-[230px] overflow-hidden bg-[#F3F0EA]">
-                  <img src={`${LOGO_BASE}images/${line.image}?v=2`} alt="" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2B2F32]/25 to-transparent" />
-                  <div className="absolute bottom-5 left-6 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#2B2F32] shadow-sm">
-                    TYA Mission
+            <div className="relative mx-auto w-full max-w-[590px] lg:ml-auto">
+              <div className="absolute -right-1 -top-7 h-28 w-28 rounded-full border border-[#F28D63]/50 bg-[#F28D63]/20" />
+              <div className="absolute -bottom-2 -left-5 h-32 w-32 rounded-full border border-[#2B2F32]/15 bg-[#F3F0EA] hero-orb delay" />
+              <div className="relative rotate-[2deg] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-[0_24px_70px_rgba(62,66,69,.14)]">
+                <div className="relative min-h-[570px] bg-[#2B2F32] px-10 pb-9 pt-10 text-white sm:px-14">
+                  <div className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Mission {String(heroOrder[heroPosition] + 1)}:</div>
+                  <div className="mt-20 max-w-[420px] text-[clamp(2.6rem,5vw,4.5rem)] font-medium leading-[1.08] tracking-[-.04em]">
+                    {line.lead} {line.emphasis}
                   </div>
-                </div>
-                <div className="flex h-[231px] flex-col justify-between bg-[#FFFFFF] px-7 py-6">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[#2B2F32]">{line.lead} {line.emphasis}</p>
-                    <h2 className="mt-3 max-w-[410px] text-[2rem] font-semibold leading-[1.02] tracking-[-.035em] text-[#2B2F32] sm:text-[2.15rem]">{line.answer}</h2>
+                  <div className="absolute bottom-28 left-12 right-12 flex gap-1.5">
+                    {Array.from({ length: 11 }).map((_, index) => <span key={index} className={`h-1 flex-1 ${index < 6 ? "bg-[#E4B42A]" : "bg-white/80"}`} />)}
                   </div>
-                  <div>
-                    <div className="mb-4 grid grid-cols-3 gap-2"><span className="h-1.5 rounded-full bg-[#E4B42A]" /><span className="h-1.5 rounded-full bg-[#E4B42A]" /><span className="h-1.5 rounded-full bg-[#F3F0EA]" /></div>
-                    <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[.15em] text-[#656A6D]">
-                      <span>Mission {String(heroOrder[heroPosition] + 1).padStart(2, "0")} · Learn · Try · Own</span>
-                      <img src={`${LOGO_BASE}tya-logo-dark-icon.svg?v=2`} alt="TYA" className="h-7 w-7 object-contain" />
-                    </div>
+                  <div className="absolute bottom-7 left-12 right-12">
+                    <p className="text-lg leading-7 text-white">We let them own it.</p>
+                    <p className="text-lg leading-7 text-white">They learn <strong className="font-extrabold uppercase">{line.answer.replace(/^.*They learn /, "").replace(/\.$/, "")}</strong></p>
                   </div>
                 </div>
               </div>
+              <div className="absolute -bottom-1 -right-1 h-28 w-44 rounded-[1.2rem] bg-[#F28D63] shadow-[0_12px_25px_rgba(62,66,69,.12)]" />
             </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#656A6D]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
 
-        <section className="border-b border-[#2B2F32]/10 bg-[#FFFFFF] py-7">
+      <section className="border-b border-[#2B2F32]/10 bg-[#FFFFFF] py-7">
           <div className="container flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><p className="max-w-[250px] text-sm font-semibold leading-6 text-[#656A6D]">A club built for the skills school can’t grade.</p><div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-bold text-[#2B2F32]"><span>Leadership</span><span>Communication</span><span>Problem solving</span><span className="hidden sm:inline">Self-awareness</span><span className="hidden md:inline">Digital & AI literacy</span></div><span className="hidden text-xs font-bold uppercase tracking-[.12em] text-[#2B2F32] lg:inline">Learn · Try · Own</span></div>
         </section>
 
