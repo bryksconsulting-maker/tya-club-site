@@ -197,10 +197,6 @@ export default function Home() {
                   <div className="absolute bottom-28 left-12 right-12 flex gap-1.5">
                     {Array.from({ length: 11 }).map((_, index) => <span key={index} className={`h-1 flex-1 ${index < 6 ? "bg-[#E4B42A]" : "bg-white/80"}`} />)}
                   </div>
-                  <div className="absolute bottom-7 left-12 right-12">
-                    <p className="text-lg leading-7 text-white">We let them own it.</p>
-                    <p className="text-lg leading-7 text-white">They learn <strong className="font-extrabold uppercase">{line.answer.replace(/^.*They learn /, "").replace(/\.$/, "")}</strong></p>
-                  </div>
                 </div>
               </div>
             </div>
