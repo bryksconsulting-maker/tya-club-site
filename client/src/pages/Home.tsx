@@ -239,7 +239,7 @@ export default function Home() {
 
             <article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#FFFFFF] p-7 md:col-span-2 md:min-h-[250px]">
               <div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10">
-                <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#F28D63]"><Compass size={20} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight">The real world.<br />A safe place to try.</h3></div>
+                <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#F28D63]"><Compass size={20} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight">The real world.<br />In a safe place to try.</h3></div>
                 <p className="max-w-[330px] text-sm leading-6 text-[#656A6D]">Negotiations, business decisions, career and emotional problems, and community challenges. TYA gives them a chance to prepare before they face them in real life. Every Mission gives skills a reason to matter.</p>
               </div>
             </article>
