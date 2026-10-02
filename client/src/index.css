@@ -403,3 +403,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark [class*="bg-[#f28d63]"] *, .dark [class*="bg-[#F28D63]"] * { color: var(--brand-charcoal) !important; }
 
 .programme-mission-marker, .programme-mission-marker * { color: var(--brand-charcoal) !important; }
+
+/* Keep small labels on pale soft surfaces legible in the light theme. */
+:root:not(.dark) [class*="bg-[#dce7e3]"][class*="text-[#0e7568]"],
+:root:not(.dark) [class*="bg-[#dce7e3]"][class*="text-[#0e9c8c]"],
+:root:not(.dark) [class*="bg-[#DCEAE6]"][class*="text-[#0e7568]"],
+:root:not(.dark) [class*="bg-[#DCEAE6]"][class*="text-[#0e9c8c]"] { color: var(--brand-coral-text) !important; }
+
+header[class*="bg-[#E4B42A]"] .nav-link,
+header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !important; }
+
+.led-marquee [class*="text-[#2B2F32]"] { color: var(--brand-butter) !important; }
+.led-marquee [class*="text-[#F28D63]"], .led-marquee [class*="text-[#f28d63]"] { color: var(--brand-coral) !important; }
