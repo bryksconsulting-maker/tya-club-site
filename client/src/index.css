@@ -299,7 +299,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 [class*="bg-[#FFFFFF]"], [class*="bg-[#fdfcf9]"], [class*="bg-[#e5e2da]"] { background-color: var(--brand-card) !important; }
 [class*="bg-[#2B2F32]"], [class*="bg-[#16255a]"], [class*="bg-[#3e4245]"], [class*="bg-[#1a1a19]"] { background-color: var(--brand-charcoal) !important; }
 [class*="bg-[#E4B42A]"], [class*="bg-[#f6d77a]"] { background-color: var(--brand-butter) !important; }
-[class*="bg-[#F28D63]"] { background-color: var(--brand-coral) !important; }
+[class*="bg-[#F28D63]"], [class*="bg-[#f28d63]"] { background-color: var(--brand-coral) !important; }
 [class*="bg-[#dce7e3]"], [class*="bg-[#DCEAE6]"] { background-color: var(--brand-soft) !important; }
 [class*="bg-[#0F9F8F]"], [class*="bg-[#0e9c8c]"], [class*="bg-[#0e7568]"] { background-color: var(--brand-coral) !important; }
 [class*="text-[#2B2F32]"], [class*="text-[#3e4245]"], [class*="text-[#16255a]"] { color: var(--brand-ink) !important; }
@@ -393,3 +393,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 [class*="bg-[#0F9F8F]"] [class*="text-white"], [class*="bg-[#0e9c8c]"] [class*="text-white"], [class*="bg-[#0e7568]"] [class*="text-white"],
 [class*="bg-[#F28D63]"][class*="text-white"], [class*="bg-[#F28D63]"][class*="text-[#fffdf9]"], [class*="bg-[#F28D63]"][class*="text-[#F3F0EA]"] { color: var(--brand-charcoal) !important; }
 .dark [class*="bg-[#E4B42A]"] [class*="text-[#7a6316]"], .dark [class*="bg-[#f6d77a]"] [class*="text-[#7a6316]"] { color: var(--brand-charcoal) !important; }
+
+/* Keep small coral accents readable on raised dark cards. */
+.dark article [class*="text-[#f28d63]"], .dark article [class*="text-[#F28D63]"] { color: var(--brand-butter) !important; }
+.dark [class*="bg-[#dce7e3]"], .dark [class*="bg-[#DCEAE6]"] { color: var(--brand-ivory) !important; }
+
+/* Coral panels always use charcoal type, including the lowercase legacy utility. */
+.dark [class*="bg-[#f28d63]"], .dark [class*="bg-[#F28D63]"] { color: var(--brand-charcoal) !important; }
+.dark [class*="bg-[#f28d63]"] *, .dark [class*="bg-[#F28D63]"] * { color: var(--brand-charcoal) !important; }
+
+.programme-mission-marker, .programme-mission-marker * { color: var(--brand-charcoal) !important; }
