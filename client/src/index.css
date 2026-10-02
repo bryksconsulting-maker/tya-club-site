@@ -52,14 +52,14 @@
   --primary-foreground: var(--brand-ivory);
   --secondary: var(--brand-soft);
   --secondary-foreground: var(--brand-ink);
-  --muted: #dfdcd7;
+  --muted: var(--brand-soft);
   --muted-foreground: var(--brand-muted);
   --accent: var(--brand-butter);
   --accent-foreground: var(--brand-ink);
-  --destructive: #f28d63;
+  --destructive: var(--brand-coral);
   --destructive-foreground: var(--brand-ink);
-  --border: rgba(62, 66, 69, .14);
-  --input: rgba(62, 66, 69, .16);
+  --border: color-mix(in srgb, var(--brand-ink) 14%, transparent);
+  --input: color-mix(in srgb, var(--brand-ink) 16%, transparent);
   --ring: var(--brand-accent);
 }
 
