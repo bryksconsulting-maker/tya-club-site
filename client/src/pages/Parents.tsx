@@ -1,16 +1,11 @@
 import { useState } from "react";
 import { MapView } from "@/components/Map";
-import { ThemeToggle } from "../components/SiteChrome";
+import { SiteHeader } from "../components/SiteChrome";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Clock3, ExternalLink, HeartHandshake, MapPin, MessageCircle, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { centreProfiles as centres, compositeTestimonials as testimonials } from "../data/centreProfiles";
 
-const logo = "/manus-storage/tya-final-lockup-charcoal_be589545.png";
 const whatsappHref = "https://wa.me/918886665295?text=Hi%20TYA%20Club%2C%20I%27d%20like%20to%20know%20more%20about%20a%20trial%20class.";
 const contactEmail = "hello@thetyaclub.com";
-
-function Header() {
-  return <header className="sticky top-0 z-40 border-b border-[#3e4245]/10 bg-[#e9e6e1]/90 backdrop-blur-md"><div className="container flex h-[76px] items-center justify-between"><a href="/" aria-label="TYA Club home"><><img src={logo} alt="TYA Club" className="logo-light h-12 w-auto max-w-[160px] object-contain" /><img src="/manus-storage/tya-final-lockup-gold_f7fef4fd.png" alt="TYA Club" className="logo-dark h-12 w-auto max-w-[160px] object-contain" /></></a><nav className="hidden items-center gap-8 text-sm font-semibold lg:flex"><a className="nav-link" href="/">Home</a><a className="nav-link" href="/about">About</a><a className="nav-link" href="/how-it-works">How it works</a><a className="nav-link" href="/parents">For parents</a><a className="nav-link" href="/curriculum">Curriculum</a></nav><ThemeToggle /><a className="btn-primary hidden rounded-full px-5 py-3 text-sm font-bold lg:inline-flex" href={whatsappHref} target="_blank" rel="noreferrer">Talk to us <MessageCircle className="ml-2" size={15} /></a><a className="grid h-10 w-10 place-items-center rounded-full bg-[#f6d77a] lg:hidden" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Message TYA Club on WhatsApp"><MessageCircle size={18} /></a></div></header>;
-}
 
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
   return <span className={`section-kicker ${light ? "text-[#f6d77a]" : "text-[#7a6316]"}`}>{children}</span>;
@@ -23,7 +18,7 @@ export default function Parents() {
   const previous = () => setTestimonial((value) => (value - 1 + testimonials.length) % testimonials.length);
 
   return <div className="min-h-screen bg-[#e9e6e1] text-[#3e4245]">
-    <Header />
+    <SiteHeader />
     <main>
       <section className="grain overflow-hidden bg-[#16255a] py-20 text-[#fffdf9] lg:py-28"><div className="container grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light>For parents</SectionLabel><h1 className="mt-5 max-w-[600px] text-balance text-6xl font-medium leading-[.92] tracking-[-.055em] sm:text-7xl">See the progress that school rarely <span className="font-display italic text-[#f6d77a]">shows.</span></h1><p className="mt-7 max-w-[520px] text-lg leading-8 text-white/65">TYA gives your young person room to practise confidence, collaboration, judgment and ownership — then gives you a clear window into what is growing.</p><div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap"><a className="btn-primary rounded-full px-6 py-4 text-center text-sm font-bold" href={whatsappHref} target="_blank" rel="noreferrer">Ask about a trial <MessageCircle className="ml-2 inline" size={16} /></a><a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-sm font-bold text-white hover:bg-white/10" href="#growth-card">See the Growth Card <ArrowRight size={15} /></a><a className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-sm font-bold text-white hover:bg-white/10" href="/parent-guides">Read Parent Guides <ArrowRight size={15} /></a></div></div><div className="relative mx-auto w-full max-w-[590px]"><div className="absolute -left-5 -top-5 h-24 w-24 rounded-full bg-[#f28d63]" /><div className="relative overflow-hidden rounded-[1.5rem] border-8 border-[#fdfcf9] shadow-[0_24px_80px_rgba(0,0,0,.22)]"><img src="/manus-storage/tya-indian-workshop_df24eeba.jpg" alt="Indian young people working together around a table during a creative workshop" className="h-[390px] w-full object-cover" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#16255a] via-[#16255a]/70 to-transparent p-7 pt-24"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#f6d77a]">The room matters</p><p className="mt-2 max-w-[350px] text-2xl font-semibold leading-tight">A safe place to try, contribute and be seen.</p></div></div></div></div></section>
 

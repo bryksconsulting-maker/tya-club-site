@@ -1,12 +1,11 @@
 import { ArrowRight, Check, Download, Mail, MessageCircle, Sparkles, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useRoute } from "wouter";
-import { ThemeToggle } from "../components/SiteChrome";
+import { SiteHeader } from "../components/SiteChrome";
 
 const LOGO_BASE = import.meta.env.BASE_URL;
 import { isValidEmail } from "../lib/validation";
 
-const logo = `${LOGO_BASE}tya-logo-lockup.svg`;
 const whatsappHref = "https://wa.me/918886665295?text=Hi%20TYA%20Club%2C%20I%27d%20like%20to%20know%20more%20about%20a%20programme.";
 const brochureUrls = {
   "class-6-to-9": "/manus-storage/tya-class-6-to-9-brochure_8996744d.pdf",
@@ -49,10 +48,6 @@ const programmes = {
 
 type ProgrammeKey = keyof typeof programmes;
 
-function Header() {
-  return <header className="sticky top-0 z-40 border-b border-[#2B2F32]/10 bg-[#F3F0EA]/90 backdrop-blur-md"><div className="container flex h-[76px] items-center justify-between"><Link href="/"><img src={logo} alt="TYA Club" className="h-12 w-auto max-w-[160px] object-contain" /></Link><nav className="hidden items-center gap-6 text-sm font-semibold lg:flex"><Link className="nav-link" href="/">Home</Link><Link className="nav-link" href="/about">About</Link><Link className="nav-link" href="/how-it-works">How it works</Link><Link className="nav-link" href="/curriculum">Curriculum</Link><Link className="nav-link" href="/parents">For parents</Link></nav><ThemeToggle /><a className="btn-primary hidden rounded-full px-5 py-3 text-sm font-bold lg:inline-flex" href={whatsappHref} target="_blank" rel="noreferrer">Ask about a trial <MessageCircle className="ml-2 inline" size={15} /></a><a className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#E4B42A] lg:hidden" href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Ask about a TYA trial on WhatsApp"><MessageCircle size={18} /></a></div></header>;
-}
-
 export default function Programme() {
   const [, params] = useRoute<{ slug: string }>("/programmes/:slug");
   const key = (params?.slug || "class-6-to-9") as ProgrammeKey;
@@ -62,7 +57,7 @@ export default function Programme() {
   const [brochureEmail, setBrochureEmail] = useState("");
   const [brochureEmailError, setBrochureEmailError] = useState("");
 
-  return <div className="min-h-screen bg-[#F3F0EA] text-[#2B2F32]"><Header /><main>
+  return <div className="min-h-screen bg-[#F3F0EA] text-[#2B2F32]"><SiteHeader /><main>
     <section className="grain overflow-hidden bg-[#2B2F32] py-20 text-[#fffdf9] lg:py-28"><div className="container grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><span className="section-kicker text-[#E4B42A]">Programme · {programme.label}</span><h1 className="mt-5 max-w-[650px] text-balance text-6xl font-medium leading-[.92] tracking-[-.055em] sm:text-7xl">{programme.title}</h1><p className="mt-7 max-w-[520px] text-lg leading-8 text-white/65">{programme.intro}</p><div className="mt-9 flex flex-col gap-4 sm:flex-row"><a className="btn-primary rounded-full px-6 py-4 text-center text-sm font-bold" href={whatsappHref} target="_blank" rel="noreferrer">Book a free trial <ArrowRight className="ml-2 inline" size={16} /></a><button className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-sm font-bold text-white hover:bg-white/10" onClick={() => { setBrochureReady(false); setBrochureEmail(""); setBrochureEmailError(""); setBrochureOpen(true); }}><Download size={16} /> Download brochure</button><Link className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-sm font-bold text-white hover:bg-white/10" href="/parents">For parents <ArrowRight size={15} /></Link></div></div><div className="relative"><div className="absolute -right-5 -top-5 h-24 w-24 rounded-full" style={{ backgroundColor: programme.colour }} /><div className="relative rounded-[1.5rem] bg-[#FFFFFF] p-7 text-[#2B2F32] shadow-[0_24px_80px_rgba(0,0,0,.22)] sm:p-10"><div className="flex items-start justify-between border-b border-[#2B2F32]/12 pb-6"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#2B2F32]">TYA stage outcome</p><h2 className="mt-2 text-3xl font-bold">{programme.short}</h2></div><span className="grid h-12 w-12 place-items-center rounded-full" style={{ backgroundColor: programme.colour }}><Sparkles size={19} /></span></div><div className="space-y-5 py-7">{programme.outcomes.map((outcome, index) => <div className="flex gap-3" key={outcome}><span className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#F3F0EA] text-[#2B2F32]"><Check size={14} /></span><p className="text-base leading-6">{outcome}</p></div>)}</div><p className="border-t border-[#2B2F32]/12 pt-5 text-xs font-bold uppercase tracking-[.12em] text-[#656A6D]">{programme.rhythm}</p></div></div></div></section>
 
     <section className="container py-24 lg:py-32"><div className="grid gap-14 lg:grid-cols-[.78fr_1.22fr]"><div><span className="section-kicker text-[#2B2F32]">Learning outcomes</span><h2 className="mt-5 text-balance text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">What changes by the end of the <span className="font-display italic text-[#2B2F32]">term.</span></h2><p className="mt-7 max-w-[430px] text-lg leading-8 text-[#656A6D]">The outcome is not a worksheet. It is a young person who has practised the behaviour enough to take it into the next room.</p></div><div className="grid gap-4 sm:grid-cols-2">{programme.outcomes.map((outcome, index) => <article key={outcome} className="rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#FFFFFF] p-6"><span className="text-xs font-bold text-[#F28D63]">0{index + 1}</span><p className="mt-12 text-xl font-semibold leading-tight">{outcome}</p></article>)}</div></div></section>
