@@ -149,7 +149,6 @@ export default function Curriculum() {
             <span className="what-they-learn-count">{String(skillPosition + 1).padStart(2, "0")} / {learningSkills.length}</span>
           </div>
         </div>
-
       </div>
     </section>
 
