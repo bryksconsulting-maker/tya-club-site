@@ -22,15 +22,80 @@ export const compositeTestimonials = [
   },
 ] as const;
 
-export const centreProfiles = [
+export interface CentreGalleryImage {
+  label: string;
+  image: string | null;
+  alt: string;
+}
+
+export interface CentreTimetableEntry {
+  day: string;
+  programme: string;
+  time: string;
+  ageRange: string;
+  seatsLeft: number | null;
+}
+
+export interface CentreTrialSlot {
+  date: string;
+  time: string;
+  ageRange: string;
+  seatsLeft: number | null;
+  totalSeats: number | null;
+}
+
+export interface CentreProfile {
+  city: string;
+  locality: string;
+  address: string;
+  detail: string;
+  admissionsStatus: string;
+  seats: string;
+  lat: number;
+  lng: number;
+  openedYear: number | null;
+  batchSize: number | null;
+  timings: string | null;
+  trialDays: string[];
+  mentorCount: number | null;
+  programmesThisTerm: number | null;
+  gallery: CentreGalleryImage[];
+  timetable: CentreTimetableEntry[];
+  nextTrial: CentreTrialSlot | null;
+  coach: {
+    title: string;
+    role: string;
+    bio: string;
+    image: string;
+    alt: string;
+  };
+}
+
+// Keep location-specific facts here so dates, photos and timetables can be filled in
+// as each centre confirms them, without changing the Find a Centre page layout.
+export const centreProfiles: CentreProfile[] = [
   {
     city: "Hyderabad",
     locality: "Madhapur",
     address: "Plot 3-804, SS Chambers, 3rd Floor, Mega Hills, Ayyappa Society, Madhapur, Hyderabad – 500081, Telangana",
     detail: "TYA Mission Pods · Introductory sessions available",
+    admissionsStatus: "Open · introductory sessions available",
     seats: "Official centre",
     lat: 17.4483,
     lng: 78.3915,
+    openedYear: null,
+    batchSize: 30,
+    timings: null,
+    trialDays: [],
+    mentorCount: null,
+    programmesThisTerm: null,
+    gallery: [
+      { label: "The room · wide, clean, natural light", image: null, alt: "TYA Club room in Madhapur" },
+      { label: "Mentor with students", image: null, alt: "TYA mentor working with students in Madhapur" },
+      { label: "Entrance · pick-up point", image: null, alt: "TYA Club entrance and pick-up point in Madhapur" },
+    ],
+    timetable: [],
+    nextTrial: null,
     coach: {
       title: "Hyderabad learning coach",
       role: "Illustrative coach profile",
@@ -44,9 +109,23 @@ export const centreProfiles = [
     locality: "Vesu",
     address: "408-415, 4th Floor, Homeland City Mall, Opposite J.H. Ambani School, Vesu, Surat – 395007, Gujarat",
     detail: "TYA Mission Pods · Introductory sessions available",
+    admissionsStatus: "Open · introductory sessions available",
     seats: "Official centre",
     lat: 21.1458,
     lng: 72.77,
+    openedYear: null,
+    batchSize: 30,
+    timings: null,
+    trialDays: [],
+    mentorCount: null,
+    programmesThisTerm: null,
+    gallery: [
+      { label: "The room · wide, clean, natural light", image: null, alt: "TYA Club room in Vesu" },
+      { label: "Mentor with students", image: null, alt: "TYA mentor working with students in Vesu" },
+      { label: "Entrance · pick-up point", image: null, alt: "TYA Club entrance and pick-up point in Vesu" },
+    ],
+    timetable: [],
+    nextTrial: null,
     coach: {
       title: "Surat learning coach",
       role: "Illustrative coach profile",

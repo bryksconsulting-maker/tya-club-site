@@ -1,22 +1,122 @@
-import { ExternalLink, MapPin, MessageCircle, Phone } from "lucide-react";
+import { useState } from "react";
+import { CalendarDays, Clock3, ExternalLink, MapPin, MessageCircle, Users } from "lucide-react";
 import { MapView } from "../components/Map";
-import { PageHero, PageShell, SectionLabel, WHATSAPP_HREF } from "../components/SiteChrome";
-import { centreProfiles as centres } from "../data/centreProfiles";
+import { PageShell, SectionLabel, WHATSAPP_HREF } from "../components/SiteChrome";
+import { centreProfiles as centres, type CentreProfile } from "../data/centreProfiles";
+
+function centreWhatsappHref(centre: CentreProfile) {
+  const text = encodeURIComponent(`Hi TYA Club, I'd like to ask about a free trial at the ${centre.locality}, ${centre.city} centre.`);
+  return `${WHATSAPP_HREF.split("?")[0]}?text=${text}`;
+}
+
+function CentreGallery({ centre }: { centre: CentreProfile }) {
+  return <div className="centre-detail-gallery" aria-label={`${centre.locality} centre photos`}>
+    {centre.gallery.slice(0, 3).map((photo, index) => <div className={`centre-gallery-frame ${index === 0 ? "centre-gallery-main" : ""}`} key={photo.label}>
+      {photo.image ? <img className="centre-gallery-image" src={photo.image} alt={photo.alt} /> : <div className="centre-gallery-placeholder" role="img" aria-label={photo.alt}>
+        <span className="centre-gallery-caption">{photo.label}</span>
+      </div>}
+    </div>)}
+  </div>;
+}
+
+function CentreMap({ centre }: { centre: CentreProfile }) {
+  return <section className="centre-map-card" aria-label={`Map and directions for ${centre.locality}`}>
+    <div className="centre-map-view">
+      <MapView key={centre.city} className="h-full min-h-[150px] w-full" initialCenter={{ lat: centre.lat, lng: centre.lng }} initialZoom={15} onMapReady={(map) => {
+        new google.maps.Marker({ position: { lat: centre.lat, lng: centre.lng }, map, title: `${centre.locality}, ${centre.city}` });
+      }} />
+    </div>
+    <div className="centre-map-caption">
+      <p>{centre.address}</p>
+      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.address)}`} target="_blank" rel="noreferrer">Get directions <ExternalLink size={13} /></a>
+    </div>
+  </section>;
+}
 
 export default function Centres() {
+  const [selectedCity, setSelectedCity] = useState(centres[0]?.city ?? "");
+  const centre = centres.find((item) => item.city === selectedCity) ?? centres[0];
+
+  if (!centre) return <PageShell><section className="container py-24"><h1>No centres are listed yet.</h1></section></PageShell>;
+
+  const trialHref = centreWhatsappHref(centre);
+  const trial = centre.nextTrial;
+  const stats = [
+    { label: "Batch size", value: centre.batchSize ? `${centre.batchSize} to a batch` : "To be confirmed", Icon: Users },
+    { label: "Timings", value: centre.timings ?? "To be confirmed", Icon: Clock3 },
+    { label: "Trial days", value: centre.trialDays.length ? centre.trialDays.join(", ") : "To be confirmed", Icon: CalendarDays },
+    { label: "Mentors", value: centre.mentorCount === null ? "To be confirmed" : `${centre.mentorCount}, all verified`, Icon: Users },
+  ];
+
   return <PageShell>
-    <PageHero eyebrow="Find a centre" title={<>A TYA room near <span className="font-display italic text-[#f6d77a]">you.</span></>} intro="Start with a conversation, find the right age group and experience a TYA Mission in person." />
-    <section className="container py-24 lg:py-32">
-      <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
-        <div className="space-y-5">{centres.map((centre) => <article className="content-card" key={centre.city}>
-          <div className="flex items-start justify-between gap-4"><span className="icon-disc"><MapPin size={18} /></span><span className="rounded-full bg-[#dce7e3] px-3 py-1 text-[10px] font-bold uppercase tracking-[.12em] text-[#0e7568]">{centre.seats}</span></div>
-          <h2 className="mt-8 text-3xl font-medium">{centre.locality}</h2><p className="mt-1 font-bold text-[#7a6316]">{centre.city}</p><p className="mt-5 text-sm leading-6 text-muted-copy">{centre.address}</p><p className="mt-3 text-sm text-muted-copy">{centre.detail}</p>
-          <div className="mt-6 overflow-hidden rounded-[1.25rem] border border-[#3e4245]/10 bg-[#e9e6e1]/55 sm:flex"><img src={centre.coach.image} alt={centre.coach.alt} className="aspect-square w-full object-cover sm:w-36" /><div className="p-5"><p className="text-base font-bold">{centre.coach.title}</p><p className="mt-1 text-[10px] font-bold uppercase tracking-[.12em] text-[#7a6316]">{centre.coach.role}</p><p className="mt-3 text-sm leading-6 text-muted-copy">{centre.coach.bio}</p><p className="mt-3 text-[9px] font-semibold uppercase tracking-[.1em] text-muted-copy">AI-generated representative portrait · Not a named employee</p></div></div>
-          <div className="mt-6 flex flex-wrap gap-4"><a className="inline-flex items-center gap-2 text-sm font-bold" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Ask about a trial <MessageCircle size={15} /></a><a className="inline-flex items-center gap-2 text-sm font-bold text-[#7a6316]" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.address)}`} target="_blank" rel="noreferrer">Get directions <ExternalLink size={14} /></a></div>
-        </article>)}</div>
-        <div className="map-frame"><MapView className="h-[460px] rounded-[1.25rem] lg:h-[760px]" initialCenter={{ lat: 19.3, lng: 75.8 }} initialZoom={5} onMapReady={(map) => { centres.forEach((centre) => { new google.maps.Marker({ position: { lat: centre.lat, lng: centre.lng }, map, title: `${centre.locality}, ${centre.city}` }); }); }} /></div>
+    <div className="centre-detail-page">
+      <div className="container">
+        <div className="centre-detail-toolbar">
+          <nav className="centre-breadcrumb" aria-label="Breadcrumb">
+            <a href="/centres">Centres</a><span aria-hidden="true">/</span><span>{centre.city}</span><span aria-hidden="true">/</span><strong>{centre.locality}</strong>
+          </nav>
+          <label className="centre-picker">
+            <MapPin size={14} aria-hidden="true" />
+            <span className="sr-only">Choose locality and city</span>
+            <select value={selectedCity} onChange={(event) => setSelectedCity(event.target.value)} aria-label="Choose a centre">
+              {centres.map((item) => <option value={item.city} key={item.city}>{item.locality}, {item.city}</option>)}
+            </select>
+            <span className="centre-picker-change">Change</span>
+          </label>
+        </div>
+
+        <CentreGallery centre={centre} />
+
+        <div className="centre-detail-columns">
+          <div className="centre-detail-main">
+            <div className="centre-status-row">
+              <span className="centre-status-pill">{centre.admissionsStatus}</span>
+              <span className="centre-opened">Opened {centre.openedYear ?? "year to be confirmed"}</span>
+            </div>
+            <h1>TYA Club {centre.locality}</h1>
+            <p className="centre-address">{centre.address}. {centre.detail}. {centre.batchSize ? `${centre.batchSize} young people per batch` : "Batch size to be confirmed"}; {centre.mentorCount === null ? "mentor count to be confirmed" : `${centre.mentorCount} verified mentors`}; {centre.programmesThisTerm === null ? "term programme count to be confirmed" : `${centre.programmesThisTerm} programmes running this term`}.</p>
+
+            <div className="centre-stat-grid" aria-label="Centre information">
+              {stats.map(({ label, value, Icon }) => <div className="centre-stat-card" key={label}>
+                <p><Icon size={12} aria-hidden="true" /> {label}</p>
+                <strong>{value}</strong>
+              </div>)}
+            </div>
+
+            <section className="centre-timetable" aria-labelledby="centre-timetable-title">
+              <div className="centre-section-heading"><h2 id="centre-timetable-title">This term’s timetable</h2></div>
+              {centre.timetable.length ? <div className="centre-table-wrap"><table>
+                <thead><tr><th>Day</th><th>Programme</th><th>Time</th><th>Age group</th><th>Places</th></tr></thead>
+                <tbody>{centre.timetable.map((entry) => <tr key={`${entry.day}-${entry.programme}`}>
+                  <th scope="row">{entry.day}</th><td>{entry.programme}</td><td>{entry.time}</td><td>{entry.ageRange}</td><td>{entry.seatsLeft === null ? "Ask us" : `${entry.seatsLeft} left`}</td>
+                </tr>)}</tbody>
+              </table></div> : <div className="centre-timetable-empty">Term programmes, session times and age groups will be added here as each centre confirms its schedule.</div>}
+            </section>
+          </div>
+
+          <aside className="centre-detail-sidebar">
+            <section className="centre-trial-card" aria-labelledby="centre-trial-title">
+              <p className="centre-trial-kicker">Free trial class</p>
+              <h2 id="centre-trial-title">{trial?.date ?? "Find your first session"}</h2>
+              <p className="centre-trial-meta">{trial ? `${trial.time} · ages ${trial.ageRange}` : "Ask us for the next available date and age group."}</p>
+              {trial?.totalSeats !== null && trial?.totalSeats !== undefined && <div className="centre-seat-meter" aria-label={`${trial.seatsLeft ?? 0} of ${trial.totalSeats} seats left`}>
+                {Array.from({ length: trial.totalSeats }, (_, index) => <span key={index} className={index >= (trial.seatsLeft ?? 0) ? "full" : ""} />)}
+              </div>}
+              {trial?.seatsLeft !== null && trial?.seatsLeft !== undefined && <p className="centre-seats-left">{trial.seatsLeft} of {trial.totalSeats} seats left</p>}
+              <a className="centre-trial-primary" href={trialHref} target="_blank" rel="noreferrer">{trial ? "Book this trial" : "Ask about a free trial"}</a>
+              <a className="centre-trial-secondary" href={trialHref} target="_blank" rel="noreferrer"><MessageCircle size={14} /> WhatsApp this centre</a>
+              <p className="centre-trial-note">No card needed. Parents are welcome to sit in.</p>
+            </section>
+
+            <CentreMap centre={centre} />
+          </aside>
+        </div>
       </div>
-    </section>
-    <section className="soft-panel py-20"><div className="container flex flex-col justify-between gap-6 sm:flex-row sm:items-center"><div><SectionLabel>Not near one yet?</SectionLabel><h2 className="mt-4 text-4xl font-medium">Tell us where you are.</h2></div><div className="flex flex-wrap gap-3"><a className="btn-dark rounded-full px-5 py-3 text-sm font-bold" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">WhatsApp us</a><a className="btn-primary rounded-full px-5 py-3 text-sm font-bold" href="tel:+918886665295"><Phone className="mr-2 inline" size={15} /> Call the team</a></div></div></section>
+
+      <section className="container centre-expansion-note">
+        <div><SectionLabel>More locations</SectionLabel><h2>Not near one yet?</h2><p>Tell us where you are. We are growing thoughtfully.</p></div>
+        <a className="btn-dark rounded-full px-5 py-3 text-sm font-bold" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Suggest a neighbourhood <MessageCircle size={15} /></a>
+      </section>
+    </div>
   </PageShell>;
 }
