@@ -175,7 +175,6 @@ export default function Home() {
               <div className="reveal mb-10 flex items-center gap-3 text-[15px] font-medium text-[#2B2F32]"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
               <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em] text-[#2B2F32]">
                 <span className="block">TYA CLUB</span>
-                <span className="mt-1 block text-[.47em] font-medium leading-[1.05] tracking-[-.025em]">Transforming Young Adults</span>
               </h1>
               <p className="reveal reveal-3 mt-7 max-w-[650px] text-base font-medium leading-6 text-[#2B2F32] sm:text-lg sm:leading-[1.5]">
                 TYA Club is designed to help young adults develop<br className="hidden sm:block" /> the mindset and life skills that go beyond the classroom.
@@ -219,8 +218,12 @@ export default function Home() {
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#656A6D]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
 
-      <section className="border-b border-[#2B2F32]/10 bg-[#FFFFFF] py-7">
-          <div className="container flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><p className="max-w-[250px] text-sm font-semibold leading-6 text-[#656A6D]">A club built for the skills school can’t grade.</p><div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-bold text-[#2B2F32]"><span>Leadership</span><span>Communication</span><span>Problem solving</span><span className="hidden sm:inline">Self-awareness</span><span className="hidden md:inline">Digital & AI literacy</span></div><span className="hidden text-xs font-bold uppercase tracking-[.12em] text-[#2B2F32] lg:inline">Learn · Try · Own</span></div>
+        <section className="border-b border-[#2B2F32]/10 bg-[#FFFFFF] py-9 sm:py-12">
+          <div className="container">
+            <p className="mx-auto max-w-[1050px] text-center text-[clamp(1.35rem,3vw,2.4rem)] font-light leading-tight tracking-[-.025em] text-[#2B2F32]">
+              A club built for the skills school can’t grade.
+            </p>
+          </div>
         </section>
 
         <section id="why-tya" className="container py-24 lg:py-32">
