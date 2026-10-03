@@ -119,7 +119,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .mission-polaroid-photo { overflow: hidden; border-radius: 1.2rem; background: var(--brand-charcoal); color: var(--brand-ivory); }
 .mission-card-title { color: var(--brand-ivory); }
 .mission-number { color: var(--brand-butter); }
-.mission-carousel-question { color: var(--brand-ivory); font-size: clamp(1.5rem, 4.6vw, 2.65rem); font-size: clamp(1.5rem, 7cqi, 2.65rem); line-height: 1.08; translate: 0 -50%; animation: mission-question-in .4s ease both; }
+.mission-carousel-question { color: var(--brand-ivory); font-size: clamp(1.625rem, 4.6vw, 2.65rem); font-size: clamp(1.625rem, 7cqi, 2.65rem); line-height: 1.08; translate: 0 -50%; animation: mission-question-in .4s ease both; }
 .mission-carousel-progress span { height: 2px; flex: 1; background: repeating-linear-gradient(90deg, rgba(243,240,234,.68) 0 8px, transparent 8px 12px); }
 .mission-carousel-progress span.is-active { background: repeating-linear-gradient(90deg, var(--brand-butter) 0 8px, transparent 8px 12px); }
 .mission-polaroid-caption { min-height: 7.5rem; min-height: clamp(7.5rem, 24cqi, 9rem); border-radius: 0 0 .9rem .9rem; background: var(--brand-card); color: var(--brand-charcoal); }
