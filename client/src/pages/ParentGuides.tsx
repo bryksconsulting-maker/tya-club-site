@@ -12,7 +12,7 @@ const guides = [
   {
     category: "Resilience",
     question: "She really doesn't know what to do when things don't go her way — she panics.",
-    why: "When young people are used to knowing what comes next, an unexpected change can feel overwhelming. They need practice staying with a problem when the original plan no longer works.",
+    why: "When young adults are used to knowing what comes next, an unexpected change can feel overwhelming. They need practice staying with a problem when the original plan no longer works.",
     response: "That's why TYA has The Twist — challenges deliberately change, forcing them to pause, rethink and decide what to do next.",
   },
   {
@@ -24,19 +24,19 @@ const guides = [
   {
     category: "Purpose",
     question: "She cares so much about the world. Sometimes I wonder where she thinks she fits into it.",
-    why: "Young people can care deeply about big issues while feeling that someone else should solve them. What they often need is an opportunity to experience their own ability to make a difference.",
+    why: "Young Adults can care deeply about big issues while feeling that someone else should solve them. What they often need is an opportunity to experience their own ability to make a difference.",
     response: "Through Earth, community and civic Missions, TYA turns “someone should do something” into “what can we do?”",
   },
   {
     category: "Leadership",
     question: "He loves being part of the team — but whenever a chance comes, he rejects it.",
     why: "Being part of a team feels comfortable. Taking responsibility can feel much riskier.",
-    response: "TYA gives every young person opportunities to lead, decide, coordinate and take responsibility — without making leadership about being the loudest person in the room.",
+    response: "TYA gives every young adult opportunities to lead, decide, coordinate and take responsibility — without making leadership about being the loudest person in the room.",
   },
   {
     category: "Decision-making",
     question: "Give her ten options and somehow… none of them work for her.",
-    why: "Too many choices can sometimes create more uncertainty, especially when they're worried about making the wrong one. Decision-making gets stronger when young people actually get to practise it.",
+    why: "Too many choices can sometimes create more uncertainty, especially when they're worried about making the wrong one. Decision-making gets stronger when young adults actually get to practise it.",
     response: "TYA puts them into situations where choices have consequences, so they learn to make thoughtful decisions rather than wait for the perfect one.",
   },
   {
@@ -48,20 +48,20 @@ const guides = [
   {
     category: "Self-discovery",
     question: "She knows exactly what everyone else wants to become. She's still figuring herself out.",
-    why: "Young people see what everyone around them is doing while still discovering their own strengths, interests and values. They don't always need a career answer yet — they need experiences that help them discover themselves.",
+    why: "Young Adults see what everyone around them is doing while still discovering their own strengths, interests and values. They don't always need a career answer yet — they need experiences that help them discover themselves.",
     response: "TYA lets them lead, create, negotiate, solve and experiment in different roles — giving them more chances to discover what feels like them.",
   },
   {
     category: "Voice & confidence",
     question: "She has a voice. I just wish she'd use it more.",
-    why: "Some young people have plenty to say but hesitate when the room feels unfamiliar or they aren't sure their opinion will matter.",
+    why: "Some young adults have plenty to say but hesitate when the room feels unfamiliar or they aren't sure their opinion will matter.",
     response: "At TYA, their voice has a purpose — the Pod needs their idea, the Mission needs their decision and the Arena needs their point of view.",
   },
   {
     category: "Ownership",
     question: "He'll spot the problem. Then wait for someone else to do something about it.",
     why: "Noticing a problem is easy. Taking responsibility for doing something about it is a skill that develops through experience.",
-    response: "TYA gives young people problems without immediately giving them the answer — asking them to notice, decide, act and own the outcome.",
+    response: "TYA gives young adults problems without immediately giving them the answer — asking them to notice, decide, act and own the outcome.",
   },
   {
     category: "Focus",
@@ -72,7 +72,7 @@ const guides = [
   {
     category: "Getting through setbacks",
     question: "When life doesn't go to plan, she feels like everything has fallen apart.",
-    why: "For a young person, one rejection, failure, breakup or disappointment can sometimes feel like the whole world has collapsed. They need to know that a painful moment is not the end of their story — and that reaching out is part of finding a way through.",
+    why: "For a young adult, one rejection, failure, breakup or disappointment can sometimes feel like the whole world has collapsed. They need to know that a painful moment is not the end of their story — and that reaching out is part of finding a way through.",
     response: "TYA gives them repeated practice with setbacks, uncertainty and unexpected change — learning to pause, seek support, regain perspective and find a way forward when things feel overwhelming.",
   },
 ] as const;

@@ -43,7 +43,7 @@ export default function Centres() {
   const trial = centre.nextTrial;
   const centreSummary = [
     centre.detail,
-    centre.batchSize === null ? "Batch size to be confirmed" : `Batches of ${centre.batchSize} young people`,
+    centre.batchSize === null ? "Batch size to be confirmed" : `Batches of ${centre.batchSize} young adults`,
     centre.mentorCount === null ? "Mentor count to be confirmed" : `${centre.mentorCount} verified mentors`,
     centre.programmesThisTerm === null ? "Term programmes to be confirmed" : `${centre.programmesThisTerm} programmes this term`,
   ].join(" · ");

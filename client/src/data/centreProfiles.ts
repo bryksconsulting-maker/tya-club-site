@@ -99,7 +99,7 @@ export const centreProfiles: CentreProfile[] = [
     coach: {
       title: "Hyderabad learning coach",
       role: "Illustrative coach profile",
-      bio: "A calm, observant facilitator who makes room for quieter voices, helps a Pod reflect after each Mission and keeps young people focused without taking over their decisions.",
+      bio: "A calm, observant facilitator who makes room for quieter voices, helps a Pod reflect after each Mission and keeps young adults focused without taking over their decisions.",
       image: "/manus-storage/tya-coach-hyderabad_2b047ff0.jpg",
       alt: "AI-generated representative portrait of an Indian learning coach in Hyderabad",
     },
@@ -129,7 +129,7 @@ export const centreProfiles: CentreProfile[] = [
     coach: {
       title: "Surat learning coach",
       role: "Illustrative coach profile",
-      bio: "An energetic, reflective facilitator who turns debate into better questions, encourages young people to test their ideas and helps the group turn setbacks into another attempt.",
+      bio: "An energetic, reflective facilitator who turns debate into better questions, encourages young adults to test their ideas and helps the group turn setbacks into another attempt.",
       image: "/manus-storage/tya-coach-surat_fe14b60f.jpg",
       alt: "AI-generated representative portrait of an Indian learning coach in Surat",
     },
