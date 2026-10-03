@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { SiteHeader } from "../components/SiteChrome";
+import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 import { isValidIndianPhone } from "../lib/validation";
 
 const LOGO_BASE = import.meta.env.BASE_URL;
@@ -144,11 +145,16 @@ export default function Home() {
 
   useEffect(() => {
     if (learningCarouselsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => {
+    const outcomeTimer = window.setInterval(() => {
       setLearningIdeaIndex((current) => (current + 1) % learningIdeas.length);
+    }, LEARNING_CAROUSEL_CYCLE_MS / learningIdeas.length);
+    const skillTimer = window.setInterval(() => {
       setLearningSkillIndex((current) => (current + 1) % learningSkillOrder.length);
-    }, 5200);
-    return () => window.clearInterval(timer);
+    }, LEARNING_CAROUSEL_CYCLE_MS / learningSkillOrder.length);
+    return () => {
+      window.clearInterval(outcomeTimer);
+      window.clearInterval(skillTimer);
+    };
   }, [learningCarouselsPaused, learningSkillOrder.length]);
 
   const line = heroLines[heroPosition];

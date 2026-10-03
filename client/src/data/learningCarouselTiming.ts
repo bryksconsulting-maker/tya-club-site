@@ -1,0 +1,1 @@
+export const LEARNING_CAROUSEL_CYCLE_MS = 75_000;

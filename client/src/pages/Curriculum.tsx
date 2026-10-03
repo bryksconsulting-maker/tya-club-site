@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeftRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero, PageShell, SectionLabel } from "../components/SiteChrome";
 import { compositeTestimonials } from "../data/centreProfiles";
+import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 
 const outcomes = [
   ["A voice of their own.", "Confidence to speak, listen and be heard."],
@@ -46,7 +47,7 @@ const learningSkills = [
 ] as const;
 
 export default function Curriculum() {
-    const [outcomePosition, setOutcomePosition] = useState(0);
+  const [outcomePosition, setOutcomePosition] = useState(0);
   const [skillPosition, setSkillPosition] = useState(0);
   const [outcomeOrder, setOutcomeOrder] = useState<number[]>(() => outcomes.map((_, i) => i));
   const [skillOrder, setSkillOrder] = useState<number[]>(() => learningSkills.map((_, i) => i));
@@ -62,19 +63,24 @@ export default function Curriculum() {
       }
       return next;
     };
-    const timer = window.setInterval(() => {
+    const outcomeTimer = window.setInterval(() => {
       setOutcomePosition((value) => {
         if (value + 1 < outcomes.length) return value + 1;
         setOutcomeOrder(shuffle(outcomes.length));
         return 0;
       });
+    }, LEARNING_CAROUSEL_CYCLE_MS / outcomes.length);
+    const skillTimer = window.setInterval(() => {
       setSkillPosition((value) => {
         if (value + 1 < learningSkills.length) return value + 1;
         setSkillOrder(shuffle(learningSkills.length));
         return 0;
       });
-    }, 4200);
-    return () => window.clearInterval(timer);
+    }, LEARNING_CAROUSEL_CYCLE_MS / learningSkills.length);
+    return () => {
+      window.clearInterval(outcomeTimer);
+      window.clearInterval(skillTimer);
+    };
   }, []);
 
   return <PageShell>
