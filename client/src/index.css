@@ -647,7 +647,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .led-marquee { background: var(--brand-charcoal); color: var(--brand-butter); }
 .dark .hero-grid { background-image: linear-gradient(rgba(243,240,234,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(243,240,234,.06) 1px, transparent 1px); }
 .dark .mission-polaroid { border-color: var(--brand-ivory); background: var(--brand-ivory); }
-.dark .mission-polaroid-caption { background: var(--brand-card); color: var(--brand-ink); }
+.dark .mission-polaroid-caption { background: var(--brand-ivory); color: var(--brand-charcoal); }
+.dark .mission-polaroid-caption .mission-skill-highlight { color: #A8451C; }
 .dark [class*="text-[#f6d77a]"], .dark [class*="text-[#E4B42A]"], .dark [class*="text-[#7a6316]"] { color: var(--brand-butter) !important; }
 .dark [class*="text-[#f28d63]"], .dark [class*="text-[#F28D63]"] { color: var(--brand-coral-text) !important; }
 /* Coloured surfaces use charcoal type, which stays legible in either theme. */

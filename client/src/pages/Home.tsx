@@ -29,17 +29,15 @@ import {
 } from "lucide-react";
 
 const heroLines = [
-  { statement: "Want them to handle challenges?", response: "We help navigate them.", skill: "Resilience" },
-  { statement: "Want them to speak with confidence?", response: "It starts here.", skill: "Communication" },
-  { statement: "Want them to discover who they are?", response: "We nurture it.", skill: "Individuality" },
-  { statement: "Want them to take responsibility?", response: "We let them own it.", skill: "Accountability" },
-  { statement: "Want them to lead, not just follow?", response: "We give them room.", skill: "Leadership" },
-  { statement: "Want them to make better decisions?", response: "We let them think on their own.", skill: "Judgement" },
-  { statement: "Want them to handle emotions better?", response: "We help them understand feelings.", skill: "Emotional Intelligence" },
-  { statement: "Want them to handle life, not just exams?", response: "We prepare them.", skill: "Life Skills" },
+  { statementLines: ["Want them", "to handle", "challenges?"], response: "We help navigate them.", skill: "Resilience" },
+  { statementLines: ["Want them", "to speak with", "confidence?"], response: "It starts here.", skill: "Communication" },
+  { statementLines: ["Want them to", "discover", "who they are?"], response: "We nurture it.", skill: "Individuality" },
+  { statementLines: ["Want them", "to take", "responsibility?"], response: "We let them own it.", skill: "Accountability" },
+  { statementLines: ["Want them", "to lead, not just", "follow?"], response: "We give them room.", skill: "Leadership" },
+  { statementLines: ["Want them to", "make better", "decisions?"], response: "We let them think on their own.", skill: "Judgement" },
+  { statementLines: ["Want them to", "handle emotions", "better?"], response: "We help them understand feelings.", skill: "Emotional Intelligence" },
+  { statementLines: ["Want them", "to handle life,", "not just exams?"], response: "We prepare them.", skill: "Life Skills" },
 ];
-
-const initialHeroOrder = [3, 0, 1, 2, 4, 5, 6, 7];
 
 const steps = [
   { number: "01", title: "Find your Pod", eyebrow: "Belong before you lead.", copy: "Meet your Mates, discover your strengths and learn to communicate, collaborate and contribute as part of a team.", icon: Users, color: "#F3F0EA" },
@@ -119,7 +117,6 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
 }
 
 export default function Home() {
-  const [heroOrder, setHeroOrder] = useState<number[]>(initialHeroOrder);
   const [heroPosition, setHeroPosition] = useState(0);
   const [heroResponseVisible, setHeroResponseVisible] = useState(false);
   const [trialOpen, setTrialOpen] = useState(false);
@@ -134,30 +131,16 @@ export default function Home() {
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setHeroPosition((current) => {
-        const next = current + 1;
-        if (next >= heroOrder.length) {
-          setHeroOrder((currentOrder) => {
-            const shuffled = [...currentOrder];
-            for (let index = shuffled.length - 1; index > 0; index -= 1) {
-              const swapIndex = Math.floor(Math.random() * (index + 1));
-              [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
-            }
-            return shuffled;
-          });
-          return 0;
-        }
-        return next;
-      });
+      setHeroPosition((current) => (current + 1) % heroLines.length);
     }, 5200);
     return () => window.clearInterval(timer);
-  }, [heroOrder.length]);
+  }, []);
 
   useEffect(() => {
     setHeroResponseVisible(false);
     const timer = window.setTimeout(() => setHeroResponseVisible(true), 1700);
     return () => window.clearTimeout(timer);
-  }, [heroOrder, heroPosition]);
+  }, [heroPosition]);
 
   useEffect(() => {
     if (learningCarouselsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -168,7 +151,7 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, [learningCarouselsPaused, learningSkillOrder.length]);
 
-  const line = heroLines[heroOrder[heroPosition]];
+  const line = heroLines[heroPosition];
 
   function handleTrialSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -216,22 +199,21 @@ export default function Home() {
               <div className="mission-polaroid relative rotate-[2deg] p-3 pb-0 shadow-[0_24px_70px_rgba(62,66,69,.18)] sm:p-4 sm:pb-0">
                 <div className="mission-polaroid-photo relative min-h-[445px] px-5 pb-12 pt-7 text-center sm:min-h-[485px] sm:px-12 sm:pt-9">
                   <h2 className="mission-card-title mx-auto max-w-[430px] text-balance text-xl font-semibold leading-tight tracking-[-.025em] sm:text-2xl">Are your kids future ready?</h2>
-                  <div className="mission-number mt-5 text-sm font-extrabold uppercase tracking-[.2em] sm:text-base">MISSION {String(heroOrder[heroPosition] + 1)}:</div>
-                  <div key={`${heroOrder[heroPosition]}-${heroPosition}`} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] text-balance text-[clamp(1.35rem,3.4vw,2rem)] font-semibold leading-[1.2] sm:left-10 sm:right-10">
-                    {line.statement}
+                  <div className="mission-number mt-5 text-sm font-extrabold uppercase tracking-[.2em] sm:text-base">MISSION {String(heroPosition + 1)}:</div>
+                  <div key={heroPosition} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] text-[clamp(1.5rem,3.8vw,2.25rem)] font-semibold leading-[1.12] sm:left-10 sm:right-10">
+                    {line.statementLines.map((part) => <span className="block" key={part}>{part}</span>)}
                   </div>
                   <div className="mission-carousel-progress absolute bottom-8 left-7 right-7 flex gap-1.5 sm:left-12 sm:right-12">
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={index <= heroPosition ? "is-active" : ""} />)}
                   </div>
                 </div>
-                <div className="mission-polaroid-caption flex min-h-[88px] items-center justify-center px-3 py-4 text-center sm:min-h-[98px] sm:px-8">
-                  <p key={`${heroOrder[heroPosition]}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy text-sm font-medium leading-6 sm:text-base ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
+                <div className="mission-polaroid-caption flex min-h-[112px] items-center justify-center px-3 py-4 text-center sm:min-h-[120px] sm:px-8">
+                  <p key={`${heroPosition}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy text-base font-medium leading-6 sm:text-lg sm:leading-7 ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
                     <span className="block">{line.response}</span>
                     {line.skill && <span className="mt-0.5 block">They learn <strong className="mission-skill-highlight font-extrabold">{line.skill.toUpperCase()}</strong>.</span>}
                   </p>
                 </div>
               </div>
-              <div aria-hidden="true" className="pointer-events-none absolute -bottom-3 -right-3 z-10 h-14 w-24 rotate-[-6deg] rounded-lg bg-[#F28D63] shadow-md sm:-right-4 sm:h-16 sm:w-28" />
             </div>
           </div>
           <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#656A6D]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
