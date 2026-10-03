@@ -115,14 +115,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .btn-primary:active, .btn-dark:active, .btn-ghost:active { transform: scale(.97); }
 
 .hero-grid { background-image: linear-gradient(rgba(62,66,69,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(62,66,69,.06) 1px, transparent 1px); background-size: 42px 42px; }
-.mission-polaroid { border: 1px solid color-mix(in srgb, var(--brand-ink) 9%, transparent); border-radius: 1.75rem; background: var(--brand-card); }
+.mission-polaroid { container-type: inline-size; border: 1px solid color-mix(in srgb, var(--brand-ink) 9%, transparent); border-radius: 1.75rem; background: var(--brand-card); }
 .mission-polaroid-photo { overflow: hidden; border-radius: 1.2rem; background: var(--brand-charcoal); color: var(--brand-ivory); }
 .mission-card-title { color: var(--brand-ivory); }
 .mission-number { color: var(--brand-butter); }
-.mission-carousel-question { color: var(--brand-ivory); translate: 0 -50%; animation: mission-question-in .4s ease both; }
+.mission-carousel-question { color: var(--brand-ivory); font-size: clamp(1.5rem, 4.6vw, 2.65rem); font-size: clamp(1.5rem, 7cqi, 2.65rem); line-height: 1.08; translate: 0 -50%; animation: mission-question-in .4s ease both; }
 .mission-carousel-progress span { height: 2px; flex: 1; background: repeating-linear-gradient(90deg, rgba(243,240,234,.68) 0 8px, transparent 8px 12px); }
 .mission-carousel-progress span.is-active { background: repeating-linear-gradient(90deg, var(--brand-butter) 0 8px, transparent 8px 12px); }
-.mission-polaroid-caption { border-radius: 0 0 .9rem .9rem; background: var(--brand-card); color: var(--brand-charcoal); }
+.mission-polaroid-caption { min-height: 7.5rem; min-height: clamp(7.5rem, 24cqi, 9rem); border-radius: 0 0 .9rem .9rem; background: var(--brand-card); color: var(--brand-charcoal); }
+.mission-answer-copy { font-size: clamp(1.125rem, 3.8vw, 1.375rem); font-size: clamp(1.125rem, 3.8cqi, 1.375rem); line-height: 1.4; }
 .mission-skill-highlight { color: var(--mission-skill-color); }
 .mission-answer-visible { animation: mission-answer-in .32s ease-out both; }
 @keyframes mission-question-in { from { opacity: .45; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }

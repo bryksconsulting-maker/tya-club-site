@@ -200,15 +200,15 @@ export default function Home() {
                 <div className="mission-polaroid-photo relative min-h-[445px] px-5 pb-12 pt-7 text-center sm:min-h-[485px] sm:px-12 sm:pt-9">
                   <h2 className="mission-card-title mx-auto max-w-[430px] text-balance text-xl font-semibold leading-tight tracking-[-.025em] sm:text-2xl">Are your kids future ready?</h2>
                   <div className="mission-number mt-5 text-sm font-extrabold uppercase tracking-[.2em] sm:text-base">MISSION {String(heroPosition + 1)}:</div>
-                  <div key={heroPosition} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] text-[clamp(1.5rem,3.8vw,2.25rem)] font-semibold leading-[1.12] sm:left-10 sm:right-10">
+                  <div key={heroPosition} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] font-semibold sm:left-10 sm:right-10">
                     {line.statementLines.map((part) => <span className="block" key={part}>{part}</span>)}
                   </div>
                   <div className="mission-carousel-progress absolute bottom-8 left-7 right-7 flex gap-1.5 sm:left-12 sm:right-12">
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={index <= heroPosition ? "is-active" : ""} />)}
                   </div>
                 </div>
-                <div className="mission-polaroid-caption flex min-h-[112px] items-center justify-center px-3 py-4 text-center sm:min-h-[120px] sm:px-8">
-                  <p key={`${heroPosition}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy text-base font-medium leading-6 sm:text-lg sm:leading-7 ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
+                <div className="mission-polaroid-caption flex items-center justify-center px-3 py-4 text-center sm:px-8">
+                  <p key={`${heroPosition}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy font-medium ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
                     <span className="block">{line.response}</span>
                     {line.skill && <span className="mt-0.5 block">They learn <strong className="mission-skill-highlight font-extrabold">{line.skill.toUpperCase()}</strong>.</span>}
                   </p>
