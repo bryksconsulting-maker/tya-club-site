@@ -401,8 +401,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .parent-guides-intro > .container > p { max-width: 650px; margin-top: .9rem; color: var(--brand-muted); font-size: .9rem; line-height: 1.7; }
 .parent-guides-feature-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(230px, .86fr); gap: 1rem; align-items: stretch; padding-top: 1rem; }
 .parent-guide-feature { display: grid; min-width: 0; grid-template-columns: minmax(190px, 1fr) minmax(0, 1fr); overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 10%, transparent); border-radius: .85rem; background: var(--brand-card); box-shadow: 0 2px 10px rgba(43,47,50,.025); }
-.parent-guide-feature-art, .parent-guide-card-art { position: relative; min-height: 230px; overflow: hidden; background: linear-gradient(135deg, #2B2F32 0%, #454A4D 75%, #656A6D 100%); }
-.parent-guide-feature-art::before, .parent-guide-card-art::before { position: absolute; inset: auto -18% -62% 20%; aspect-ratio: 1; border: 1px solid rgba(243,240,234,.18); border-radius: 50%; background: radial-gradient(circle at 36% 30%, rgba(242,141,99,.75), rgba(228,180,42,.18) 42%, transparent 68%); content: ""; }
+.parent-guide-feature-art, .parent-guide-card-art { --guide-art-start: var(--brand-charcoal); --guide-art-end: var(--brand-coral-text); --guide-art-glow: var(--brand-coral); position: relative; min-height: 230px; overflow: hidden; background: linear-gradient(135deg, var(--guide-art-start) 0%, color-mix(in srgb, var(--guide-art-start) 25%, var(--guide-art-end)) 58%, var(--guide-art-end) 100%); }
+.parent-guide-feature-art[data-tone="butter"], .parent-guide-card-art[data-tone="butter"] { --guide-art-start: var(--brand-charcoal); --guide-art-end: var(--brand-butter); --guide-art-glow: var(--brand-butter); }
+.parent-guide-feature-art[data-tone="ivory"], .parent-guide-card-art[data-tone="ivory"] { --guide-art-start: var(--brand-coral-text); --guide-art-end: var(--brand-butter); --guide-art-glow: var(--brand-ivory); }
+.parent-guide-feature-art::before, .parent-guide-card-art::before { position: absolute; inset: auto -18% -62% 20%; aspect-ratio: 1; border: 1px solid rgba(243,240,234,.22); border-radius: 50%; background: radial-gradient(circle at 36% 30%, color-mix(in srgb, var(--guide-art-glow) 82%, transparent), color-mix(in srgb, var(--guide-art-end) 20%, transparent) 42%, transparent 68%); content: ""; }
 .parent-guide-feature-art::after, .parent-guide-card-art::after { position: absolute; inset: 0; background: linear-gradient(145deg, transparent 45%, rgba(228,180,42,.13)); content: ""; }
 .parent-guide-feature-art > span { position: absolute; z-index: 1; right: 1rem; bottom: .85rem; left: 1rem; color: rgba(243,240,234,.78); font-size: .5rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .parent-guide-feature-copy { display: flex; flex-direction: column; align-items: flex-start; padding: 1.35rem 1.45rem; }
@@ -424,9 +426,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .parent-guide-newsletter form button:hover { filter: brightness(.95); transform: translateY(-1px); }
 .parent-guide-newsletter .parent-guide-subscribe-note { margin-top: .55rem !important; color: rgba(243,240,234,.58) !important; font-size: .57rem !important; line-height: 1.45 !important; }
 .parent-guide-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-top: 1rem; }
-.parent-guide-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 10%, transparent); border-radius: .8rem; background: var(--brand-card); }
-.parent-guide-card-art { min-height: 112px; background: linear-gradient(135deg, #2B2F32 0%, #454A4D 62%, #656A6D 100%); }
-.parent-guide-card-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: .9rem 1rem 1rem; }
+.parent-guide-card { --guide-copy-bg: var(--brand-card); display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 10%, transparent); border-radius: .8rem; background: var(--guide-copy-bg); }
+.parent-guide-card[data-tone="butter"] { --guide-copy-bg: color-mix(in srgb, var(--brand-butter) 9%, var(--brand-card)); }
+.parent-guide-card[data-tone="coral"] { --guide-copy-bg: color-mix(in srgb, var(--brand-coral) 8%, var(--brand-card)); }
+.parent-guide-card[data-tone="ivory"] { --guide-copy-bg: color-mix(in srgb, var(--brand-bg) 62%, var(--brand-card)); }
+.parent-guide-card-art { min-height: 112px; }
+.parent-guide-card-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; background: var(--guide-copy-bg); padding: .9rem 1rem 1rem; }
 .parent-guide-card-copy h2 { margin-top: .45rem; color: var(--brand-ink); font-size: .88rem; font-weight: 800; line-height: 1.3; letter-spacing: -.02em; }
 .parent-guide-card-copy .parent-guide-byline { margin-top: .55rem; }
 .parent-guide-card-copy .parent-guide-text-link { padding-top: .4rem; font-size: .67rem; }
@@ -463,6 +468,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .parent-guide-faq-trigger { font-size: .84rem; }
   .parent-guide-faq-answer { padding-left: 1.7rem; }
 }
+.dark .parent-guide-feature-art, .dark .parent-guide-card-art { --guide-art-start: var(--brand-charcoal); --guide-art-end: var(--brand-coral); --guide-art-glow: var(--brand-coral); }
+.dark .parent-guide-feature-art[data-tone="butter"], .dark .parent-guide-card-art[data-tone="butter"] { --guide-art-start: var(--brand-soft); --guide-art-end: var(--brand-butter); --guide-art-glow: var(--brand-butter); }
+.dark .parent-guide-feature-art[data-tone="ivory"], .dark .parent-guide-card-art[data-tone="ivory"] { --guide-art-start: var(--brand-soft); --guide-art-end: var(--brand-coral); --guide-art-glow: var(--brand-ivory); }
+.dark .parent-guide-card[data-tone="butter"] { --guide-copy-bg: color-mix(in srgb, var(--brand-butter) 10%, var(--brand-card)); }
+.dark .parent-guide-card[data-tone="coral"] { --guide-copy-bg: color-mix(in srgb, var(--brand-coral) 10%, var(--brand-card)); }
+.dark .parent-guide-card[data-tone="ivory"] { --guide-copy-bg: var(--brand-soft); }
 .centre-detail-page { min-height: 100vh; background: var(--brand-bg); padding-bottom: 4.5rem; }
 .centre-detail-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.05rem .8rem; }
 .centre-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; color: var(--brand-muted); font-size: .64rem; }

@@ -79,6 +79,7 @@ const guides = [
 
 const featuredGuideIndex = 8;
 const cardGuideIndexes = [0, 1, 2];
+const guideCardTones = ["butter", "coral", "ivory"] as const;
 
 export default function ParentGuides() {
   const [openGuide, setOpenGuide] = useState<number | null>(null);
@@ -113,7 +114,7 @@ export default function ParentGuides() {
 
         <section className="container parent-guides-feature-grid" aria-label="Featured parent guide and monthly letter">
           <article className="parent-guide-feature">
-            <div className="parent-guide-feature-art" aria-hidden="true">
+            <div className="parent-guide-feature-art" data-tone="coral" aria-hidden="true">
               <span>Inside a parent guide</span>
             </div>
             <div className="parent-guide-feature-copy">
@@ -144,8 +145,8 @@ export default function ParentGuides() {
           {cardGuideIndexes.map((index) => {
             const guide = guides[index];
             return (
-              <article className="parent-guide-card" key={guide.question}>
-                <div className="parent-guide-card-art" aria-hidden="true" />
+              <article className="parent-guide-card" data-tone={guideCardTones[index % guideCardTones.length]} key={guide.question}>
+                <div className="parent-guide-card-art" data-tone={guideCardTones[index % guideCardTones.length]} aria-hidden="true" />
                 <div className="parent-guide-card-copy">
                   <p className="parent-guide-kicker">{guide.category}</p>
                   <h2>{guide.question}</h2>
