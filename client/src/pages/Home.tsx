@@ -311,6 +311,9 @@ export default function Home() {
                   );
                 })}
               </div>
+              <blockquote className="mt-8 max-w-4xl border-l-4 border-[#F28D63] pl-5 text-sm leading-7 text-[#2B2F32] sm:text-base">
+                “You’re never on your own. We’re there every step of the way — helping every YA feel comfortable, supported and confident to explore, participate and grow.”
+              </blockquote>
             </div>
           </div>
         </section>
