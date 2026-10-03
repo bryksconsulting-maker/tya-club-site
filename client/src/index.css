@@ -45,6 +45,7 @@
   --brand-coral-text: #A8451C;
   --brand-muted: #656A6D;
   --brand-accent: #2B2F32;
+  --mission-skill-color: #A8451C;
   --background: var(--brand-bg);
   --foreground: var(--brand-ink);
   --card: var(--brand-card);
@@ -114,6 +115,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .btn-primary:active, .btn-dark:active, .btn-ghost:active { transform: scale(.97); }
 
 .hero-grid { background-image: linear-gradient(rgba(62,66,69,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(62,66,69,.06) 1px, transparent 1px); background-size: 42px 42px; }
+.mission-polaroid { border: 1px solid color-mix(in srgb, var(--brand-ink) 9%, transparent); border-radius: 1.75rem; background: var(--brand-card); }
+.mission-polaroid-photo { overflow: hidden; border-radius: 1.2rem; background: var(--brand-charcoal); color: var(--brand-ivory); }
+.mission-card-title { color: var(--brand-ivory); }
+.mission-number { color: var(--brand-butter); }
+.mission-carousel-question { color: var(--brand-ivory); translate: 0 -50%; animation: mission-question-in .4s ease both; }
+.mission-carousel-progress span { height: 2px; flex: 1; background: repeating-linear-gradient(90deg, rgba(243,240,234,.68) 0 8px, transparent 8px 12px); }
+.mission-carousel-progress span.is-active { background: repeating-linear-gradient(90deg, var(--brand-butter) 0 8px, transparent 8px 12px); }
+.mission-polaroid-caption { border-radius: 0 0 .9rem .9rem; background: var(--brand-card); color: var(--brand-charcoal); }
+.mission-skill-highlight { color: var(--mission-skill-color); }
+.mission-answer-visible { animation: mission-answer-in .32s ease-out both; }
+@keyframes mission-question-in { from { opacity: .45; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes mission-answer-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 .hero-orb { animation: float 6s ease-in-out infinite; }
 .hero-orb.delay { animation-delay: -2s; }
 .home-centre-search input::placeholder { color: #656A6D; opacity: 1; }
@@ -575,6 +588,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   --brand-muted: #D0CBC2;
   --brand-coral-text: #F28D63;
   --brand-accent: #E4B42A;
+  --mission-skill-color: var(--brand-butter);
   --background: var(--brand-bg);
   --foreground: var(--brand-ink);
   --card: var(--brand-card);
@@ -632,6 +646,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .page-hero, .dark .outcome-card { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .led-marquee { background: var(--brand-charcoal); color: var(--brand-butter); }
 .dark .hero-grid { background-image: linear-gradient(rgba(243,240,234,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(243,240,234,.06) 1px, transparent 1px); }
+.dark .mission-polaroid { border-color: var(--brand-ivory); background: var(--brand-ivory); }
+.dark .mission-polaroid-caption { background: var(--brand-card); color: var(--brand-ink); }
 .dark [class*="text-[#f6d77a]"], .dark [class*="text-[#E4B42A]"], .dark [class*="text-[#7a6316]"] { color: var(--brand-butter) !important; }
 .dark [class*="text-[#f28d63]"], .dark [class*="text-[#F28D63]"] { color: var(--brand-coral-text) !important; }
 /* Coloured surfaces use charcoal type, which stays legible in either theme. */
