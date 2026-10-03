@@ -40,10 +40,10 @@ const heroLines = [
 ];
 
 const steps = [
-  { number: "01", title: "Find your Pod", eyebrow: "Belong before you lead.", copy: "Meet your Mates, discover your strengths and learn to communicate, collaborate and contribute as part of a team.", icon: Users, color: "#F3F0EA" },
-  { number: "02", title: "Take on a Mission", eyebrow: "Learning begins when it feels real.", copy: "Solve problems, tackle challenges, make decisions and adapt when the unexpected happens.", icon: Target, color: "#E4B42A" },
-  { number: "03", title: "Step up & lead", eyebrow: "Every challenge creates an opportunity.", copy: "Take on roles, negotiate, present ideas, make decisions and learn to take responsibility when it matters.", icon: Zap, color: "#F28D63" },
-  { number: "04", title: "Make an impact", eyebrow: "What you learn travels with you.", copy: "Turn learning into community, civic and environmental action — while building a visible record of growth.", icon: Leaf, color: "#F3F0EA" },
+  { number: "01", title: "Find your Pod", eyebrow: "Find your people. Find your space.", copy: "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about.", icon: Users, color: "#F3F0EA" },
+  { number: "02", title: "Commit to the journey", eyebrow: "Show up. Get involved. Grow.", copy: "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey.", icon: Target, color: "#E4B42A" },
+  { number: "03", title: "Engage. Explore. Express.", eyebrow: "Discover what you think. Discover who you are.", copy: "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught.", icon: Zap, color: "#F28D63" },
+  { number: "04", title: "Evolve. Make an impact.", eyebrow: "Take what you learn beyond TYA.", copy: "Turn ideas into action. Apply your learning in your community and the world around you, while building confidence, responsibility and a growing record of personal development.", icon: Leaf, color: "#F3F0EA" },
 ];
 
 const learningIdeas = [
@@ -295,13 +295,12 @@ export default function Home() {
                   return (
                     <article key={step.number} className="step-card how-works-card flex min-h-[230px] flex-col rounded-[1.1rem] border border-[#2B2F32]/10 p-4 sm:min-h-[245px]">
                       <div className="flex items-start justify-between">
-                        <span className="text-[10px] font-bold tracking-[.12em] text-[#2B2F32]">{step.number}</span>
+                        <span className="text-[10px] font-bold tracking-[.08em] text-[#2B2F32]">{step.number} — {step.title.toUpperCase()}</span>
                         <span className="grid h-9 w-9 place-items-center rounded-full" style={{ backgroundColor: step.color }}>
                           <Icon size={16} />
                         </span>
                       </div>
                       <div className="mt-7">
-                        <h3 className="text-base font-semibold leading-tight tracking-[-.02em]">{step.title}</h3>
                         <p className="mt-2 text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
                         <p className="mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
                       </div>
