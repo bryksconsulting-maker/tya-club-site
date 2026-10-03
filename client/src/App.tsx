@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Router as WouterRouter, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -69,6 +69,23 @@ function GithubPagesLinks() {
   return null;
 }
 
+function RouteScrollManager() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = decodeURIComponent(hash.slice(1));
+      requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({ block: "start" }));
+      return;
+    }
+
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   const base = window.location.pathname.startsWith("/tya-club-site")
     ? "/tya-club-site"
@@ -76,6 +93,7 @@ function Router() {
 
   return (
     <WouterRouter base={base}>
+      <RouteScrollManager />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/parents" component={Parents} />
