@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Parents from "./pages/Parents";
 import Programme from "./pages/Programme";
-import About from "./pages/About";
+import OurStory from "./pages/OurStory";
 import HowItWorks from "./pages/HowItWorks";
 import Curriculum from "./pages/Curriculum";
 import ParentGuides from "./pages/ParentGuides";
@@ -80,7 +80,8 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/parents" component={Parents} />
         <Route path="/parent-guides" component={ParentGuides} />
-        <Route path="/about" component={About} />
+        <Route path="/about" component={OurStory} />
+        <Route path="/our-story" component={OurStory} />
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/curriculum" component={Curriculum} />
         <Route path="/experience" component={Experience} />

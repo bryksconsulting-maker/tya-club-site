@@ -16,22 +16,15 @@ type NavigationLink = { label: string; href: string };
 type NavigationItem = { label: string; href?: string; children?: NavigationLink[] };
 
 const navigationItems: NavigationItem[] = [
-  { label: "About", href: "/about" },
-  { label: "How TYA works", href: "/how-it-works", children: [
-    { label: "Curriculum", href: "/curriculum" },
-    { label: "TYA Experience", href: "/experience" },
-  ] },
-  { label: "Programmes", children: [
-    { label: "Class 6 to 9", href: "/programmes/class-6-to-9" },
-    { label: "Class 10 to 12", href: "/programmes/class-10-to-12" },
-    { label: "Grads", href: "/programmes/grads" },
-  ] },
-  { label: "For parents", href: "/parents", children: [
-    { label: "Parent Guides", href: "/parent-guides" },
-    { label: "Find a centre", href: "/centres" },
-  ] },
+  { label: "TYA", href: "/" },
+  { label: "How TYA works", href: "/how-it-works" },
+  { label: "The Curriculum", href: "/curriculum" },
+  { label: "Note for parents", href: "/parents" },
+  { label: "The TYA Experience", href: "/experience" },
+  { label: "Find A center", href: "/centres" },
+  { label: "Our story", href: "/our-story" },
   { label: "Franchise", href: "/franchise" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact us", href: "/contact" },
 ];
 
 export function ThemeToggle() {
@@ -109,7 +102,7 @@ export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string;
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer border-t py-14"><div className="container grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr] md:items-end"><div><Link href="/"><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="h-14 w-auto max-w-[170px] object-contain" /></Link><p className="mt-5 max-w-[360px] text-sm leading-6 text-white/60">Where skills become confidence. A learning community for young people to practise the capabilities school cannot grade.</p></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Contact</p><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`mailto:${CONTACT_EMAIL}`}><Mail size={15} /> {CONTACT_EMAIL}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${PRIMARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {PRIMARY_PHONE}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${SECONDARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {SECONDARY_PHONE}</a></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Explore</p><Link className="block text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><Link className="block text-white/80 hover:text-[#f6d77a]" href="/centres">Find a centre</Link><Link className="block text-white/80 hover:text-[#f6d77a]" href="/franchise">Franchise with TYA</Link><a className="block text-white/80 hover:text-[#f6d77a]" href="https://www.facebook.com/thetyaclub" target="_blank" rel="noreferrer">Facebook</a><a className="block text-white/80 hover:text-[#f6d77a]" href="https://www.instagram.com/tya.club/" target="_blank" rel="noreferrer">Instagram</a></div></div><div className="container mt-10 flex flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/45 sm:flex-row sm:justify-between"><span>© 2026 TYA Club</span><a href={`mailto:${GENERAL_EMAIL}`}>{GENERAL_EMAIL}</a></div></footer>;
+  return <footer className="site-footer border-t py-14"><div className="container grid gap-10 md:grid-cols-[1.1fr_.9fr_1.4fr] md:items-start"><div><Link href="/"><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="h-14 w-auto max-w-[170px] object-contain" /></Link><p className="mt-5 max-w-[360px] text-sm leading-6 text-white/60">Where skills become confidence. A learning community for young people to practise the capabilities school cannot grade.</p></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Contact</p><Link className="block text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`mailto:${CONTACT_EMAIL}`}><Mail size={15} /> {CONTACT_EMAIL}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${PRIMARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {PRIMARY_PHONE}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${SECONDARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {SECONDARY_PHONE}</a></div><div className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm"><p className="section-kicker col-span-2 text-[#f6d77a]">Explore</p><Link className="text-white/80 hover:text-[#f6d77a]" href="/">TYA</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/how-it-works">How TYA works</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/curriculum">The Curriculum</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/parents">Note for parents</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/experience">The TYA Experience</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/centres">Find A center</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/our-story">Our story</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/franchise">Franchise</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.facebook.com/thetyaclub" target="_blank" rel="noreferrer">Facebook</a><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.instagram.com/tya.club/" target="_blank" rel="noreferrer">Instagram</a></div></div><div className="container mt-10 flex flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/45 sm:flex-row sm:justify-between"><span>© 2026 TYA Club</span><a href={`mailto:${GENERAL_EMAIL}`}>{GENERAL_EMAIL}</a></div></footer>;
 }
 
 export function WhatsAppFloat() {

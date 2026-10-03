@@ -210,7 +210,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .site-mobile-submenu a[aria-current="page"] { color: var(--brand-coral-text); }
 .site-mobile-contact { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .8rem; border-radius: 999px; background: var(--brand-butter); padding: .8rem 1rem; color: var(--brand-charcoal); font-size: .82rem; font-weight: 750; }
 @media (min-width: 1280px) {
-  .site-navigation { display: flex; align-items: center; gap: clamp(.65rem, 1.1vw, 1.25rem); }
+  .site-navigation { display: flex; flex: 0 1 auto; align-items: center; gap: .45rem; }
+  .site-navigation > .nav-link { flex: 0 0 auto; font-size: .64rem; font-weight: 700; white-space: nowrap; }
   .site-menu-toggle, .site-mobile-navigation { display: none; }
 }
 @media (max-width: 380px) {
