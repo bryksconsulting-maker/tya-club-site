@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { SiteHeader } from "../components/SiteChrome";
+import { GrowthCardPreview } from "../components/GrowthCardPreview";
 import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 import { isValidIndianPhone } from "../lib/validation";
 
@@ -21,7 +22,6 @@ import {
   Phone,
   Pause,
   Play,
-  ShieldCheck,
   Sparkles,
   Target,
   Users,
@@ -232,54 +232,71 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="why-tya" className="container py-24 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
-            <div>
-              <SectionLabel prominent>Why TYA</SectionLabel>
-              <h2 className="mt-5 max-w-[540px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">The skills that make the <span className="font-display italic text-[#2B2F32]">difference.</span></h2>
+        <section id="why-tya" className="why-tya-section py-20 sm:py-24 lg:py-32">
+          <div className="container">
+            <div className="why-tya-heading">
+              <div>
+                <SectionLabel prominent>Why TYA</SectionLabel>
+                <h2 className="mt-5">The skills that make the difference start with <span>trying.</span></h2>
+              </div>
+              <p className="why-tya-lead">TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
             </div>
-            <p className="max-w-[510px] text-lg leading-8 text-[#656A6D]">TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
-          </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            <article className="card-sheen rounded-[1.5rem] bg-[#2B2F32] p-7 text-[#fffdf9] md:col-span-2 md:min-h-[250px]">
-              <div className="relative z-10 flex h-full flex-col justify-between">
-                <div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A] text-[#2B2F32]"><ShieldCheck size={20} /></span><span className="section-kicker text-[#E4B42A]">01 · Built for growth</span></div>
-                <div className="mt-12"><h3 className="text-3xl font-semibold tracking-[-.03em]">Room for every young adult to learn.</h3><p className="mt-3 max-w-[470px] leading-7 text-white/65">Thirty young adults, facilitated by a coach. A space where everyone is given the opportunity to lead, learn, express and experience.</p></div>
-              </div>
-            </article>
+            <div className="why-tya-feature-grid">
+              <article className="why-tya-photo">
+                <svg className="why-tya-pod-art" viewBox="0 0 600 500" role="img" aria-labelledby="why-tya-pod-art-title">
+                  <title id="why-tya-pod-art-title">A Pod collaborating around a shared Mission</title>
+                  <rect width="600" height="500" fill="var(--brand-butter)" />
+                  <circle cx="300" cy="225" r="174" fill="var(--brand-charcoal)" />
+                  <g stroke="var(--brand-ivory)" strokeWidth="12" strokeLinecap="round">
+                    <path d="M300 106v39M416 166l-34 20M416 284l-34-20M300 344v-39M184 284l34-20M184 166l34 20" />
+                  </g>
+                  <circle cx="300" cy="225" r="83" fill="var(--brand-coral)" />
+                  <g fill="var(--brand-ivory)">
+                    <circle cx="300" cy="72" r="40" />
+                    <circle cx="432" cy="148" r="40" />
+                    <circle cx="432" cy="302" r="40" />
+                    <circle cx="300" cy="378" r="40" />
+                    <circle cx="168" cy="302" r="40" />
+                    <circle cx="168" cy="148" r="40" />
+                  </g>
+                  <text x="300" y="475" textAnchor="middle" fill="var(--brand-charcoal)" fontFamily="Poppins, sans-serif" fontSize="27" fontWeight="700" letterSpacing="4">COLLABORATION</text>
+                </svg>
+              </article>
 
-            <article className="rounded-[1.5rem] bg-[#DCEAE6] p-7 md:min-h-[250px]">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-[#0F9F8F] text-white"><HeartHandshake size={20} /></span>
-              <h3 className="mt-12 text-2xl font-semibold leading-tight">Friends first.<br />Confidence follows.</h3>
-              <p className="mt-3 text-sm leading-6 text-[#656A6D]">Every Pod creates an ecosystem of sharing and comfort. Quiet thinkers, natural thinkers and everyone in between have a conducive atmosphere to learn and grow.</p>
-            </article>
+              <article className="why-tya-feature-copy">
+                <div>
+                  <span className="why-tya-feature-icon"><Compass size={20} /></span>
+                  <p className="why-tya-feature-kicker">A real-world rehearsal</p>
+                  <h3>Real challenges.<br />A safe place to try.</h3>
+                  <p className="why-tya-feature-description">Negotiations, business decisions, career choices, relationships and community challenges become Missions. Young adults get a chance to practise before they meet those moments in everyday life.</p>
+                </div>
+                <div className="why-tya-pod-stat"><strong>30</strong><p>young adults, learning together with a coach and room for everyone to contribute.</p></div>
+              </article>
+            </div>
 
-            <article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#E4B42A] p-7 md:min-h-[250px]">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-[#2B2F32] text-[#E4B42A]"><NotebookPen size={20} /></span>
-              <h3 className="mt-12 text-2xl font-semibold leading-tight">Progress you can<br />actually see.</h3>
-              <p className="mt-3 text-sm leading-6 text-[#2B2F32]/70">A coach-written Growth Card comes home every month. But that’s not all. You will see the transformation practically.</p>
-            </article>
+            <div className="why-tya-support-grid">
+              <article className="why-tya-support-card" data-tone="ivory">
+                <span className="why-tya-support-icon"><HeartHandshake size={19} /></span>
+                <p className="why-tya-support-kicker">Find their people</p>
+                <h3>Friends first.<br />Confidence follows.</h3>
+                <p className="why-tya-support-copy">Pods create a space to share, learn and grow. Quiet thinkers and outgoing voices both have room to take part.</p>
+              </article>
 
-            <article className="rounded-[1.5rem] border border-[#2B2F32]/12 bg-[#FFFFFF] p-7 md:col-span-2 md:min-h-[250px]">
-              <div className="flex h-full flex-col justify-between md:flex-row md:items-end md:gap-10">
-                <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#F28D63]"><Compass size={20} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight">The real world.<br />In a safe place to try.</h3></div>
-                <p className="max-w-[330px] text-sm leading-6 text-[#656A6D]">Negotiations, business decisions, career and emotional problems, and community challenges. TYA gives them a chance to prepare before they face them in real life. Every Mission gives skills a reason to matter.</p>
-              </div>
-            </article>
+              <article className="why-tya-support-card" data-tone="butter">
+                <span className="why-tya-support-icon"><NotebookPen size={19} /></span>
+                <p className="why-tya-support-kicker">Make growth visible</p>
+                <h3>Progress you can see.</h3>
+                <p className="why-tya-support-copy">Each month, a coach-written Growth Card shares six behaviours observed in real Missions — a snapshot families can recognise and talk about.</p>
+              </article>
 
-            <article className="group relative overflow-hidden rounded-[1.5rem] bg-[#2B2F32] md:col-span-2 md:min-h-[250px]">
-              <img src="/manus-storage/tya-indian-mission_3a12c7e2.jpg" alt="Young Adults working together during a TYA Mission" className="h-full min-h-[250px] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2B2F32] via-[#2B2F32]/75 to-transparent p-7 pt-24">
-                <h3 className="text-xs font-bold uppercase tracking-[.16em] text-[#E4B42A]">Inside a Mission</h3>
-                <p className="mt-2 max-w-[520px] text-lg font-medium leading-6 text-[#fffdf9]">We call each scenario — everything they might face in life — a Mission. We help them gain the skills to face it. They do not just hear about the skills. They use them.</p>
-              </div>
-            </article>
-
-            <article className="flex flex-col justify-between rounded-[1.5rem] bg-[#DCEAE6] p-7 md:min-h-[250px]">
-              <div><span className="grid h-11 w-11 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span><h3 className="mt-12 text-2xl font-semibold leading-tight tracking-[-.03em]">Tangible Missions.</h3></div>
-              <p className="mt-6 text-sm leading-6 text-[#656A6D]">The model helps young adults and parents experience tangible outcomes.</p>
-            </article>
+              <article className="why-tya-support-card" data-tone="coral">
+                <span className="why-tya-support-icon"><Sparkles size={19} /></span>
+                <p className="why-tya-support-kicker">Carry it into life</p>
+                <h3>Practice with purpose.</h3>
+                <p className="why-tya-support-copy">Every Mission gives skills a reason to matter, so young adults can take what they learn into school, home, relationships and their community.</p>
+              </article>
+            </div>
           </div>
         </section>
 
@@ -373,7 +390,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="parents" className="bg-[#2B2F32] py-24 text-[#fffdf9] lg:py-32"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic text-[#E4B42A]">grade.</span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><div className="relative mx-auto w-full max-w-[520px]"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-[#F28D63]" /><div className="relative rotate-[3deg] rounded-[1.5rem] bg-[#FFFFFF] p-6 text-[#2B2F32] shadow-[0_24px_80px_rgba(0,0,0,.22)] sm:p-9"><div className="flex items-start justify-between border-b border-[#2B2F32]/12 pb-6"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#2B2F32]">TYA Growth Card</p><h3 className="mt-2 text-2xl font-bold">Aarav</h3><p className="text-sm text-[#656A6D]">TYA Pod · Monthly snapshot</p></div><span className="grid h-12 w-12 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span></div><div className="space-y-5 py-7">{[['Confidence', 82], ['Communication', 76], ['Collaboration', 92], ['Decision making', 72], ['Adaptability', 81], ['Ownership', 62]].map(([label, value]) => <div key={label as string}><div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-[.12em]"><span>{label as string}</span><span className="text-[#2B2F32]">{value as number}%</span></div><div className="h-2 overflow-hidden rounded-full bg-[#F3F0EA]"><div className="h-full rounded-full bg-[#2B2F32]" style={{ width: `${value}%` }} /></div></div>)}</div><div className="rounded-xl bg-[#F3F0EA] p-4"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#F28D63]">TYA moment</p><p className="mt-2 text-sm leading-6">“In the Water Crisis Mission, Aarav proposed a compromise both Pods accepted — and volunteered to present it.”</p></div><p className="mt-5 text-center text-[10px] font-bold uppercase tracking-[.15em] text-[#656A6D]">Written by the coach who was in the room</p></div></div></div></div></section>
+        <section id="parents" className="bg-[#2B2F32] py-24 text-[#fffdf9] lg:py-32"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic text-[#E4B42A]">grade.</span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
 
         <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
 
