@@ -105,7 +105,7 @@ export function SectionLabel({ children, light = false }: { children: string; li
 }
 
 export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: React.ReactNode; intro: string; children?: React.ReactNode }) {
-  return <section className="grain page-hero overflow-hidden border-b py-20 lg:py-28"><div className="container grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-end"><div><SectionLabel light>{eyebrow}</SectionLabel><h1 className="mt-5 max-w-[720px] text-balance text-6xl font-medium leading-[.92] tracking-[-.055em] sm:text-7xl">{title}</h1><p className="mt-7 max-w-[600px] text-lg leading-8 text-white/65">{intro}</p></div>{children && <div className="lg:justify-self-end">{children}</div>}</div></section>;
+  return <section className={`grain page-hero overflow-hidden border-b py-20 lg:py-28 ${children ? "page-hero--with-aside" : ""}`}><div className={`container grid min-w-0 grid-cols-1 gap-10 ${children ? "lg:grid-cols-[.95fr_1.05fr] lg:items-end" : ""}`}><div className="min-w-0"><SectionLabel light>{eyebrow}</SectionLabel><h1 className="mt-5 min-w-0 max-w-[720px] text-balance text-[clamp(3rem,15vw,3.75rem)] font-medium leading-[.92] tracking-[-.055em] sm:text-7xl">{title}</h1><p className="mt-7 max-w-[600px] text-lg leading-8 text-white/65">{intro}</p></div>{children && <div className="lg:justify-self-end">{children}</div>}</div></section>;
 }
 
 export function SiteFooter() {
