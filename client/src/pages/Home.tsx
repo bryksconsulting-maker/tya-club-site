@@ -112,8 +112,8 @@ function Logo({ reversed = false }: { reversed?: boolean }) {
   );
 }
 
-function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
-  return <span className={`section-kicker ${light ? "text-[#E4B42A]" : "text-[#2B2F32]"}`}>{children}</span>;
+function SectionLabel({ children, light = false, prominent = false }: { children: string; light?: boolean; prominent?: boolean }) {
+  return <span className={`section-kicker ${prominent ? "home-section-label" : ""} ${light ? "text-[#E4B42A]" : "text-[#2B2F32]"}`}>{children}</span>;
 }
 
 export default function Home() {
@@ -223,10 +223,10 @@ export default function Home() {
           <div className="container flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><p className="max-w-[250px] text-sm font-semibold leading-6 text-[#656A6D]">A club built for the skills school can’t grade.</p><div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-bold text-[#2B2F32]"><span>Leadership</span><span>Communication</span><span>Problem solving</span><span className="hidden sm:inline">Self-awareness</span><span className="hidden md:inline">Digital & AI literacy</span></div><span className="hidden text-xs font-bold uppercase tracking-[.12em] text-[#2B2F32] lg:inline">Learn · Try · Own</span></div>
         </section>
 
-        <section id="programmes" className="container py-24 lg:py-32">
+        <section id="why-tya" className="container py-24 lg:py-32">
           <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
             <div>
-              <SectionLabel>Why TYA</SectionLabel>
+              <SectionLabel prominent>Why TYA</SectionLabel>
               <h2 className="mt-5 max-w-[540px] text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">The skills that make the <span className="font-display italic text-[#2B2F32]">difference.</span></h2>
             </div>
             <p className="max-w-[510px] text-lg leading-8 text-[#656A6D]">TYA is where young people practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
@@ -276,7 +276,7 @@ export default function Home() {
 
         <section id="how-it-works" className="grain bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
           <div className="container">
-            <SectionLabel>How TYA works</SectionLabel>
+            <SectionLabel prominent>How TYA works?</SectionLabel>
             <div className="mt-4 rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-4 sm:p-6 lg:p-8">
               <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end lg:gap-10">
                 <h2 className="max-w-[670px] text-balance text-3xl font-medium leading-[1.02] tracking-[-.04em] sm:text-4xl lg:text-5xl">
@@ -315,7 +315,7 @@ export default function Home() {
 
         <section id="curriculum" className="bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
           <div className="container">
-            <SectionLabel>What they learn</SectionLabel>
+            <SectionLabel prominent>What they learn?</SectionLabel>
             <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
               <div className="grid grid-cols-1 items-center gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,360px)_minmax(0,1fr)] lg:gap-10">
                 <div className="order-2 min-w-0 lg:order-1">
@@ -362,7 +362,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="parents" className="bg-[#2B2F32] py-24 text-[#fffdf9] lg:py-32"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic text-[#E4B42A]">grade.</span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><div className="relative mx-auto w-full max-w-[520px]"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-[#F28D63]" /><div className="relative rotate-[3deg] rounded-[1.5rem] bg-[#FFFFFF] p-6 text-[#2B2F32] shadow-[0_24px_80px_rgba(0,0,0,.22)] sm:p-9"><div className="flex items-start justify-between border-b border-[#2B2F32]/12 pb-6"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#2B2F32]">TYA Growth Card</p><h3 className="mt-2 text-2xl font-bold">Aarav</h3><p className="text-sm text-[#656A6D]">TYA Pod · Monthly snapshot</p></div><span className="grid h-12 w-12 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span></div><div className="space-y-5 py-7">{[['Confidence', 82], ['Communication', 76], ['Collaboration', 92], ['Decision making', 72], ['Adaptability', 81], ['Ownership', 62]].map(([label, value]) => <div key={label as string}><div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-[.12em]"><span>{label as string}</span><span className="text-[#2B2F32]">{value as number}%</span></div><div className="h-2 overflow-hidden rounded-full bg-[#F3F0EA]"><div className="h-full rounded-full bg-[#2B2F32]" style={{ width: `${value}%` }} /></div></div>)}</div><div className="rounded-xl bg-[#F3F0EA] p-4"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#F28D63]">TYA moment</p><p className="mt-2 text-sm leading-6">“In the Water Crisis Mission, Aarav proposed a compromise both Pods accepted — and volunteered to present it.”</p></div><p className="mt-5 text-center text-[10px] font-bold uppercase tracking-[.15em] text-[#656A6D]">Written by the coach who was in the room</p></div></div></div></div></section>
+        <section id="parents" className="bg-[#2B2F32] py-24 text-[#fffdf9] lg:py-32"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic text-[#E4B42A]">grade.</span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><div className="relative mx-auto w-full max-w-[520px]"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-[#F28D63]" /><div className="relative rotate-[3deg] rounded-[1.5rem] bg-[#FFFFFF] p-6 text-[#2B2F32] shadow-[0_24px_80px_rgba(0,0,0,.22)] sm:p-9"><div className="flex items-start justify-between border-b border-[#2B2F32]/12 pb-6"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[#2B2F32]">TYA Growth Card</p><h3 className="mt-2 text-2xl font-bold">Aarav</h3><p className="text-sm text-[#656A6D]">TYA Pod · Monthly snapshot</p></div><span className="grid h-12 w-12 place-items-center rounded-full bg-[#E4B42A]"><Sparkles size={19} /></span></div><div className="space-y-5 py-7">{[['Confidence', 82], ['Communication', 76], ['Collaboration', 92], ['Decision making', 72], ['Adaptability', 81], ['Ownership', 62]].map(([label, value]) => <div key={label as string}><div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-[.12em]"><span>{label as string}</span><span className="text-[#2B2F32]">{value as number}%</span></div><div className="h-2 overflow-hidden rounded-full bg-[#F3F0EA]"><div className="h-full rounded-full bg-[#2B2F32]" style={{ width: `${value}%` }} /></div></div>)}</div><div className="rounded-xl bg-[#F3F0EA] p-4"><p className="text-[10px] font-bold uppercase tracking-[.15em] text-[#F28D63]">TYA moment</p><p className="mt-2 text-sm leading-6">“In the Water Crisis Mission, Aarav proposed a compromise both Pods accepted — and volunteered to present it.”</p></div><p className="mt-5 text-center text-[10px] font-bold uppercase tracking-[.15em] text-[#656A6D]">Written by the coach who was in the room</p></div></div></div></div></section>
 
         <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
 
