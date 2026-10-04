@@ -65,7 +65,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
         {embedded && <div className="centre-results-heading"><SectionLabel>Find A center</SectionLabel><h2>{query ? `Centres near ${initialQuery}` : "Our current centres"}</h2><p>Search by city, locality or pin code. Choose a location to see its centre details.</p><a href={`${import.meta.env.BASE_URL}#find-a-centre`}>Change search</a></div>}
         <div className="centre-detail-toolbar">
           <nav className="centre-breadcrumb" aria-label="Breadcrumb">
-            <a href="/centres">Centres</a><span aria-hidden="true">/</span><span>{centre.city}</span><span aria-hidden="true">/</span><strong>{centre.locality}</strong>
+            <a href={`${import.meta.env.BASE_URL}#find-a-centre`}>Centres</a><span aria-hidden="true">/</span><span>{centre.city}</span><span aria-hidden="true">/</span><strong>{centre.locality}</strong>
           </nav>
           <label className="centre-picker">
             <MapPin size={14} aria-hidden="true" />
