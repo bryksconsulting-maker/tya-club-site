@@ -175,7 +175,7 @@ export default function Home() {
       <SiteHeader variant="home" />
 
       <main>
-        <section className="home-hero grain hero-grid relative overflow-hidden border-b border-[#2B2F32]/10 bg-[#E4B42A]">
+        <section className="home-hero grain hero-grid relative overflow-hidden border-b border-[#2B2F32]/10" style={{ backgroundColor: "#E4B42A" }}>
           <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[790px] lg:grid-cols-[1.08fr_.92fr] lg:py-16">
             <div className="relative z-10 max-w-[680px]">
               <div className="reveal mb-10 flex items-center gap-3 text-[15px] font-medium text-[#2B2F32]"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
