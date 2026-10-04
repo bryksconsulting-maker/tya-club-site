@@ -37,7 +37,7 @@ export default function Centres() {
   const [selectedCity, setSelectedCity] = useState(centres[0]?.city ?? "");
   const centre = centres.find((item) => item.city === selectedCity) ?? centres[0];
 
-  if (!centre) return <PageShell><section className="container py-24"><h1>No centres are listed yet.</h1></section></PageShell>;
+  if (!centre) return <PageShell><section className="container py-16"><h1>No centres are listed yet.</h1></section></PageShell>;
 
   const trialHref = centreWhatsappHref(centre);
   const trial = centre.nextTrial;
