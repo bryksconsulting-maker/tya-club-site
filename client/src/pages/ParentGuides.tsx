@@ -96,6 +96,29 @@ function GuideDetails({ guide, id, hidden }: { guide: (typeof guides)[number]; i
   );
 }
 
+function ParentGuideCard({ index, expanded, onToggle }: { index: number; expanded: boolean; onToggle: () => void }) {
+  const guide = guides[index];
+  const detailsId = `parent-guide-details-${index + 1}`;
+
+  return (
+    <article className="parent-guide-card" data-tone={guideCardTones[index % guideCardTones.length]}>
+      <div className="parent-guide-card-copy">
+        <p className="parent-guide-kicker">{guide.category}</p>
+        <h2>
+          <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
+            {guide.question}
+          </button>
+        </h2>
+        <p className="parent-guide-byline">TYA Club Parent Guide</p>
+        <button type="button" className="parent-guide-text-link" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
+          {expanded ? "Close the guide" : "Read the guide"} <ArrowRight className={expanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
+        </button>
+        <GuideDetails guide={guide} id={detailsId} hidden={!expanded} />
+      </div>
+    </article>
+  );
+}
+
 export function ParentGuidesContent({ embedded = false }: { embedded?: boolean } = {}) {
   const [expandedGuides, setExpandedGuides] = useState<Set<number>>(() => new Set());
   const [email, setEmail] = useState("");
@@ -128,64 +151,49 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
           </div>
         </section>
 
-        <section className="container parent-guides-feature-grid" aria-label="Featured parent guide and monthly letter">
-          <article className="parent-guide-feature">
-            <div className="parent-guide-feature-copy">
-              <p className="parent-guide-kicker">Featured parent guide</p>
-              <h2>
-                <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                  “{featuredGuide.question}”
-                </button>
-              </h2>
-              <p className="parent-guide-byline">Written by TYA Club coaches · Parent guide</p>
-              <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read the guide"} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />
-              </button>
-              <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
-            </div>
-          </article>
-
-          <aside className="parent-guide-newsletter">
-            <p className="parent-guide-kicker">Free, monthly</p>
-            <h2>One practical idea for your evenings.</h2>
-            <p>A short letter from our coaches, once a month. No offers, no reminders to enrol.</p>
-            <form onSubmit={requestSubscription}>
-              <label className="sr-only" htmlFor="parent-guide-email">Your email</label>
-              <input id="parent-guide-email" type="email" name="email" placeholder="Your email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
-              <button type="submit">Subscribe</button>
-            </form>
-            <p className="parent-guide-subscribe-note">Your email app will open to send your subscription request.</p>
-          </aside>
-        </section>
-
         <section className="container parent-guide-library" aria-label="All parent guides">
           <div className="parent-guide-library-heading">
             <SectionLabel>Explore the guides</SectionLabel>
             <p>Select a question to read the coach’s full guide.</p>
           </div>
-          <div className="parent-guide-cards">
-          {cardGuideIndexes.map((index) => {
-            const guide = guides[index];
-            const isExpanded = expandedGuides.has(index);
-            const detailsId = `parent-guide-details-${index + 1}`;
-            return (
-              <article className="parent-guide-card" data-tone={guideCardTones[index % guideCardTones.length]} key={guide.question}>
-                <div className="parent-guide-card-copy">
-                  <p className="parent-guide-kicker">{guide.category}</p>
+          <div className="parent-guides-feature-grid" aria-label="Featured parent guide and monthly letter">
+            <div className="parent-guide-first-grid" role="group" aria-label="Featured guide and three more guides">
+              <article className="parent-guide-feature">
+                <div className="parent-guide-feature-copy">
+                  <p className="parent-guide-kicker">Featured parent guide</p>
                   <h2>
-                    <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(index)} aria-expanded={isExpanded} aria-controls={detailsId}>
-                      {guide.question}
+                    <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
+                      “{featuredGuide.question}”
                     </button>
                   </h2>
-                  <p className="parent-guide-byline">TYA Club Parent Guide</p>
-                  <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(index)} aria-expanded={isExpanded} aria-controls={detailsId}>
-                    {isExpanded ? "Close the guide" : "Read the guide"} <ArrowRight className={isExpanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
+                  <p className="parent-guide-byline">Written by TYA Club coaches · Parent guide</p>
+                  <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
+                    {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read the guide"} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />
                   </button>
-                  <GuideDetails guide={guide} id={detailsId} hidden={!isExpanded} />
+                  <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
                 </div>
               </article>
-            );
-          })}
+              {cardGuideIndexes.slice(0, 3).map((index) => (
+                <ParentGuideCard key={guides[index].question} index={index} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+              ))}
+            </div>
+
+            <aside className="parent-guide-newsletter">
+              <p className="parent-guide-kicker">Free, monthly</p>
+              <h2>One practical idea for your evenings.</h2>
+              <p>A short letter from our coaches, once a month. No offers, no reminders to enrol.</p>
+              <form onSubmit={requestSubscription}>
+                <label className="sr-only" htmlFor="parent-guide-email">Your email</label>
+                <input id="parent-guide-email" type="email" name="email" placeholder="Your email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
+                <button type="submit">Subscribe</button>
+              </form>
+              <p className="parent-guide-subscribe-note">Your email app will open to send your subscription request.</p>
+            </aside>
+          </div>
+          <div className="parent-guide-cards">
+            {cardGuideIndexes.slice(3).map((index) => (
+              <ParentGuideCard key={guides[index].question} index={index} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+            ))}
           </div>
         </section>
       </div>
