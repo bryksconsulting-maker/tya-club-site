@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ArrowLeftRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero, PageShell, SectionLabel } from "../components/SiteChrome";
-import { compositeTestimonials } from "../data/centreProfiles";
+import { ParentStories } from "../components/ParentStories";
 import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 
 const outcomes = [
@@ -158,21 +158,6 @@ export default function Curriculum() {
       </div>
     </section>
 
-    <section className="testimonial-stories">
-      <div className="container">
-        <div className="testimonial-stories-heading">
-          <SectionLabel>Parent stories</SectionLabel>
-          <p><ArrowLeftRight size={14} aria-hidden="true" /> Scroll sideways for more</p>
-        </div>
-        <div className="testimonial-stories-track" role="region" aria-label="Parent stories. Scroll sideways to read each story." tabIndex={0}>
-          {compositeTestimonials.map((testimonial) => <article className="testimonial-story-card" key={testimonial.place}>
-            <p className="testimonial-story-kicker">What a parent told us</p>
-            <blockquote><span aria-hidden="true">[</span>{testimonial.quote}<span aria-hidden="true">]</span></blockquote>
-            <p className="testimonial-story-byline">{testimonial.name} · {testimonial.place}</p>
-            <p className="testimonial-story-note">Illustrative composite · Testimonials will be updated here</p>
-          </article>)}
-        </div>
-      </div>
-    </section>
+    <ParentStories />
     <section className="soft-panel py-16 lg:py-24"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">see.</strong></span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
   </PageShell>;}

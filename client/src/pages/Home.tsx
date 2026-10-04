@@ -1,10 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { FindCentreSearch, SiteHeader, WHATSAPP_HREF } from "../components/SiteChrome";
+import { ParentStories } from "../components/ParentStories";
 import { ParentGuidesContent } from "./ParentGuides";
 import { CentresContent } from "./Centres";
 import { experienceFaqs } from "../data/experienceFaqs";
-import { compositeTestimonials } from "../data/centreProfiles";
 import { GrowthCardPreview } from "../components/GrowthCardPreview";
 import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 import { isValidIndianPhone } from "../lib/validation";
@@ -12,7 +12,6 @@ import { isValidIndianPhone } from "../lib/validation";
 const LOGO_BASE = import.meta.env.BASE_URL;
 import {
   ArrowDownRight,
-  ArrowLeftRight,
   ArrowLeft,
   ArrowRight,
   Check,
@@ -391,19 +390,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="testimonial-stories" aria-label="Parent stories">
-          <div className="container">
-            <div className="testimonial-stories-heading"><SectionLabel light>Parent stories</SectionLabel><p><ArrowLeftRight size={14} aria-hidden="true" /> Scroll sideways for more</p></div>
-            <div className="testimonial-stories-track" role="region" aria-label="Parent stories. Scroll sideways to read each story." tabIndex={0}>
-              {compositeTestimonials.map((testimonial) => <article className="testimonial-story-card" key={testimonial.place}>
-                <p className="testimonial-story-kicker">What a parent told us</p>
-                <blockquote><span aria-hidden="true">[</span>{testimonial.quote}<span aria-hidden="true">]</span></blockquote>
-                <p className="testimonial-story-byline">{testimonial.name} · {testimonial.place}</p>
-                <p className="testimonial-story-note">Illustrative composite · Testimonials will be updated here</p>
-              </article>)}
-            </div>
-          </div>
-        </section>
+        <ParentStories />
 
         <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
 
