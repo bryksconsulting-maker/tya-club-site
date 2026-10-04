@@ -86,7 +86,7 @@ export default function Curriculum() {
   return <PageShell>
     <PageHero
       eyebrow="What they learn"
-      title={<>Not just knowledge. <span className="font-display italic text-[#f6d77a]">Capability.</span></>}
+      title={<>Not just knowledge. <span className="font-display italic headline-accent headline-accent--butter"><strong className="headline-impact">Capability.</strong></span></>}
       intro="A purposeful curriculum that moves from self-awareness to social responsibility, through Missions that make every skill feel useful."
     />
 
@@ -174,5 +174,5 @@ export default function Curriculum() {
         </div>
       </div>
     </section>
-    <section className="soft-panel py-24 lg:py-32"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic text-[#7a6316]">see.</span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
+    <section className="soft-panel py-24 lg:py-32"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">see.</strong></span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
   </PageShell>;}
