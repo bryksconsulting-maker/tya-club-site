@@ -6,14 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Parents from "./pages/Parents";
-import Programme from "./pages/Programme";
 import OurStory from "./pages/OurStory";
-import HowItWorks from "./pages/HowItWorks";
-import Curriculum from "./pages/Curriculum";
-import ParentGuides from "./pages/ParentGuides";
-import Experience from "./pages/Experience";
-import Centres from "./pages/Centres";
 import Contact from "./pages/Contact";
 import Franchise from "./pages/Franchise";
 import { WhatsAppFloat } from "./components/SiteChrome";
@@ -86,6 +79,38 @@ function RouteScrollManager() {
   return null;
 }
 
+function LegacySectionRedirect() {
+  useEffect(() => {
+    const base = import.meta.env.BASE_URL;
+    const basePath = base === "/" ? "" : base.replace(/\/$/, "");
+    const path = window.location.pathname.replace(basePath, "") || "/";
+    const destination = new URL(base, window.location.origin);
+    const centreQuery = new URLSearchParams(window.location.search).get("centre");
+    if (centreQuery) destination.searchParams.set("centre", centreQuery);
+    const target = path.startsWith("/programmes/") ? "curriculum" : (legacySectionTargets[path] ?? "top");
+    destination.hash = centreQuery ? "centre-results" : target;
+    window.location.replace(destination.toString());
+  }, []);
+
+  return null;
+}
+
+function StoryAliasRedirect() {
+  useEffect(() => {
+    window.location.replace(`${import.meta.env.BASE_URL}our-story`);
+  }, []);
+  return null;
+}
+
+const legacySectionTargets: Record<string, string> = {
+  "/parents": "parents",
+  "/parent-guides": "parent-guides",
+  "/how-it-works": "how-it-works",
+  "/curriculum": "curriculum",
+  "/experience": "experience",
+  "/centres": "find-a-centre",
+};
+
 function Router() {
   const base = window.location.pathname.startsWith("/tya-club-site")
     ? "/tya-club-site"
@@ -96,17 +121,17 @@ function Router() {
       <RouteScrollManager />
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/parents" component={Parents} />
-        <Route path="/parent-guides" component={ParentGuides} />
-        <Route path="/about" component={OurStory} />
+        <Route path="/parents" component={LegacySectionRedirect} />
+        <Route path="/parent-guides" component={LegacySectionRedirect} />
+        <Route path="/about" component={StoryAliasRedirect} />
         <Route path="/our-story" component={OurStory} />
-        <Route path="/how-it-works" component={HowItWorks} />
-        <Route path="/curriculum" component={Curriculum} />
-        <Route path="/experience" component={Experience} />
-        <Route path="/centres" component={Centres} />
+        <Route path="/how-it-works" component={LegacySectionRedirect} />
+        <Route path="/curriculum" component={LegacySectionRedirect} />
+        <Route path="/experience" component={LegacySectionRedirect} />
+        <Route path="/centres" component={LegacySectionRedirect} />
         <Route path="/contact" component={Contact} />
         <Route path="/franchise" component={Franchise} />
-        <Route path="/programmes/:slug" component={Programme} />
+        <Route path="/programmes/:slug" component={LegacySectionRedirect} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

@@ -96,7 +96,7 @@ function GuideDetails({ guide, id, hidden }: { guide: (typeof guides)[number]; i
   );
 }
 
-export default function ParentGuides() {
+export function ParentGuidesContent({ embedded = false }: { embedded?: boolean } = {}) {
   const [expandedGuides, setExpandedGuides] = useState<Set<number>>(() => new Set());
   const [email, setEmail] = useState("");
 
@@ -119,12 +119,11 @@ export default function ParentGuides() {
   const featuredGuide = guides[featuredGuideIndex];
 
   return (
-    <PageShell>
-      <div className="parent-guides-page">
+      <div className={`parent-guides-page ${embedded ? "scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
         <section className="parent-guides-intro">
           <div className="container">
             <SectionLabel>Parent guides</SectionLabel>
-            <h1>Written by the coaches,<br className="hidden sm:block" /> not by a marketing team.</h1>
+            {embedded ? <h2>Written by the coaches,<br className="hidden sm:block" /> not by a marketing team.</h2> : <h1>Written by the coaches,<br className="hidden sm:block" /> not by a marketing team.</h1>}
             <p>The questions parents actually ask us, answered properly. These pages are also how families who have never heard of TYA Club find us in search.</p>
           </div>
         </section>
@@ -190,6 +189,9 @@ export default function ParentGuides() {
           </div>
         </section>
       </div>
-    </PageShell>
   );
+}
+
+export default function ParentGuides() {
+  return <PageShell><ParentGuidesContent /></PageShell>;
 }

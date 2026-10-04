@@ -1,6 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { SiteHeader } from "../components/SiteChrome";
+import { FindCentreSearch, SiteHeader, WHATSAPP_HREF } from "../components/SiteChrome";
+import { ParentGuidesContent } from "./ParentGuides";
+import { CentresContent } from "./Centres";
+import { experienceFaqs } from "../data/experienceFaqs";
+import { compositeTestimonials } from "../data/centreProfiles";
 import { GrowthCardPreview } from "../components/GrowthCardPreview";
 import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 import { isValidIndianPhone } from "../lib/validation";
@@ -8,6 +12,7 @@ import { isValidIndianPhone } from "../lib/validation";
 const LOGO_BASE = import.meta.env.BASE_URL;
 import {
   ArrowDownRight,
+  ArrowLeftRight,
   ArrowLeft,
   ArrowRight,
   Check,
@@ -98,12 +103,7 @@ function shuffleLearningSkills() {
   return ["Communication", ...remaining];
 }
 
-const faqs = [
-  { question: "What happens in a typical TYA session?", answer: "Every session starts with a Mission — a real-feeling challenge that gives young adults a reason to use the skill. They work in their Pod, take on roles, make decisions, reflect and try again. It is active, social and structured, not another class where they sit and listen." },
-  { question: "How do I know if TYA is right for my young adult?", answer: "TYA is organised into three stages: Class 6 to 9, Class 10 to 12 and Grads. Each stage adapts the Missions and language to where the learner is — from building confidence and communication to career, financial and future planning." },
-  { question: "How do parents see progress?", answer: "You receive a written TYA Growth Card every month. It is not a grade or a certificate — it is a clear snapshot of six behaviours the coach actually observed: confidence, communication, collaboration, decision making, adaptability and ownership." },
-  { question: "How are safety and consistency handled?", answer: "Batches are intentionally structured for 30 young adults, with coach-led Pods and clear roles for participation. Coaches are verified, pick-up is named, and every centre follows the same term structure so parents know what week one is building towards." },
-];
+
 
 function Logo({ reversed = false }: { reversed?: boolean }) {
   return (
@@ -129,6 +129,7 @@ export default function Home() {
   const [learningSkillIndex, setLearningSkillIndex] = useState(0);
   const [learningCarouselsPaused, setLearningCarouselsPaused] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [experienceQuestion, setExperienceQuestion] = useState("");
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -158,6 +159,13 @@ export default function Home() {
   }, [learningCarouselsPaused, learningSkillOrder.length]);
 
   const line = heroLines[heroPosition];
+  const centreQuery = new URLSearchParams(window.location.search).get("centre")?.trim() ?? "";
+
+  function askExperienceQuestion(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const question = experienceQuestion.trim();
+    if (question) window.location.href = `${LOGO_BASE}contact?question=${encodeURIComponent(question)}`;
+  }
 
   function handleTrialSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -188,14 +196,7 @@ export default function Home() {
               <p className="reveal reveal-3 mt-8 max-w-[650px] text-base font-medium leading-6 text-[#2B2F32] sm:text-lg sm:leading-[1.5]">
                 It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
               </p>
-              <form className="home-centre-search reveal reveal-3 mt-9 flex max-w-[545px] items-center gap-2 rounded-[1.25rem] border-2 border-[#2B2F32] bg-[#F3F0EA] p-2 shadow-[0_12px_30px_rgba(43,47,50,.1)] sm:gap-3" onSubmit={(event) => { event.preventDefault(); window.location.href = `${LOGO_BASE}centres`; }}>
-                <Compass size={21} className="ml-1 shrink-0 rounded-full bg-[#F28D63]/15 p-2 text-[#F28D63]" />
-                <div className="min-w-0 flex-1 rounded-[.9rem] bg-white px-3 py-2.5 sm:px-2 sm:py-2">
-                  <p className="text-[9px] font-bold uppercase tracking-[.17em] text-[#656A6D]">Find your centre</p>
-                  <input aria-label="Enter pin code or city" className="w-full border-0 bg-transparent p-0 text-sm font-semibold outline-none placeholder:text-[#656A6D] placeholder:opacity-100" placeholder="Enter pin code or city" />
-                </div>
-                <button type="submit" className="rounded-[.9rem] bg-[#E4B42A] px-4 py-3 text-sm font-bold text-[#2B2F32] transition-colors sm:px-6 sm:py-3.5">Search</button>
-              </form>
+              <FindCentreSearch id="find-a-centre" className="reveal reveal-3 mt-9 max-w-[545px] scroll-mt-24" />
             </div>
 
             <div className="relative mx-auto w-full max-w-[590px] lg:ml-auto">
@@ -300,7 +301,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="how-it-works" className="grain bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
+        <section id="how-it-works" className="grain scroll-mt-24 bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
           <div className="container">
             <SectionLabel prominent>How TYA works?</SectionLabel>
             <div className="mt-4 rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-4 sm:p-6 lg:p-8">
@@ -341,7 +342,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="curriculum" className="bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
+        <section id="curriculum" className="scroll-mt-24 bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
           <div className="container">
             <SectionLabel prominent>What they learn?</SectionLabel>
             <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
@@ -390,16 +391,59 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="parents" className="bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
+        <section className="testimonial-stories" aria-label="Parent stories">
+          <div className="container">
+            <div className="testimonial-stories-heading"><SectionLabel light>Parent stories</SectionLabel><p><ArrowLeftRight size={14} aria-hidden="true" /> Scroll sideways for more</p></div>
+            <div className="testimonial-stories-track" role="region" aria-label="Parent stories. Scroll sideways to read each story." tabIndex={0}>
+              {compositeTestimonials.map((testimonial) => <article className="testimonial-story-card" key={testimonial.place}>
+                <p className="testimonial-story-kicker">What a parent told us</p>
+                <blockquote><span aria-hidden="true">[</span>{testimonial.quote}<span aria-hidden="true">]</span></blockquote>
+                <p className="testimonial-story-byline">{testimonial.name} · {testimonial.place}</p>
+                <p className="testimonial-story-note">Illustrative composite · Testimonials will be updated here</p>
+              </article>)}
+            </div>
+          </div>
+        </section>
+
+        <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
+
+        <ParentGuidesContent embedded />
 
         <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
 
-        <section className="container py-16 lg:py-24"><div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><SectionLabel>Parent questions</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">Good questions deserve <span className="font-display italic headline-accent headline-accent--butter"><strong className="headline-impact">proper</strong></span> answers.</h2><p className="mt-7 max-w-[370px] leading-7 text-[#656A6D]">Not marketing promises. The practical details that help you decide if TYA is right for your young adult.</p><a href="/experience" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#2B2F32]">See all questions <ArrowRight size={15} /></a></div><div className="border-t border-[#2B2F32]/15">{faqs.map((faq, index) => <div key={faq.question} className="border-b border-[#2B2F32]/15"><button className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-bold" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>{faq.question}</span><span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E4B42A] transition-transform ${openFaq === index ? "rotate-180" : ""}`}><ChevronDown size={16} /></span></button>{openFaq === index && <p className="max-w-[680px] pb-7 pr-12 text-sm leading-7 text-[#656A6D]">{faq.answer}</p>}</div>)}</div></div></section>
+        <section id="experience" className="experience-faq-section scroll-mt-24">
+          <div className="container experience-faq-layout">
+            <div className="experience-faq-intro">
+              <SectionLabel prominent>The TYA Experience</SectionLabel>
+              <h2>Good questions deserve <span className="headline-accent headline-accent--butter"><strong className="headline-impact">proper</strong></span> answers.</h2>
+              <p>Not marketing promises. The practical details that help you decide if TYA is right for your young adult.</p>
+              <form className="experience-question-form" onSubmit={askExperienceQuestion}>
+                <label className="sr-only" htmlFor="experience-question">Type a question for TYA Club</label>
+                <input id="experience-question" type="text" maxLength={500} required value={experienceQuestion} onChange={(event) => setExperienceQuestion(event.target.value)} placeholder="Type your question" />
+                <button type="submit" aria-label="Ask us anything"><span>Ask us anything</span><ArrowRight size={15} aria-hidden="true" /></button>
+              </form>
+            </div>
+            <div className="experience-faq-list">
+              {experienceFaqs.map(([question, answer], index) => {
+                const isOpen = openFaq === index;
+                const answerId = `experience-answer-${index + 1}`;
+                return <article className="experience-faq-item" key={question}>
+                  <h3><button className="experience-faq-trigger" type="button" onClick={() => setOpenFaq(isOpen ? null : index)} aria-expanded={isOpen} aria-controls={answerId}>
+                    <span>{question}</span><span className="experience-faq-toggle"><ChevronDown className={isOpen ? "rotate-180" : ""} size={14} aria-hidden="true" /></span>
+                  </button></h3>
+                  {isOpen && <p className="experience-faq-answer" id={answerId}>{answer}</p>}
+                </article>;
+              })}
+            </div>
+          </div>
+        </section>
+
+        <CentresContent embedded initialQuery={centreQuery} />
 
         <section className="container pb-16 lg:pb-24"><div className="relative overflow-hidden rounded-[2rem] bg-[#F28D63] px-7 py-14 sm:px-12 lg:px-20 lg:py-20"><div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border-[40px] border-[#E4B42A]/50" /><div className="absolute bottom-[-60px] left-[42%] h-36 w-36 rounded-full border-[20px] border-[#2B2F32]/10" /><div className="relative z-10 max-w-[680px]"><SectionLabel>One free trial · decide after, not during</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.96] tracking-[-.045em] sm:text-6xl">The next chapter starts with <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">one hour.</strong></span></h2><p className="mt-6 max-w-[500px] text-lg leading-8 text-[#2B2F32]/75">Sit in on a Mission. Meet the coach. See how your child finds their place.</p><button className="btn-dark mt-9 rounded-full px-7 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div></div></section>
       </main>
 
-      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href="/">TYA</a><a className="text-white/65 hover:text-white" href="/how-it-works">How TYA works</a><a className="text-white/65 hover:text-white" href="/curriculum">The Curriculum</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href="/parents">Note for parents</a><a className="text-white/65 hover:text-white" href="/experience">The TYA Experience</a><a className="text-white/65 hover:text-white" href="/centres">Find A center</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href="/our-story">Our story</a><a className="text-white/65 hover:text-white" href="/franchise">Franchise</a><a className="text-white/65 hover:text-white" href="/contact">Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
+      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>The Curriculum</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>Note for parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>The TYA Experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-centre`}>Find A center</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href="/our-story">Our story</a><a className="text-white/65 hover:text-white" href="/franchise">Franchise</a><a className="text-white/65 hover:text-white" href="/contact">Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
 
       
 
