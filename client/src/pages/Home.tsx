@@ -44,6 +44,51 @@ const heroLines = [
   { statementLines: ["Want them", "to handle life,", "not just exams?"], response: "We prepare them.", skill: "Life Skills" },
 ];
 
+const whyTyaBlocks = [
+  {
+    icon: Users,
+    tone: "charcoal",
+    kicker: "A place to take part",
+    title: "Room for every young adult to learn.",
+    copy: "Thirty young adults. Facilitated by a coach. A space where everyone is given the opportunity to lead, learn, express and experience.",
+  },
+  {
+    icon: NotebookPen,
+    tone: "butter",
+    kicker: "Growth made visible",
+    title: "Progress you can actually see.",
+    copy: "A coach-written Growth Card comes home every month. But that’s not all. You will see the transformation practically.",
+  },
+  {
+    icon: HeartHandshake,
+    tone: "ivory",
+    kicker: "Belonging comes first",
+    title: "Friends first. Confidence follows.",
+    copy: "Every Pod creates an ecosystem of sharing and comfort. Quiet thinkers, natural thinkers and everyone in between have a conducive atmosphere to learn and grow.",
+  },
+  {
+    icon: Compass,
+    tone: "coral",
+    kicker: "Practice before real life",
+    title: "The real world. In a safe place to try.",
+    copy: "Negotiations, business decisions, career and emotional problems, community challenges. TYA gives young adults a chance to prepare before they face them in real life. Every Mission gives skills a reason to matter.",
+  },
+  {
+    icon: Sparkles,
+    tone: "charcoal",
+    kicker: "Learn by doing",
+    title: "Inside a Mission.",
+    copy: "We call each scenario—everything young adults might face in life—a Mission. We help them gain the skills to face it. They do not just hear about the skills. They use them.",
+  },
+  {
+    icon: Target,
+    tone: "butter",
+    kicker: "Outcomes families can see",
+    title: "Tangible Missions.",
+    copy: "The model helps young adults and their parents experience tangible outcomes.",
+  },
+];
+
 const steps = [
   { number: "01", title: "Find your Pod", eyebrow: "Find your people. Find your space.", copy: "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about.", icon: Users, color: "#F3F0EA" },
   { number: "02", title: "Commit to the journey", eyebrow: "Show up. Get involved. Grow.", copy: "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey.", icon: Target, color: "#E4B42A" },
@@ -237,65 +282,23 @@ export default function Home() {
             <div className="why-tya-heading">
               <div>
                 <SectionLabel prominent>Why TYA</SectionLabel>
-                <h2 className="mt-5">The skills that make the difference start with <span>trying.</span></h2>
+                <h2 className="mt-5">The skills that make the <span>difference.</span></h2>
               </div>
               <p className="why-tya-lead">TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
             </div>
 
-            <div className="why-tya-feature-grid">
-              <article className="why-tya-photo">
-                <svg className="why-tya-pod-art" viewBox="0 0 600 500" role="img" aria-labelledby="why-tya-pod-art-title">
-                  <title id="why-tya-pod-art-title">A Pod collaborating around a shared Mission</title>
-                  <rect width="600" height="500" fill="var(--brand-butter)" />
-                  <circle cx="300" cy="225" r="174" fill="var(--brand-charcoal)" />
-                  <g stroke="var(--brand-ivory)" strokeWidth="12" strokeLinecap="round">
-                    <path d="M300 106v39M416 166l-34 20M416 284l-34-20M300 344v-39M184 284l34-20M184 166l34 20" />
-                  </g>
-                  <circle cx="300" cy="225" r="83" fill="var(--brand-coral)" />
-                  <g fill="var(--brand-ivory)">
-                    <circle cx="300" cy="72" r="40" />
-                    <circle cx="432" cy="148" r="40" />
-                    <circle cx="432" cy="302" r="40" />
-                    <circle cx="300" cy="378" r="40" />
-                    <circle cx="168" cy="302" r="40" />
-                    <circle cx="168" cy="148" r="40" />
-                  </g>
-                  <text x="300" y="475" textAnchor="middle" fill="var(--brand-charcoal)" fontFamily="Poppins, sans-serif" fontSize="27" fontWeight="700" letterSpacing="4">COLLABORATION</text>
-                </svg>
-              </article>
-
-              <article className="why-tya-feature-copy">
-                <div>
-                  <span className="why-tya-feature-icon"><Compass size={20} /></span>
-                  <p className="why-tya-feature-kicker">A real-world rehearsal</p>
-                  <h3>Real challenges.<br />A safe place to try.</h3>
-                  <p className="why-tya-feature-description">Negotiations, business decisions, career choices, relationships and community challenges become Missions. Young adults get a chance to practise before they meet those moments in everyday life.</p>
-                </div>
-                <div className="why-tya-pod-stat"><strong>30</strong><p>young adults, learning together with a coach and room for everyone to contribute.</p></div>
-              </article>
-            </div>
-
-            <div className="why-tya-support-grid">
-              <article className="why-tya-support-card" data-tone="ivory">
-                <span className="why-tya-support-icon"><HeartHandshake size={19} /></span>
-                <p className="why-tya-support-kicker">Find their people</p>
-                <h3>Friends first.<br />Confidence follows.</h3>
-                <p className="why-tya-support-copy">Pods create a space to share, learn and grow. Quiet thinkers and outgoing voices both have room to take part.</p>
-              </article>
-
-              <article className="why-tya-support-card" data-tone="butter">
-                <span className="why-tya-support-icon"><NotebookPen size={19} /></span>
-                <p className="why-tya-support-kicker">Make growth visible</p>
-                <h3>Progress you can see.</h3>
-                <p className="why-tya-support-copy">Each month, a coach-written Growth Card shares six behaviours observed in real Missions — a snapshot families can recognise and talk about.</p>
-              </article>
-
-              <article className="why-tya-support-card" data-tone="coral">
-                <span className="why-tya-support-icon"><Sparkles size={19} /></span>
-                <p className="why-tya-support-kicker">Carry it into life</p>
-                <h3>Practice with purpose.</h3>
-                <p className="why-tya-support-copy">Every Mission gives skills a reason to matter, so young adults can take what they learn into school, home, relationships and their community.</p>
-              </article>
+            <div className="why-tya-block-grid">
+              {whyTyaBlocks.map((block) => {
+                const Icon = block.icon;
+                return (
+                  <article className="why-tya-block-card" data-tone={block.tone} key={block.title}>
+                    <span className="why-tya-block-icon" aria-hidden="true"><Icon size={19} /></span>
+                    <p className="why-tya-block-kicker">{block.kicker}</p>
+                    <h3>{block.title}</h3>
+                    <p className="why-tya-block-copy">{block.copy}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
