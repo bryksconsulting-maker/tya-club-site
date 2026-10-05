@@ -395,8 +395,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .testimonial-story-topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .testimonial-story-kicker { color: var(--brand-muted); font-size: .62rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
 .testimonial-story-index { color: var(--story-accent); font-size: .62rem; font-weight: 800; letter-spacing: .13em; }
-.testimonial-story-quote-mark { display: block; margin-top: clamp(1.25rem, 2.6vw, 1.9rem); color: var(--story-accent); font-family: Georgia, serif; font-size: clamp(4.25rem, 7vw, 6rem); font-weight: 700; line-height: .65; }
-.testimonial-story-card blockquote { max-width: 680px; margin-top: .55rem; color: var(--brand-ink); font-size: clamp(1.7rem, 3.7vw, 2.85rem); font-weight: 700; line-height: 1.12; letter-spacing: -.04em; text-wrap: pretty; }
+.testimonial-story-quote-mark { display: inline-block; margin-right: .08em; color: var(--story-accent); font-family: Georgia, serif; font-size: 1.45em; font-weight: 700; line-height: .65; vertical-align: -.12em; }
+.testimonial-story-card blockquote { max-width: 680px; margin-top: clamp(1.25rem, 2.6vw, 1.9rem); color: var(--brand-ink); font-size: clamp(1.7rem, 3.7vw, 2.85rem); font-weight: 700; line-height: 1.12; letter-spacing: -.04em; text-wrap: pretty; }
 .testimonial-story-close-bracket { color: var(--story-accent); }
 .testimonial-story-footer { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-top: auto; border-top: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); padding-top: 1.15rem; }
 .testimonial-story-byline { display: flex; flex-direction: column; gap: .28rem; color: var(--brand-muted); font-size: .74rem; line-height: 1.45; }

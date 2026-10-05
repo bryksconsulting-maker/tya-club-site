@@ -79,8 +79,7 @@ export function ParentStories() {
                 <p className="testimonial-story-kicker">{testimonial.label}</p>
                 <span className="testimonial-story-index">{String(index + 1).padStart(2, "0")} / {String(parentStorySlides.length).padStart(2, "0")}</span>
               </div>
-              <span className="testimonial-story-quote-mark" aria-hidden="true">[</span>
-              <blockquote>{testimonial.quote}<span className="testimonial-story-close-bracket" aria-hidden="true">]</span></blockquote>
+              <blockquote><span className="testimonial-story-quote-mark" aria-hidden="true">[</span>{" "}{testimonial.quote}<span className="testimonial-story-close-bracket" aria-hidden="true">]</span></blockquote>
               <div className="testimonial-story-footer">
                 <p className="testimonial-story-byline"><strong>{testimonial.name}</strong><span>{testimonial.place}</span></p>
                 <p className="testimonial-story-note">{testimonial.note}</p>
