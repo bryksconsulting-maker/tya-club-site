@@ -172,7 +172,7 @@ export default function Home() {
   const [learningSkillOrder] = useState(() => shuffleLearningSkills());
   const [learningSkillIndex, setLearningSkillIndex] = useState(0);
   const [learningCarouselsPaused, setLearningCarouselsPaused] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [experienceQuestion, setExperienceQuestion] = useState("");
 
   useEffect(() => {
@@ -227,27 +227,27 @@ export default function Home() {
       <SiteHeader variant="home" />
 
       <main>
-        <section className="home-hero grain hero-grid relative overflow-hidden border-b border-[#2B2F32]/10" style={{ backgroundColor: "#E4B42A" }}>
-          <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[790px] lg:grid-cols-[1.08fr_.92fr] lg:py-16">
+        <section className="home-hero grain hero-grid relative overflow-hidden border-b border-white/10">
+          <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[660px] lg:grid-cols-[1.08fr_.92fr] lg:py-14">
             <div className="relative z-10 max-w-[680px]">
-              <div className="reveal mb-10 flex items-center gap-3 text-[15px] font-medium text-[#2B2F32]"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
-              <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em] text-[#2B2F32]">
+              <div className="home-hero-kicker reveal mb-10 flex items-center gap-3 text-[15px] font-medium"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
+              <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em]">
                 <span className="block">TYA CLUB</span>
               </h1>
-              <p className="reveal reveal-3 mt-7 max-w-[650px] text-base font-medium leading-6 text-[#2B2F32] sm:text-lg sm:leading-[1.5]">
-                TYA Club is designed to help young adults develop<br className="hidden sm:block" /> the mindset and life skills that go beyond the classroom.
+              <p className="home-hero-copy reveal reveal-3 mt-7 max-w-[650px] text-base font-medium leading-6 sm:text-lg sm:leading-[1.5]">
+                TYA Club is designed to help young adults develop<br className="hidden sm:block" /> the mindset and <strong>life skills necessary to be future ready.</strong>
               </p>
-              <p className="reveal reveal-3 mt-8 max-w-[650px] text-base font-medium leading-6 text-[#2B2F32] sm:text-lg sm:leading-[1.5]">
+              <p className="home-hero-copy reveal reveal-3 mt-8 max-w-[650px] text-base font-medium leading-6 sm:text-lg sm:leading-[1.5]">
                 It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
               </p>
               <FindCentreSearch id="find-a-centre" className="reveal reveal-3 mt-9 max-w-[545px] scroll-mt-24" />
             </div>
 
-            <div className="relative mx-auto w-full max-w-[590px] lg:ml-auto">
-              <div className="absolute -right-1 -top-7 h-28 w-28 rounded-full border border-[#F28D63]/50 bg-[#F28D63]/20" />
-              <div className="absolute -bottom-2 -left-5 h-32 w-32 rounded-full border border-[#2B2F32]/15 bg-[#F3F0EA] hero-orb delay" />
-              <div className="mission-polaroid relative rotate-[2deg] p-3 pb-0 shadow-[0_24px_70px_rgba(62,66,69,.18)] sm:p-4 sm:pb-0">
-                <div className="mission-polaroid-photo relative min-h-[445px] px-5 pb-12 pt-7 text-center sm:min-h-[485px] sm:px-12 sm:pt-9">
+            <div className="relative mx-auto w-full max-w-[530px] lg:ml-auto">
+              <div aria-hidden="true" className="hero-orb-coral hero-orb delay absolute -bottom-5 -left-5 z-0 h-32 w-32 rounded-full" />
+              <div aria-hidden="true" className="hero-orb-ivory absolute -right-2 -top-5 z-20 h-32 w-32 rounded-full" />
+              <div className="mission-polaroid relative z-10 rotate-[-2deg] p-3 pb-0 shadow-[0_24px_70px_rgba(62,66,69,.18)] sm:p-4 sm:pb-0">
+                <div className="mission-polaroid-photo relative min-h-[345px] px-5 pb-12 pt-6 text-center sm:min-h-[385px] sm:px-10 sm:pt-7">
                   <h2 className="mission-card-title mx-auto max-w-[430px] text-balance text-xl font-semibold leading-tight tracking-[-.025em] sm:text-2xl">Are your kids future ready?</h2>
                   <div className="mission-number mt-5 text-sm font-extrabold uppercase tracking-[.2em] sm:text-base">MISSION {String(heroPosition + 1)}:</div>
                   <div key={heroPosition} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] font-semibold sm:left-10 sm:right-10">
@@ -257,7 +257,7 @@ export default function Home() {
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={index <= heroPosition ? "is-active" : ""} />)}
                   </div>
                 </div>
-                <div className="mission-polaroid-caption flex items-center justify-center px-3 py-4 text-center sm:px-8">
+                <div className="mission-polaroid-caption flex items-center justify-center px-3 py-3 text-center sm:px-7">
                   <p key={`${heroPosition}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy font-medium ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
                     <span className="block">{line.response}</span>
                     {line.skill && <span className="mt-0.5 block">They learn <strong className="mission-skill-highlight font-extrabold">{line.skill.toUpperCase()}</strong>.</span>}
@@ -266,13 +266,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="container pb-8"><div className="flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em] text-[#2B2F32]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
+          <div className="container pb-8"><div className="home-hero-explore flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
         </section>
 
-        <section className="border-b border-[#2B2F32]/10 bg-[#FFFFFF] py-9 sm:py-12">
-          <div className="container">
-            <p className="mx-auto max-w-[1050px] text-center text-[clamp(1.35rem,3vw,2.4rem)] font-light leading-tight tracking-[-.025em] text-[#2B2F32]">
-              A club built for the skills school can’t grade.
+        <section className="home-manifesto">
+          <div className="container home-manifesto-inner">
+            <p className="home-manifesto-copy">
+              A club built for skills that <strong>go beyond the classroom</strong> - and into <em>real life.</em>
             </p>
           </div>
         </section>
@@ -294,7 +294,7 @@ export default function Home() {
                   <article className="why-tya-block-card" data-tone={block.tone} key={block.title}>
                     <span className="why-tya-block-icon" aria-hidden="true"><Icon size={19} /></span>
                     <p className="why-tya-block-kicker">{block.kicker}</p>
-                    <h3>{block.title}</h3>
+                    <h3>{block.title === "The real world. In a safe place to try." ? <>The real world.<br />In a safe place to try.</> : block.title}</h3>
                     <p className="why-tya-block-copy">{block.copy}</p>
                   </article>
                 );
@@ -321,23 +321,20 @@ export default function Home() {
                   return (
                     <article key={step.number} className="step-card how-works-card flex min-h-[230px] flex-col rounded-[1.1rem] border border-[#2B2F32]/10 p-4 sm:min-h-[245px]">
                       <div className="flex items-start justify-between">
-                        <span className="text-[10px] font-bold tracking-[.08em] text-[#2B2F32]">{step.number} — {step.title.toUpperCase()}</span>
+                        <span className="how-works-card-number text-[10px] font-bold tracking-[.08em] text-[#2B2F32]">{step.number} — {step.title.toUpperCase()}</span>
                         <span className="grid h-9 w-9 place-items-center rounded-full" style={{ backgroundColor: step.color }}>
                           <Icon size={16} />
                         </span>
                       </div>
                       <div className="mt-7">
-                        <p className="mt-2 text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
-                        <p className="mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
+                        <p className="how-works-card-eyebrow mt-2 text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
+                        <p className="how-works-card-copy mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
                       </div>
-                      <a className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] font-bold text-[#2B2F32]" href="#curriculum">
-                        Explore skills <ArrowRight size={13} />
-                      </a>
                     </article>
                   );
                 })}
               </div>
-              <blockquote className="mt-8 max-w-4xl border-l-4 border-[#F28D63] pl-5 text-sm leading-7 text-[#2B2F32] sm:text-base">
+              <blockquote className="how-works-quote mt-8 max-w-4xl border-l-4 border-[#F28D63] pl-5 text-sm leading-7 text-[#2B2F32] sm:text-base">
                 “You’re never on your own. We’re there every step of the way — helping every YA feel comfortable, supported and confident to explore, participate and grow.”
               </blockquote>
             </div>
@@ -364,7 +361,7 @@ export default function Home() {
                 </div>
 
                 <article className="order-1 mx-auto flex min-h-[285px] w-full max-w-[360px] flex-col justify-center rounded-[.75rem] bg-[#e5e2da] p-6 shadow-sm sm:col-span-2 sm:min-h-[310px] sm:p-8 lg:order-2 lg:col-span-1 lg:aspect-square lg:min-h-0" aria-labelledby="curriculum-card-title">
-                  <h2 id="curriculum-card-title" className="text-balance text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#2B2F32] sm:text-4xl">Not just <span className="font-display italic headline-accent headline-accent--butter"><strong className="headline-impact">knowledge.</strong></span><br />Capability.</h2>
+                  <h2 id="curriculum-card-title" className="text-balance text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#2B2F32] sm:text-4xl">Not just <strong className="headline-impact">knowledge.</strong><br /><span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></h2>
                   <p className="mt-5 text-xs leading-5 text-[#656A6D] sm:text-sm sm:leading-6">A purposeful curriculum that moves from self-awareness to social responsibility, through missions that make every skill feel useful.</p>
                   <div className="mt-6 flex items-start gap-3 border-t border-[#2B2F32]/15 pt-4 text-[10px] leading-4 text-[#656A6D]">
                     <span className="shrink-0 font-bold text-[#2B2F32]">18+<br />skills</span>
@@ -393,11 +390,11 @@ export default function Home() {
           </div>
         </section>
 
-        <ParentStories />
-
         <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
 
         <ParentGuidesContent embedded />
+
+        <ParentStories />
 
         <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
 
@@ -430,10 +427,9 @@ export default function Home() {
 
         <CentresContent embedded initialQuery={centreQuery} />
 
-        <section className="container pb-16 lg:pb-24"><div className="relative overflow-hidden rounded-[2rem] bg-[#F28D63] px-7 py-14 sm:px-12 lg:px-20 lg:py-20"><div className="absolute -right-16 -top-20 h-64 w-64 rounded-full border-[40px] border-[#E4B42A]/50" /><div className="absolute bottom-[-60px] left-[42%] h-36 w-36 rounded-full border-[20px] border-[#2B2F32]/10" /><div className="relative z-10 max-w-[680px]"><SectionLabel>One free trial · decide after, not during</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.96] tracking-[-.045em] sm:text-6xl">The next chapter starts with <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">one hour.</strong></span></h2><p className="mt-6 max-w-[500px] text-lg leading-8 text-[#2B2F32]/75">Sit in on a Mission. Meet the coach. See how your child finds their place.</p><button className="btn-dark mt-9 rounded-full px-7 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>Book a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div></div></section>
       </main>
 
-      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>The Curriculum</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>Note for parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>The TYA Experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-centre`}>Find A center</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
+      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>Skills</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-centre`}>Find A center</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
 
       
 

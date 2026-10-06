@@ -86,7 +86,7 @@ export default function Curriculum() {
   return <PageShell>
     <PageHero
       eyebrow="What they learn"
-      title={<>Not just knowledge. <span className="font-display italic headline-accent headline-accent--butter"><strong className="headline-impact">Capability.</strong></span></>}
+      title={<>Not just <strong className="headline-impact">knowledge.</strong> <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></>}
       intro="A purposeful curriculum that moves from self-awareness to social responsibility, through Missions that make every skill feel useful."
     />
 
@@ -121,8 +121,8 @@ export default function Curriculum() {
           </div>
 
           <div className="what-they-learn-centre">
-            <span className="what-they-learn-centre-kicker">Not just <em>knowledge.</em></span>
-            <h2>Capability.</h2>
+            <span className="what-they-learn-centre-kicker">Not just <strong>knowledge.</strong></span>
+            <h2 className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></h2>
             <p>A purposeful curriculum that moves from self-awareness to social responsibility, through Missions that make every skill useful.</p>
             <div className="what-they-learn-centre-meta">
               <span>14 outcomes</span>

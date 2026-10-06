@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { SectionLabel } from "./SiteChrome";
 import { compositeTestimonials } from "../data/centreProfiles";
 
@@ -21,6 +21,8 @@ const parentStorySlides = [
 export function ParentStories() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeStory, setActiveStory] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [interactionPaused, setInteractionPaused] = useState(false);
 
   const updateActiveStory = () => {
     const track = trackRef.current;
@@ -45,14 +47,29 @@ export function ParentStories() {
     });
   };
 
+  useEffect(() => {
+    if (paused || interactionPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setTimeout(() => {
+      const track = trackRef.current;
+      const card = track?.querySelector<HTMLElement>(".testimonial-story-card");
+      if (!track || !card) return;
+      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 16;
+      const nextStory = (activeStory + 1) % parentStorySlides.length;
+      track.scrollTo({
+        left: nextStory * (card.offsetWidth + gap),
+        behavior: "smooth",
+      });
+    }, 6000);
+    return () => window.clearTimeout(timer);
+  }, [activeStory, interactionPaused, paused]);
+
   return (
     <section className="testimonial-stories" aria-labelledby="parent-stories-title">
       <div className="container">
         <div className="testimonial-stories-heading">
           <div className="testimonial-stories-intro">
-            <SectionLabel>Parent stories</SectionLabel>
+            <SectionLabel>What parents told us</SectionLabel>
             <h2 id="parent-stories-title">Small changes, <span>worth noticing.</span></h2>
-            <p>Testimonials will be updated here. Scroll sideways for more.</p>
           </div>
           <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
             <span className="testimonial-story-count" aria-live="polite">{String(activeStory + 1).padStart(2, "0")} <span aria-hidden="true">/</span> {String(parentStorySlides.length).padStart(2, "0")}</span>
@@ -72,6 +89,10 @@ export function ParentStories() {
           aria-label="Parent stories. Scroll sideways to read each story."
           tabIndex={0}
           onScroll={updateActiveStory}
+          onPointerEnter={() => setInteractionPaused(true)}
+          onPointerLeave={() => setInteractionPaused(false)}
+          onFocus={() => setInteractionPaused(true)}
+          onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteractionPaused(false); }}
         >
           {parentStorySlides.map((testimonial, index) => (
             <article className="testimonial-story-card" key={testimonial.place}>
@@ -86,6 +107,13 @@ export function ParentStories() {
               </div>
             </article>
           ))}
+        </div>
+        <div className="testimonial-stories-autoplay-row">
+          <span>{paused || interactionPaused ? "Story rotation paused" : "Stories move automatically · pause to read"}</span>
+          <button type="button" aria-pressed={paused} onClick={() => setPaused((current) => !current)}>
+            {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+            {paused ? "Resume stories" : "Pause stories"}
+          </button>
         </div>
       </div>
     </section>

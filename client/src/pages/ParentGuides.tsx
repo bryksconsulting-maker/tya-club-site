@@ -103,7 +103,7 @@ function ParentGuideCard({ index, expanded, onToggle }: { index: number; expande
   return (
     <article className="parent-guide-card" data-tone={guideCardTones[index % guideCardTones.length]}>
       <div className="parent-guide-card-copy">
-        <p className="parent-guide-kicker">{guide.category}</p>
+        {guide.category.trim().split(/\s+/).length > 1 && <p className="parent-guide-kicker">{guide.category}</p>}
         <h2>
           <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
             {guide.question}
@@ -111,7 +111,7 @@ function ParentGuideCard({ index, expanded, onToggle }: { index: number; expande
         </h2>
         <p className="parent-guide-byline">TYA Club Parent Guide</p>
         <button type="button" className="parent-guide-text-link" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
-          {expanded ? "Close the guide" : "Read the guide"} <ArrowRight className={expanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
+          {expanded ? "Close the guide" : "Read more ..."} <ArrowRight className={expanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
         </button>
         <GuideDetails guide={guide} id={detailsId} hidden={!expanded} />
       </div>
@@ -142,7 +142,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
   const featuredGuide = guides[featuredGuideIndex];
 
   return (
-      <div className={`parent-guides-page ${embedded ? "scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
+      <div className={`parent-guides-page ${embedded ? "parent-guides-page--embedded scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
         <section className="parent-guides-intro">
           <div className="container">
             <SectionLabel>Parent guides</SectionLabel>
@@ -156,7 +156,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
             <SectionLabel>Explore the guides</SectionLabel>
             <p>Select a question to read the coach’s full guide.</p>
           </div>
-          <div className="parent-guides-feature-grid" aria-label="Featured parent guide and monthly letter">
+          <div className={`parent-guides-feature-grid ${embedded ? "parent-guides-feature-grid--embedded" : ""}`} aria-label={embedded ? "Featured and related parent guides" : "Featured parent guide and monthly letter"}>
             <div className="parent-guide-first-grid" role="group" aria-label="Featured guide and three more guides">
               <article className="parent-guide-feature">
                 <div className="parent-guide-feature-copy">
@@ -168,7 +168,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
                   </h2>
                   <p className="parent-guide-byline">Written by TYA Club coaches · Parent guide</p>
                   <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                    {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read the guide"} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />
+                    {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read more ..."} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />
                   </button>
                   <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
                 </div>
@@ -178,7 +178,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
               ))}
             </div>
 
-            <aside className="parent-guide-newsletter">
+            {!embedded && <aside className="parent-guide-newsletter">
               <p className="parent-guide-kicker">Free, monthly</p>
               <h2>One practical idea for your evenings.</h2>
               <p>A short letter from our coaches, once a month. No offers, no reminders to enrol.</p>
@@ -188,7 +188,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
                 <button type="submit">Subscribe</button>
               </form>
               <p className="parent-guide-subscribe-note">Your email app will open to send your subscription request.</p>
-            </aside>
+            </aside>}
           </div>
           <div className="parent-guide-cards">
             {cardGuideIndexes.slice(3).map((index) => (
