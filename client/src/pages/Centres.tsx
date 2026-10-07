@@ -11,11 +11,12 @@ function centreWhatsappHref(centre: CentreProfile) {
 }
 
 function CentreGallery({ centre }: { centre: CentreProfile }) {
+  const photos = centre.gallery.filter((photo) => photo.image).slice(0, 3);
+  if (!photos.length) return null;
+
   return <div className="centre-detail-gallery" aria-label={`${centre.locality} Pod photos`}>
-    {centre.gallery.slice(0, 3).map((photo, index) => <div className={`centre-gallery-frame ${index === 0 ? "centre-gallery-main" : ""}`} key={photo.label}>
-      {photo.image ? <img className="centre-gallery-image" src={photo.image} alt={photo.alt} /> : <div className="centre-gallery-placeholder" role="img" aria-label={photo.alt}>
-        <span className="centre-gallery-caption">{photo.label}</span>
-      </div>}
+    {photos.map((photo, index) => <div className={`centre-gallery-frame ${index === 0 ? "centre-gallery-main" : ""}`} key={photo.label}>
+      <img className="centre-gallery-image" src={photo.image!} alt={photo.alt} />
     </div>)}
   </div>;
 }
