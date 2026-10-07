@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { FindCentreSearch, SiteHeader, WHATSAPP_HREF } from "../components/SiteChrome";
 import { ParentStories } from "../components/ParentStories";
+import { ExperienceFaqList } from "../components/ExperienceFaqList";
 import { ParentGuidesContent } from "./ParentGuides";
 import { CentresContent } from "./Centres";
 import { experienceFaqs } from "../data/experienceFaqs";
@@ -16,11 +17,9 @@ import {
   ArrowRight,
   Check,
   CheckCircle2,
-  ChevronDown,
   Clock3,
   Compass,
   HeartHandshake,
-  Leaf,
   MessageCircle,
   NotebookPen,
   Phone,
@@ -30,7 +29,6 @@ import {
   Target,
   Users,
   X,
-  Zap,
 } from "lucide-react";
 
 const heroLines = [
@@ -90,10 +88,10 @@ const whyTyaBlocks = [
 ];
 
 const steps = [
-  { number: "01", title: "Find your Pod", eyebrow: "Find your people. Find your space.", copy: "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about.", icon: Users, color: "#F3F0EA" },
-  { number: "02", title: "Commit to the journey", eyebrow: "Show up. Get involved. Grow.", copy: "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey.", icon: Target, color: "#E4B42A" },
-  { number: "03", title: "Engage. Explore. Express.", eyebrow: "Discover what you think. Discover who you are.", copy: "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught.", icon: Zap, color: "#F28D63" },
-  { number: "04", title: "Evolve. Make an impact.", eyebrow: "Take what you learn beyond TYA.", copy: "Turn ideas into action. Apply your learning in your community and the world around you, while building confidence, responsibility and a growing record of personal development.", icon: Leaf, color: "#F3F0EA" },
+  { number: "01", title: "Find your Pod", eyebrow: "Find your people. Find your space.", copy: "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about.", tone: "coral" },
+  { number: "02", title: "Commit to the journey", eyebrow: "Show up. Get involved. Grow.", copy: "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey.", tone: "butter" },
+  { number: "03", title: "Engage. Explore. Express.", eyebrow: "Discover what you think. Discover who you are.", copy: "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught.", tone: "charcoal" },
+  { number: "04", title: "Evolve. Make an impact.", eyebrow: "Take what you learn beyond TYA.", copy: "Turn ideas into action. Apply your learning in your community and the world around you, while building confidence, responsibility and a growing record of personal development.", tone: "ivory" },
 ];
 
 const learningIdeas = [
@@ -172,7 +170,6 @@ export default function Home() {
   const [learningSkillOrder] = useState(() => shuffleLearningSkills());
   const [learningSkillIndex, setLearningSkillIndex] = useState(0);
   const [learningCarouselsPaused, setLearningCarouselsPaused] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [experienceQuestion, setExperienceQuestion] = useState("");
 
   useEffect(() => {
@@ -203,7 +200,8 @@ export default function Home() {
   }, [learningCarouselsPaused, learningSkillOrder.length]);
 
   const line = heroLines[heroPosition];
-  const centreQuery = new URLSearchParams(window.location.search).get("centre")?.trim() ?? "";
+  const searchParams = new URLSearchParams(window.location.search);
+  const podQuery = (searchParams.get("pod") ?? searchParams.get("centre") ?? "").trim();
 
   function askExperienceQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -227,7 +225,7 @@ export default function Home() {
       <SiteHeader variant="home" />
 
       <main>
-        <section className="home-hero grain hero-grid relative overflow-hidden border-b border-white/10">
+        <section className="home-hero relative overflow-hidden border-b border-white/10">
           <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[660px] lg:grid-cols-[1.08fr_.92fr] lg:py-14">
             <div className="relative z-10 max-w-[680px]">
               <div className="home-hero-kicker reveal mb-10 flex items-center gap-3 text-[15px] font-medium"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
@@ -240,7 +238,7 @@ export default function Home() {
               <p className="home-hero-copy reveal reveal-3 mt-8 max-w-[650px] text-base font-medium leading-6 sm:text-lg sm:leading-[1.5]">
                 It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
               </p>
-              <FindCentreSearch id="find-a-centre" className="reveal reveal-3 mt-9 max-w-[545px] scroll-mt-24" />
+              <FindCentreSearch id="find-a-pod" className="reveal reveal-3 mt-9 max-w-[545px] scroll-mt-24" />
             </div>
 
             <div className="relative mx-auto w-full max-w-[530px] lg:ml-auto">
@@ -291,10 +289,9 @@ export default function Home() {
               {whyTyaBlocks.map((block) => {
                 const Icon = block.icon;
                 return (
-                  <article className="why-tya-block-card" data-tone={block.tone} key={block.title}>
-                    <span className="why-tya-block-icon" aria-hidden="true"><Icon size={19} /></span>
+                  <article className="why-tya-block-card why-tya-block-card--feature-title" data-tone={block.tone} key={block.title}>
+                    <div className="why-tya-feature-title"><span className="why-tya-block-icon" aria-hidden="true"><Icon size={19} /></span><h3>{block.title}</h3></div>
                     <p className="why-tya-block-kicker">{block.kicker}</p>
-                    <h3>{block.title === "The real world. In a safe place to try." ? <>The real world.<br />In a safe place to try.</> : block.title}</h3>
                     <p className="why-tya-block-copy">{block.copy}</p>
                   </article>
                 );
@@ -317,17 +314,14 @@ export default function Home() {
               </div>
               <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step) => {
-                  const Icon = step.icon;
                   return (
                     <article key={step.number} className="step-card how-works-card flex min-h-[230px] flex-col rounded-[1.1rem] border border-[#2B2F32]/10 p-4 sm:min-h-[245px]">
-                      <div className="flex items-start justify-between">
-                        <span className="how-works-card-number text-[10px] font-bold tracking-[.08em] text-[#2B2F32]">{step.number} — {step.title.toUpperCase()}</span>
-                        <span className="grid h-9 w-9 place-items-center rounded-full" style={{ backgroundColor: step.color }}>
-                          <Icon size={16} />
-                        </span>
+                      <div className="how-works-card-heading">
+                        <span className="how-works-card-number-badge" data-tone={step.tone}>{step.number}</span>
+                        <h3 className="how-works-card-title">{step.title}</h3>
                       </div>
-                      <div className="mt-7">
-                        <p className="how-works-card-eyebrow mt-2 text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
+                      <div className="mt-5">
+                        <p className="how-works-card-eyebrow text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
                         <p className="how-works-card-copy mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
                       </div>
                     </article>
@@ -410,26 +404,15 @@ export default function Home() {
                 <button type="submit" aria-label="Ask us anything"><span>Ask us anything</span><ArrowRight size={15} aria-hidden="true" /></button>
               </form>
             </div>
-            <div className="experience-faq-list">
-              {experienceFaqs.map(([question, answer], index) => {
-                const isOpen = openFaq === index;
-                const answerId = `experience-answer-${index + 1}`;
-                return <article className="experience-faq-item" key={question}>
-                  <h3><button className="experience-faq-trigger" type="button" onClick={() => setOpenFaq(isOpen ? null : index)} aria-expanded={isOpen} aria-controls={answerId}>
-                    <span>{question}</span><span className="experience-faq-toggle"><ChevronDown className={isOpen ? "rotate-180" : ""} size={14} aria-hidden="true" /></span>
-                  </button></h3>
-                  {isOpen && <p className="experience-faq-answer" id={answerId}>{answer}</p>}
-                </article>;
-              })}
-            </div>
+            <ExperienceFaqList items={experienceFaqs} />
           </div>
         </section>
 
-        <CentresContent embedded initialQuery={centreQuery} />
+        <CentresContent embedded initialQuery={podQuery} />
 
       </main>
 
-      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>Skills</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-centre`}>Find A center</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
+      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>Skills</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-pod`}>Find a Pod</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
 
       
 

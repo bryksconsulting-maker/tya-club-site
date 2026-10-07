@@ -16,33 +16,84 @@ const parentStorySlides = [
     label: "Illustrative parent perspective",
     note: "Illustrative composite · Testimonials will be updated here",
   })),
+  {
+    quote: "She came home talking about the idea her Pod built — and how she helped make it happen.",
+    name: "Illustrative parent",
+    place: "Hyderabad · Class 6 to 9 family",
+    label: "Illustrative parent perspective",
+    note: "Sample story · replace with an approved parent testimonial",
+  },
+  {
+    quote: "He used to wait for someone else to decide. Now he can explain the choice he made and why.",
+    name: "Illustrative parent",
+    place: "Surat · Class 10 to 12 family",
+    label: "Illustrative parent perspective",
+    note: "Sample story · replace with an approved parent testimonial",
+  },
 ];
+
+function getStoryPageStarts(visibleCount: number) {
+  const pageCount = Math.ceil(parentStorySlides.length / visibleCount);
+  const lastStart = Math.max(0, parentStorySlides.length - visibleCount);
+  return Array.from({ length: pageCount }, (_, page) => Math.min(page * visibleCount, lastStart));
+}
+
+function closestStoryPage(pageStarts: number[], storyIndex: number) {
+  return pageStarts.reduce((closest, start, page) =>
+    Math.abs(start - storyIndex) < Math.abs(pageStarts[closest] - storyIndex) ? page : closest, 0);
+}
 
 export function ParentStories() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeStory, setActiveStory] = useState(0);
+  const [visibleStoryCount, setVisibleStoryCount] = useState(1);
   const [paused, setPaused] = useState(false);
   const [interactionPaused, setInteractionPaused] = useState(false);
 
-  const updateActiveStory = () => {
+  const getCarouselMetrics = () => {
     const track = trackRef.current;
-    if (!track) return;
-    const card = track.querySelector<HTMLElement>(".testimonial-story-card");
-    if (!card) return;
+    const card = track?.querySelector<HTMLElement>(".testimonial-story-card");
+    if (!track || !card) return null;
     const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 16;
-    const position = Math.round(track.scrollLeft / (card.offsetWidth + gap));
-    setActiveStory(Math.min(parentStorySlides.length - 1, Math.max(0, position)));
+    const step = card.offsetWidth + gap;
+    const visible = Math.max(1, Math.floor((track.clientWidth + gap) / step));
+    return { track, card, gap, step, visible };
+  };
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const metrics = getCarouselMetrics();
+      if (!metrics) return;
+      setVisibleStoryCount(metrics.visible);
+      setActiveStory((current) => Math.min(current, Math.max(0, parentStorySlides.length - metrics.visible)));
+    };
+    updateVisibleCount();
+    const track = trackRef.current;
+    if (!track || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(updateVisibleCount);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, []);
+
+  const updateActiveStory = () => {
+    const metrics = getCarouselMetrics();
+    if (!metrics) return;
+    const position = Math.round(metrics.track.scrollLeft / metrics.step);
+    setVisibleStoryCount(metrics.visible);
+    setActiveStory(Math.min(Math.max(0, parentStorySlides.length - metrics.visible), Math.max(0, position)));
   };
 
   const moveToStory = (direction: -1 | 1) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.querySelector<HTMLElement>(".testimonial-story-card");
-    if (!card) return;
-    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 16;
-    const nextStory = Math.min(parentStorySlides.length - 1, Math.max(0, activeStory + direction));
-    track.scrollTo({
-      left: nextStory * (card.offsetWidth + gap),
+    const metrics = getCarouselMetrics();
+    if (!metrics) return;
+    const pageStarts = getStoryPageStarts(metrics.visible);
+    if (pageStarts.length < 2) return;
+    const currentPage = closestStoryPage(pageStarts, activeStory);
+    const nextPage = (currentPage + direction + pageStarts.length) % pageStarts.length;
+    const nextStory = pageStarts[nextPage];
+    setActiveStory(nextStory);
+    metrics.track.scrollTo({
+      left: nextStory * metrics.step,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
   };
@@ -50,18 +101,26 @@ export function ParentStories() {
   useEffect(() => {
     if (paused || interactionPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(() => {
-      const track = trackRef.current;
-      const card = track?.querySelector<HTMLElement>(".testimonial-story-card");
-      if (!track || !card) return;
-      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 16;
-      const nextStory = (activeStory + 1) % parentStorySlides.length;
-      track.scrollTo({
-        left: nextStory * (card.offsetWidth + gap),
+      const metrics = getCarouselMetrics();
+      if (!metrics) return;
+      const pageStarts = getStoryPageStarts(metrics.visible);
+      if (pageStarts.length < 2) return;
+      const currentPage = closestStoryPage(pageStarts, activeStory);
+      const nextStory = pageStarts[(currentPage + 1) % pageStarts.length];
+      setActiveStory(nextStory);
+      metrics.track.scrollTo({
+        left: nextStory * metrics.step,
         behavior: "smooth",
       });
     }, 6000);
     return () => window.clearTimeout(timer);
-  }, [activeStory, interactionPaused, paused]);
+  }, [activeStory, visibleStoryCount, interactionPaused, paused]);
+
+  const storyPages = getStoryPageStarts(visibleStoryCount);
+  const activePage = closestStoryPage(storyPages, activeStory);
+  const visibleStart = storyPages[activePage] ?? 0;
+  const visibleEnd = Math.min(parentStorySlides.length, visibleStart + visibleStoryCount);
+  const formatIndex = (index: number) => String(index + 1).padStart(2, "0");
 
   return (
     <section className="testimonial-stories" aria-labelledby="parent-stories-title">
@@ -72,11 +131,11 @@ export function ParentStories() {
             <h2 id="parent-stories-title">Small changes, <span>worth noticing.</span></h2>
           </div>
           <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
-            <span className="testimonial-story-count" aria-live="polite">{String(activeStory + 1).padStart(2, "0")} <span aria-hidden="true">/</span> {String(parentStorySlides.length).padStart(2, "0")}</span>
-            <button type="button" className="testimonial-story-arrow" aria-label="Previous parent story" onClick={() => moveToStory(-1)} disabled={activeStory === 0}>
+            <span className="testimonial-story-count" aria-live="polite">{formatIndex(visibleStart)}{visibleStoryCount > 1 && <>–{formatIndex(visibleEnd - 1)}</>} <span aria-hidden="true">/</span> {formatIndex(parentStorySlides.length - 1)}</span>
+            <button type="button" className="testimonial-story-arrow" aria-label="Previous parent story group" onClick={() => moveToStory(-1)} disabled={storyPages.length < 2}>
               <ChevronLeft size={18} aria-hidden="true" />
             </button>
-            <button type="button" className="testimonial-story-arrow testimonial-story-arrow-next" aria-label="Next parent story" onClick={() => moveToStory(1)} disabled={activeStory === parentStorySlides.length - 1}>
+            <button type="button" className="testimonial-story-arrow testimonial-story-arrow-next" aria-label="Next parent story group" onClick={() => moveToStory(1)} disabled={storyPages.length < 2}>
               <ChevronRight size={18} aria-hidden="true" />
             </button>
           </div>
@@ -95,7 +154,7 @@ export function ParentStories() {
           onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteractionPaused(false); }}
         >
           {parentStorySlides.map((testimonial, index) => (
-            <article className="testimonial-story-card" key={testimonial.place}>
+            <article className="testimonial-story-card" data-tone={["ivory", "mist", "peach"][index % 3]} key={`${testimonial.place}-${index}`}>
               <div className="testimonial-story-topline">
                 <p className="testimonial-story-kicker">{testimonial.label}</p>
                 <span className="testimonial-story-index">{String(index + 1).padStart(2, "0")} / {String(parentStorySlides.length).padStart(2, "0")}</span>

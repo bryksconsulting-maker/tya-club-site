@@ -79,7 +79,9 @@ const guides = [
 
 const featuredGuideIndex = 8;
 const cardGuideIndexes = guides.map((_, index) => index).filter((index) => index !== featuredGuideIndex);
-const guideCardTones = ["butter", "coral", "ivory"] as const;
+function firstSentence(text: string) {
+  return text.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? text;
+}
 
 function GuideDetails({ guide, id, hidden }: { guide: (typeof guides)[number]; id: string; hidden: boolean }) {
   return (
@@ -101,7 +103,7 @@ function ParentGuideCard({ index, expanded, onToggle }: { index: number; expande
   const detailsId = `parent-guide-details-${index + 1}`;
 
   return (
-    <article className="parent-guide-card" data-tone={guideCardTones[index % guideCardTones.length]}>
+    <article className="parent-guide-card" data-tone={index % 2 === 0 ? "white" : "mist"}>
       <div className="parent-guide-card-copy">
         {guide.category.trim().split(/\s+/).length > 1 && <p className="parent-guide-kicker">{guide.category}</p>}
         <h2>
@@ -109,6 +111,10 @@ function ParentGuideCard({ index, expanded, onToggle }: { index: number; expande
             {guide.question}
           </button>
         </h2>
+        <div className="parent-guide-why-teaser">
+          <p className="parent-guide-why-teaser-label">Why this happens</p>
+          <p>{firstSentence(guide.why)}</p>
+        </div>
         <p className="parent-guide-byline">TYA Club Parent Guide</p>
         <button type="button" className="parent-guide-text-link" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
           {expanded ? "Close the guide" : "Read more ..."} <ArrowRight className={expanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
@@ -158,7 +164,7 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
           </div>
           <div className={`parent-guides-feature-grid ${embedded ? "parent-guides-feature-grid--embedded" : ""}`} aria-label={embedded ? "Featured and related parent guides" : "Featured parent guide and monthly letter"}>
             <div className="parent-guide-first-grid" role="group" aria-label="Featured guide and three more guides">
-              <article className="parent-guide-feature">
+              <article className="parent-guide-feature" data-tone="white">
                 <div className="parent-guide-feature-copy">
                   <p className="parent-guide-kicker">Featured parent guide</p>
                   <h2>
@@ -166,6 +172,10 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
                       “{featuredGuide.question}”
                     </button>
                   </h2>
+                  <div className="parent-guide-why-teaser">
+                    <p className="parent-guide-why-teaser-label">Why this happens</p>
+                    <p>{firstSentence(featuredGuide.why)}</p>
+                  </div>
                   <p className="parent-guide-byline">Written by TYA Club coaches · Parent guide</p>
                   <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
                     {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read more ..."} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />

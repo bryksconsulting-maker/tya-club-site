@@ -21,7 +21,7 @@ const navigationItems: NavigationItem[] = [
   { label: "Skills", href: "#curriculum" },
   { label: "For parents", href: "#parents" },
   { label: "TYA experience", href: "#experience" },
-  { label: "Find A center", href: "#find-a-centre" },
+  { label: "Find a Pod", href: "#find-a-pod" },
   { label: "Our story", href: "/our-story" },
   { label: "Franchise", href: "/franchise" },
 ];
@@ -100,11 +100,14 @@ export function SectionLabel({ children, light = false }: { children: string; li
 }
 
 export function FindCentreSearch({ id, className = "" }: { id?: string; className?: string }) {
-  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get("centre") ?? "");
+  const [query, setQuery] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("pod") ?? params.get("centre") ?? "";
+  });
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const destination = new URL(LOGO_BASE, window.location.origin);
-    if (query.trim()) destination.searchParams.set("centre", query.trim());
+    if (query.trim()) destination.searchParams.set("pod", query.trim());
     destination.hash = "centre-results";
     window.location.assign(destination.toString());
   };
@@ -112,17 +115,17 @@ export function FindCentreSearch({ id, className = "" }: { id?: string; classNam
   return <form id={id} className={`home-centre-search flex w-full items-center gap-2 rounded-[1.25rem] border-2 border-[#2B2F32] bg-[#F3F0EA] p-2 shadow-[0_12px_30px_rgba(43,47,50,.1)] sm:gap-3 ${className}`} onSubmit={submitSearch}>
     <Compass size={21} aria-hidden="true" className="ml-1 shrink-0 rounded-full bg-[#F28D63]/15 p-2 text-[#F28D63]" />
     <div className="min-w-0 flex-1 rounded-[.9rem] bg-white px-3 py-2.5 sm:px-2 sm:py-2">
-      <p className="text-[9px] font-bold uppercase tracking-[.17em] text-[#656A6D]">Find your centre</p>
-      <input aria-label="Enter pin code or city" name="centre" className="w-full border-0 bg-transparent p-0 text-sm font-semibold text-[#2B2F32] outline-none placeholder:text-[#656A6D] placeholder:opacity-100" placeholder="Enter pin code or city" value={query} onChange={(event) => setQuery(event.target.value)} />
+      <p className="text-[9px] font-bold uppercase tracking-[.17em] text-[#656A6D]">Find your Pod</p>
+      <input aria-label="Enter Pod city, locality or pin code" name="pod" className="w-full border-0 bg-transparent p-0 text-sm font-semibold text-[#2B2F32] outline-none placeholder:text-[#656A6D] placeholder:opacity-100" placeholder="City, locality or PIN code" value={query} onChange={(event) => setQuery(event.target.value)} />
     </div>
-    <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-[.9rem] bg-[#E4B42A] px-4 py-3 text-sm font-bold text-[#2B2F32] transition-colors sm:px-6 sm:py-3.5"><Search size={15} aria-hidden="true" />Search</button>
+    <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-[.9rem] bg-[#E4B42A] px-4 py-3 text-sm font-bold text-[#2B2F32] transition-colors sm:px-6 sm:py-3.5"><Search size={15} aria-hidden="true" />Find a Pod</button>
   </form>;
 }
 
 export function FindCentrePrompt() {
-  return <section className="find-centre-prompt bg-[#F3F0EA] py-12 sm:py-16">
+  return <section id="find-a-pod" className="find-centre-prompt bg-[#F3F0EA] py-12 sm:py-16">
     <div className="container grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-12">
-      <div><SectionLabel>Find A center</SectionLabel><h2 className="mt-3">Find your nearest TYA centre.</h2><p className="mt-3 max-w-[430px] text-sm leading-6">Enter a city, locality or pin code to see the current TYA locations.</p></div>
+      <div><SectionLabel>Find a Pod</SectionLabel><h2 className="mt-3">Find your nearest TYA Pod.</h2><p className="mt-3 max-w-[430px] text-sm leading-6">Enter a city, locality or pin code to explore current TYA Pod locations.</p></div>
       <FindCentreSearch className="lg:justify-self-end lg:max-w-[620px]" />
     </div>
   </section>;
@@ -133,7 +136,7 @@ export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string;
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer border-t py-14"><div className="container grid gap-10 md:grid-cols-[1.1fr_.9fr_1.4fr] md:items-start"><div><Link href="/"><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="h-14 w-auto max-w-[170px] object-contain" /></Link><p className="mt-5 max-w-[360px] text-sm leading-6 text-white/60">Where skills become confidence. A learning community for young adults to practise the capabilities school cannot grade.</p></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Contact</p><Link className="block text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`mailto:${CONTACT_EMAIL}`}><Mail size={15} /> {CONTACT_EMAIL}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${PRIMARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {PRIMARY_PHONE}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${SECONDARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {SECONDARY_PHONE}</a></div><div className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm"><p className="section-kicker col-span-2 text-[#f6d77a]">Explore</p><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#curriculum`}>Skills</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#find-a-centre`}>Find A center</a><Link className="text-white/80 hover:text-[#f6d77a]" href="/our-story">Our story</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/franchise">Franchise</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.facebook.com/thetyaclub" target="_blank" rel="noreferrer">Facebook</a><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.instagram.com/tya.club/" target="_blank" rel="noreferrer">Instagram</a></div></div><div className="container mt-10 flex flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/45 sm:flex-row sm:justify-between"><span>© 2026 TYA Club</span><a href={`mailto:${GENERAL_EMAIL}`}>{GENERAL_EMAIL}</a></div></footer>;
+  return <footer className="site-footer border-t py-14"><div className="container grid gap-10 md:grid-cols-[1.1fr_.9fr_1.4fr] md:items-start"><div><Link href="/"><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="h-14 w-auto max-w-[170px] object-contain" /></Link><p className="mt-5 max-w-[360px] text-sm leading-6 text-white/60">Where skills become confidence. A learning community for young adults to practise the capabilities school cannot grade.</p></div><div className="space-y-3 text-sm"><p className="section-kicker text-[#f6d77a]">Contact</p><Link className="block text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`mailto:${CONTACT_EMAIL}`}><Mail size={15} /> {CONTACT_EMAIL}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${PRIMARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {PRIMARY_PHONE}</a><a className="flex items-center gap-2 text-white/80 hover:text-[#f6d77a]" href={`tel:${SECONDARY_PHONE.replace(/\s/g, "")}`}><Phone size={15} /> {SECONDARY_PHONE}</a></div><div className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm"><p className="section-kicker col-span-2 text-[#f6d77a]">Explore</p><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#curriculum`}>Skills</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/80 hover:text-[#f6d77a]" href={`${LOGO_BASE}#find-a-pod`}>Find a Pod</a><Link className="text-white/80 hover:text-[#f6d77a]" href="/our-story">Our story</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/franchise">Franchise</Link><Link className="text-white/80 hover:text-[#f6d77a]" href="/contact">Contact us</Link><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.facebook.com/thetyaclub" target="_blank" rel="noreferrer">Facebook</a><a className="text-white/80 hover:text-[#f6d77a]" href="https://www.instagram.com/tya.club/" target="_blank" rel="noreferrer">Instagram</a></div></div><div className="container mt-10 flex flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/45 sm:flex-row sm:justify-between"><span>© 2026 TYA Club</span><a href={`mailto:${GENERAL_EMAIL}`}>{GENERAL_EMAIL}</a></div></footer>;
 }
 
 export function WhatsAppFloat() {

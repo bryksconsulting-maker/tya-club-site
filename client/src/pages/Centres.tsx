@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { CalendarDays, Clock3, ExternalLink, MapPin, MessageCircle, Users } from "lucide-react";
 import { MapView } from "../components/Map";
+import { IndiaPodsMap } from "../components/IndiaPodsMap";
 import { PageShell, SectionLabel, WHATSAPP_HREF } from "../components/SiteChrome";
 import { centreProfiles as centres, type CentreProfile } from "../data/centreProfiles";
 
 function centreWhatsappHref(centre: CentreProfile) {
-  const text = encodeURIComponent(`Hi TYA Club, I'd like to ask about a free trial at the ${centre.locality}, ${centre.city} centre.`);
+  const text = encodeURIComponent(`Hi TYA Club, I'd like to ask about a free trial at the ${centre.locality}, ${centre.city} Pod.`);
   return `${WHATSAPP_HREF.split("?")[0]}?text=${text}`;
 }
 
 function CentreGallery({ centre }: { centre: CentreProfile }) {
-  return <div className="centre-detail-gallery" aria-label={`${centre.locality} centre photos`}>
+  return <div className="centre-detail-gallery" aria-label={`${centre.locality} Pod photos`}>
     {centre.gallery.slice(0, 3).map((photo, index) => <div className={`centre-gallery-frame ${index === 0 ? "centre-gallery-main" : ""}`} key={photo.label}>
       {photo.image ? <img className="centre-gallery-image" src={photo.image} alt={photo.alt} /> : <div className="centre-gallery-placeholder" role="img" aria-label={photo.alt}>
         <span className="centre-gallery-caption">{photo.label}</span>
@@ -20,7 +21,7 @@ function CentreGallery({ centre }: { centre: CentreProfile }) {
 }
 
 function CentreMap({ centre }: { centre: CentreProfile }) {
-  return <section className="centre-map-card" aria-label={`Map and directions for ${centre.locality}`}>
+  return <section className="centre-map-card" aria-label={`Map and directions for the ${centre.locality} Pod`}>
     <div className="centre-map-view">
       <MapView key={centre.city} className="h-full min-h-[150px] w-full" initialCenter={{ lat: centre.lat, lng: centre.lng }} initialZoom={15} onMapReady={(map) => {
         new google.maps.Marker({ position: { lat: centre.lat, lng: centre.lng }, map, title: `${centre.locality}, ${centre.city}` });
@@ -40,8 +41,8 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
   const centre = centres.find((item) => item.city === selectedCity) ?? centres[0];
   const queryHasMatch = !query || centres.some((item) => `${item.city} ${item.locality} ${item.address}`.toLowerCase().includes(query));
 
-  if (!centre || (embedded && !queryHasMatch)) {
-    const emptyState = <section className="container py-16"><h2 className="text-3xl font-semibold">{query ? `No centre listed for “${initialQuery}” yet.` : "No centres are listed yet."}</h2><p className="mt-3 max-w-xl text-sm leading-6 text-muted-copy">Send us the city or pin code and we’ll help find the closest option.</p><a className="btn-dark mt-5 inline-flex rounded-full px-5 py-3 text-sm font-bold" href={`${WHATSAPP_HREF.split("?")[0]}?text=${encodeURIComponent(`Hi TYA Club, I am looking for a centre near ${initialQuery}.`)}`} target="_blank" rel="noreferrer">Ask about a centre</a></section>;
+  if (!centre) {
+    const emptyState = <section className="container py-16"><h2 className="text-3xl font-semibold">{query ? `No Pod listed for “${initialQuery}” yet.` : "No Pods are listed yet."}</h2><p className="mt-3 max-w-xl text-sm leading-6 text-muted-copy">Send us the city or pin code and we’ll help find the closest option.</p><a className="btn-dark mt-5 inline-flex rounded-full px-5 py-3 text-sm font-bold" href={`${WHATSAPP_HREF.split("?")[0]}?text=${encodeURIComponent(`Hi TYA Club, I am looking for a Pod near ${initialQuery}.`)}`} target="_blank" rel="noreferrer">Ask about a Pod</a></section>;
     return embedded ? <div className="centre-detail-page centre-detail-embedded" id="centre-results">{emptyState}</div> : <PageShell>{emptyState}</PageShell>;
   }
 
@@ -62,15 +63,33 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
 
   const content = <div className={`centre-detail-page ${embedded ? "centre-detail-embedded scroll-mt-24" : ""}`} id={embedded ? "centre-results" : undefined}>
       <div className="container">
-        {embedded && <div className="centre-results-heading"><SectionLabel>Find A center</SectionLabel><h2>{query ? `Centres near ${initialQuery}` : "Our current centres"}</h2><p>Search by city, locality or pin code. Choose a location to see its centre details.</p><a href={`${import.meta.env.BASE_URL}#find-a-centre`}>Change search</a></div>}
+        {embedded && <div className="centre-results-heading"><SectionLabel>Find a Pod</SectionLabel><h2>{query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India"}</h2><p>Choose a sample location on the India map to see its address and Pod details.</p><a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a></div>}
+        {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. The locations below are sample Pods; choose one to see its address.</p>}
+        <section className="pod-discovery-panel" aria-labelledby="pod-discovery-title">
+          <div className="pod-discovery-heading">
+            <div><span className="pod-discovery-eyebrow">Find your community</span><h2 id="pod-discovery-title">A TYA Pod, closer to home.</h2><p>Pick a marker or location to explore the sample Pods in Madhapur and Vesu.</p></div>
+            <span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>sample Pods</small></span>
+          </div>
+          <div className="pod-discovery-grid">
+            <IndiaPodsMap locations={centres} selectedCity={selectedCity} onSelect={setSelectedCity} />
+            <div className="pod-location-list" aria-label="Sample TYA Pods">
+              {centres.map((item, index) => <button type="button" className="pod-location-card" key={item.city} data-selected={selectedCity === item.city} aria-pressed={selectedCity === item.city} onClick={() => setSelectedCity(item.city)}>
+                <span className="pod-location-card-top"><span className="pod-location-card-number">0{index + 1}</span><span className="pod-location-card-status">Sample Pod</span></span>
+                <strong>{item.locality}<span>, {item.city}</span></strong>
+                <span className="pod-location-card-address">{item.address}</span>
+                <span className="pod-location-card-link">View Pod details <ExternalLink size={13} aria-hidden="true" /></span>
+              </button>)}
+            </div>
+          </div>
+        </section>
         <div className="centre-detail-toolbar">
           <nav className="centre-breadcrumb" aria-label="Breadcrumb">
-            <a href={`${import.meta.env.BASE_URL}#find-a-centre`}>Centres</a><span aria-hidden="true">/</span><span>{centre.city}</span><span aria-hidden="true">/</span><strong>{centre.locality}</strong>
+            <a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Pods</a><span aria-hidden="true">/</span><span>{centre.city}</span><span aria-hidden="true">/</span><strong>{centre.locality}</strong>
           </nav>
           <label className="centre-picker">
             <MapPin size={14} aria-hidden="true" />
             <span className="sr-only">Choose locality and city</span>
-            <select value={selectedCity} onChange={(event) => setSelectedCity(event.target.value)} aria-label="Choose a centre">
+            <select value={selectedCity} onChange={(event) => setSelectedCity(event.target.value)} aria-label="Choose a Pod">
               {centres.map((item) => <option value={item.city} key={item.city}>{item.locality}, {item.city}</option>)}
             </select>
             <span className="centre-picker-change">Change</span>
@@ -85,11 +104,11 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               <span className="centre-status-pill">{centre.admissionsStatus}</span>
               <span className="centre-opened">{centre.openedYear === null ? "Opening year to be confirmed" : `Opened ${centre.openedYear}`}</span>
             </div>
-            {embedded ? <h2>TYA Club {centre.locality}</h2> : <h1>TYA Club {centre.locality}</h1>}
+            {embedded ? <h2>TYA Pod {centre.locality}</h2> : <h1>TYA Pod {centre.locality}</h1>}
             <p className="centre-address">{centre.address}</p>
             <p className="centre-detail-summary">{centreSummary}</p>
 
-            <div className="centre-stat-grid" aria-label="Centre information">
+            <div className="centre-stat-grid" aria-label="Pod information">
               {stats.map(({ label, value, Icon }) => <div className="centre-stat-card" key={label}>
                 <p><Icon size={12} aria-hidden="true" /> {label}</p>
                 <strong>{value}</strong>
@@ -117,7 +136,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               </div>}
               {trial?.seatsLeft !== null && trial?.seatsLeft !== undefined && <p className="centre-seats-left">{trial.seatsLeft} of {trial.totalSeats} seats left</p>}
               <a className="centre-trial-primary" href={trialHref} target="_blank" rel="noreferrer">{trial ? "Book this trial" : "Ask about a free trial"}</a>
-              <a className="centre-trial-secondary" href={trialHref} target="_blank" rel="noreferrer"><MessageCircle size={14} /> WhatsApp this centre</a>
+              <a className="centre-trial-secondary" href={trialHref} target="_blank" rel="noreferrer"><MessageCircle size={14} /> WhatsApp this Pod</a>
               <p className="centre-trial-note">No card needed. Parents are welcome to sit in.</p>
             </section>
 

@@ -85,10 +85,11 @@ function LegacySectionRedirect() {
     const basePath = base === "/" ? "" : base.replace(/\/$/, "");
     const path = window.location.pathname.replace(basePath, "") || "/";
     const destination = new URL(base, window.location.origin);
-    const centreQuery = new URLSearchParams(window.location.search).get("centre");
-    if (centreQuery) destination.searchParams.set("centre", centreQuery);
+    const searchParams = new URLSearchParams(window.location.search);
+    const podQuery = searchParams.get("pod") ?? searchParams.get("centre");
+    if (podQuery) destination.searchParams.set("pod", podQuery);
     const target = path.startsWith("/programmes/") ? "curriculum" : (legacySectionTargets[path] ?? "top");
-    destination.hash = centreQuery ? "centre-results" : target;
+    destination.hash = podQuery ? "centre-results" : target;
     window.location.replace(destination.toString());
   }, []);
 
@@ -108,7 +109,7 @@ const legacySectionTargets: Record<string, string> = {
   "/how-it-works": "how-it-works",
   "/curriculum": "curriculum",
   "/experience": "experience",
-  "/centres": "find-a-centre",
+  "/centres": "find-a-pod",
 };
 
 function Router() {
