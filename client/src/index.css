@@ -884,7 +884,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .dark .parent-guide-feature { --guide-copy-bg: var(--brand-card); --guide-copy-ink: var(--brand-ink); --guide-copy-muted: var(--brand-muted); --guide-copy-accent: var(--brand-muted); }
 .dark .parent-guide-text-link { color: var(--brand-ivory); }
 
-/* Sample Pod locator: map markers and location cards stay usable without a map API. */
+/* Pod locator: map markers and location cards stay usable without a map API. */
 .pod-search-notice { margin-top: 1rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 14%, transparent); border-radius: .85rem; background: var(--brand-soft); padding: .9rem 1rem; color: var(--brand-muted); font-size: .76rem; line-height: 1.6; }
 .pod-discovery-panel { margin-top: 1.25rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: 1.35rem; background: var(--brand-card); padding: clamp(1rem, 3vw, 1.65rem); box-shadow: 0 16px 42px rgba(43,47,50,.06); }
 .pod-discovery-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.25rem; }
@@ -894,17 +894,17 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .pod-network-count { display: flex; flex: 0 0 auto; align-items: baseline; gap: .4rem; border-radius: 999px; background: var(--brand-soft); padding: .55rem .8rem; color: var(--brand-ink); font-size: .88rem; font-weight: 800; }
 .pod-network-count small { color: var(--brand-muted); font-size: .56rem; font-weight: 650; }
 .pod-discovery-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr); gap: 1rem; align-items: stretch; margin-top: 1.1rem; }
-.india-pod-map { position: relative; min-width: 0; overflow-x: auto; overflow-y: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 10%, transparent); border-radius: 1rem; background: color-mix(in srgb, var(--brand-soft) 76%, var(--brand-card)); scrollbar-color: color-mix(in srgb, var(--brand-ink) 28%, transparent) transparent; }
+.india-pod-map { position: relative; min-width: 0; overflow-x: auto; overflow-y: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 9%, transparent); border-radius: 1rem; background: #faf9f6; scrollbar-color: color-mix(in srgb, var(--brand-ink) 22%, transparent) transparent; }
 .india-pod-map-canvas { position: relative; width: 100%; min-width: 550px; aspect-ratio: 700 / 760; }
 .india-pod-map-art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.india-pod-map-regions path { stroke: color-mix(in srgb, var(--brand-ink) 42%, var(--brand-card)); stroke-linejoin: round; stroke-width: 1.3; vector-effect: non-scaling-stroke; }
-.india-pod-map-regions [data-tone="ivory"] { fill: color-mix(in srgb, var(--brand-bg) 68%, var(--brand-card)); }
-.india-pod-map-regions [data-tone="butter"] { fill: color-mix(in srgb, var(--brand-butter) 44%, var(--brand-card)); }
-.india-pod-map-regions [data-tone="coral"] { fill: color-mix(in srgb, var(--brand-coral) 33%, var(--brand-card)); }
-.india-pod-map-regions [data-tone="soft"] { fill: color-mix(in srgb, var(--brand-soft) 72%, var(--brand-card)); }
-.india-pod-map-state-labels text { fill: var(--brand-ink); font-size: 8.2px; font-weight: 800; letter-spacing: .2px; paint-order: stroke; stroke: var(--brand-card); stroke-linejoin: round; stroke-width: 2.5px; }
-.india-pod-map-cities circle { fill: var(--brand-ink); stroke: var(--brand-card); stroke-width: 1.4px; vector-effect: non-scaling-stroke; }
-.india-pod-map-cities text { fill: var(--brand-ink); font-size: 9.2px; font-weight: 600; paint-order: stroke; stroke: var(--brand-card); stroke-linejoin: round; stroke-width: 2.8px; }
+.india-pod-map-regions path { stroke: #d8d6d0; stroke-linejoin: round; stroke-width: .8; vector-effect: non-scaling-stroke; }
+.india-pod-map-regions [data-tone="ivory"] { fill: #f6f5f1; }
+.india-pod-map-regions [data-tone="butter"] { fill: #f3f2ee; }
+.india-pod-map-regions [data-tone="coral"] { fill: #f1f0ec; }
+.india-pod-map-regions [data-tone="soft"] { fill: #f5f4f0; }
+.india-pod-map-state-labels text { fill: #686a69; font-size: 7.2px; font-weight: 650; letter-spacing: .24px; paint-order: stroke; stroke: #faf9f6; stroke-linejoin: round; stroke-width: 2px; }
+.india-pod-map-cities circle { fill: #4e5253; stroke: #faf9f6; stroke-width: 1.4px; vector-effect: non-scaling-stroke; }
+.india-pod-map-cities text { fill: #4e5253; font-size: 8.2px; font-weight: 600; paint-order: stroke; stroke: #faf9f6; stroke-linejoin: round; stroke-width: 2.3px; }
 .india-pod-map-marker { position: absolute; z-index: 1; display: block; width: 36px; height: 46px; transform: translate(-50%, -96%); border: 0; background: transparent; padding: 0; text-align: left; }
 .india-pod-map-marker-label small { margin-top: .14rem; color: var(--brand-muted); font-size: .48rem; font-weight: 600; }
 .india-pod-map-marker[data-selected="true"] { z-index: 2; }
@@ -922,12 +922,15 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .pod-location-card > strong span { font-weight: 500; }
 .pod-location-card-address { margin-top: .4rem; color: var(--brand-muted); font-size: .61rem; line-height: 1.5; }
 .pod-location-card-link { display: inline-flex; align-items: center; gap: .3rem; margin-top: auto; padding-top: .55rem; color: var(--brand-coral-text); font-size: .62rem; font-weight: 750; }
-.dark .india-pod-map { background: color-mix(in srgb, var(--brand-card) 75%, var(--brand-bg)); }
-.dark .india-pod-map-regions path { stroke: color-mix(in srgb, var(--brand-ivory) 42%, var(--brand-card)); }
-.dark .india-pod-map-regions [data-tone="ivory"] { fill: color-mix(in srgb, var(--brand-ivory) 11%, var(--brand-card)); }
-.dark .india-pod-map-regions [data-tone="butter"] { fill: color-mix(in srgb, var(--brand-butter) 25%, var(--brand-card)); }
-.dark .india-pod-map-regions [data-tone="coral"] { fill: color-mix(in srgb, var(--brand-coral) 22%, var(--brand-card)); }
-.dark .india-pod-map-regions [data-tone="soft"] { fill: color-mix(in srgb, var(--brand-ivory) 17%, var(--brand-card)); }
+.dark .india-pod-map { background: #292d30; }
+.dark .india-pod-map-regions path { stroke: #454a4d; }
+.dark .india-pod-map-regions [data-tone="ivory"] { fill: #33383b; }
+.dark .india-pod-map-regions [data-tone="butter"] { fill: #303538; }
+.dark .india-pod-map-regions [data-tone="coral"] { fill: #2e3336; }
+.dark .india-pod-map-regions [data-tone="soft"] { fill: #353a3d; }
+.dark .india-pod-map-state-labels text { fill: #c7c9c7; stroke: #292d30; }
+.dark .india-pod-map-cities circle { fill: #d8d9d7; stroke: #292d30; }
+.dark .india-pod-map-cities text { fill: #d8d9d7; stroke: #292d30; }
 .dark .parent-guide-card[data-tone="white"] { --guide-copy-bg: var(--brand-card); }
 @media (max-width: 850px) {
   .pod-discovery-grid { grid-template-columns: minmax(0, 1fr); }
@@ -960,10 +963,11 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .india-pod-map-pin svg path { fill: var(--brand-coral); stroke: var(--brand-card); stroke-width: 1.3; }
 .india-pod-map-pin svg circle { fill: var(--brand-card); }
 .india-pod-map-pin img { position: absolute; top: 6px; left: 13px; width: 10px; height: 23px; object-fit: contain; }
-.india-pod-map-marker-label { position: absolute; top: 7px; left: 32px; display: flex; flex-direction: column; border: 1px solid color-mix(in srgb, var(--brand-ink) 14%, transparent); border-radius: .5rem; background: var(--brand-card); padding: .28rem .45rem; color: var(--brand-ink); font-size: .57rem; font-weight: 800; line-height: 1.2; box-shadow: 0 6px 18px rgba(43,47,50,.12); white-space: nowrap; }
+.india-pod-map-marker-label { position: absolute; top: 7px; left: 32px; display: flex; flex-direction: column; border: 1px solid #e2e0da; border-radius: .5rem; background: #fff; padding: .3rem .48rem; color: #303437; font-size: .57rem; font-weight: 750; line-height: 1.2; box-shadow: 0 4px 12px rgba(43,47,50,.08); white-space: nowrap; }
 .india-pod-map-marker-label small { margin-top: .14rem; color: var(--brand-muted); font-size: .48rem; font-weight: 600; }
 .india-pod-map-marker[data-selected="true"] .india-pod-map-pin { transform: scale(1.12); filter: drop-shadow(0 4px 5px rgba(43,47,50,.24)); }
 .dark .india-pod-map-pin svg circle { fill: var(--brand-ivory); }
+.dark .india-pod-map-marker-label { border-color: #51565a; background: #353a3d; color: #f1efe8; }
 @media (max-width: 850px) {
   .india-pod-map-canvas { width: max(100%, 550px); }
 }

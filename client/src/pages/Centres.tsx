@@ -63,18 +63,18 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
 
   const content = <div className={`centre-detail-page ${embedded ? "centre-detail-embedded scroll-mt-24" : ""}`} id={embedded ? "centre-results" : undefined}>
       <div className="container">
-        {embedded && <div className="centre-results-heading"><SectionLabel>Find a Pod</SectionLabel><h2>{query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India"}</h2><p>Choose a sample location on the India map to see its address and Pod details.</p><a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a></div>}
-        {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. The locations below are sample Pods; choose one to see its address.</p>}
+        {embedded && <div className="centre-results-heading"><SectionLabel>Find a Pod</SectionLabel><h2>{query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India"}</h2><p>Choose a location on the India map to see its address and Pod details.</p><a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a></div>}
+        {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. Choose a location below to see its address and Pod details.</p>}
         <section className="pod-discovery-panel" aria-labelledby="pod-discovery-title">
           <div className="pod-discovery-heading">
-            <div><span className="pod-discovery-eyebrow">Find your community</span><h2 id="pod-discovery-title">A TYA Pod, closer to home.</h2><p>Pick a marker or location to explore the sample Pods in Madhapur and Vesu.</p></div>
-            <span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>sample Pods</small></span>
+            <div><span className="pod-discovery-eyebrow">Find your community</span><h2 id="pod-discovery-title">A TYA Pod, closer to home.</h2><p>Pick a marker or location to explore Pods in Madhapur and Vesu.</p></div>
+            <span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>
           </div>
           <div className="pod-discovery-grid">
             <IndiaPodsMap locations={centres} selectedCity={selectedCity} onSelect={setSelectedCity} />
-            <div className="pod-location-list" aria-label="Sample TYA Pods">
+            <div className="pod-location-list" aria-label="TYA Pods">
               {centres.map((item, index) => <button type="button" className="pod-location-card" key={item.city} data-selected={selectedCity === item.city} aria-pressed={selectedCity === item.city} onClick={() => setSelectedCity(item.city)}>
-                <span className="pod-location-card-top"><span className="pod-location-card-number">0{index + 1}</span><span className="pod-location-card-status">Sample Pod</span></span>
+                <span className="pod-location-card-top"><span className="pod-location-card-number">0{index + 1}</span><span className="pod-location-card-status">Pod</span></span>
                 <strong>{item.locality}<span>, {item.city}</span></strong>
                 <span className="pod-location-card-address">{item.address}</span>
                 <span className="pod-location-card-link">View Pod details <ExternalLink size={13} aria-hidden="true" /></span>

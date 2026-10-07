@@ -49,7 +49,7 @@ export function IndiaPodsMap({ locations, selectedCity, onSelect }: IndiaPodsMap
     <div className="india-pod-map-canvas">
       <svg className="india-pod-map-art" viewBox={`0 0 ${MAP.width} ${MAP.height}`} role="img" aria-labelledby="india-map-title india-map-description">
         <title id="india-map-title">India: states, union territories and major cities</title>
-        <desc id="india-map-description">A full map of India with boundaries and names for all states and union territories, major cities, and TYA sample Pods in Madhapur, Hyderabad and Vesu, Surat.</desc>
+        <desc id="india-map-description">A full map of India with boundaries and names for all states and union territories, major cities, and TYA Pods in Madhapur, Hyderabad and Vesu, Surat.</desc>
         <g className="india-pod-map-regions">
           {indiaStateShapes.map((state) => <path key={state.name} d={state.d} data-tone={state.tone}>
             <title>{state.name}</title>
