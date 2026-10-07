@@ -27,11 +27,16 @@ const navigationItems: NavigationItem[] = [
 ];
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const nextTheme = theme === "light" ? "dark" : "light";
+  const ThemeIcon = nextTheme === "dark" ? Moon : Sun;
+
   return (
-    <div className="theme-toggle" aria-label="Choose colour theme">
-      <button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")} aria-label="Use light theme" aria-pressed={theme === "light"}><Sun size={14} /> <span className="ml-1">Light</span></button>
-      <button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")} aria-label="Use dark theme" aria-pressed={theme === "dark"}><Moon size={14} /> <span className="ml-1">Dark</span></button>
+    <div className="theme-toggle">
+      <button type="button" onClick={toggleTheme} aria-label={`Switch to ${nextTheme} theme`} title={`Switch to ${nextTheme} theme`}>
+        <ThemeIcon size={14} aria-hidden="true" />
+        <span>{nextTheme === "dark" ? "Dark" : "Light"}</span>
+      </button>
     </div>
   );
 }
@@ -51,7 +56,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
   return <>
     <header className={`site-header sticky top-0 z-40 border-b ${variant === "home" ? "site-header-home" : ""}`} onKeyDown={(event) => { if (event.key === "Escape") closeMenus(); }}>
       <div className="container flex min-h-[76px] items-center justify-between gap-3 xl:gap-5">
-        <Link href="/" onClick={closeMenus} className="shrink-0" aria-label="TYA Club home"><img src={`${LOGO_BASE}tya-logo-lockup.svg`} alt="TYA Club" className="logo-light h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="logo-dark h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /></Link>
+        <a href={`${LOGO_BASE}#top`} onClick={closeMenus} className="shrink-0" aria-label="TYA Club home"><img src={`${LOGO_BASE}tya-logo-lockup.svg`} alt="TYA Club" className="logo-light h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="logo-dark h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /></a>
         <nav className="site-navigation" aria-label="Primary navigation" onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDesktopGroup(null); }}>
           {navigationItems.map((item) => {
             const homeAnchor = Boolean(item.href?.startsWith("#"));

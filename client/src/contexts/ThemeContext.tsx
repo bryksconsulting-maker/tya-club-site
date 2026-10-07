@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
+type ThemePreference = Theme | "system";
+
+const THEME_OVERRIDE_KEY = "tya-theme-override-v2";
 
 interface ThemeContextType {
   theme: Theme;
@@ -13,37 +16,44 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: React.ReactNode;
-  defaultTheme?: Theme;
+  defaultTheme?: ThemePreference;
   switchable?: boolean;
 }
 
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
+  defaultTheme = "system",
   switchable = false,
 }: ThemeProviderProps) {
   const [savedTheme, setSavedTheme] = useState<Theme | null>(() => {
     if (!switchable) return null;
     try {
-      const stored = localStorage.getItem("theme");
+      const stored = localStorage.getItem(THEME_OVERRIDE_KEY);
       return stored === "light" || stored === "dark" ? stored : null;
     } catch {
       return null;
     }
   });
   const [systemTheme, setSystemTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return defaultTheme;
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return defaultTheme === "dark" ? "dark" : "light";
+    }
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   });
-  const theme = switchable ? (savedTheme ?? systemTheme) : defaultTheme;
+  const systemDefault = defaultTheme === "system" ? systemTheme : defaultTheme;
+  const theme = switchable ? (savedTheme ?? systemDefault) : systemDefault;
 
   useEffect(() => {
-    if (!switchable || savedTheme) return;
+    if ((switchable && savedTheme) || !window.matchMedia) return;
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const updateSystemTheme = (event: MediaQueryListEvent) => setSystemTheme(event.matches ? "dark" : "light");
     setSystemTheme(media.matches ? "dark" : "light");
-    media.addEventListener?.("change", updateSystemTheme);
-    return () => media.removeEventListener?.("change", updateSystemTheme);
+    if (media.addEventListener) {
+      media.addEventListener("change", updateSystemTheme);
+      return () => media.removeEventListener("change", updateSystemTheme);
+    }
+    media.addListener(updateSystemTheme);
+    return () => media.removeListener(updateSystemTheme);
   }, [savedTheme, switchable]);
 
   useEffect(() => {
@@ -59,7 +69,7 @@ export function ThemeProvider({
     if (!switchable) return;
     setSavedTheme(nextTheme);
     try {
-      localStorage.setItem("theme", nextTheme);
+      localStorage.setItem(THEME_OVERRIDE_KEY, nextTheme);
     } catch {
       // The current selection still applies when browser storage is unavailable.
     }
