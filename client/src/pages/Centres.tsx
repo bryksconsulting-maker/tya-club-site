@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { CalendarDays, Clock3, ExternalLink, MapPin, MessageCircle, Users } from "lucide-react";
-import { MapView } from "../components/Map";
 import { IndiaPodsMap } from "../components/IndiaPodsMap";
-import { PageShell, SectionLabel, WHATSAPP_HREF } from "../components/SiteChrome";
+import { PageShell, SectionIntro, WHATSAPP_HREF } from "../components/SiteChrome";
 import { centreProfiles as centres, type CentreProfile } from "../data/centreProfiles";
 
 function centreWhatsappHref(centre: CentreProfile) {
@@ -21,20 +20,6 @@ function CentreGallery({ centre }: { centre: CentreProfile }) {
   </div>;
 }
 
-function CentreMap({ centre }: { centre: CentreProfile }) {
-  return <section className="centre-map-card" aria-label={`Map and directions for the ${centre.locality} Pod`}>
-    <div className="centre-map-view">
-      <MapView key={centre.city} className="h-full min-h-[150px] w-full" initialCenter={{ lat: centre.lat, lng: centre.lng }} initialZoom={15} onMapReady={(map) => {
-        new google.maps.Marker({ position: { lat: centre.lat, lng: centre.lng }, map, title: `${centre.locality}, ${centre.city}` });
-      }} />
-    </div>
-    <div className="centre-map-caption">
-      <p>{centre.address}</p>
-      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.address)}`} target="_blank" rel="noreferrer">Get directions <ExternalLink size={13} /></a>
-    </div>
-  </section>;
-}
-
 export function CentresContent({ embedded = false, initialQuery = "" }: { embedded?: boolean; initialQuery?: string } = {}) {
   const query = initialQuery.trim().toLowerCase();
   const initialCentre = centres.find((item) => `${item.city} ${item.locality} ${item.address}`.toLowerCase().includes(query)) ?? centres[0];
@@ -48,6 +33,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
   }
 
   const trialHref = centreWhatsappHref(centre);
+  const directionsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.address)}`;
   const trial = centre.nextTrial;
   const centreSummary = [
     centre.detail,
@@ -64,17 +50,14 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
 
   const content = <div className={`centre-detail-page ${embedded ? "centre-detail-embedded scroll-mt-24" : ""}`} id={embedded ? "centre-results" : undefined}>
       <div className="container">
-        {embedded && <div className="centre-results-heading"><SectionLabel>Find a Pod</SectionLabel><h2>{query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India"}</h2><p>Choose a location on the India map to see its address and Pod details.</p><a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a></div>}
+        {embedded && <SectionIntro eyebrow="Find a Pod" title={query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India."} description="Choose a location on the India map to see its address and Pod details." action={<a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a>} className="centre-results-heading" />}
         {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. Choose a location below to see its address and Pod details.</p>}
         <section className="pod-discovery-panel" aria-labelledby="pod-discovery-title">
-          <div className="pod-discovery-heading">
-            <div><span className="pod-discovery-eyebrow">Find your community</span><h2 id="pod-discovery-title">A TYA Pod, closer to home.</h2><p>Pick a marker or location to explore Pods in Madhapur and Vesu.</p></div>
-            <span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>
-          </div>
+          <SectionIntro eyebrow="Find your community" title="A TYA Pod, closer to home." description="Pick a marker or location to explore Pods in Madhapur and Vesu." id="pod-discovery-title" action={<span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>} className="pod-discovery-heading" />
           <div className="pod-discovery-grid">
             <IndiaPodsMap locations={centres} selectedCity={selectedCity} onSelect={setSelectedCity} />
             <div className="pod-location-list" aria-label="TYA Pods">
-              {centres.map((item, index) => <button type="button" className="pod-location-card" key={item.city} data-selected={selectedCity === item.city} aria-pressed={selectedCity === item.city} onClick={() => setSelectedCity(item.city)}>
+              {centres.map((item, index) => <button type="button" className="pod-location-card" key={item.city} data-selected={selectedCity === item.city} aria-pressed={selectedCity === item.city} aria-label={`Show details for ${item.locality} Pod, ${item.city}`} onClick={() => setSelectedCity(item.city)}>
                 <span className="pod-location-card-top"><span className="pod-location-card-number">0{index + 1}</span><span className="pod-location-card-status">Pod</span></span>
                 <strong className="pod-location-card-title">{item.locality}<span className="pod-location-card-city">, {item.city}</span></strong>
                 <span className="pod-location-card-address">{item.address}</span>
@@ -106,7 +89,6 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               <span className="centre-opened">{centre.openedYear === null ? "Opening year to be confirmed" : `Opened ${centre.openedYear}`}</span>
             </div>
             {embedded ? <h2>TYA Pod {centre.locality}</h2> : <h1>TYA Pod {centre.locality}</h1>}
-            <p className="centre-address">{centre.address}</p>
             <p className="centre-detail-summary">{centreSummary}</p>
 
             <div className="centre-stat-grid" aria-label="Pod information">
@@ -130,8 +112,13 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
           <aside className="centre-detail-sidebar">
             <section className="centre-trial-card" aria-labelledby="centre-trial-title">
               <p className="centre-trial-kicker">Free trial class</p>
+              <p className="centre-trial-location" aria-live="polite">{centre.locality}, {centre.city}</p>
               <h2 id="centre-trial-title">{trial?.date ?? "Find your first session"}</h2>
               <p className="centre-trial-meta">{trial ? `${trial.time} · ages ${trial.ageRange}` : "Ask us for the next available date and age group."}</p>
+              <div className="centre-trial-address" aria-live="polite">
+                <p><MapPin size={13} aria-hidden="true" /> <span>{centre.address}</span></p>
+                <a href={directionsHref} target="_blank" rel="noreferrer">Get directions <ExternalLink size={13} aria-hidden="true" /></a>
+              </div>
               {trial?.totalSeats !== null && trial?.totalSeats !== undefined && <div className="centre-seat-meter" aria-label={`${trial.seatsLeft ?? 0} of ${trial.totalSeats} seats left`}>
                 {Array.from({ length: trial.totalSeats }, (_, index) => <span key={index} className={index >= (trial.seatsLeft ?? 0) ? "full" : ""} />)}
               </div>}
@@ -141,14 +128,21 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               <p className="centre-trial-note">No card needed. Parents are welcome to sit in.</p>
             </section>
 
-            <CentreMap centre={centre} />
           </aside>
         </div>
       </div>
 
       <section className="container centre-expansion-note">
-        <div><SectionLabel>More locations</SectionLabel><h2>Not near one yet?</h2><p>Tell us where you are. We are growing thoughtfully.</p></div>
-        <a className="btn-dark rounded-full px-5 py-3 text-sm font-bold" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Suggest a neighbourhood <MessageCircle size={15} /></a>
+        <div className="centre-expansion-layout">
+          <div className="centre-expansion-copy">
+            <span className="section-kicker centre-expansion-kicker">More locations</span>
+            <h2>Not near one yet?</h2>
+            <p>Tell us where you are. We are growing thoughtfully.</p>
+          </div>
+          <div className="centre-expansion-action">
+            <a className="btn-dark inline-flex items-center rounded-full px-5 py-3 text-sm font-bold" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Suggest a neighbourhood <MessageCircle className="ml-2" size={15} /></a>
+          </div>
+        </div>
       </section>
     </div>;
 

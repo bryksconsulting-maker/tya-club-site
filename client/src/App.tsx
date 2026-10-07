@@ -13,7 +13,8 @@ import { WhatsAppFloat } from "./components/SiteChrome";
 
 function GithubPagesLinks() {
   useEffect(() => {
-    const base = "/tya-club-site";
+    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+    if (!base) return;
 
     const handleClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -113,9 +114,7 @@ const legacySectionTargets: Record<string, string> = {
 };
 
 function Router() {
-  const base = window.location.pathname.startsWith("/tya-club-site")
-    ? "/tya-club-site"
-    : "";
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   return (
     <WouterRouter base={base}>

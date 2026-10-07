@@ -99,6 +99,31 @@ export function SectionLabel({ children, light = false }: { children: string; li
   return <span className={`section-kicker ${light ? "text-[#f6d77a]" : "text-[#7a6316]"}`}>{children}</span>;
 }
 
+type SectionIntroProps = {
+  eyebrow: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  action?: React.ReactNode;
+  light?: boolean;
+  id?: string;
+  as?: "h1" | "h2";
+  className?: string;
+};
+
+export function SectionIntro({ eyebrow, title, description, action, light = false, id, as = "h2", className = "" }: SectionIntroProps) {
+  const Heading = as;
+  return <div className={`section-intro ${light ? "section-intro--light" : ""} ${description || action ? "section-intro--with-copy" : "section-intro--title-only"} ${className}`}>
+    <div className="section-intro-main">
+      <SectionLabel light={light}>{eyebrow}</SectionLabel>
+      <Heading id={id} className="section-intro-title">{title}</Heading>
+    </div>
+    {(description || action) && <div className="section-intro-side">
+      {description && <p>{description}</p>}
+      {action}
+    </div>}
+  </div>;
+}
+
 export function FindCentreSearch({ id, className = "" }: { id?: string; className?: string }) {
   const [query, setQuery] = useState(() => {
     const params = new URLSearchParams(window.location.search);
@@ -124,15 +149,12 @@ export function FindCentreSearch({ id, className = "" }: { id?: string; classNam
 
 export function FindCentrePrompt() {
   return <section id="find-a-pod" className="find-centre-prompt bg-[#F3F0EA] py-12 sm:py-16">
-    <div className="container grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-12">
-      <div><SectionLabel>Find a Pod</SectionLabel><h2 className="mt-3">Find your nearest TYA Pod.</h2><p className="mt-3 max-w-[430px] text-sm leading-6">Enter a city, locality or pin code to explore current TYA Pod locations.</p></div>
-      <FindCentreSearch className="lg:justify-self-end lg:max-w-[620px]" />
-    </div>
+    <div className="container"><SectionIntro eyebrow="Find a Pod" title="Find your nearest TYA Pod." description="Enter a city, locality or pin code to explore current TYA Pod locations." action={<FindCentreSearch className="lg:max-w-[620px]" />} className="find-centre-prompt-intro" /></div>
   </section>;
 }
 
 export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: React.ReactNode; intro: string; children?: React.ReactNode }) {
-  return <section className={`grain page-hero overflow-hidden border-b py-20 lg:py-28 ${children ? "page-hero--with-aside" : ""}`}><div className={`container grid min-w-0 grid-cols-1 gap-10 ${children ? "lg:grid-cols-[.95fr_1.05fr] lg:items-end" : ""}`}><div className="min-w-0"><SectionLabel light>{eyebrow}</SectionLabel><h1 className="mt-5 min-w-0 max-w-[720px] text-balance text-[clamp(3rem,15vw,3.75rem)] font-medium leading-[.92] tracking-[-.055em] sm:text-7xl">{title}</h1><p className="mt-7 max-w-[600px] text-lg leading-8 text-white/65">{intro}</p></div>{children && <div className="lg:justify-self-end">{children}</div>}</div></section>;
+  return <section className={`grain page-hero overflow-hidden border-b py-20 lg:py-28 ${children ? "page-hero--with-aside" : ""}`}><div className="container min-w-0"><SectionIntro eyebrow={eyebrow} title={title} description={intro} light as="h1" className="page-hero-intro" />{children && <div className="page-hero-aside">{children}</div>}</div></section>;
 }
 
 export function SiteFooter() {

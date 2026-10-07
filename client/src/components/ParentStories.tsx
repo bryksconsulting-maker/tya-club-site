@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
-import { SectionLabel } from "./SiteChrome";
+import { SectionIntro } from "./SiteChrome";
 import { compositeTestimonials } from "../data/centreProfiles";
 
 const parentStorySlides = [
@@ -124,11 +124,7 @@ export function ParentStories() {
   return (
     <section className="parent-stories bg-[#F3F0EA] py-16 sm:py-24" aria-labelledby="parent-stories-title">
       <div className="container">
-        <div className="parent-stories-heading mb-10">
-          <SectionLabel>Parent Stories</SectionLabel>
-          <h2 id="parent-stories-title" className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Voices of transformation.</h2>
-          <p className="mt-4 max-w-[640px] text-sm leading-6 text-muted-foreground">Hearing from the parents who see the change every day in their children’s confidence and capabilities.</p>
-        </div>
+        <SectionIntro eyebrow="Parent Stories" title="Voices of transformation." description="Hearing from parents who notice changes in their young adults’ confidence and capabilities." id="parent-stories-title" className="parent-stories-heading" />
 
         <div className="testimonial-stories-carousel relative group">
           <div ref={trackRef} className="testimonial-stories-track flex gap-4 overflow-x-auto scroll-smooth no-scrollbar" onScroll={updateActiveStory}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { CONTACT_EMAIL, PageShell, SectionLabel } from "../components/SiteChrome";
+import { CONTACT_EMAIL, PageShell, SectionIntro } from "../components/SiteChrome";
 
 const guides = [
   {
@@ -127,6 +127,7 @@ function ParentGuideCard({ index, expanded, onToggle }: { index: number; expande
 
 export function ParentGuidesContent({ embedded = false }: { embedded?: boolean } = {}) {
   const [expandedGuides, setExpandedGuides] = useState<Set<number>>(() => new Set());
+  const [showAllGuides, setShowAllGuides] = useState(false);
   const [email, setEmail] = useState("");
 
   const toggleGuide = (index: number) => {
@@ -151,17 +152,12 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
       <div className={`parent-guides-page ${embedded ? "parent-guides-page--embedded scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
         <section className="parent-guides-intro">
           <div className="container">
-            <SectionLabel>Parent guides</SectionLabel>
-            {embedded ? <h2>Written by the coaches,<br className="hidden sm:block" /> not by a marketing team.</h2> : <h1>Written by the coaches,<br className="hidden sm:block" /> not by a marketing team.</h1>}
-            <p>The questions parents actually ask us, answered properly. These pages are also how families who have never heard of TYA Club find us in search.</p>
+            <SectionIntro eyebrow="Parent guides" title={<>Written by the coaches,<br />not by a marketing team.</>} description="The questions parents actually ask us, answered properly. These pages also help families who are new to TYA Club find clear, coach-written guidance." as={embedded ? "h2" : "h1"} className="parent-guides-intro-heading" />
           </div>
         </section>
 
-        <section className="container parent-guide-library" aria-label="All parent guides">
-          <div className="parent-guide-library-heading">
-            <SectionLabel>Explore the guides</SectionLabel>
-            <p>Select a question to read the coach’s full guide.</p>
-          </div>
+        <section className="container parent-guide-library" aria-labelledby="parent-guide-library-title">
+          <SectionIntro eyebrow="Parent guide library" title="Explore the guides." description="Choose a question to read the full guide from the coaches." id="parent-guide-library-title" className="parent-guide-library-heading" />
           <div className={`parent-guides-feature-grid ${embedded ? "parent-guides-feature-grid--embedded" : ""}`} aria-label={embedded ? "Featured and related parent guides" : "Featured parent guide and monthly letter"}>
             <div className="parent-guide-first-grid" role="group" aria-label="Featured guide and three more guides">
               <article className="parent-guide-feature" data-tone="white">
@@ -200,11 +196,15 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
               <p className="parent-guide-subscribe-note">Your email app will open to send your subscription request.</p>
             </aside>}
           </div>
-          <div className="parent-guide-cards">
+          {showAllGuides && <div className="parent-guide-cards" id="parent-guide-more">
             {cardGuideIndexes.slice(3).map((index) => (
               <ParentGuideCard key={guides[index].question} index={index} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
             ))}
-          </div>
+          </div>}
+          <button type="button" className="parent-guide-expand-button" onClick={() => setShowAllGuides((visible) => !visible)} aria-expanded={showAllGuides} aria-controls={showAllGuides ? "parent-guide-more" : undefined}>
+            {showAllGuides ? "Show fewer guides" : `Show all ${guides.length} guides`}
+            <ArrowRight className={showAllGuides ? "parent-guide-expand-arrow-open" : ""} size={16} aria-hidden="true" />
+          </button>
         </section>
       </div>
   );

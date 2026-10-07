@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
-import { PageHero, PageShell, SectionLabel } from "../components/SiteChrome";
+import { PageHero, PageShell, SectionIntro } from "../components/SiteChrome";
 import { ParentStories } from "../components/ParentStories";
 import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 
@@ -92,7 +92,7 @@ export default function Curriculum() {
 
     <section className="what-they-learn-section py-16 lg:py-24">
       <div className="container">
-        <SectionLabel>What they learn?</SectionLabel>
+        <SectionIntro eyebrow="Learning in action" title="What they learn comes to life." description="The outcomes and skills take shape through experiences that young adults can question, practise and carry into everyday life." />
         <div className="what-they-learn-board mt-6 lg:mt-8">
           <div className="what-they-learn-side">
             <div className="what-they-learn-rule" />
@@ -159,5 +159,5 @@ export default function Curriculum() {
     </section>
 
     <ParentStories />
-    <section className="soft-panel py-16 lg:py-24"><div className="container"><div className="flex items-center gap-3"><Check className="text-[#0e9c8c]" /><SectionLabel>Growth Card update</SectionLabel></div><h2 className="mt-5 max-w-[680px] text-5xl font-medium leading-[.96] tracking-[-.05em] sm:text-6xl">The behaviours parents can <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">see.</strong></span></h2><div className="mt-12 grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
+    <section className="soft-panel py-16 lg:py-24"><div className="container"><SectionIntro eyebrow="Growth Card update" title={<>The behaviours parents can <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">see.</strong></span></>} description="A coach-written snapshot makes progress easier to notice and talk about at home." /><div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">{["Confidence", "Communication", "Collaboration", "Decision making", "Adaptability", "Ownership"].map((item) => <div className="growth-chip" key={item}>{item}</div>)}</div></div></section>
   </PageShell>;}

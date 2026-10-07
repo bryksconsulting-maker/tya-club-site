@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { FindCentreSearch, SiteHeader, WHATSAPP_HREF } from "../components/SiteChrome";
+import { FindCentreSearch, SectionIntro, SiteHeader, WHATSAPP_HREF } from "../components/SiteChrome";
 import { ParentStories } from "../components/ParentStories";
 import { ExperienceFaqList } from "../components/ExperienceFaqList";
 import { ParentGuidesContent } from "./ParentGuides";
@@ -161,7 +161,6 @@ function SectionLabel({ children, light = false, prominent = false }: { children
 
 export default function Home() {
   const [heroPosition, setHeroPosition] = useState(0);
-  const [heroResponseVisible, setHeroResponseVisible] = useState(false);
   const [trialOpen, setTrialOpen] = useState(false);
   const [trialSubmitted, setTrialSubmitted] = useState(false);
   const [trialPhone, setTrialPhone] = useState("");
@@ -178,12 +177,6 @@ export default function Home() {
     }, 5200);
     return () => window.clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    setHeroResponseVisible(false);
-    const timer = window.setTimeout(() => setHeroResponseVisible(true), 1700);
-    return () => window.clearTimeout(timer);
-  }, [heroPosition]);
 
   useEffect(() => {
     if (learningCarouselsPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -242,8 +235,8 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-[530px] lg:ml-auto">
-              <div aria-hidden="true" className="hero-orb-coral hero-orb delay absolute -bottom-5 -left-5 z-0 h-32 w-32 rounded-full" />
-              <div aria-hidden="true" className="hero-orb-ivory absolute -right-2 -top-5 z-20 h-32 w-32 rounded-full" />
+              <div aria-hidden="true" className="hero-orb-coral hero-orb delay absolute -bottom-5 -right-5 z-20 h-32 w-32 rounded-full" />
+              <div aria-hidden="true" className="hero-orb-ivory absolute -left-2 -top-5 z-0 h-32 w-32 rounded-full" />
               <div className="mission-polaroid relative z-10 rotate-[-2deg] p-3 pb-0 shadow-[0_24px_70px_rgba(62,66,69,.18)] sm:p-4 sm:pb-0">
                 <div className="mission-polaroid-photo relative min-h-[345px] px-5 pb-12 pt-6 text-center sm:min-h-[385px] sm:px-10 sm:pt-7">
                   <h2 className="mission-card-title mx-auto max-w-[430px] text-balance text-xl font-semibold leading-tight tracking-[-.025em] sm:text-2xl">Are your kids future ready?</h2>
@@ -256,7 +249,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mission-polaroid-caption flex items-center justify-center px-3 py-3 text-center sm:px-7">
-                  <p key={`${heroPosition}-answer`} aria-live="polite" aria-busy={!heroResponseVisible} className={`mission-answer-copy font-medium ${heroResponseVisible ? "mission-answer-visible" : "invisible"}`}>
+                  <p key={`${heroPosition}-answer`} aria-live="polite" className="mission-answer-copy font-medium">
                     <span className="block">{line.response}</span>
                     {line.skill && <span className="mt-0.5 block">They learn <strong className="mission-skill-highlight font-extrabold">{line.skill.toUpperCase()}</strong>.</span>}
                   </p>
@@ -277,13 +270,7 @@ export default function Home() {
 
         <section id="why-tya" className="why-tya-section py-16 sm:py-20 lg:py-24">
           <div className="container">
-            <div className="why-tya-heading">
-              <div>
-                <SectionLabel prominent>Why TYA</SectionLabel>
-                <h2 className="mt-5">The skills that make the <span>difference.</span></h2>
-              </div>
-              <p className="why-tya-lead">TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails.</p>
-            </div>
+            <SectionIntro eyebrow="Why TYA" title={<>The skills that make the <span className="headline-accent headline-accent--coral"><strong className="headline-impact">difference.</strong></span></>} description="TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails." className="why-tya-heading" />
 
             <div className="why-tya-block-grid">
               {whyTyaBlocks.map((block) => {
@@ -302,17 +289,9 @@ export default function Home() {
 
         <section id="how-it-works" className="grain scroll-mt-24 bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
           <div className="container">
-            <SectionLabel prominent>How TYA works?</SectionLabel>
+            <SectionIntro eyebrow="How TYA works?" title={<>One step. One journey. A stronger, more capable <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span></>} description="Take the first leap. Join the movement. We’ll help you take it from there." />
             <div className="mt-4 rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-4 sm:p-6 lg:p-8">
-              <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end lg:gap-10">
-                <h2 className="max-w-[670px] text-balance text-3xl font-medium leading-[1.02] tracking-[-.04em] sm:text-4xl lg:text-5xl">
-                  One Step. One Journey. A stronger, more capable <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span>
-                </h2>
-                <p className="max-w-[290px] text-sm leading-6 text-[#656A6D] lg:pb-1">
-                  Take the first leap. Join the movement. We’ll help you take it from there.
-                </p>
-              </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step) => {
                   return (
                     <article key={step.number} className="step-card how-works-card flex min-h-[230px] flex-col rounded-[1.1rem] border border-[#2B2F32]/10 p-4 sm:min-h-[245px]">
@@ -337,7 +316,7 @@ export default function Home() {
 
         <section id="curriculum" className="scroll-mt-24 bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
           <div className="container">
-            <SectionLabel prominent>What they learn?</SectionLabel>
+            <SectionIntro eyebrow="What they learn?" title={<>Not just <strong className="headline-impact">knowledge.</strong> <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></>} description="Fourteen outcomes and twenty-two practical skills come together through experiences that make learning useful in everyday life." />
             <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
               <div className="grid grid-cols-1 items-center gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,360px)_minmax(0,1fr)] lg:gap-10">
                 <div className="order-2 min-w-0 lg:order-1">
@@ -355,8 +334,8 @@ export default function Home() {
                 </div>
 
                 <article className="order-1 mx-auto flex min-h-[285px] w-full max-w-[360px] flex-col justify-center rounded-[.75rem] bg-[#e5e2da] p-6 shadow-sm sm:col-span-2 sm:min-h-[310px] sm:p-8 lg:order-2 lg:col-span-1 lg:aspect-square lg:min-h-0" aria-labelledby="curriculum-card-title">
-                  <h2 id="curriculum-card-title" className="text-balance text-3xl font-medium leading-[1.05] tracking-[-.04em] text-[#2B2F32] sm:text-4xl">Not just <strong className="headline-impact">knowledge.</strong><br /><span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></h2>
-                  <p className="mt-5 text-xs leading-5 text-[#656A6D] sm:text-sm sm:leading-6">A purposeful curriculum that moves from self-awareness to social responsibility, through missions that make every skill feel useful.</p>
+                  <p id="curriculum-card-title" className="text-[10px] font-bold uppercase tracking-[.16em] text-[#656A6D]">Learning, made visible</p>
+                  <p className="mt-5 text-xs leading-5 text-[#656A6D] sm:text-sm sm:leading-6">A purposeful curriculum that moves from self-awareness to social responsibility, through stories, roles and Missions.</p>
                   <div className="mt-6 flex items-start gap-3 border-t border-[#2B2F32]/15 pt-4 text-[10px] leading-4 text-[#656A6D]">
                     <span className="shrink-0 font-bold text-[#2B2F32]">18+<br />skills</span>
                     <span>Delivered through stories, roles and missions — never worksheets alone.</span>
@@ -384,7 +363,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><SectionLabel light prominent>For parents</SectionLabel><h2 className="mt-5 text-balance text-5xl font-medium leading-[.98] tracking-[-.045em] sm:text-6xl">A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></h2><p className="mt-7 max-w-[470px] text-lg leading-8 text-white/65">Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world.</p><button className="btn-primary mt-9 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button></div><GrowthCardPreview /></div></div></section>
+        <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><SectionIntro eyebrow="For parents" title={<>A card comes home. Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">grade.</strong></span></>} description="Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world." action={<button className="btn-primary mt-6 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button>} light className="section-intro--stacked" /><GrowthCardPreview /></div></div></section>
 
         <ParentGuidesContent embedded />
 
@@ -393,17 +372,12 @@ export default function Home() {
         <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
 
         <section id="experience" className="experience-faq-section scroll-mt-24">
-          <div className="container experience-faq-layout">
-            <div className="experience-faq-intro">
-              <SectionLabel prominent>The TYA Experience</SectionLabel>
-              <h2>Good questions deserve <span className="headline-accent headline-accent--butter"><strong className="headline-impact">proper</strong></span> answers.</h2>
-              <p>Not marketing promises. The practical details that help you decide if TYA is right for your young adult.</p>
-              <form className="experience-question-form" onSubmit={askExperienceQuestion}>
+          <div className="container">
+            <SectionIntro eyebrow="The TYA Experience" title={<>Good questions deserve <span className="headline-accent headline-accent--butter"><strong className="headline-impact">proper</strong></span> answers.</>} description="Not marketing promises. The practical details that help you decide if TYA is right for your young adult." action={<form className="experience-question-form" onSubmit={askExperienceQuestion}>
                 <label className="sr-only" htmlFor="experience-question">Type a question for TYA Club</label>
                 <input id="experience-question" type="text" maxLength={500} required value={experienceQuestion} onChange={(event) => setExperienceQuestion(event.target.value)} placeholder="Type your question" />
                 <button type="submit" aria-label="Ask us anything"><span>Ask us anything</span><ArrowRight size={15} aria-hidden="true" /></button>
-              </form>
-            </div>
+              </form>} className="experience-faq-section-intro" />
             <ExperienceFaqList items={experienceFaqs} />
           </div>
         </section>
