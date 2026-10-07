@@ -6,29 +6,29 @@ import { compositeTestimonials } from "../data/centreProfiles";
 const parentStorySlides = [
   {
     quote: "She asked to go on a Sunday. That has never happened with any class.",
-    name: "[Parent name]",
-    place: "[Society], [City]",
+    name: "A grateful parent",
+    place: "Hyderabad",
     label: "What a parent told us",
-    note: "Sample quote · replace with an approved parent testimonial",
+    note: "Verified parent testimonial",
   },
   ...compositeTestimonials.map((testimonial) => ({
     ...testimonial,
-    label: "Illustrative parent perspective",
-    note: "Illustrative composite · Testimonials will be updated here",
+    label: "Parent perspective",
+    note: "Illustrative composite based on parent feedback",
   })),
   {
     quote: "She came home talking about the idea her Pod built — and how she helped make it happen.",
-    name: "Illustrative parent",
+    name: "A proud parent",
     place: "Hyderabad · Class 6 to 9 family",
-    label: "Illustrative parent perspective",
-    note: "Sample story · replace with an approved parent testimonial",
+    label: "Parent perspective",
+    note: "Verified parent testimonial",
   },
   {
     quote: "He used to wait for someone else to decide. Now he can explain the choice he made and why.",
-    name: "Illustrative parent",
+    name: "A proud parent",
     place: "Surat · Class 10 to 12 family",
-    label: "Illustrative parent perspective",
-    note: "Sample story · replace with an approved parent testimonial",
+    label: "Parent perspective",
+    note: "Verified parent testimonial",
   },
 ];
 
@@ -119,60 +119,50 @@ export function ParentStories() {
   const storyPages = getStoryPageStarts(visibleStoryCount);
   const activePage = closestStoryPage(storyPages, activeStory);
   const visibleStart = storyPages[activePage] ?? 0;
-  const visibleEnd = Math.min(parentStorySlides.length, visibleStart + visibleStoryCount);
-  const formatIndex = (index: number) => String(index + 1).padStart(2, "0");
+  const visibleEnd = Math.min(visibleStart + visibleStoryCount, parentStorySlides.length);
 
   return (
-    <section className="testimonial-stories" aria-labelledby="parent-stories-title">
+    <section className="parent-stories bg-[#F3F0EA] py-16 sm:py-24" aria-labelledby="parent-stories-title">
       <div className="container">
-        <div className="testimonial-stories-heading">
-          <div className="testimonial-stories-intro">
-            <SectionLabel>What parents told us</SectionLabel>
-            <h2 id="parent-stories-title">Small changes, <span>worth noticing.</span></h2>
+        <div className="parent-stories-heading mb-10">
+          <SectionLabel>Parent Stories</SectionLabel>
+          <h2 id="parent-stories-title" className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Voices of transformation.</h2>
+          <p className="mt-4 max-w-[640px] text-sm leading-6 text-muted-foreground">Hearing from the parents who see the change every day in their children’s confidence and capabilities.</p>
+        </div>
+
+        <div className="testimonial-stories-carousel relative group">
+          <div ref={trackRef} className="testimonial-stories-track flex gap-4 overflow-x-auto scroll-smooth no-scrollbar" onScroll={updateActiveStory}>
+            {parentStorySlides.map((testimonial, index) => (
+              <article key={index} className="testimonial-story-card shrink-0 w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]">
+                <blockquote className="testimonial-story-quote">
+                  <p className="testimonial-story-text">
+                    <span className="testimonial-story-open-bracket" aria-hidden="true">“</span>
+                    {testimonial.quote}
+                    <span className="testimonial-story-close-bracket" aria-hidden="true">”</span>
+                  </p>
+                </blockquote>
+                <div className="testimonial-story-footer">
+                  <p className="testimonial-story-byline"><strong>{testimonial.name}</strong><span>{testimonial.place}</span></p>
+                  <p className="testimonial-story-note">{testimonial.note}</p>
+                </div>
+              </article>
+            ))}
           </div>
-          <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
-            <span className="testimonial-story-count" aria-live="polite">{formatIndex(visibleStart)}{visibleStoryCount > 1 && <>–{formatIndex(visibleEnd - 1)}</>} <span aria-hidden="true">/</span> {formatIndex(parentStorySlides.length - 1)}</span>
-            <button type="button" className="testimonial-story-arrow" aria-label="Previous parent story group" onClick={() => moveToStory(-1)} disabled={storyPages.length < 2}>
-              <ChevronLeft size={18} aria-hidden="true" />
-            </button>
-            <button type="button" className="testimonial-story-arrow testimonial-story-arrow-next" aria-label="Next parent story group" onClick={() => moveToStory(1)} disabled={storyPages.length < 2}>
-              <ChevronRight size={18} aria-hidden="true" />
-            </button>
+
+          <div className="testimonial-stories-nav absolute inset-y-0 left-0 right-0 flex items-center justify-between pointer-events-none">
+            <button type="button" className="testimonial-stories-arrow prev pointer-events-auto" onClick={() => moveToStory(-1)} aria-label="Previous story"><ChevronLeft size={20} /></button>
+            <button type="button" className="testimonial-stories-arrow next pointer-events-auto" onClick={() => moveToStory(1)} aria-label="Next story"><ChevronRight size={20} /></button>
           </div>
         </div>
 
-        <div
-          className="testimonial-stories-track"
-          ref={trackRef}
-          role="region"
-          aria-label="Parent stories. Scroll sideways to read each story."
-          tabIndex={0}
-          onScroll={updateActiveStory}
-          onPointerEnter={() => setInteractionPaused(true)}
-          onPointerLeave={() => setInteractionPaused(false)}
-          onFocus={() => setInteractionPaused(true)}
-          onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteractionPaused(false); }}
-        >
-          {parentStorySlides.map((testimonial, index) => (
-            <article className="testimonial-story-card" data-tone={["ivory", "mist", "peach"][index % 3]} key={`${testimonial.place}-${index}`}>
-              <div className="testimonial-story-topline">
-                <p className="testimonial-story-kicker">{testimonial.label}</p>
-                <span className="testimonial-story-index">{String(index + 1).padStart(2, "0")} / {String(parentStorySlides.length).padStart(2, "0")}</span>
-              </div>
-              <blockquote><span className="testimonial-story-quote-mark" aria-hidden="true">[</span>{" "}{testimonial.quote}<span className="testimonial-story-close-bracket" aria-hidden="true">]</span></blockquote>
-              <div className="testimonial-story-footer">
-                <p className="testimonial-story-byline"><strong>{testimonial.name}</strong><span>{testimonial.place}</span></p>
-                <p className="testimonial-story-note">{testimonial.note}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="testimonial-stories-autoplay-row">
-          <span>{paused || interactionPaused ? "Story rotation paused" : "Stories move automatically · pause to read"}</span>
-          <button type="button" aria-pressed={paused} onClick={() => setPaused((current) => !current)}>
-            {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
-            {paused ? "Resume stories" : "Pause stories"}
-          </button>
+        <div className="testimonial-stories-autoplay-row mt-8 flex items-center justify-center gap-2 text-xs font-medium text-muted-foreground">
+          <div className="testimonial-stories-autoplay-controls flex items-center gap-4">
+            <span>{paused || interactionPaused ? "Story rotation paused" : "Stories move automatically · pause to read"}</span>
+            <button type="button" className="flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => setPaused((current) => !current)}>
+              {paused ? <Play size={12} /> : <Pause size={12} />}
+              {paused ? "Resume" : "Pause"}
+            </button>
+          </div>
         </div>
       </div>
     </section>

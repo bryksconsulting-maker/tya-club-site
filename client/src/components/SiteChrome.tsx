@@ -30,8 +30,8 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   return (
     <div className="theme-toggle" aria-label="Choose colour theme">
-      <button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")} aria-label="Use light theme" aria-pressed={theme === "light"}><Sun size={14} /> <span>Light</span></button>
-      <button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")} aria-label="Use dark theme" aria-pressed={theme === "dark"}><Moon size={14} /> <span>Dark</span></button>
+      <button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")} aria-label="Use light theme" aria-pressed={theme === "light"}><Sun size={14} /> <span className="ml-1">Light</span></button>
+      <button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")} aria-label="Use dark theme" aria-pressed={theme === "dark"}><Moon size={14} /> <span className="ml-1">Dark</span></button>
     </div>
   );
 }
@@ -143,7 +143,7 @@ export function WhatsAppFloat() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-8 right-5 z-50">
       {expanded ? (
         <div className="whatsapp-float flex items-center gap-2 rounded-full px-4 py-3 text-sm font-bold text-white">
           <a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" aria-label="Chat with TYA Club on WhatsApp" className="flex items-center gap-2">

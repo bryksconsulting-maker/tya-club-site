@@ -76,7 +76,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
             <div className="pod-location-list" aria-label="TYA Pods">
               {centres.map((item, index) => <button type="button" className="pod-location-card" key={item.city} data-selected={selectedCity === item.city} aria-pressed={selectedCity === item.city} onClick={() => setSelectedCity(item.city)}>
                 <span className="pod-location-card-top"><span className="pod-location-card-number">0{index + 1}</span><span className="pod-location-card-status">Pod</span></span>
-                <strong>{item.locality}<span>, {item.city}</span></strong>
+                <strong className="pod-location-card-title">{item.locality}<span className="pod-location-card-city">, {item.city}</span></strong>
                 <span className="pod-location-card-address">{item.address}</span>
                 <span className="pod-location-card-link">View Pod details <ExternalLink size={13} aria-hidden="true" /></span>
               </button>)}

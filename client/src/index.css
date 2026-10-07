@@ -83,6 +83,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 @layer base {
   * { @apply border-border outline-ring/50; }
   button:not(:disabled), [role="button"]:not([aria-disabled="true"]), a[href], input:not(:disabled) { @apply cursor-pointer; }
+  [id] { scroll-margin-top: 90px; }
 }
 
 @layer components {
@@ -105,6 +106,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 }
 
 .nav-link { position: relative; color: rgba(62,66,69,.76); transition: color .18s ease; }
+.nav-link { position: relative; color: rgba(62,66,69,.76); transition: color .18s ease; font-size: .8rem; font-weight: 600; }
 .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: #f28d63; transform: scaleX(0); transform-origin: left; transition: transform .2s cubic-bezier(.23,1,.32,1); }
 .nav-link:hover { color: var(--brand-ink); }
 .nav-link:hover::after { transform: scaleX(1); }
@@ -158,6 +160,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 
 .story-line { background: repeating-linear-gradient(90deg, #f28d63 0, #f28d63 8px, transparent 8px, transparent 15px); }
 .step-card { transition: transform .25s cubic-bezier(.23,1,.32,1), box-shadow .25s ease; }
+.step-card { transition: transform .25s cubic-bezier(.23,1,.32,1), box-shadow .2s ease; }
 .step-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(62,66,69,.1); }
 .how-works-card { background: color-mix(in srgb, var(--brand-ink) 6%, var(--brand-bg)); }
 .learning-carousel-copy { animation: learning-copy-enter .32s ease-out both; }
@@ -187,6 +190,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .logo-dark { display: none; }
 .site-header { background: var(--brand-ivory); border-color: color-mix(in srgb, var(--brand-charcoal) 14%, transparent); backdrop-filter: blur(16px); }
 .site-header-home { background: var(--brand-ivory); border-color: color-mix(in srgb, var(--brand-charcoal) 18%, transparent); }
+.site-header { background: var(--brand-butter); border-color: color-mix(in srgb, var(--brand-charcoal) 18%, transparent); backdrop-filter: blur(16px); }
+.site-header-home { background: var(--brand-butter); border-color: color-mix(in srgb, var(--brand-charcoal) 18%, transparent); }
+.site-header .nav-link, .site-header .site-nav-label, .site-header .site-nav-trigger, .site-header .site-menu-toggle,
+.site-header .site-mobile-link, .site-header .site-mobile-parent > span, .site-header .site-mobile-parent > button, .site-header .site-mobile-submenu a { color: var(--brand-charcoal); }
+.site-header .nav-link:hover { color: var(--brand-charcoal); }
+.site-header .btn-primary, .site-header-home .btn-primary { background: var(--brand-charcoal); color: var(--brand-ivory); box-shadow: none; }
+.site-header .site-menu-toggle { border-color: color-mix(in srgb, var(--brand-charcoal) 28%, transparent); }
 .site-header-home .nav-link, .site-header-home .site-nav-label, .site-header-home .site-nav-trigger { color: var(--brand-charcoal); }
 .site-header-home .site-mobile-link, .site-header-home .site-mobile-parent > span, .site-header-home .site-mobile-parent > button, .site-header-home .site-mobile-submenu a { color: var(--brand-charcoal); }
 .site-header-home .nav-link::after { background: var(--brand-coral-text); }
@@ -216,6 +226,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .site-mobile-submenu a { padding: .55rem .65rem; color: var(--brand-muted); font-size: .82rem; font-weight: 550; }
 .site-mobile-submenu a[aria-current="page"] { color: var(--brand-coral-text); }
 .site-mobile-contact { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .8rem; border-radius: 999px; background: var(--brand-butter); padding: .8rem 1rem; color: var(--brand-charcoal); font-size: .82rem; font-weight: 750; }
+.site-header .site-nav-parent > .nav-link, .site-header .site-nav-trigger:hover { color: var(--brand-charcoal); }
+.site-header .site-nav-group[data-active="true"] .site-nav-label { color: var(--brand-coral-text); }
 @media (min-width: 1280px) {
   .site-navigation { display: flex; flex: 0 1 auto; align-items: center; gap: .8rem; }
   .site-navigation > .nav-link { flex: 0 0 auto; font-size: .68rem; font-weight: 700; white-space: nowrap; }
@@ -406,7 +418,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .testimonial-story-byline { display: flex; flex-direction: column; gap: .28rem; color: var(--brand-muted); font-size: .74rem; line-height: 1.45; }
 .testimonial-story-byline strong { color: var(--brand-ink); font-size: .8rem; font-weight: 700; }
 .testimonial-story-note { max-width: 100%; color: var(--brand-muted); font-size: .58rem; line-height: 1.5; text-align: left; }
-.testimonial-stories-autoplay-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: .4rem; color: var(--brand-muted); font-size: .68rem; }
+.testimonial-stories-autoplay-row { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; margin-top: .4rem; color: var(--brand-muted); font-size: .68rem; }
 .testimonial-stories-autoplay-row button { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 999px; padding: .55rem .8rem; color: var(--brand-ink); font-size: .68rem; font-weight: 700; transition: background-color .18s ease, color .18s ease; }
 .testimonial-stories-autoplay-row button:hover { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .testimonial-story-card { border-color: color-mix(in srgb, var(--brand-ivory) 11%, transparent); background: var(--brand-card); box-shadow: 0 18px 45px rgba(0,0,0,.14); }
@@ -431,6 +443,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .experience-faq-trigger { padding-block: .95rem; font-size: .8rem; }
   .testimonial-stories-heading { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
   .testimonial-stories-controls { width: 100%; justify-content: flex-end; }
+  .testimonial-stories-autoplay-row { align-items: flex-start; flex-direction: column; padding-right: 0; }
   .testimonial-story-card { min-height: 320px; padding: 1.15rem; }
   .testimonial-story-card blockquote { font-size: clamp(1rem, 2.2vw, 1.25rem); }
 }
@@ -775,6 +788,28 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .field-error { color: var(--brand-coral); }
 .dark .contact-line b { color: var(--brand-ink); }
 .dark .growth-chip { background: var(--brand-card); }
+.story-narrative { max-width: 1120px; }
+.story-narrative-heading { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(220px, .75fr); align-items: center; gap: clamp(1.5rem, 4vw, 4rem); }
+.story-narrative-title { max-width: 880px; }
+.story-narrative-copy > div { min-width: 0; }
+.story-narrative-callout { border-left: 4px solid var(--brand-coral); padding: .25rem 0 .25rem 1.25rem; color: var(--brand-ink); font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 650; line-height: 1.45; }
+.story-narrative-close { color: var(--brand-ink); font-weight: 600; }
+.founder-section-heading { max-width: 760px; }
+.founder-carousel { max-width: 1020px; margin-inline: auto; }
+.founder-profile { display: grid; grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr); overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: 1.5rem; background: var(--brand-card); box-shadow: 0 18px 44px rgba(43,47,50,.1); }
+.founder-profile-portrait { position: relative; min-width: 0; min-height: 100%; margin: 0; overflow: hidden; background: var(--brand-charcoal); }
+.founder-profile-portrait img { display: block; width: 100%; height: 100%; min-height: 470px; object-fit: cover; object-position: center 32%; }
+.founder-profile-portrait figcaption { position: absolute; right: 1rem; bottom: 1rem; border: 1px solid rgba(243,240,234,.35); border-radius: 999px; background: rgba(43,47,50,.78); padding: .5rem .75rem; color: var(--brand-ivory); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; backdrop-filter: blur(8px); }
+.founder-profile-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 4vw, 3.5rem); }
+.founder-profile-role { color: var(--brand-coral-text); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+.founder-profile-copy h3 { margin-top: .7rem; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; line-height: 1; letter-spacing: -.05em; }
+.founder-profile-bio { display: grid; gap: .9rem; margin-top: 1.5rem; color: var(--brand-muted); font-size: clamp(.87rem, 1vw, .98rem); line-height: 1.75; }
+.founder-profile-bio p { margin: 0; }
+.founder-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; padding-top: 1.35rem; }
+.founder-carousel-arrow { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 50%; color: var(--brand-ink); transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease; }
+.founder-carousel-arrow:hover { transform: translateY(-2px); border-color: var(--brand-ink); background: var(--brand-ink); color: var(--brand-ivory); }
+.founder-carousel-dots { display: flex; align-items: center; gap: .5rem; }
+.founder-carousel-dot { width: .55rem; height: .55rem; border-radius: 999px; background: color-mix(in srgb, var(--brand-ink) 24%, transparent); transition: width .2s ease, background-color .2s ease; }
 .dark .site-footer { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .page-hero, .dark .outcome-card { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .led-marquee { background: var(--brand-charcoal); color: var(--brand-butter); }
@@ -864,6 +899,19 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .testimonial-story-card:nth-child(4) { animation-delay: -5.1s; }
 .testimonial-story-card::before { background: linear-gradient(90deg, var(--brand-coral), var(--brand-butter) 62%, color-mix(in srgb, var(--brand-butter) 15%, transparent)); }
 .testimonial-story-card:hover { animation-play-state: paused; }
+.testimonial-story-quote { position: relative; padding: 0; }
+.testimonial-story-text { margin: 0; padding: 0; }
+.testimonial-story-open-bracket, .testimonial-story-close-bracket { display: inline-block; position: static; color: var(--story-accent); font-family: Georgia, serif; font-size: 1.5em; font-weight: 700; line-height: 0; vertical-align: -.12em; }
+.testimonial-story-open-bracket { margin-right: .06em; }
+.testimonial-story-close-bracket { margin-left: .04em; }
+.testimonial-stories-nav { z-index: 2; }
+.testimonial-stories-carousel .testimonial-stories-nav .testimonial-stories-arrow { appearance: none; display: grid; width: 2.7rem; min-width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border: 1px solid color-mix(in srgb, var(--brand-ink) 28%, transparent); border-radius: 50%; background: var(--brand-card); padding: 0; color: var(--brand-ink); box-shadow: 0 8px 22px rgba(43,47,50,.14); cursor: pointer; transition: transform .18s ease, background-color .18s ease, color .18s ease; }
+.testimonial-stories-carousel .testimonial-stories-nav .testimonial-stories-arrow:hover { transform: scale(1.06); background: var(--brand-charcoal); color: var(--brand-ivory); }
+.testimonial-stories-carousel .testimonial-stories-nav .testimonial-stories-arrow:focus-visible { outline: 3px solid var(--brand-coral-text); outline-offset: 3px; }
+.testimonial-stories-arrow.prev { margin-left: -.65rem; }
+.testimonial-stories-arrow.next { margin-right: -.65rem; }
+.dark .testimonial-stories-carousel .testimonial-stories-nav .testimonial-stories-arrow { border-color: color-mix(in srgb, var(--brand-ivory) 35%, transparent); background: var(--brand-card); color: var(--brand-ivory); }
+.dark .testimonial-stories-carousel .testimonial-stories-nav .testimonial-stories-arrow:hover { background: var(--brand-butter); color: var(--brand-charcoal); }
 @keyframes parent-story-float { 0%, 100% { transform: translateY(0) rotate(-.3deg); } 50% { transform: translateY(-8px) rotate(.3deg); } }
 .parent-guide-library-heading .section-kicker { color: var(--brand-muted); }
 .parent-guide-feature { --guide-copy-bg: var(--brand-card); --guide-copy-ink: var(--brand-ink); --guide-copy-muted: var(--brand-muted); --guide-copy-accent: var(--brand-muted); background: var(--guide-copy-bg); }
@@ -960,6 +1008,62 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .india-pod-map-pin img { position: absolute; top: 6px; left: 13px; width: 10px; height: 23px; object-fit: contain; }
 .india-pod-map-marker-label { position: absolute; top: 7px; left: 32px; display: flex; flex-direction: column; border: 1px solid #e2e0da; border-radius: .5rem; background: #fff; padding: .3rem .48rem; color: #303437; font-size: .57rem; font-weight: 750; line-height: 1.2; box-shadow: 0 4px 12px rgba(43,47,50,.08); white-space: nowrap; }
 .india-pod-map-marker-label small { margin-top: .14rem; color: var(--brand-muted); font-size: .48rem; font-weight: 600; }
+.india-pod-map-marker[data-selected="true"] { z-index: 2; }
+.india-pod-map-marker:focus-visible { outline: 3px solid var(--brand-coral-text); outline-offset: 3px; border-radius: 999px; }
+.india-pod-map-footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-top: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); padding: .55rem .7rem; font-size: .56rem; }
+.india-pod-map-footer a { color: var(--brand-muted); text-decoration: underline; text-underline-offset: 2px; }
+.india-pod-map-pan-hint { color: var(--brand-coral-text); font-weight: 750; }
+.pod-location-list { display: grid; gap: .5rem; }
+.pod-location-card { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: .75rem; background: var(--brand-soft); padding: .65rem .75rem; color: var(--brand-ink); text-align: left; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.pod-location-card:hover, .pod-location-card[data-selected="true"] { transform: translateY(-2px); border-color: color-mix(in srgb, var(--brand-coral) 65%, transparent); box-shadow: 0 10px 24px rgba(43,47,50,.08); }
+.pod-location-card-top { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: .55rem; }
+.pod-location-card-number { color: var(--brand-coral-text); font-size: .54rem; font-weight: 800; letter-spacing: .13em; }
+.pod-location-card-status { border-radius: 999px; background: var(--brand-card); padding: .2rem .42rem; color: var(--brand-muted); font-size: .45rem; font-weight: 750; text-transform: uppercase; }
+.pod-location-card > strong { margin-top: .32rem; font-size: .84rem; font-weight: 800; line-height: 1.2; }
+.pod-location-card > strong span { font-weight: 500; }
+.pod-location-card-address { margin-top: .3rem; color: var(--brand-muted); font-size: .57rem; line-height: 1.42; }
+.pod-location-card-link { display: inline-flex; align-items: center; gap: .3rem; margin-top: auto; padding-top: .4rem; color: var(--brand-coral-text); font-size: .58rem; font-weight: 750; }
+.dark .india-pod-map { background: #292d30; }
+.dark .india-pod-map-regions path { stroke: #454a4d; }
+.dark .india-pod-map-regions [data-tone="ivory"] { fill: #33383b; }
+.dark .india-pod-map-regions [data-tone="butter"] { fill: #303538; }
+.dark .india-pod-map-regions [data-tone="coral"] { fill: #2e3336; }
+.dark .india-pod-map-regions [data-tone="soft"] { fill: #353a3d; }
+.dark .india-pod-map-state-labels text { fill: #c7c9c7; stroke: #292d30; }
+.dark .india-pod-map-cities circle { fill: #d8d9d7; stroke: #292d30; }
+.dark .india-pod-map-cities text { fill: #d8d9d7; stroke: #292d30; }
+.dark .parent-guide-card[data-tone="white"] { --guide-copy-bg: var(--brand-card); }
+@media (max-width: 850px) {
+  .pod-discovery-grid { grid-template-columns: minmax(0, 1fr); }
+  .india-pod-map { width: 100%; max-width: 700px; justify-self: center; }
+  .pod-location-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 851px) and (max-width: 1100px) {
+  .pod-discovery-grid { grid-template-columns: minmax(0, 1.1fr) minmax(255px, .9fr); }
+}
+@media (max-width: 520px) {
+  .why-tya-feature-title { align-items: flex-start; gap: .8rem; }
+  .why-tya-feature-title h3, .why-tya-block-card h3 { font-size: 1.45rem; }
+  .how-works-card-heading { grid-template-columns: 2.55rem minmax(0, 1fr); gap: .7rem; }
+  .how-works-card-number-badge { width: 2.55rem; }
+  .how-works-card-title { font-size: 1.25rem; }
+  .pod-discovery-heading { align-items: flex-start; }
+  .pod-network-count { display: none; }
+  .pod-location-list { grid-template-columns: minmax(0, 1fr); }
+  .india-pod-map { min-height: 260px; }
+  .india-pod-map-marker-label { font-size: .51rem; }
+  .india-pod-map-caption { right: .45rem; bottom: .45rem; font-size: .4rem; }
+  .parent-guide-why-teaser { font-size: .65rem; }
+}
+
+/* India state map labels and TYA-mark location pins. */
+.india-pod-map-pin { position: absolute; inset: 0; display: block; transition: transform .18s ease, filter .18s ease; }
+.india-pod-map-pin svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.india-pod-map-pin svg path { fill: var(--brand-coral); stroke: var(--brand-card); stroke-width: 1.3; }
+.india-pod-map-pin svg circle { fill: var(--brand-card); }
+.india-pod-map-pin img { position: absolute; top: 6px; left: 13px; width: 10px; height: 23px; object-fit: contain; }
+.india-pod-map-marker-label { position: absolute; top: 7px; left: 32px; display: flex; flex-direction: column; border: 1px solid #e2e0da; border-radius: .5rem; background: #fff; padding: .3rem .48rem; color: #303437; font-size: .57rem; font-weight: 750; line-height: 1.2; box-shadow: 0 4px 12px rgba(43,47,50,.08); white-space: nowrap; }
+.india-pod-map-marker-label small { margin-top: .14rem; color: var(--brand-muted); font-size: .48rem; font-weight: 600; }
 .india-pod-map-marker[data-selected="true"] .india-pod-map-pin { transform: scale(1.12); filter: drop-shadow(0 4px 5px rgba(43,47,50,.24)); }
 .dark .india-pod-map-pin svg circle { fill: var(--brand-ivory); }
 .dark .india-pod-map-marker-label { border-color: #51565a; background: #353a3d; color: #f1efe8; }
@@ -968,4 +1072,38 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 }
 @media (max-width: 520px) {
   .india-pod-map-marker-label { font-size: .54rem; }
+}
+
+/* THEME TOGGLE STYLES */
+.theme-toggle {
+  display: inline-flex;
+  background: var(--brand-soft);
+  border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+}
+.theme-toggle button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: var(--brand-muted);
+  font-size: .7rem;
+  font-weight: 600;
+  transition: all .2s ease;
+}
+.theme-toggle button.active {
+  background: var(--brand-card);
+  color: var(--brand-ink);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.theme-toggle button:hover:not(.active) {
+  color: var(--brand-ink);
+}
+@media (max-width: 380px) {
+  .theme-toggle button span { display: none; }
 }
