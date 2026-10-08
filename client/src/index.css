@@ -573,8 +573,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .parent-guide-arrow-open { transform: rotate(90deg); }
 .home-manifesto { position: relative; isolation: isolate; overflow: hidden; border-block: 2px solid color-mix(in srgb, var(--brand-charcoal) 16%, transparent); background: var(--brand-coral); color: var(--brand-charcoal); }
 .home-manifesto::before { position: absolute; z-index: -1; top: 50%; left: -7rem; width: 17rem; aspect-ratio: 1; transform: translateY(-50%); border: 1px solid color-mix(in srgb, var(--brand-charcoal) 28%, transparent); border-radius: 50%; box-shadow: 0 0 0 1.5rem color-mix(in srgb, var(--brand-charcoal) 8%, transparent), 0 0 0 3rem color-mix(in srgb, var(--brand-butter) 18%, transparent); content: ''; pointer-events: none; }
-.home-manifesto-inner { position: relative; padding-block: clamp(2.5rem, 5vw, 4rem); }
-.home-manifesto-copy { max-width: 62rem; margin: 0 auto; text-align: center; font-size: clamp(1.3rem, 2.25vw, 2.1rem); font-weight: 550; line-height: 1.28; letter-spacing: -.035em; text-wrap: balance; }
+.home-manifesto-inner { position: relative; container-type: inline-size; padding-block: clamp(2.5rem, 5vw, 4rem); }
+.home-manifesto-copy { width: 100%; max-width: none; margin: 0 auto; text-align: center; white-space: nowrap; font-size: clamp(.3rem, 2.75cqi, 1.9rem); font-weight: 550; line-height: 1.28; letter-spacing: -.05em; }
 .home-manifesto-copy strong { color: var(--brand-butter); font-weight: 750; }
 .home-manifesto-copy em { color: var(--brand-ivory); font-style: italic; font-weight: 750; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--brand-ivory) 76%, transparent); text-decoration-thickness: .08em; text-underline-offset: .13em; }
 .why-tya-section { background: var(--brand-bg); color: var(--brand-ink); }
