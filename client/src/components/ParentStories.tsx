@@ -124,7 +124,26 @@ export function ParentStories() {
   return (
     <section className="parent-stories bg-[#F3F0EA] py-16 sm:py-24" aria-labelledby="parent-stories-title">
       <div className="container">
-        <SectionIntro eyebrow="Parent Stories" title="Voices of transformation." description="Hearing from parents who notice changes in their young adults’ confidence and capabilities." id="parent-stories-title" className="parent-stories-heading" />
+        <SectionIntro
+          eyebrow="Parent Stories"
+          title="Voices of transformation."
+          description="Hearing from parents who notice changes in their young adults’ confidence and capabilities."
+          action={(
+            <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
+              <span className="testimonial-story-count">
+                {String(visibleStart + 1).padStart(2, "0")} <span aria-hidden="true">/</span> {String(visibleEnd).padStart(2, "0")}
+              </span>
+              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(-1)} aria-label="Previous story">
+                <ChevronLeft size={20} />
+              </button>
+              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(1)} aria-label="Next story">
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          )}
+          id="parent-stories-title"
+          className="parent-stories-heading"
+        />
 
         <div className="testimonial-stories-carousel relative group">
           <div ref={trackRef} className="testimonial-stories-track flex gap-4 overflow-x-auto scroll-smooth no-scrollbar" onScroll={updateActiveStory}>
@@ -145,10 +164,6 @@ export function ParentStories() {
             ))}
           </div>
 
-          <div className="testimonial-stories-nav absolute inset-y-0 left-0 right-0 flex items-center justify-between pointer-events-none">
-            <button type="button" className="testimonial-stories-arrow prev pointer-events-auto" onClick={() => moveToStory(-1)} aria-label="Previous story"><ChevronLeft size={20} /></button>
-            <button type="button" className="testimonial-stories-arrow next pointer-events-auto" onClick={() => moveToStory(1)} aria-label="Next story"><ChevronRight size={20} /></button>
-          </div>
         </div>
 
         <div className="testimonial-stories-autoplay-row mt-8 flex items-center justify-center gap-2 text-xs font-medium text-muted-foreground">

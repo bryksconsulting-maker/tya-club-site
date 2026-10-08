@@ -262,6 +262,7 @@ export default function Home() {
 
         <section className="home-manifesto">
           <div className="container home-manifesto-inner">
+            <p className="home-manifesto-kicker">The TYA Manifesto</p>
             <p className="home-manifesto-copy">
               A club built for skills that <strong>go beyond the classroom</strong> - and into <em>real life.</em>
             </p>
