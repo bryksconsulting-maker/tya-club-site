@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { CONTACT_EMAIL, PageShell, SectionIntro } from "../components/SiteChrome";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { CONTACT_EMAIL, PageShell } from "../components/SiteChrome";
 
 const guides = [
   {
@@ -79,13 +79,10 @@ const guides = [
 
 const featuredGuideIndex = 8;
 const cardGuideIndexes = guides.map((_, index) => index).filter((index) => index !== featuredGuideIndex);
-function firstSentence(text: string) {
-  return text.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? text;
-}
 
-function GuideDetails({ guide, id, hidden }: { guide: (typeof guides)[number]; id: string; hidden: boolean }) {
+function GuideDetails({ guide, id, hidden, className = "" }: { guide: (typeof guides)[number]; id: string; hidden: boolean; className?: string }) {
   return (
-    <div className="parent-guide-expanded-copy" id={id} hidden={hidden}>
+    <div className={`parent-guide-expanded-copy ${className}`} id={id} hidden={hidden}>
       <div>
         <p className="parent-guide-expanded-label">Why this happens</p>
         <p>{guide.why}</p>
@@ -98,29 +95,25 @@ function GuideDetails({ guide, id, hidden }: { guide: (typeof guides)[number]; i
   );
 }
 
-function ParentGuideCard({ index, expanded, onToggle }: { index: number; expanded: boolean; onToggle: () => void }) {
+function ParentGuideRow({ index, number, expanded, onToggle }: { index: number; number: number; expanded: boolean; onToggle: () => void }) {
   const guide = guides[index];
   const detailsId = `parent-guide-details-${index + 1}`;
 
   return (
-    <article className="parent-guide-card" data-tone={index % 2 === 0 ? "white" : "mist"}>
-      <div className="parent-guide-card-copy">
-        {guide.category.trim().split(/\s+/).length > 1 && <p className="parent-guide-kicker">{guide.category}</p>}
-        <h2>
+    <article className="parent-guide-row" role="listitem">
+      <span className="parent-guide-row-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>
+      <div className="parent-guide-row-copy">
+        <p className="parent-guide-row-category">{guide.category}</p>
+        <h3>
           <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
             {guide.question}
           </button>
-        </h2>
-        <div className="parent-guide-why-teaser">
-          <p className="parent-guide-why-teaser-label">Why this happens</p>
-          <p>{firstSentence(guide.why)}</p>
-        </div>
-        <p className="parent-guide-byline">TYA Club Parent Guide</p>
-        <button type="button" className="parent-guide-text-link" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
-          {expanded ? "Close the guide" : "Read more ..."} <ArrowRight className={expanded ? "parent-guide-arrow-open" : ""} size={14} aria-hidden="true" />
-        </button>
-        <GuideDetails guide={guide} id={detailsId} hidden={!expanded} />
+        </h3>
       </div>
+      <button type="button" className="parent-guide-row-open" onClick={onToggle} aria-label={`${expanded ? "Close" : "Read"} guide: ${guide.category}`} aria-expanded={expanded} aria-controls={detailsId}>
+        <ArrowUpRight size={21} aria-hidden="true" />
+      </button>
+      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-row-details" />
     </article>
   );
 }
@@ -150,41 +143,56 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
 
   return (
       <div className={`parent-guides-page ${embedded ? "parent-guides-page--embedded scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
-        <section className="parent-guides-intro">
+        <section className="parent-guides-intro" aria-labelledby="parent-guides-intro-title">
           <div className="container">
-            <SectionIntro eyebrow="Parent guides" title={<>Written by the coaches,<br />not by a marketing team.</>} description="The questions parents actually ask us, answered properly. These pages also help families who are new to TYA Club find clear, coach-written guidance." as={embedded ? "h2" : "h1"} className="parent-guides-intro-heading" />
+            <div className="parent-guides-intro-layout">
+              <div className="parent-guides-intro-main">
+                <p className="parent-guides-library-label"><span aria-hidden="true" />Parent guide library</p>
+                <p className="parent-guides-notebook-label">The coach’s notebook</p>
+                {embedded ? <h2 id="parent-guides-intro-title" className="parent-guides-intro-title">Written by the coaches,<br />not by a <em>marketing team.</em></h2> : <h1 id="parent-guides-intro-title" className="parent-guides-intro-title">Written by the coaches,<br />not by a <em>marketing team.</em></h1>}
+              </div>
+              <p className="parent-guides-intro-copy">A calm, easy-to-scan guide to the questions families bring to TYA Club — and what our coaches have learned.</p>
+            </div>
           </div>
         </section>
 
         <section className="container parent-guide-library" aria-labelledby="parent-guide-library-title">
-          <SectionIntro eyebrow="Parent guide library" title="Explore the guides." description="Choose a question to read the full guide from the coaches." id="parent-guide-library-title" className="parent-guide-library-heading" />
-          <div className={`parent-guides-feature-grid ${embedded ? "parent-guides-feature-grid--embedded" : ""}`} aria-label={embedded ? "Featured and related parent guides" : "Featured parent guide and monthly letter"}>
-            <div className="parent-guide-first-grid" role="group" aria-label="Featured guide and three more guides">
-              <article className="parent-guide-feature" data-tone="white">
-                <div className="parent-guide-feature-copy">
-                  <p className="parent-guide-kicker">Featured parent guide</p>
-                  <h2>
-                    <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                      “{featuredGuide.question}”
-                    </button>
-                  </h2>
-                  <div className="parent-guide-why-teaser">
-                    <p className="parent-guide-why-teaser-label">Why this happens</p>
-                    <p>{firstSentence(featuredGuide.why)}</p>
-                  </div>
-                  <p className="parent-guide-byline">Written by TYA Club coaches · Parent guide</p>
-                  <button type="button" className="parent-guide-text-link" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                    {expandedGuides.has(featuredGuideIndex) ? "Close the guide" : "Read more ..."} <ArrowRight className={expandedGuides.has(featuredGuideIndex) ? "parent-guide-arrow-open" : ""} size={15} aria-hidden="true" />
+          <div className="parent-guide-section-heading">
+            <h2 id="parent-guide-library-title">Explore the guides.</h2>
+            <p>Pick a topic and begin wherever you are.</p>
+          </div>
+          <div className="parent-guides-feature-grid" aria-label="Featured and related parent guides">
+            <article className="parent-guide-feature">
+              <div className="parent-guide-feature-copy">
+                <p className="parent-guide-feature-kicker">Featured parent guide <span aria-hidden="true">·</span> {featuredGuide.category}</p>
+                <h3 className="parent-guide-feature-title">
+                  <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
+                    “She has a voice.<br />I just wish she’d<br /><em>use it more.</em>”
                   </button>
-                  <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
-                </div>
-              </article>
-              {cardGuideIndexes.slice(0, 3).map((index) => (
-                <ParentGuideCard key={guides[index].question} index={index} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+                </h3>
+                <p className="parent-guide-feature-byline">Notes from the coaches · Parent guide</p>
+                <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
+              </div>
+            </article>
+            <div className="parent-guide-rows" role="list" aria-label="More parent guides">
+              {cardGuideIndexes.slice(0, 3).map((index, position) => (
+                <ParentGuideRow key={guides[index].question} index={index} number={position + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
               ))}
             </div>
-
-            {!embedded && <aside className="parent-guide-newsletter">
+          </div>
+          <div className="parent-guide-library-footer">
+            <p>New guides added as coaches answer more parent questions.</p>
+            <button type="button" className="parent-guide-expand-button" onClick={() => setShowAllGuides((visible) => !visible)} aria-expanded={showAllGuides} aria-controls={showAllGuides ? "parent-guide-more" : undefined}>
+              {showAllGuides ? "Show fewer guides" : "Show all guides"}
+              <ArrowRight className={showAllGuides ? "parent-guide-expand-arrow-open" : "parent-guide-expand-arrow"} size={18} aria-hidden="true" />
+            </button>
+          </div>
+          {showAllGuides && <div className="parent-guide-rows parent-guide-rows--additional" id="parent-guide-more" role="list" aria-label="More parent guides">
+            {cardGuideIndexes.slice(3).map((index) => (
+              <ParentGuideRow key={guides[index].question} index={index} number={cardGuideIndexes.indexOf(index) + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+            ))}
+          </div>}
+          {!embedded && <aside className="parent-guide-newsletter">
               <p className="parent-guide-kicker">Free, monthly</p>
               <h2>One practical idea for your evenings.</h2>
               <p>A short letter from our coaches, once a month. No offers, no reminders to enrol.</p>
@@ -195,16 +203,6 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
               </form>
               <p className="parent-guide-subscribe-note">Your email app will open to send your subscription request.</p>
             </aside>}
-          </div>
-          {showAllGuides && <div className="parent-guide-cards" id="parent-guide-more">
-            {cardGuideIndexes.slice(3).map((index) => (
-              <ParentGuideCard key={guides[index].question} index={index} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
-            ))}
-          </div>}
-          <button type="button" className="parent-guide-expand-button" onClick={() => setShowAllGuides((visible) => !visible)} aria-expanded={showAllGuides} aria-controls={showAllGuides ? "parent-guide-more" : undefined}>
-            {showAllGuides ? "Show fewer guides" : `Show all ${guides.length} guides`}
-            <ArrowRight className={showAllGuides ? "parent-guide-expand-arrow-open" : ""} size={16} aria-hidden="true" />
-          </button>
         </section>
       </div>
   );

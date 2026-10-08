@@ -44,7 +44,7 @@ export function GrowthCardPreview() {
 
         <div className="growth-card-moment relative border-l-[3px] px-3.5 py-3 sm:px-4">
           <p className="growth-card-moment-label text-[9px] font-bold uppercase tracking-[.17em]">A TYA moment</p>
-          <p className="growth-card-quote mt-1.5 text-xs leading-[1.55] sm:text-[13px]">“In the Water Crisis Mission, Aarav proposed a compromise both Pods accepted — and volunteered to present it.”</p>
+          <p className="growth-card-quote mt-1.5 text-xs leading-[1.55] sm:text-[13px]">“When Aarav was asked to deal with an argument between two groups in the pod, he handled it with amazing composure, eventually convincing both parties.”</p>
         </div>
 
         <footer className="growth-card-footer relative mt-4 border-t pt-3 text-center text-[8px] font-bold uppercase tracking-[.16em] sm:mt-5">

@@ -45,7 +45,7 @@ export default function OurStory() {
   };
 
   return <PageShell>
-    <PageHero eyebrow="The idea" title="Where TYA began." intro="The idea was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need to become confident, independent and future-ready." />
+    <PageHero eyebrow="Our story" title="Where TYA began." intro="The idea was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need..." />
 
     <section className="container story-narrative py-16 lg:py-24" aria-labelledby="our-story-title">
       <SectionIntro eyebrow="Our story" id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />

@@ -21,9 +21,17 @@ const navigationItems: NavigationItem[] = [
   { label: "Skills", href: "#curriculum" },
   { label: "For parents", href: "#parents" },
   { label: "TYA experience", href: "#experience" },
-  { label: "Find a Pod", href: "#find-a-pod" },
+  { label: "Find a Pod", href: "#centre-results" },
   { label: "Our story", href: "/our-story" },
   { label: "Franchise", href: "/franchise" },
+];
+
+const desktopNavigationItems: NavigationItem[] = [
+  { label: "TYA", href: "#top" },
+  { label: "Skills", href: "#curriculum" },
+  { label: "Parents", href: "#parents" },
+  { label: "Experience", href: "#experience" },
+  { label: "Find a Pod", href: "#centre-results" },
 ];
 
 export function ThemeToggle() {
@@ -58,7 +66,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
       <div className="container flex min-h-[76px] items-center justify-between gap-3 xl:gap-5">
         <a href={`${LOGO_BASE}#top`} onClick={closeMenus} className="shrink-0" aria-label="TYA Club home"><img src={`${LOGO_BASE}tya-logo-lockup.svg`} alt="TYA Club" className="logo-light h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="logo-dark h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /></a>
         <nav className="site-navigation" aria-label="Primary navigation" onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDesktopGroup(null); }}>
-          {navigationItems.map((item) => {
+          {desktopNavigationItems.map((item) => {
             const homeAnchor = Boolean(item.href?.startsWith("#"));
             const active = item.href && !homeAnchor ? isCurrent(item.href) : item.children?.some((child) => isCurrent(child.href));
             if (!item.children) {
