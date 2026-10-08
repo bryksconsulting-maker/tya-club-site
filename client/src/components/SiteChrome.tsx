@@ -46,8 +46,7 @@ export function ThemeToggle() {
   return (
     <div className="theme-toggle">
       <button type="button" onClick={toggleTheme} aria-label={`Switch to ${nextTheme} theme`} title={`Switch to ${nextTheme} theme`}>
-        <ThemeIcon size={14} aria-hidden="true" />
-        <span>{nextTheme === "dark" ? "Dark" : "Light"}</span>
+        <ThemeIcon size={18} aria-hidden="true" />
       </button>
     </div>
   );
@@ -89,8 +88,9 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
               </div>
             </div>;
           })}
+          <ThemeToggle />
         </nav>
-        <div className="flex shrink-0 items-center gap-2"><ThemeToggle /><a className="btn-primary hidden rounded-full px-4 py-3 text-xs font-bold sm:inline-flex" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Talk to us <MessageCircle className="ml-2" size={14} /></a><button className="site-menu-toggle" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileMenuOpen} aria-controls="site-mobile-navigation" onClick={() => setMobileMenuOpen((open) => !open)}>{mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
+        <div className="flex shrink-0 items-center gap-2"><a className="btn-primary hidden rounded-full px-4 py-3 text-xs font-bold sm:inline-flex" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Talk to us <MessageCircle className="ml-2" size={14} /></a><button className="site-menu-toggle" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileMenuOpen} aria-controls="site-mobile-navigation" onClick={() => setMobileMenuOpen((open) => !open)}>{mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
       </div>
       {mobileMenuOpen && <nav className="site-mobile-navigation xl:hidden" id="site-mobile-navigation" aria-label="Mobile navigation">
         {navigationItems.map((item) => {
@@ -107,6 +107,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
           </div>;
         })}
         <a className="site-mobile-contact" href={WHATSAPP_HREF} target="_blank" rel="noreferrer">Talk to us <MessageCircle size={15} /></a>
+        <div className="site-mobile-theme-toggle"><ThemeToggle /></div>
       </nav>}
     </header>
   </>;

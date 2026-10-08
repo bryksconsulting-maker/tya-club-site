@@ -227,6 +227,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .site-header-home .nav-link::after { background: var(--brand-coral-text); }
 .site-header-home .btn-primary { background: var(--brand-charcoal); color: var(--brand-ivory); box-shadow: none; }
 .site-navigation { display: none; }
+.site-navigation > .theme-toggle { flex: 0 0 auto; margin-left: .15rem; }
 .site-nav-group { position: relative; }
 .site-nav-parent { display: flex; align-items: center; gap: .12rem; }
 .site-nav-parent > .nav-link, .site-nav-label { color: var(--brand-ink); font-size: .73rem; font-weight: 700; white-space: nowrap; }
@@ -251,6 +252,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .site-mobile-submenu a { padding: .55rem .65rem; color: var(--brand-muted); font-size: .82rem; font-weight: 550; }
 .site-mobile-submenu a[aria-current="page"] { color: var(--brand-coral-text); }
 .site-mobile-contact { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-top: .8rem; border-radius: 999px; background: var(--brand-butter); padding: .8rem 1rem; color: var(--brand-charcoal); font-size: .82rem; font-weight: 750; }
+.site-mobile-theme-toggle { display: flex; align-self: flex-start; margin-top: .7rem; }
 .site-header .site-nav-parent > .nav-link, .site-header .site-nav-trigger:hover { color: var(--brand-charcoal); }
 .site-header .site-nav-group[data-active="true"] .site-nav-label { color: var(--brand-coral-text); }
 @media (min-width: 1280px) {
@@ -261,7 +263,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 @media (max-width: 380px) {
   .site-header .container { gap: .35rem; }
   .site-header .logo-light, .site-header .logo-dark { max-width: 112px; }
-  .theme-toggle button span { display: none; }
 }
 .site-footer, .page-hero { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .page-hero { min-height: 370px; }
@@ -1149,11 +1150,12 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 }
 .theme-toggle button {
   display: inline-flex;
+  width: 2.4rem;
+  height: 2.4rem;
+  min-height: 2.4rem;
   align-items: center;
   justify-content: center;
-  gap: .4rem;
-  min-height: 2.15rem;
-  padding: .4rem .75rem;
+  padding: 0;
   border-radius: 999px;
   border: 0;
   background: var(--brand-charcoal);
@@ -1198,10 +1200,6 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 
 /* Keep the parent guide hero headline to the two lines specified by its explicit break. */
 .parent-guides-intro-heading .section-intro-title { max-width: none; font-size: clamp(1.5rem, 4.8vw, 3.5rem); }
-@media (max-width: 380px) {
-  .theme-toggle button span { display: none; }
-}
-
 /* Inline mustard navigation selected for the desktop header. */
 .site-header,
 .site-header-home,
