@@ -4,7 +4,7 @@ import { PageHero, PageShell, SectionIntro } from "../components/SiteChrome";
 const founders = [
   {
     name: "Kiran Babu P.",
-    role: "Founder · TYA Club",
+    role: "Founder",
     image: "kiran-babu-p-portrait.jpg",
     imageAlt: "Kiran Babu P.",
     initials: "KBP",
@@ -12,14 +12,14 @@ const founders = [
   },
   {
     name: "Anoop Jaju",
-    role: "Co-founder · TYA Club",
+    role: "Co-founder",
     imageAlt: "Portrait placeholder for Anoop Jaju.",
     initials: "AJ",
     summary: "Anoop brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Sreyansh, he helped shape TYA Club’s new identity: Transforming Young Adults.",
   },
   {
     name: "Sreyansh Jain",
-    role: "Co-founder · TYA Club",
+    role: "Co-founder",
     imageAlt: "Portrait placeholder for Sreyansh Jain.",
     initials: "SJ",
     summary: "Sreyansh brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Anoop, he helped shape TYA Club’s new identity: Transforming Young Adults.",
