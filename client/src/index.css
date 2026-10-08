@@ -849,21 +849,30 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .story-narrative-copy > div { min-width: 0; }
 .story-narrative-callout { border-left: 4px solid var(--brand-coral); padding: .25rem 0 .25rem 1.25rem; color: var(--brand-ink); font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 650; line-height: 1.45; }
 .story-narrative-close { color: var(--brand-ink); font-weight: 600; }
-.founder-carousel { max-width: 1020px; margin-inline: auto; }
-.founder-profile { display: grid; grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr); overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: 1.5rem; background: var(--brand-card); box-shadow: 0 18px 44px rgba(43,47,50,.1); }
-.founder-profile-portrait { position: relative; min-width: 0; min-height: 100%; margin: 0; overflow: hidden; background: var(--brand-charcoal); }
-.founder-profile-portrait img { display: block; width: 100%; height: 100%; min-height: 470px; object-fit: cover; object-position: center 32%; }
-.founder-profile-portrait figcaption { position: absolute; right: 1rem; bottom: 1rem; border: 1px solid rgba(243,240,234,.35); border-radius: 999px; background: rgba(43,47,50,.78); padding: .5rem .75rem; color: var(--brand-ivory); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; backdrop-filter: blur(8px); }
-.founder-profile-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 4vw, 3.5rem); }
-.founder-profile-role { color: var(--brand-coral-text); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
-.founder-profile-copy h3 { margin-top: .7rem; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; line-height: 1; letter-spacing: -.05em; }
-.founder-profile-bio { display: grid; gap: .9rem; margin-top: 1.5rem; color: var(--brand-muted); font-size: clamp(.87rem, 1vw, .98rem); line-height: 1.75; }
-.founder-profile-bio p { margin: 0; }
-.founder-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; padding-top: 1.35rem; }
-.founder-carousel-arrow { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 50%; color: var(--brand-ink); transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease; }
-.founder-carousel-arrow:hover { transform: translateY(-2px); border-color: var(--brand-ink); background: var(--brand-ink); color: var(--brand-ivory); }
-.founder-carousel-dots { display: flex; align-items: center; gap: .5rem; }
-.founder-carousel-dot { width: .55rem; height: .55rem; border-radius: 999px; background: color-mix(in srgb, var(--brand-ink) 24%, transparent); transition: width .2s ease, background-color .2s ease; }
+.founder-grid { display: grid; max-width: 1180px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 1rem; margin-inline: auto; }
+.founder-profile { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: 1.2rem; background: var(--brand-card); box-shadow: 0 14px 34px rgba(43,47,50,.08); }
+.founder-card-portrait { position: relative; display: grid; aspect-ratio: 1.48; place-items: center; margin: 0; overflow: hidden; background: var(--brand-charcoal); }
+.founder-card-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+.founder-card-portrait.is-placeholder { background: linear-gradient(145deg, color-mix(in srgb, var(--brand-coral) 15%, var(--brand-soft)), color-mix(in srgb, var(--brand-butter) 32%, var(--brand-soft))); }
+.founder-card-portrait.is-placeholder::before, .founder-card-portrait.is-placeholder::after { position: absolute; border: 1px solid color-mix(in srgb, var(--brand-ink) 13%, transparent); border-radius: 50%; content: ""; }
+.founder-card-portrait.is-placeholder::before { top: -3.7rem; right: -2rem; width: 11rem; height: 11rem; background: color-mix(in srgb, var(--brand-coral) 35%, transparent); }
+.founder-card-portrait.is-placeholder::after { bottom: -5rem; left: -1.5rem; width: 12rem; height: 12rem; background: color-mix(in srgb, var(--brand-butter) 38%, transparent); }
+.founder-card-portrait[data-founder="AJ"] { background: linear-gradient(145deg, color-mix(in srgb, var(--brand-butter) 34%, var(--brand-soft)), var(--brand-soft)); }
+.founder-card-portrait[data-founder="SJ"] { background: linear-gradient(145deg, color-mix(in srgb, var(--brand-coral) 25%, var(--brand-soft)), var(--brand-soft)); }
+.founder-card-portrait figcaption { position: absolute; z-index: 2; bottom: .8rem; left: .85rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 16%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--brand-card) 82%, transparent); padding: .38rem .62rem; color: var(--brand-muted); font-size: .55rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; backdrop-filter: blur(8px); }
+.founder-monogram { position: relative; z-index: 1; color: var(--brand-ink); font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 600; letter-spacing: -.08em; }
+.founder-profile-copy { display: flex; min-width: 0; flex: 1; flex-direction: column; align-items: flex-start; padding: clamp(1.1rem, 2vw, 1.55rem); }
+.founder-profile-role { margin: 0; color: var(--brand-coral-text); font-size: .65rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.founder-profile-copy h3 { margin: .5rem 0 0; color: var(--brand-ink); font-size: clamp(1.25rem, 1.8vw, 1.65rem); font-weight: 650; line-height: 1.16; letter-spacing: -.045em; }
+.founder-profile-bio { margin: .75rem 0 0; color: var(--brand-muted); font-size: .78rem; line-height: 1.65; }
+@media (max-width: 900px) {
+  .founder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .founder-grid { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  .founder-card-portrait { aspect-ratio: 1.7; }
+  .founder-profile-copy { padding: 1.15rem; }
+}
 .dark .site-footer { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .page-hero, .dark .outcome-card { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .led-marquee { background: var(--brand-charcoal); color: var(--brand-butter); }

@@ -1,48 +1,33 @@
-import { useState } from "react";
-import { ArrowLeft, ArrowRight, HeartHandshake, Sparkles, Users } from "lucide-react";
+import { ArrowRight, HeartHandshake, Sparkles, Users } from "lucide-react";
 import { PageHero, PageShell, SectionIntro } from "../components/SiteChrome";
 
 const founders = [
   {
     name: "Kiran Babu P.",
     role: "Founder · TYA Club",
-    imageAlt: "Portrait of Kiran Babu P.",
-    portraitPlaceholder: false,
-    paragraphs: [
-      "Kiran Babu P, fondly known as KBP, is a TEDx Speaker, Life Skills Coach, Management Trainer, Business Architect, an author and Serial Entrepreneur. With an extraordinary 27-year corporate career spanning India, the US and Europe, KBP has transformed his experience into a passion for building businesses, developing people and creating possibilities.",
-      "A Six Sigma Black Belt and Certified Networker, his expertise spans business, leadership, training, design and creativity, with qualifications across diverse disciplines.",
-      "Today, his entrepreneurial ventures span creative design and conceptualisation, business networking, business expansion and growth opportunities for entrepreneurs and start-ups, and life-skills development for young adults—including his initiative TYA Club, focused on helping young adults develop the skills, confidence and perspectives they need to navigate real life.",
-      "From corporate boardrooms to entrepreneurship, from creative studios to training rooms, his journey is ultimately about one thing—helping people see possibilities and turn them into reality.",
-    ],
+    image: "kiran-babu-p-portrait.jpg",
+    imageAlt: "Kiran Babu P.",
+    initials: "KBP",
+    summary: "A TEDx Speaker, life-skills coach and entrepreneur whose 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club.",
   },
   {
     name: "Anoop Jaju",
     role: "Co-founder · TYA Club",
-    imageAlt: "Temporary portrait placeholder for Anoop Jaju.",
-    portraitPlaceholder: true,
-    paragraphs: [
-      "Anoop joined the journey with fresh perspectives, energy and ideas. Alongside Kiran and Sreyansh, he helped reimagine the concept and give it a new identity: TYA Club — Transforming Young Adults.",
-    ],
+    imageAlt: "Portrait placeholder for Anoop Jaju.",
+    initials: "AJ",
+    summary: "Anoop brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Sreyansh, he helped shape TYA Club’s new identity: Transforming Young Adults.",
   },
   {
     name: "Sreyansh Jain",
     role: "Co-founder · TYA Club",
-    imageAlt: "Temporary portrait placeholder for Sreyansh Jain.",
-    portraitPlaceholder: true,
-    paragraphs: [
-      "Sreyansh joined the journey with fresh perspectives, energy and ideas. Alongside Kiran and Anoop, he helped reimagine the concept and give it a new identity: TYA Club — Transforming Young Adults.",
-    ],
+    imageAlt: "Portrait placeholder for Sreyansh Jain.",
+    initials: "SJ",
+    summary: "Sreyansh brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Anoop, he helped shape TYA Club’s new identity: Transforming Young Adults.",
   },
 ];
 
 export default function OurStory() {
-  const [activeFounder, setActiveFounder] = useState(0);
-  const founder = founders[activeFounder];
-  const portrait = `${import.meta.env.BASE_URL}images/kiran-babu-p-portrait.jpg`;
-
-  const moveFounder = (direction: number) => {
-    setActiveFounder((current) => (current + direction + founders.length) % founders.length);
-  };
+  const imageBase = `${import.meta.env.BASE_URL}images/`;
 
   return <PageShell>
     <PageHero eyebrow="Our story" title="Where TYA began." intro="The idea was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need..." />
@@ -64,40 +49,20 @@ export default function OurStory() {
       <div className="container">
         <SectionIntro eyebrow="Meet the founders" id="founders-title" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the idea.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
 
-        <div className="founder-carousel mt-9" role="region" aria-label="Founder profiles">
-          <article className="founder-profile" aria-live="polite" aria-atomic="true">
-            <figure className="founder-profile-portrait">
-              <img src={portrait} alt={founder.imageAlt} />
-              {founder.portraitPlaceholder && <figcaption>Portrait placeholder</figcaption>}
+        <div className="founder-grid mt-9" role="list" aria-label="Founder profiles">
+          {founders.map((founder) => <article className="founder-profile" role="listitem" key={founder.name}>
+            <figure className={`founder-card-portrait${founder.image ? "" : " is-placeholder"}`} data-founder={founder.initials}>
+              {founder.image
+                ? <img src={`${imageBase}${founder.image}`} alt={founder.imageAlt} />
+                : <span className="founder-monogram" role="img" aria-label={founder.imageAlt}>{founder.initials}</span>}
+              {!founder.image && <figcaption>Portrait placeholder</figcaption>}
             </figure>
             <div className="founder-profile-copy">
               <p className="founder-profile-role">{founder.role}</p>
               <h3>{founder.name}</h3>
-              <div className="founder-profile-bio">
-                {founder.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
+              <p className="founder-profile-bio">{founder.summary}</p>
             </div>
-          </article>
-
-          <div className="founder-carousel-controls">
-            <button type="button" className="founder-carousel-arrow" aria-label="Previous founder" onClick={() => moveFounder(-1)}>
-              <ArrowLeft size={18} aria-hidden="true" />
-            </button>
-            <div className="founder-carousel-dots" role="group" aria-label="Choose founder profile">
-              {founders.map((item, index) => <button
-                type="button"
-                className={`founder-carousel-dot${index === activeFounder ? " is-active" : ""}`}
-                aria-label={`Show ${item.name}'s profile`}
-                aria-current={index === activeFounder ? "true" : undefined}
-                key={item.name}
-                onClick={() => setActiveFounder(index)}
-              />)}
-            </div>
-            <span className="founder-carousel-count" aria-live="polite">{String(activeFounder + 1).padStart(2, "0")} / {String(founders.length).padStart(2, "0")}</span>
-            <button type="button" className="founder-carousel-arrow" aria-label="Next founder" onClick={() => moveFounder(1)}>
-              <ArrowRight size={18} aria-hidden="true" />
-            </button>
-          </div>
+          </article>)}
         </div>
       </div>
     </section>
