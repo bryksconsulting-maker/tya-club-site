@@ -117,7 +117,7 @@ export function SectionLabel({ children, light = false }: { children: string; li
 }
 
 type SectionIntroProps = {
-  eyebrow: string;
+  eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   action?: React.ReactNode;
@@ -130,9 +130,9 @@ type SectionIntroProps = {
 export function SectionIntro({ eyebrow, title, description, action, light = false, id, as = "h2", className = "" }: SectionIntroProps) {
   const Heading = as;
   return <div className={`section-intro ${light ? "section-intro--light" : ""} ${description || action ? "section-intro--with-copy" : "section-intro--title-only"} ${className}`}>
-    <div className="section-intro-main">
-      <SectionLabel light={light}>{eyebrow}</SectionLabel>
-      <Heading id={id} className="section-intro-title">{title}</Heading>
+    <div className={`section-intro-main${eyebrow ? "" : " section-intro-main--no-eyebrow"}`}>
+      {eyebrow && <SectionLabel light={light}>{eyebrow}</SectionLabel>}
+      <Heading id={id} className={`section-intro-title${eyebrow ? "" : " section-intro-title--no-eyebrow"}`}>{title}</Heading>
     </div>
     {(description || action) && <div className="section-intro-side">
       {description && <p>{description}</p>}
