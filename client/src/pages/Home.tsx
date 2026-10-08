@@ -271,7 +271,7 @@ export default function Home() {
 
         <section id="how-it-works" className="grain scroll-mt-24 bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
           <div className="container">
-            <SectionIntro eyebrow="How TYA works?" title={<>One step. One journey. A stronger, more capable <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span></>} description="Take the first leap. Join the movement. We’ll help you take it from there." />
+            <SectionIntro eyebrow="How TYA works?" title={<><span>One step. One journey.</span>{" "}<span>A stronger, more capable <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span></span></>} description="Take the first leap. Join the movement. We’ll help you take it from there." className="section-intro--stacked home-how-it-works-intro" />
             <div className="mt-4 rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-4 sm:p-6 lg:p-8">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step) => {
@@ -318,6 +318,9 @@ export default function Home() {
         <section id="curriculum" className="scroll-mt-24 bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
           <div className="container">
             <SectionIntro eyebrow="What they learn?" title={<>Not just <strong className="headline-impact">knowledge.</strong> <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></>} description="Fourteen outcomes and twenty-two practical skills come together through experiences that make learning useful in everyday life." className="home-curriculum-heading" />
+Warning: truncated output (original token count: 3620)
+Total output lines: 77
+
             <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
               <div className="grid grid-cols-1 items-center gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)_minmax(0,1fr)] lg:gap-6">
                 <div className="order-2 min-w-0 lg:order-1">
@@ -370,24 +373,7 @@ export default function Home() {
 
         <ParentStories />
 
-        <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="text-[#2B2F32]">✳</span><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span></div></div></section>
-
-        <section id="experience" className="experience-faq-section scroll-mt-24">
-          <div className="container">
-            <SectionIntro eyebrow="The TYA Experience" title={<>Good questions deserve <span className="headline-accent headline-accent--butter"><strong className="headline-impact">proper</strong></span> answers.</>} description="Not marketing promises. The practical details that help you decide if TYA is right for your young adult." action={<form className="experience-question-form" onSubmit={askExperienceQuestion}>
-                <label className="sr-only" htmlFor="experience-question">Type a question for TYA Club</label>
-                <input id="experience-question" type="text" maxLength={500} required value={experienceQuestion} onChange={(event) => setExperienceQuestion(event.target.value)} placeholder="Type your question" />
-                <button type="submit" aria-label="Ask us anything"><span>Ask us anything</span><ArrowRight size={15} aria-hidden="true" /></button>
-              </form>} className="experience-faq-section-intro" />
-            <ExperienceFaqList items={experienceFaqs} />
-          </div>
-        </section>
-
-        <CentresContent embedded initialQuery={podQuery} />
-
-      </main>
-
-      <footer className="bg-[#2B2F32] py-12 text-[#fffdf9]"><div className="container"><div className="flex flex-col justify-between gap-10 border-b border-white/15 pb-10 lg:flex-row"><div><Logo reversed /><p className="mt-5 max-w-[300px] text-sm leading-6 text-white/55">Where skills become confidence. An after-school club for young adults, built around real experience.</p></div><div className="grid grid-cols-2 gap-x-8 gap-y-8 text-sm font-semibold sm:grid-cols-3"><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Explore</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#top`}>TYA</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#how-it-works`}>How TYA works</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#curriculum`}>Skills</a></div><div className="flex flex-col gap-3"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">Parents</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-pod`}>Find a Pod</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
+        <section className="led-marquee py-4"><div className="marquee"><div className="marquee-track gap-9"><span>learn by doing</span><span className="text-[#2B2F32]">✳</span><span>find your voice</span><span className="text-[#F28D63]">✳</span><span>make an impact</span><span className="t…620 tokens truncated…n><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#parents`}>For parents</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#experience`}>TYA experience</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}#find-a-pod`}>Find a Pod</a></div><div className="col-span-2 flex flex-col gap-3 sm:col-span-1"><span className="mb-1 text-[10px] font-bold uppercase tracking-[.17em] text-[#E4B42A]">More</span><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}our-story`}>Our story</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}franchise`}>Franchise</a><a className="text-white/65 hover:text-white" href={`${LOGO_BASE}contact`}>Contact us</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="mailto:hello@thetyaclub.com"><MessageCircle size={14} /> hello@thetyaclub.com</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665295"><Phone size={14} /> +91 888 666 5295</a><a className="flex items-center gap-2 text-white/65 hover:text-white" href="tel:+918886665294"><Phone size={14} /> +91 888 666 5294</a></div></div></div><div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row"><p>© 2026 TYA Club. Built for the next version of young adults.</p><div className="flex gap-5"><a href="#top">Privacy</a><a href="#top">Terms</a><span className="text-[#E4B42A]">Learn. Try. Own.</span></div></div></div></footer>
 
       
 

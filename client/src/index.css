@@ -580,6 +580,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .dark .home-manifesto-kicker { color: var(--brand-butter); }
 .dark .home-manifesto-copy em { color: var(--brand-coral); }
 .why-tya-section { background: var(--brand-bg); color: var(--brand-ink); }
+.home-how-it-works-intro .section-intro-title { max-width: none; font-size: clamp(2.2rem, 4.2vw, 3.2rem); }
+.home-how-it-works-intro .section-intro-title > span { display: block; white-space: nowrap; }
+@media (max-width: 760px) {
+  .home-how-it-works-intro .section-intro-title { font-size: clamp(1.7rem, 7.8vw, 2.5rem); }
+  .home-how-it-works-intro .section-intro-title > span { white-space: normal; }
+}
 .why-tya-heading { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); align-items: end; gap: 2.5rem; }
 .home-curriculum-heading .section-intro-title { font-size: clamp(2.25rem, 4.2vw, 3.7rem); }
 .why-tya-heading h2 { max-width: 720px; color: var(--brand-ink); font-size: clamp(2.7rem, 5.4vw, 4.7rem); font-weight: 500; line-height: .99; letter-spacing: -.055em; text-wrap: balance; }
@@ -1240,16 +1246,17 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .parent-guides-intro { padding: clamp(2.5rem, 5vw, 4.1rem) 0 2.1rem; }
 .parent-guides-intro-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
   align-items: end;
-  gap: clamp(2rem, 5vw, 4rem);
+  gap: clamp(2rem, 4vw, 3rem);
   border-bottom: 1px solid var(--guide-rule);
   padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 .parent-guides-library-label { display: flex; align-items: center; gap: .85rem; color: var(--brand-ivory); font-size: .78rem; font-weight: 650; letter-spacing: .18em; line-height: 1.4; text-transform: uppercase; }
 .parent-guides-library-label span { width: 2.3rem; height: 2px; flex: 0 0 auto; background: var(--brand-ivory); }
 .parent-guides-notebook-label { margin-top: 1.45rem; color: var(--brand-coral); font-size: .78rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-.parent-guides-intro-title { max-width: 760px; margin-top: .75rem; color: var(--brand-ivory); font-size: clamp(2.6rem, 5.4vw, 4.15rem); font-weight: 650; line-height: 1.02; letter-spacing: -.055em; text-wrap: balance; }
+.parent-guides-intro-title { max-width: 760px; margin-top: .75rem; color: var(--brand-ivory); font-size: clamp(2.2rem, 4vw, 3.15rem); font-weight: 650; line-height: 1.02; letter-spacing: -.055em; }
+.parent-guides-intro-title > span { display: block; white-space: nowrap; }
 .parent-guides-intro-title em { color: var(--brand-coral); font-family: Georgia, 'Times New Roman', serif; font-weight: 600; }
 .parent-guides-intro-copy { max-width: 32rem; margin: 0 0 .2rem; border-left: 3px solid var(--brand-coral); padding: .15rem 0 .15rem 1.15rem; color: var(--guide-muted); font-size: clamp(1rem, 1.45vw, 1.25rem); font-weight: 550; line-height: 1.65; }
 .parent-guide-library { padding-top: 0; }
@@ -1305,15 +1312,16 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .parent-guide-newsletter > p:not(.parent-guide-kicker) { color: var(--guide-muted); }
 .parent-guides-page .parent-guide-newsletter .parent-guide-kicker { color: var(--brand-coral); }
 @media (max-width: 900px) {
-  .parent-guides-intro-layout { grid-template-columns: minmax(0, 1fr) minmax(235px, .72fr); gap: 2rem; }
-  .parent-guides-intro-title { font-size: clamp(2.45rem, 6.1vw, 3.7rem); }
+  .parent-guides-intro-layout { grid-template-columns: 1fr; align-items: start; gap: 1.35rem; }
+  .parent-guides-intro-title { font-size: clamp(2rem, 5.1vw, 2.9rem); }
   .parent-guides-feature-grid { grid-template-columns: minmax(250px, .82fr) minmax(0, 1.18fr); }
   .parent-guide-feature { min-height: 26rem; }
 }
 @media (max-width: 760px) {
   .parent-guides-page--embedded { padding-bottom: 2.5rem; }
   .parent-guides-intro-layout { grid-template-columns: 1fr; align-items: start; gap: 1.35rem; }
-  .parent-guides-intro-title { max-width: 650px; font-size: clamp(2.45rem, 9vw, 3.75rem); }
+  .parent-guides-intro-title { max-width: 650px; font-size: clamp(2rem, 7.2vw, 3rem); }
+  .parent-guides-intro-title > span { white-space: normal; }
   .parent-guides-intro-copy { max-width: 38rem; }
   .parent-guide-section-heading { align-items: flex-start; flex-direction: column; gap: .6rem; }
   .parent-guide-section-heading p { text-align: left; }
@@ -1325,7 +1333,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
   .parent-guides-intro { padding-top: 2rem; }
   .parent-guides-library-label { font-size: .68rem; }
   .parent-guides-notebook-label { margin-top: 1rem; font-size: .68rem; }
-  .parent-guides-intro-title { font-size: clamp(2.2rem, 10vw, 3.1rem); }
+  .parent-guides-intro-title { font-size: clamp(1.6rem, 8.4vw, 2.5rem); }
   .parent-guide-section-heading h2 { font-size: 1.9rem; }
   .parent-guide-feature { min-height: 20rem; }
   .parent-guide-feature-copy { padding: 1.35rem; }
