@@ -23,6 +23,7 @@ const navigationItems: NavigationItem[] = [
   { label: "TYA experience", href: "#experience" },
   { label: "Find a Pod", href: "#centre-results" },
   { label: "Our story", href: "/our-story" },
+  { label: "Founders", href: "/our-story#founders-title" },
   { label: "Franchise", href: "/franchise" },
 ];
 
@@ -32,6 +33,9 @@ const desktopNavigationItems: NavigationItem[] = [
   { label: "Parents", href: "#parents" },
   { label: "Experience", href: "#experience" },
   { label: "Find a Pod", href: "#centre-results" },
+  { label: "Our Story", href: "/our-story" },
+  { label: "Founders", href: "/our-story#founders-title" },
+  { label: "Franchise", href: "/franchise" },
 ];
 
 export function ThemeToggle() {
