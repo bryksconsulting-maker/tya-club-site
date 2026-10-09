@@ -50,6 +50,24 @@ jobs:
           cp -R dist/public/. pages/
           cp pages/index.html pages/404.html
 
+      - name: Route direct preview links through GitHub Pages fallback
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const file = "pages/404.html";
+          const html = fs.readFileSync(file, "utf8");
+          const script = `<script>
+          const previewBase = "/tya-club-site/previews/alternate-ui";
+          const currentPath = window.location.pathname;
+          if (currentPath.startsWith(previewBase + "/") && currentPath !== previewBase + "/") {
+            const params = new URLSearchParams(window.location.search);
+            params.set("__pages_preview_path", currentPath.slice(previewBase.length));
+            window.location.replace(previewBase + "/?" + params.toString() + window.location.hash);
+          }
+          </script>`;
+          fs.writeFileSync(file, html.replace("</head>", `${script}</head>`));
+          NODE
+
       - name: Checkout alternate UI branch
         uses: actions/checkout@v4
         with:
