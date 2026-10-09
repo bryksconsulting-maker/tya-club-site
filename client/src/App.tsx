@@ -12,6 +12,8 @@ import Franchise from "./pages/Franchise";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
 export const SITE_URL = "https://bryksconsulting-maker.github.io/tya-club-site";
+const SOCIAL_IMAGE_URL = `${SITE_URL}/og-image.png`;
+const SOCIAL_IMAGE_ALT = "TYA Club: real-world skills for young adults, styled in the Club’s charcoal, ivory, mustard and peach colours.";
 
 const organizationStructuredData = {
   "@type": "Organization",
@@ -156,9 +158,17 @@ function RouteMetadata() {
     setMeta("property", "og:site_name", "TYA Club");
     setMeta("property", "og:title", title);
     setMeta("property", "og:description", description);
-    setMeta("name", "twitter:card", "summary");
+    setMeta("property", "og:image", SOCIAL_IMAGE_URL);
+    setMeta("property", "og:image:secure_url", SOCIAL_IMAGE_URL);
+    setMeta("property", "og:image:type", "image/png");
+    setMeta("property", "og:image:width", "1200");
+    setMeta("property", "og:image:height", "630");
+    setMeta("property", "og:image:alt", SOCIAL_IMAGE_ALT);
+    setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", SOCIAL_IMAGE_URL);
+    setMeta("name", "twitter:image:alt", SOCIAL_IMAGE_ALT);
 
     let structuredData = document.head.querySelector<HTMLScriptElement>('#seo-structured-data[type="application/ld+json"]');
     if (metadata?.structuredData) {

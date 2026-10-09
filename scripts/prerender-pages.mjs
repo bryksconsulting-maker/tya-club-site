@@ -41,6 +41,8 @@ await build({
 });
 
 const { default: App, SITE_URL, routeMetadata, notFoundMetadata } = await import(pathToFileURL(bundlePath).href);
+const socialImageUrl = `${SITE_URL}/og-image.png`;
+const socialImageAlt = "TYA Club: real-world skills for young adults, styled in the Club’s charcoal, ivory, mustard and peach colours.";
 
 function escapeAttribute(value) {
   return String(value)
@@ -90,9 +92,17 @@ function buildDocument(template, markup, metadata) {
   html = setMeta(html, "property", "og:site_name", "TYA Club");
   html = setMeta(html, "property", "og:title", title);
   html = setMeta(html, "property", "og:description", description);
-  html = setMeta(html, "name", "twitter:card", "summary");
+  html = setMeta(html, "property", "og:image", socialImageUrl);
+  html = setMeta(html, "property", "og:image:secure_url", socialImageUrl);
+  html = setMeta(html, "property", "og:image:type", "image/png");
+  html = setMeta(html, "property", "og:image:width", "1200");
+  html = setMeta(html, "property", "og:image:height", "630");
+  html = setMeta(html, "property", "og:image:alt", socialImageAlt);
+  html = setMeta(html, "name", "twitter:card", "summary_large_image");
   html = setMeta(html, "name", "twitter:title", title);
   html = setMeta(html, "name", "twitter:description", description);
+  html = setMeta(html, "name", "twitter:image", socialImageUrl);
+  html = setMeta(html, "name", "twitter:image:alt", socialImageAlt);
   html = setStructuredData(html, metadata.structuredData);
   html = setCanonical(html, canonicalUrl);
   if (canonicalUrl) {
