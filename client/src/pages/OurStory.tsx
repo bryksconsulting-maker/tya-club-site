@@ -6,25 +6,28 @@ const founders = [
     name: "Kiran Babu P.",
     role: "Founder",
     image: "kiran-babu-p-portrait.jpg",
-    imageAlt: "Kiran Babu P.",
+    imageAlt: "Portrait of Kiran Babu P.",
     initials: "KBP",
-    bio: ["A TEDx Speaker, life-skills coach and entrepreneur whose 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club."],
+    bio: [
+      "Kiran Babu P. is a TEDx speaker, life-skills coach and entrepreneur. His 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club.",
+      "After nearly a decade of research, observation and conversations across multiple cities, he founded TYA Club to help young adults become confident, independent and future-ready.",
+    ],
   },
   {
     name: "Anoop Jaju",
     role: "Co-founder",
-    imageAlt: "Portrait placeholder for Anoop Jaju.",
+    image: "anoop-jaju-portrait.jpeg",
+    imageAlt: "Portrait of Anoop Jaju.",
     initials: "AJ",
     bio: [
-      "Anoop Jaju is an Entrepreneur and Business Leader with an MBA from SP Jain Institute of Management and Research, Mumbai, and over 25 years of entrepreneurial experience. Anoop Jaju brings deep expertise in textile manufacturing, business management and diversification. He oversees a manufacturing operation producing 10 million metres of value-added fabrics annually, supported by a workforce of 200 people. His group’s diverse interests span textiles, recruitment, real estate and solar energy, with one of its companies listed on the NSE.",
-      "Beyond business, Anoop is passionate about building entrepreneurial communities and nurturing future-ready young adults. Through NIA Surat and TYA Club, he champions meaningful connections, business growth, collaboration and personal development.",
-      "His philosophy is simple—build businesses that create value, connections that create opportunities, and communities that inspire growth.",
+      "Anoop Jaju is an entrepreneur and business leader with an MBA from SP Jain Institute of Management and Research, Mumbai, and over 25 years of entrepreneurial experience. He brings deep expertise in textile manufacturing, business management and diversification, supported by a workforce of 200 people. His group’s diverse interests span textiles, recruitment, real estate and solar energy, with one of its companies listed on the NSE.",
     ],
   },
   {
     name: "Sreyansh Jain",
     role: "Co-founder",
-    imageAlt: "Portrait placeholder for Sreyansh Jain.",
+    image: "sreyansh-jain-portrait.jpeg",
+    imageAlt: "Portrait of Sreyansh Jain.",
     initials: "SJ",
     bio: [
       "Sreyansh Jain is an entrepreneur and growth strategist with an experience of over a decade transforming vision into reality through leadership, innovation, and disciplined execution.",
@@ -39,24 +42,22 @@ export default function OurStory() {
   const imageBase = `${import.meta.env.BASE_URL}images/`;
 
   return <PageShell>
-    <PageHero eyebrow="Our story" title="Where TYA began." intro="The idea was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need..." />
+    <PageHero eyebrow="Our story" title="Where TYA began." intro="Kiran Babu P founded TYA Club after nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need to become confident, independent and future-ready." />
 
     <section className="container story-narrative py-16 lg:py-24" aria-labelledby="our-story-title">
       <SectionIntro id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />
-      <div className="story-narrative-copy mt-8 grid gap-6 text-lg leading-8 text-muted-copy lg:grid-cols-[1.1fr_.9fr] lg:gap-14">
+      <div className="story-narrative-copy mt-8 text-lg leading-8 text-muted-copy lg:mx-auto lg:max-w-3xl">
         <div className="space-y-5">
           <p>TYA Club was born from a simple question: What if young adults had a space to learn the things that classrooms often don't teach?</p>
-        </div>
-        <div className="space-y-5">
-          <p>Today, TYA is envisioned as a space where young adults don't simply learn from someone at the front of a room. They meet, interact, question, experiment, share, play, reflect and learn from one another.</p>
-          <p className="story-narrative-close">Because preparing young adults for the future isn't just about what they know. It's about who they become.</p>
+          <p>The concept was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need... to become confident, independent and future-ready.</p>
+          <p>Anoop Jaju and Sreyansh Jain joined the journey, bringing fresh perspectives, energy and ideas to the concept. Together, they reimagined the idea and gave it a new identity — TYA Club: Transforming Young Adults.</p>
         </div>
       </div>
     </section>
 
     <section className="soft-panel founder-section py-16 lg:py-24" aria-labelledby="founders-title">
       <div className="container">
-        <SectionIntro eyebrow="Meet the founders" id="founders-title" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the idea.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
+        <SectionIntro eyebrow="Meet the founders" id="founders-title" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the TYA CLUB.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
 
         <div className="founder-grid mt-9" role="list" aria-label="Founder profiles">
           {founders.map((founder) => <article className="founder-profile" role="listitem" key={founder.name}>
