@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import OurStory from "./pages/OurStory";
 import Contact from "./pages/Contact";
 import Franchise from "./pages/Franchise";
+import Centres from "./pages/Centres";
+import { centreProfiles } from "./data/centreProfiles";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
 export const SITE_URL = "https://bryksconsulting-maker.github.io/tya-club-site";
@@ -25,24 +27,12 @@ const organizationStructuredData = {
   description: "A learning community where young adults build confidence and practical life skills through coached Missions, small Pods and hands-on experiences.",
   email: "hello@thetyaclub.com",
   telephone: "+91 888 666 5295",
-  address: [
-    {
-      "@type": "PostalAddress",
-      streetAddress: "Plot 3-804, SS Chambers, 3rd Floor, Mega Hills, Ayyappa Society",
-      addressLocality: "Hyderabad",
-      addressRegion: "Telangana",
-      postalCode: "500081",
-      addressCountry: "IN",
-    },
-    {
-      "@type": "PostalAddress",
-      streetAddress: "408-415, 4th Floor, Homeland City Mall, Opposite J.H. Ambani School, Vesu",
-      addressLocality: "Surat",
-      addressRegion: "Gujarat",
-      postalCode: "395007",
-      addressCountry: "IN",
-    },
-  ],
+  address: centreProfiles.map((centre) => ({
+    "@type": "PostalAddress",
+    ...centre.postalAddress,
+    addressLocality: centre.city,
+    addressCountry: "IN",
+  })),
   areaServed: [
     { "@type": "City", name: "Hyderabad" },
     { "@type": "City", name: "Surat" },
@@ -95,6 +85,53 @@ export const routeMetadata: Record<string, RouteMetadata> = {
           name: "TYA Club",
           inLanguage: "en-IN",
           publisher: { "@id": `${SITE_URL}/#organization` },
+        },
+      ],
+    },
+  },
+  "/pods": {
+    title: "Find a TYA Pod in Hyderabad & Surat | TYA Club",
+    description: "Find TYA Club’s Madhapur Pod in Hyderabad and Vesu Pod in Surat. See verified addresses, explore the map and ask about introductory sessions.",
+    path: "/pods/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        organizationStructuredData,
+        {
+          "@type": "CollectionPage",
+          "@id": `${SITE_URL}/pods/#webpage`,
+          url: `${SITE_URL}/pods/`,
+          name: "Find a TYA Pod in Hyderabad and Surat",
+          inLanguage: "en-IN",
+          mainEntity: { "@id": `${SITE_URL}/pods/#pod-locations` },
+        },
+        {
+          "@type": "ItemList",
+          "@id": `${SITE_URL}/pods/#pod-locations`,
+          name: "TYA Club Pod locations",
+          itemListElement: centreProfiles.map((centre, index) => {
+            const podId = `${centre.locality}-${centre.city}`.toLowerCase().replaceAll(" ", "-");
+            return {
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "EducationalOrganization",
+                "@id": `${SITE_URL}/pods/#${podId}`,
+                name: `TYA Club ${centre.locality} Pod`,
+                url: `${SITE_URL}/pods/#${podId}`,
+                description: `${centre.detail}. ${centre.batchSize === null ? "Batch size to be confirmed." : `Batches of ${centre.batchSize} young adults.`}`,
+                parentOrganization: { "@id": `${SITE_URL}/#organization` },
+                address: {
+                  "@type": "PostalAddress",
+                  ...centre.postalAddress,
+                  addressLocality: centre.city,
+                  addressCountry: "IN",
+                },
+                telephone: "+91 888 666 5295",
+                email: "hello@thetyaclub.com",
+              },
+            };
+          }),
         },
       ],
     },
@@ -340,6 +377,7 @@ function Router({ ssrPath }: { ssrPath?: string }) {
         <Route path="/curriculum" component={LegacySectionRedirect} />
         <Route path="/experience" component={LegacySectionRedirect} />
         <Route path="/centres" component={LegacySectionRedirect} />
+        <Route path="/pods" component={Centres} />
         <Route path="/contact" component={Contact} />
         <Route path="/franchise" component={Franchise} />
         <Route path="/programmes/:slug" component={LegacySectionRedirect} />

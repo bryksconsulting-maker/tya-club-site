@@ -53,7 +53,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
         {embedded && <SectionIntro eyebrow="Find a Pod" title={query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India."} description="Choose a location on the India map to see its address and Pod details." action={<a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a>} className="centre-results-heading" />}
         {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. Choose a location below to see its address and Pod details.</p>}
         <section className="pod-discovery-panel" aria-labelledby="pod-discovery-title">
-          {embedded ? <h2 id="pod-discovery-title" className="sr-only">Find a Pod</h2> : <SectionIntro eyebrow="Find your community" title="A TYA Pod, closer to home." description="Pick a marker or location to explore Pods in Madhapur and Vesu." id="pod-discovery-title" action={<span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>} className="pod-discovery-heading" />}
+          {embedded ? <h2 id="pod-discovery-title" className="sr-only">Find a Pod</h2> : <SectionIntro eyebrow="Find your community" title="Find a TYA Pod in Hyderabad or Surat." description="TYA Club offers coached, hands-on life-skills experiences for young adults. Explore the official Pods in Madhapur and Vesu, see each address and ask about an introductory session." id="pod-discovery-title" as="h1" action={<span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>} className="pod-discovery-heading" />}
           <div className="pod-discovery-grid">
             <IndiaPodsMap locations={centres} selectedCity={selectedCity} onSelect={setSelectedCity} />
             <div className="pod-location-list" aria-label="TYA Pods">
@@ -65,6 +65,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               </button>)}
             </div>
           </div>
+          {embedded && <div className="mt-5 flex justify-end"><a className="btn-dark inline-flex items-center rounded-full px-5 py-3 text-sm font-bold" href="/pods">View all Pod locations <ExternalLink className="ml-2" size={14} aria-hidden="true" /></a></div>}
         </section>
         <div className="centre-detail-toolbar">
           <nav className="centre-breadcrumb" aria-label="Breadcrumb">
@@ -88,7 +89,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
               <span className="centre-status-pill">{centre.admissionsStatus}</span>
               <span className="centre-opened">{centre.openedYear === null ? "Opening year to be confirmed" : `Opened ${centre.openedYear}`}</span>
             </div>
-            {embedded ? <h2>TYA Pod {centre.locality}</h2> : <h1>TYA Pod {centre.locality}</h1>}
+            <h2>TYA Pod {centre.locality}</h2>
             <p className="centre-detail-summary">{centreSummary}</p>
 
             <div className="centre-stat-grid" aria-label="Pod information">

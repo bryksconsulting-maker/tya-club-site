@@ -116,6 +116,7 @@ function buildDocument(template, markup, metadata) {
 const template = await fs.readFile(path.join(outputRoot, "index.html"), "utf8");
 const routes = [
   { urlPath: "/", metadata: routeMetadata["/"] },
+  { urlPath: "/pods/", metadata: routeMetadata["/pods"] },
   { urlPath: "/our-story/", metadata: routeMetadata["/our-story"] },
   { urlPath: "/contact/", metadata: routeMetadata["/contact"] },
   { urlPath: "/franchise/", metadata: routeMetadata["/franchise"] },
@@ -137,4 +138,4 @@ const notFoundHtml = buildDocument(template, notFoundMarkup, notFoundMetadata);
 await fs.writeFile(path.join(outputRoot, "404.html"), notFoundHtml, "utf8");
 
 await fs.rm(bundlePath, { force: true });
-console.log("Pre-rendered home, story, contact, franchise and 404 pages.");
+console.log("Pre-rendered home, Pod locations, story, contact, franchise and 404 pages.");

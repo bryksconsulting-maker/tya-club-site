@@ -48,6 +48,11 @@ export interface CentreProfile {
   city: string;
   locality: string;
   address: string;
+  postalAddress: {
+    streetAddress: string;
+    addressRegion: string;
+    postalCode: string;
+  };
   detail: string;
   admissionsStatus: string;
   seats: string;
@@ -78,6 +83,11 @@ export const centreProfiles: CentreProfile[] = [
     city: "Hyderabad",
     locality: "Madhapur",
     address: "Plot 3-804, SS Chambers, 3rd Floor, Mega Hills, Ayyappa Society, Madhapur, Hyderabad – 500081, Telangana",
+    postalAddress: {
+      streetAddress: "Plot 3-804, SS Chambers, 3rd Floor, Mega Hills, Ayyappa Society",
+      addressRegion: "Telangana",
+      postalCode: "500081",
+    },
     detail: "TYA Mission Pods · Introductory sessions available",
     admissionsStatus: "Open · introductory sessions available",
     seats: "Official centre",
@@ -108,6 +118,11 @@ export const centreProfiles: CentreProfile[] = [
     city: "Surat",
     locality: "Vesu",
     address: "408-415, 4th Floor, Homeland City Mall, Opposite J.H. Ambani School, Vesu, Surat – 395007, Gujarat",
+    postalAddress: {
+      streetAddress: "408-415, 4th Floor, Homeland City Mall, Opposite J.H. Ambani School, Vesu",
+      addressRegion: "Gujarat",
+      postalCode: "395007",
+    },
     detail: "TYA Mission Pods · Introductory sessions available",
     admissionsStatus: "Open · introductory sessions available",
     seats: "Official centre",
