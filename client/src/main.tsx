@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import "./redesign.css";
 
 // Local previews use the site root; accept an old GitHub Pages-style URL and
 // preserve its route, query and anchor while removing the deployment prefix.

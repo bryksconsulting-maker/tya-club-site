@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+.tya-experiment-shell {
+  --brand-bg: #fff9ef;
+  --brand-ink: #24282a;
+  --brand-charcoal: #24282a;
+  --brand-ivory: #fff9ef;
+  --brand-card: #fffdf8;
+  --brand-soft: #f4ecdc;
+  --brand-butter: #f5bd25;
+  --brand-coral: #f47755;
+  --brand-coral-text: #d95132;
+  --brand-muted: #5f625f;
+  --brand-accent: #24282a;
+  --marker-font: "Permanent Marker", "Chalkboard SE", "Comic Sans MS", cursive;
+  background: var(--brand-bg);
+  color: var(--brand-ink);
+  font-family: "Poppins", sans-serif;
+}
+
+.dark .tya-experiment-shell {
+  --brand-bg: #25282a;
+  --brand-ink: #fff9ef;
+  --brand-charcoal: #1b1e20;
+  --brand-ivory: #fff9ef;
+  --brand-card: #34383a;
+  --brand-soft: #2d3032;
+  --brand-butter: #f5bd25;
+  --brand-coral: #f47755;
+  --brand-coral-text: #ff986f;
+  --brand-muted: #cbc5ba;
+  --brand-accent: #f5bd25;
+}
+
+.tya-experiment-shell :focus-visible { outline-color: var(--brand-coral-text); }
+.tya-experiment-shell .container { max-width: 1320px; }
+.tya-experiment-shell .site-header,
+.tya-experiment-shell .site-header-home,
+.dark .tya-experiment-shell .site-header,
+.dark .tya-experiment-shell .site-header-home {
+  background: var(--brand-butter);
+  border-color: rgba(36, 40, 42, .15);
+  box-shadow: 0 4px 0 rgba(36, 40, 42, .06);
+  backdrop-filter: none;
+}
+.tya-experiment-shell .nav-link,
+.tya-experiment-shell .site-nav-label,
+.tya-experiment-shell .site-nav-trigger,
+.tya-experiment-shell .site-mobile-link,
+.tya-experiment-shell .site-mobile-parent > span,
+.tya-experiment-shell .site-mobile-parent > button { color: #24282a; }
+.tya-experiment-shell .nav-link:hover,
+.tya-experiment-shell .nav-link[aria-current="page"] { color: #24282a; }
+.tya-experiment-shell .nav-link::after { background: var(--brand-coral-text); height: 3px; }
+.tya-experiment-shell .site-menu-toggle,
+.tya-experiment-shell .theme-toggle { border-color: rgba(36, 40, 42, .32); color: #24282a; }
+.tya-experiment-shell .theme-toggle { background: transparent; }
+.tya-experiment-shell .site-mobile-navigation { border-color: rgba(36, 40, 42, .16); background: #fff5df; }
+.tya-experiment-shell .site-header .btn-primary { border-radius: 999px; background: #24282a; color: #fff9ef; box-shadow: none; }
+.tya-experiment-shell .btn-primary,
+.tya-experiment-shell .btn-dark,
+.tya-experiment-shell .btn-ghost { border-radius: 999px; }
+
+.tya-experiment-shell .home-hero {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background: var(--brand-bg);
+  color: var(--brand-ink);
+}
+.tya-experiment-shell .home-hero::before {
+  position: absolute;
+  top: -19rem;
+  right: -16rem;
+  width: min(77vw, 940px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--brand-butter);
+  content: "";
+}
+.tya-experiment-shell .hero-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block: clamp(2.1rem, 3vw, 2.6rem) 0;
+}
+.tya-experiment-shell .hero-copy-block { position: relative; z-index: 2; max-width: 650px; }
+.tya-experiment-shell .home-hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin: 0 0 1.8rem;
+  color: var(--brand-ink);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.tya-experiment-shell .home-hero-kicker span { width: 1rem; height: 1rem; border-radius: 50%; background: var(--brand-coral); box-shadow: 5px -5px 0 var(--brand-butter); }
+.tya-experiment-shell .hero-display-title {
+  max-width: 740px;
+  margin: 0;
+  color: var(--brand-ink);
+  font-size: clamp(3.5rem, 7.5vw, 7.25rem);
+  font-weight: 850;
+  line-height: .87;
+  letter-spacing: -.075em;
+  text-wrap: balance;
+}
+.tya-experiment-shell .hero-display-title span { color: var(--brand-coral-text); font-family: var(--marker-font); font-size: .84em; font-weight: 400; letter-spacing: -.06em; }
+.tya-experiment-shell .home-hero-copy { color: var(--brand-ink); }
+.tya-experiment-shell .hero-lede { max-width: 550px; margin: 1.8rem 0 0; font-size: clamp(1.05rem, 1.55vw, 1.3rem); font-weight: 500; line-height: 1.65; }
+.tya-experiment-shell .hero-supporting-copy { max-width: 510px; margin: .85rem 0 0; color: var(--brand-muted); font-size: .95rem; line-height: 1.65; }
+.tya-experiment-shell .hero-search { max-width: 550px; margin-top: 1.65rem; border: 1px solid rgba(36, 40, 42, .18); border-radius: 1.2rem; background: var(--brand-card); box-shadow: 0 10px 32px rgba(36, 40, 42, .09); }
+.tya-experiment-shell .hero-search input { color: #24282a; }
+.tya-experiment-shell .hero-search button { border-radius: 999px; background: var(--brand-coral); color: #24282a; }
+.tya-experiment-shell .hero-story-link { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1rem; color: var(--brand-ink); font-size: .84rem; font-weight: 750; text-decoration: underline; text-decoration-color: var(--brand-coral); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.tya-experiment-shell .hero-photo-stage { position: relative; min-height: 460px; }
+.tya-experiment-shell .hero-photo-sunburst { position: absolute; inset: 1% 1% 7% 6%; border-radius: 48% 52% 44% 56% / 45% 36% 64% 55%; background: var(--brand-coral); transform: rotate(5deg); }
+.tya-experiment-shell .hero-photo-frame { position: relative; width: 92%; margin: 0 0 0 auto; padding: .7rem; border: 2px solid var(--brand-ink); border-radius: 42% 55% 17% 18% / 22% 22% 12% 14%; background: var(--brand-card); box-shadow: 12px 14px 0 var(--brand-ink); transform: rotate(2deg); }
+.tya-experiment-shell .hero-photo-frame img { display: block; width: 100%; height: clamp(340px, 36vw, 460px); border-radius: 42% 54% 15% 15% / 20% 20% 10% 10%; object-fit: cover; object-position: center; }
+.tya-experiment-shell .hero-photo-frame figcaption { padding: .65rem .8rem .5rem; color: var(--brand-ink); font-family: var(--marker-font); font-size: .9rem; text-align: center; transform: rotate(-1deg); }
+.tya-experiment-shell .mission-snapshot { position: absolute; z-index: 3; bottom: -1rem; left: -7%; width: min(55%, 300px); padding: .6rem .6rem 0; border: 2px solid var(--brand-ink); border-radius: .85rem; background: var(--brand-card); box-shadow: 7px 8px 0 var(--brand-coral); transform: rotate(-4deg); }
+.tya-experiment-shell .mission-snapshot-body { min-height: 175px; border-radius: .5rem; padding: 1rem; background: var(--brand-ink); text-align: left; }
+.tya-experiment-shell .mission-snapshot .mission-number { margin: 0; color: var(--brand-butter); font-size: .63rem; letter-spacing: .16em; }
+.tya-experiment-shell .mission-snapshot .mission-carousel-question { top: 54%; left: 1rem; right: 1rem; color: var(--brand-ivory); font-family: var(--marker-font); font-size: clamp(1.25rem, 2.4vw, 1.8rem); line-height: 1.12; }
+.tya-experiment-shell .mission-snapshot .mission-carousel-progress { bottom: .75rem; left: 1rem; right: 1rem; gap: .3rem; }
+.tya-experiment-shell .mission-snapshot .mission-carousel-progress span { height: 3px; border-radius: 2px; background: rgba(255, 249, 239, .24); }
+.tya-experiment-shell .mission-snapshot .mission-carousel-progress span.is-active { background: var(--brand-butter); }
+.tya-experiment-shell .mission-snapshot .mission-polaroid-caption { min-height: 3.7rem; border-radius: 0 0 .45rem .45rem; background: var(--brand-card); }
+.tya-experiment-shell .mission-snapshot .mission-answer-copy { font-size: .78rem; font-weight: 650; line-height: 1.4; }
+.tya-experiment-shell .mission-snapshot .mission-answer-copy span { display: block; }
+.tya-experiment-shell .mission-snapshot .mission-skill-highlight { color: var(--brand-coral-text); }
+.tya-experiment-shell .hero-handnote { position: absolute; top: 5%; right: -1%; z-index: 3; display: grid; color: var(--brand-ink); font-family: var(--marker-font); font-size: clamp(.9rem, 1.7vw, 1.2rem); line-height: 1.2; text-transform: uppercase; transform: rotate(8deg); }
+.tya-experiment-shell .hero-handnote span:nth-child(2) { color: var(--brand-coral-text); }
+.tya-experiment-shell .hero-scroll-cue { display: flex; align-items: center; gap: .8rem; padding-block: 1rem 1.4rem; color: var(--brand-ink); font-size: .7rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.tya-experiment-shell .hero-scroll-cue span { width: 3.2rem; height: 2px; background: var(--brand-coral); }
+
+.tya-experiment-shell .experiment-proof-strip { position: relative; z-index: 1; margin-top: -1px; overflow: hidden; background: var(--brand-ink); color: var(--brand-ivory); clip-path: polygon(0 5%, 7% 0, 16% 5%, 27% 1%, 40% 6%, 52% 0, 66% 5%, 79% 1%, 92% 5%, 100% 0, 100% 94%, 92% 100%, 78% 95%, 64% 100%, 49% 94%, 36% 100%, 21% 96%, 7% 100%, 0 94%); }
+.tya-experiment-shell .proof-strip-inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-block: 2.4rem; }
+.tya-experiment-shell .proof-strip-inner span { display: flex; align-items: center; justify-content: center; gap: .75rem; color: var(--brand-ivory); font-size: .77rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.tya-experiment-shell .proof-strip-inner svg { width: 1.6rem; height: 1.6rem; color: var(--brand-butter); }
+
+.tya-experiment-shell .home-manifesto { padding-block: 2rem; background: var(--brand-coral); }
+.tya-experiment-shell .home-manifesto::before { position: absolute; top: -4rem; left: -2rem; width: 12rem; height: 12rem; border: 1px solid rgba(36, 40, 42, .22); border-radius: 50%; box-shadow: 1rem 0 0 rgba(36, 40, 42, .07), 2rem 0 0 rgba(36, 40, 42, .06); content: ""; }
+.tya-experiment-shell .home-manifesto-inner { border: 0; border-radius: 0; background: transparent; padding: .9rem 0; box-shadow: none; }
+.tya-experiment-shell .home-manifesto-kicker { color: var(--brand-ink); font-size: .68rem; }
+.tya-experiment-shell .home-manifesto-copy { position: relative; z-index: 1; max-width: 100%; margin-top: .7rem; color: var(--brand-ink); font-size: clamp(1rem, 2.35vw, 2.05rem); font-weight: 750; line-height: 1.35; letter-spacing: -.04em; white-space: normal; }
+.tya-experiment-shell .home-manifesto-copy strong { border-radius: .08em; background: var(--brand-butter); padding: .02em .14em .1em; }
+.tya-experiment-shell .home-manifesto-copy em { color: var(--brand-ivory); text-decoration-thickness: .06em; }
+
+.tya-experiment-shell #how-it-works,
+.tya-experiment-shell #curriculum { background: var(--brand-bg); }
+.tya-experiment-shell .section-kicker { color: var(--brand-ink); font-weight: 800; letter-spacing: .15em; }
+.tya-experiment-shell .section-intro-title,
+.tya-experiment-shell .why-tya-heading h2 { color: var(--brand-ink); font-family: var(--marker-font); font-size: clamp(2.3rem, 5vw, 4.8rem); font-weight: 400; line-height: 1.08; letter-spacing: -.035em; }
+.tya-experiment-shell .page-hero .section-intro-title { font-size: clamp(2.25rem, 4vw, 3.8rem); }
+.tya-experiment-shell .section-intro-side { border-left: 3px solid var(--brand-coral); color: var(--brand-muted); }
+.tya-experiment-shell .home-how-it-works-intro .section-intro-title > span { white-space: normal; }
+.tya-experiment-shell #how-it-works > .container > .mt-4,
+.tya-experiment-shell #curriculum > .container > .mt-4 { border: 0; border-radius: 1.35rem; background: var(--brand-soft); padding: clamp(1rem, 3vw, 2rem); }
+.tya-experiment-shell .how-works-card { border: 1px solid rgba(36, 40, 42, .12); border-radius: 1.2rem; background: var(--brand-card); box-shadow: 0 8px 0 rgba(36, 40, 42, .06); }
+.tya-experiment-shell .how-works-card-title { font-family: var(--marker-font); font-size: 1.25rem; font-weight: 400; line-height: 1.15; }
+.tya-experiment-shell .how-works-quote { border-color: var(--brand-coral); color: var(--brand-ink); }
+
+.tya-experiment-shell .why-tya-section { background: #ffe9b0; }
+.dark .tya-experiment-shell .why-tya-section { background: #33302a; }
+.tya-experiment-shell .why-tya-heading h2 { max-width: 850px; }
+.tya-experiment-shell .why-tya-block-grid { gap: 1.2rem; }
+.tya-experiment-shell .why-tya-block-card,
+.tya-experiment-shell .why-tya-block-card[data-tone="charcoal"],
+.tya-experiment-shell .why-tya-block-card[data-tone="butter"],
+.tya-experiment-shell .why-tya-block-card[data-tone="coral"] {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  border: 1px solid rgba(36, 40, 42, .12);
+  border-radius: 1.25rem;
+  background: var(--brand-card);
+  color: var(--brand-ink);
+  box-shadow: 0 8px 0 rgba(36, 40, 42, .08);
+  padding: 0 0 1.35rem;
+}
+.tya-experiment-shell .why-tya-card-photo { width: 100%; height: clamp(145px, 17vw, 220px); overflow: hidden; background: var(--brand-soft); }
+.tya-experiment-shell .why-tya-card-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.tya-experiment-shell .why-tya-block-card:hover .why-tya-card-photo img { transform: scale(1.04); }
+.tya-experiment-shell .why-tya-feature-title,
+.tya-experiment-shell .why-tya-block-kicker,
+.tya-experiment-shell .why-tya-block-copy { margin-inline: 1.3rem; }
+.tya-experiment-shell .why-tya-feature-title { margin-top: 1.15rem; }
+.tya-experiment-shell .why-tya-feature-title h3 { color: var(--brand-ink); font-family: var(--marker-font); font-size: 1.23rem; font-weight: 400; line-height: 1.2; }
+.tya-experiment-shell .why-tya-block-icon,
+.tya-experiment-shell .why-tya-block-card[data-tone] .why-tya-block-icon,
+.dark .tya-experiment-shell .why-tya-block-card[data-tone] .why-tya-block-icon { background: var(--brand-butter); color: var(--brand-ink); }
+.tya-experiment-shell .why-tya-block-kicker,
+.tya-experiment-shell .why-tya-block-card[data-tone] .why-tya-block-kicker { margin-top: .65rem; color: var(--brand-coral-text); font-size: .65rem; }
+.tya-experiment-shell .why-tya-block-copy,
+.tya-experiment-shell .why-tya-block-card[data-tone] .why-tya-block-copy { color: var(--brand-muted); font-size: .84rem; }
+
+.tya-experiment-shell .parent-guides-page { background: var(--brand-ink); }
+.tya-experiment-shell .parent-guides-intro-title { font-family: var(--marker-font); font-weight: 400; letter-spacing: -.035em; }
+.tya-experiment-shell .parent-guide-section-heading h2,
+.tya-experiment-shell .parent-guide-feature-title { font-family: var(--marker-font); font-weight: 400; }
+.tya-experiment-shell .parent-guide-feature { border: 1px solid rgba(255, 249, 239, .12); border-radius: 1.1rem; }
+.tya-experiment-shell .parent-guide-row { transition: background-color .18s ease; }
+.tya-experiment-shell .parent-guide-row:hover { background: rgba(255, 249, 239, .045); }
+.tya-experiment-shell .parent-guide-expand-button { border-radius: 999px; }
+
+.tya-experiment-shell .page-hero { position: relative; background: var(--brand-butter); color: var(--brand-ink); }
+.tya-experiment-shell .page-hero .section-kicker,
+.tya-experiment-shell .page-hero .section-intro-title,
+.tya-experiment-shell .page-hero .section-intro-side { color: var(--brand-ink); }
+.tya-experiment-shell .page-hero .section-intro-side { border-color: var(--brand-coral-text); }
+.tya-experiment-shell .page-hero .headline-accent--coral,
+.tya-experiment-shell .page-hero .headline-accent--butter { color: #a63a20 !important; }
+.tya-experiment-shell .soft-panel { background: var(--brand-soft); }
+.tya-experiment-shell .story-narrative { padding-block: clamp(3rem, 7vw, 6rem); }
+.tya-experiment-shell .story-narrative-copy { color: var(--brand-muted); }
+.tya-experiment-shell .story-narrative-copy p { font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.9; }
+.tya-experiment-shell .founder-section { position: relative; overflow: hidden; }
+.tya-experiment-shell .founder-section::before { position: absolute; top: 4rem; right: -9rem; width: 23rem; height: 23rem; border-radius: 50%; background: var(--brand-coral); opacity: .18; content: ""; }
+.tya-experiment-shell .founder-grid { position: relative; z-index: 1; gap: 1.25rem; }
+.tya-experiment-shell .founder-profile { border: 1.5px solid var(--brand-ink); border-radius: 1.1rem; background: var(--brand-card); box-shadow: 7px 8px 0 var(--brand-butter); }
+.tya-experiment-shell .founder-card-portrait { aspect-ratio: .98; background: var(--brand-soft); }
+.tya-experiment-shell .founder-card-portrait img { object-position: center 25%; }
+.tya-experiment-shell .founder-profile-role { color: var(--brand-coral-text); }
+.tya-experiment-shell .founder-profile-copy h3 { font-family: var(--marker-font); font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 400; }
+.tya-experiment-shell .founder-profile-bio { color: var(--brand-muted); }
+.tya-experiment-shell .content-card,
+.tya-experiment-shell .form-card,
+.tya-experiment-shell .pod-discovery-panel,
+.tya-experiment-shell .contact-info-card { border-color: rgba(36, 40, 42, .12); border-radius: 1.15rem; background: var(--brand-card); box-shadow: 0 8px 0 rgba(36, 40, 42, .07); }
+.tya-experiment-shell .content-card h3 { font-family: var(--marker-font); font-weight: 400; }
+.tya-experiment-shell .experience-faq-section { background: var(--brand-bg); }
+.tya-experiment-shell .faq-item { border-color: rgba(36, 40, 42, .2); }
+.tya-experiment-shell .site-footer { background: var(--brand-ink); color: var(--brand-ivory); }
+
+.tya-experiment-shell .experiment-cta-band { position: relative; overflow: hidden; min-height: 460px; display: flex; align-items: center; background: var(--brand-butter); }
+.tya-experiment-shell .experiment-cta-inner { position: relative; z-index: 2; padding-block: 4rem; }
+.tya-experiment-shell .experiment-cta-inner > * { max-width: 600px; }
+.tya-experiment-shell .experiment-cta-eyebrow { margin: 0 0 .8rem; color: var(--brand-coral-text); font-size: .7rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+.tya-experiment-shell .experiment-cta-inner h2 { margin: 0; color: var(--brand-ink); font-family: var(--marker-font); font-size: clamp(3.1rem, 6vw, 5.5rem); font-weight: 400; line-height: .98; }
+.tya-experiment-shell .experiment-cta-inner h2 span { color: var(--brand-coral-text); }
+.tya-experiment-shell .experiment-cta-inner > p:not(.experiment-cta-eyebrow) { margin: 1.25rem 0 0; color: var(--brand-ink); font-size: 1rem; line-height: 1.7; }
+.tya-experiment-shell .experiment-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+.tya-experiment-shell .experiment-cta-actions a:first-child { display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px; background: var(--brand-ink); padding: .9rem 1.35rem; color: var(--brand-ivory); font-size: .85rem; font-weight: 800; }
+.tya-experiment-shell .experiment-cta-actions a:last-child { color: var(--brand-ink); font-size: .83rem; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.tya-experiment-shell .experiment-cta-photo { position: absolute; top: 0; right: 0; width: 47%; height: 100%; object-fit: cover; object-position: center; clip-path: ellipse(68% 82% at 72% 50%); }
+
+.dark .tya-experiment-shell .home-hero,
+.dark .tya-experiment-shell .home-manifesto,
+.dark .tya-experiment-shell #how-it-works,
+.dark .tya-experiment-shell #curriculum,
+.dark .tya-experiment-shell .experience-faq-section { background-color: var(--brand-bg); color: var(--brand-ink); }
+.dark .tya-experiment-shell .home-hero-kicker,
+.dark .tya-experiment-shell .hero-display-title,
+.dark .tya-experiment-shell .home-hero-copy,
+.dark .tya-experiment-shell .hero-story-link,
+.dark .tya-experiment-shell .hero-scroll-cue,
+.dark .tya-experiment-shell .home-manifesto-copy,
+.dark .tya-experiment-shell .section-intro-title,
+.dark .tya-experiment-shell .why-tya-heading h2 { color: var(--brand-ink); }
+.dark .tya-experiment-shell .hero-display-title span,
+.dark .tya-experiment-shell .experiment-cta-inner h2 span { color: var(--brand-coral); }
+.dark .tya-experiment-shell .home-manifesto-copy em { color: var(--brand-ink); }
+.dark .tya-experiment-shell .why-tya-block-card,
+.dark .tya-experiment-shell .why-tya-block-card[data-tone="charcoal"],
+.dark .tya-experiment-shell .why-tya-block-card[data-tone="butter"],
+.dark .tya-experiment-shell .why-tya-block-card[data-tone="coral"] { background: var(--brand-card); color: var(--brand-ink); }
+.dark .tya-experiment-shell .why-tya-feature-title h3,
+.dark .tya-experiment-shell .why-tya-block-card h3 { color: var(--brand-ink); }
+.dark .tya-experiment-shell .page-hero { background: #f5bd25; }
+.dark .tya-experiment-shell .page-hero .section-kicker,
+.dark .tya-experiment-shell .page-hero .section-intro-title,
+.dark .tya-experiment-shell .page-hero .section-intro-side { color: #24282a; }
+.dark .tya-experiment-shell .founder-profile { background: var(--brand-card); }
+.dark .tya-experiment-shell .founder-profile-copy h3,
+.dark .tya-experiment-shell .content-card h3 { color: var(--brand-ink); }
+.dark .tya-experiment-shell .experiment-cta-band { background: #f5bd25; }
+.dark .tya-experiment-shell .experiment-cta-inner h2,
+.dark .tya-experiment-shell .experiment-cta-inner > p:not(.experiment-cta-eyebrow) { color: #24282a; }
+
+@media (max-width: 900px) {
+  .tya-experiment-shell .hero-layout { min-height: 0; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .tya-experiment-shell .hero-photo-stage { min-height: 450px; }
+  .tya-experiment-shell .hero-photo-frame img { height: 400px; }
+  .tya-experiment-shell .hero-display-title { font-size: clamp(3.35rem, 8.2vw, 5.4rem); }
+  .tya-experiment-shell .mission-snapshot { left: -3%; width: 62%; }
+  .tya-experiment-shell .why-tya-block-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .tya-experiment-shell .home-hero::before { top: 34%; right: -22rem; width: 37rem; }
+  .tya-experiment-shell .hero-layout { grid-template-columns: 1fr; gap: 2.4rem; padding-top: 3.5rem; }
+  .tya-experiment-shell .home-hero-kicker { font-size: .66rem; letter-spacing: .1em; }
+  .tya-experiment-shell .hero-display-title { font-size: clamp(3.35rem, 14vw, 5.1rem); }
+  .tya-experiment-shell .hero-lede { font-size: 1.05rem; }
+  .tya-experiment-shell .hero-search { display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .tya-experiment-shell .hero-search > div { min-width: 0; }
+  .tya-experiment-shell .hero-search > button { grid-column: 1 / -1; width: 100%; text-align: center; }
+  .tya-experiment-shell .hero-photo-stage { min-height: 410px; margin-inline: .3rem; }
+  .tya-experiment-shell .hero-photo-frame { width: 91%; }
+  .tya-experiment-shell .hero-photo-frame img { height: 345px; }
+  .tya-experiment-shell .hero-handnote { right: 0; }
+  .tya-experiment-shell .mission-snapshot { bottom: -1.3rem; left: -1%; width: 63%; }
+  .tya-experiment-shell .proof-strip-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem .4rem; padding-block: 1.8rem; }
+  .tya-experiment-shell .proof-strip-inner span { justify-content: flex-start; gap: .5rem; font-size: .57rem; letter-spacing: .06em; }
+  .tya-experiment-shell .proof-strip-inner svg { width: 1.25rem; height: 1.25rem; }
+  .tya-experiment-shell .home-manifesto-copy { font-size: clamp(1.05rem, 5vw, 1.45rem); }
+  .tya-experiment-shell .home-how-it-works-intro .section-intro-title > span { display: block; }
+  .tya-experiment-shell .why-tya-block-grid { grid-template-columns: 1fr; }
+  .tya-experiment-shell .why-tya-card-photo { height: 220px; }
+  .tya-experiment-shell .experiment-cta-band { min-height: 0; padding-bottom: 12rem; }
+  .tya-experiment-shell .experiment-cta-inner { padding-block: 3rem; }
+  .tya-experiment-shell .experiment-cta-photo { top: auto; bottom: 0; width: 100%; height: 220px; clip-path: ellipse(82% 88% at 67% 100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tya-experiment-shell *, .tya-experiment-shell *::before, .tya-experiment-shell *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

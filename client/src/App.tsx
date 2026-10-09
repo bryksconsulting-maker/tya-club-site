@@ -144,10 +144,12 @@ export default function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="system" switchable>
         <TooltipProvider>
-          <GithubPagesLinks />
-          <Toaster position="top-right" />
-          <Router />
-          <WhatsAppFloat />
+          <div className="tya-experiment-shell">
+            <GithubPagesLinks />
+            <Toaster position="top-right" />
+            <Router />
+            <WhatsAppFloat />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

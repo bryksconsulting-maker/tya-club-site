@@ -123,7 +123,7 @@ const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(
 
 export default defineConfig({
   plugins,
-  base: process.env.GITHUB_ACTIONS ? "/tya-club-site/" : "/",
+  base: process.env.VITE_BASE_PATH || (process.env.GITHUB_ACTIONS ? "/tya-club-site/" : "/"),
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),

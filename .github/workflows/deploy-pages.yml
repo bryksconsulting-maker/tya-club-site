@@ -1,8 +1,8 @@
-name: Deploy preview to GitHub Pages
+name: Deploy GitHub Pages with alternate UI preview
 
 on:
   push:
-    branches: [main]
+    branches: [main, experiment/alternate-ui]
   workflow_dispatch:
 
 permissions:
@@ -12,14 +12,16 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout production source
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -40,9 +42,36 @@ jobs:
         run: pnpm build
         env:
           GITHUB_ACTIONS: true
+          VITE_BASE_PATH: /tya-club-site/
 
-      - name: Add SPA fallback
-        run: cp dist/public/index.html dist/public/404.html
+      - name: Assemble production site
+        run: |
+          mkdir -p pages
+          cp -R dist/public/. pages/
+          cp pages/index.html pages/404.html
+
+      - name: Checkout alternate UI branch
+        uses: actions/checkout@v4
+        with:
+          ref: experiment/alternate-ui
+          path: preview-source
+
+      - name: Install preview dependencies
+        working-directory: preview-source
+        run: pnpm install --frozen-lockfile
+
+      - name: Build alternate UI preview
+        working-directory: preview-source
+        run: pnpm build
+        env:
+          GITHUB_ACTIONS: true
+          VITE_BASE_PATH: /tya-club-site/previews/alternate-ui/
+
+      - name: Add alternate UI preview
+        run: |
+          mkdir -p pages/previews/alternate-ui
+          cp -R preview-source/dist/public/. pages/previews/alternate-ui/
+          cp pages/previews/alternate-ui/index.html pages/previews/alternate-ui/404.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -50,7 +79,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/public
+          path: pages
 
   deploy:
     environment:

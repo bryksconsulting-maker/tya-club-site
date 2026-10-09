@@ -11,6 +11,12 @@ import { LEARNING_CAROUSEL_CYCLE_MS } from "../data/learningCarouselTiming";
 import { isValidIndianPhone } from "../lib/validation";
 
 const LOGO_BASE = import.meta.env.BASE_URL;
+const programmePhotos = [
+  { src: "programme-creative-lab.jpg", alt: "Indian young adults planning a model together in a creative workshop" },
+  { src: "programme-future-ready.jpg", alt: "Two Indian young adults discussing ideas over a laptop" },
+  { src: "programme-community-impact.jpg", alt: "Indian young adults presenting a community project to local residents" },
+  { src: "programme-arts-media.jpg", alt: "Indian young women creating photographs at an arts workshop" },
+];
 import {
   ArrowDownRight,
   ArrowLeft,
@@ -218,46 +224,50 @@ export default function Home() {
       <SiteHeader variant="home" />
 
       <main>
-        <section className="home-hero relative overflow-hidden border-b border-white/10">
-          <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[660px] lg:grid-cols-[1.08fr_.92fr] lg:py-14">
-            <div className="relative z-10 max-w-[680px]">
-              <div className="home-hero-kicker reveal mb-10 flex items-center gap-3 text-[15px] font-medium"><span className="h-4 w-4 rounded-full bg-[#F28D63]" /> Transforming Young Adults into future greatness</div>
-              <h1 className="reveal reveal-2 text-balance text-[clamp(3.8rem,7vw,6.8rem)] font-extrabold leading-[.88] tracking-[-.055em]">
-                <span className="block">TYA CLUB</span>
-              </h1>
-              <p className="home-hero-copy reveal reveal-3 mt-7 max-w-[650px] text-base font-medium leading-6 sm:text-lg sm:leading-[1.5]">
-                TYA Club is designed to help young adults develop<br className="hidden sm:block" /> the mindset and <strong>life skills necessary to be future ready.</strong>
-              </p>
-              <p className="home-hero-copy reveal reveal-3 mt-8 max-w-[650px] text-base font-medium leading-6 sm:text-lg sm:leading-[1.5]">
-                It’s a platform designed to empower young minds<br className="hidden sm:block" /> aged 11–22 to communicate with confidence,<br className="hidden sm:block" /> think independently, make informed decisions,<br className="hidden sm:block" /> and navigate the challenges of the real world.
-              </p>
-              <FindCentreSearch id="find-a-pod" className="reveal reveal-3 mt-9 max-w-[545px] scroll-mt-24" />
+        <section className="home-hero relative overflow-hidden">
+          <div className="container hero-layout">
+            <div className="hero-copy-block">
+              <div className="home-hero-kicker"><span aria-hidden="true" /> An after-school club for young adults</div>
+              <h1 className="hero-display-title">Skills for life.<br /><span>Built by doing.</span></h1>
+              <p className="home-hero-copy hero-lede">A place for 11–22-year-olds to make friends, practise real-world skills, and grow into who they want to be.</p>
+              <p className="home-hero-copy hero-supporting-copy">Good people. Practical experiences. Room to try, learn and find your voice.</p>
+              <FindCentreSearch id="find-a-pod" className="hero-search scroll-mt-24" />
+              <a className="hero-story-link" href={`${LOGO_BASE}our-story`}>Get to know TYA <ArrowRight size={16} aria-hidden="true" /></a>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[530px] lg:ml-auto">
-              <div aria-hidden="true" className="hero-orb-coral hero-orb delay absolute -bottom-5 -right-5 z-20 h-32 w-32 rounded-full" />
-              <div aria-hidden="true" className="hero-orb-ivory absolute -left-2 -top-5 z-0 h-32 w-32 rounded-full" />
-              <div className="mission-polaroid relative z-10 rotate-[-2deg] p-3 pb-0 shadow-[0_24px_70px_rgba(62,66,69,.18)] sm:p-4 sm:pb-0">
-                <div className="mission-polaroid-photo relative min-h-[345px] px-5 pb-12 pt-6 text-center sm:min-h-[385px] sm:px-10 sm:pt-7">
-                  <h2 className="mission-card-title mx-auto max-w-[430px] text-balance text-xl font-semibold leading-tight tracking-[-.025em] sm:text-2xl">Are your kids future ready?</h2>
-                  <div className="mission-number mt-5 text-sm font-extrabold uppercase tracking-[.2em] sm:text-base">MISSION {String(heroPosition + 1)}:</div>
-                  <div key={heroPosition} aria-live="polite" className="mission-carousel-question absolute left-5 right-5 top-[57%] font-semibold sm:left-10 sm:right-10">
+            <div className="hero-photo-stage">
+              <div aria-hidden="true" className="hero-photo-sunburst" />
+              <figure className="hero-photo-frame">
+                <img src={`${LOGO_BASE}images/youth-workshop-hero.jpg`} alt="Indian young adults sharing ideas and building a model at a bright neighbourhood workshop" fetchPriority="high" />
+                <figcaption>Ideas grow when we make room for everyone.</figcaption>
+              </figure>
+              <div className="mission-polaroid mission-snapshot">
+                <div className="mission-polaroid-photo mission-snapshot-body">
+                  <div className="mission-number">MISSION {String(heroPosition + 1)}</div>
+                  <div key={heroPosition} aria-live="polite" className="mission-carousel-question">
                     {line.statementLines.map((part) => <span className="block" key={part}>{part}</span>)}
                   </div>
-                  <div className="mission-carousel-progress absolute bottom-8 left-7 right-7 flex gap-1.5 sm:left-12 sm:right-12">
+                  <div className="mission-carousel-progress">
                     {Array.from({ length: heroLines.length }).map((_, index) => <span key={index} className={index <= heroPosition ? "is-active" : ""} />)}
                   </div>
                 </div>
-                <div className="mission-polaroid-caption flex items-center justify-center px-3 py-3 text-center sm:px-7">
-                  <p key={`${heroPosition}-answer`} aria-live="polite" className="mission-answer-copy font-medium">
-                    <span className="block">{line.response}</span>
-                    {line.skill && <span className="mt-0.5 block">They learn <strong className="mission-skill-highlight font-extrabold">{line.skill.toUpperCase()}</strong>.</span>}
+                <div className="mission-polaroid-caption">
+                  <p key={`${heroPosition}-answer`} aria-live="polite" className="mission-answer-copy">
+                    <span>{line.response}</span>
+                    {line.skill && <span>We practise <strong className="mission-skill-highlight">{line.skill.toUpperCase()}</strong>.</span>}
                   </p>
                 </div>
               </div>
+              <div className="hero-handnote"><span>People</span><span>ideas</span><span>possibility!</span></div>
             </div>
           </div>
-          <div className="container pb-8"><div className="home-hero-explore flex items-center gap-4 text-xs font-bold uppercase tracking-[.16em]"><span className="story-line h-px w-16" /> Scroll to explore <ArrowDownRight size={14} /></div></div>
+          <div className="container hero-scroll-cue"><span aria-hidden="true" /> Scroll to explore <ArrowDownRight size={14} /></div>
+        </section>
+
+        <section className="experiment-proof-strip" aria-label="What young adults do at TYA">
+          <div className="container proof-strip-inner">
+            <span><Users aria-hidden="true" /> Make friends</span><span><Sparkles aria-hidden="true" /> Build skills</span><span><Compass aria-hidden="true" /> Explore opportunities</span><span><HeartHandshake aria-hidden="true" /> Create change</span>
+          </div>
         </section>
 
         <section className="home-manifesto">
@@ -301,10 +311,11 @@ export default function Home() {
             <SectionIntro eyebrow="Why TYA" title={<>The skills that make the <span className="headline-accent headline-accent--coral"><strong className="headline-impact">difference.</strong></span></>} description="TYA is where young adults practise the things that matter later — making a call, listening to another point of view, taking responsibility and trying again when the first plan fails." className="why-tya-heading" />
 
             <div className="why-tya-block-grid">
-              {whyTyaBlocks.map((block) => {
+              {whyTyaBlocks.map((block, index) => {
                 const Icon = block.icon;
                 return (
                   <article className="why-tya-block-card why-tya-block-card--feature-title" data-tone={block.tone} key={block.title}>
+                    {programmePhotos[index] && <div className="why-tya-card-photo"><img src={`${LOGO_BASE}images/${programmePhotos[index].src}`} alt={programmePhotos[index].alt} loading="lazy" /></div>}
                     <div className="why-tya-feature-title"><span className="why-tya-block-icon" aria-hidden="true"><Icon size={19} /></span><h3>{block.kicker}</h3></div>
                     <p className="why-tya-block-kicker">{block.title}</p>
                     <p className="why-tya-block-copy">{block.copy}</p>
@@ -379,11 +390,21 @@ export default function Home() {
                 <input id="experience-question" type="text" maxLength={500} required value={experienceQuestion} onChange={(event) => setExperienceQuestion(event.target.value)} placeholder="Type your question" />
                 <button type="submit" aria-label="Ask us anything"><span>Ask us anything</span><ArrowRight size={15} aria-hidden="true" /></button>
               </form>} className="experience-faq-section-intro" />
-            <ExperienceFaqList items={experienceFaqs} />
+        <ExperienceFaqList items={experienceFaqs} />
           </div>
         </section>
 
         <CentresContent embedded initialQuery={podQuery} />
+
+        <section className="experiment-cta-band">
+          <div className="container experiment-cta-inner">
+            <p className="experiment-cta-eyebrow">The next chapter starts here</p>
+            <h2>Give them room<br /><span>to become.</span></h2>
+            <p>Bring your young adult for a first-hand look at a TYA Pod. Meet the coach, try a Mission and see how it feels.</p>
+            <div className="experiment-cta-actions"><a href="#find-a-pod">Find a Pod <ArrowRight size={16} aria-hidden="true" /></a><a href={`${LOGO_BASE}our-story`}>Meet the people behind TYA</a></div>
+          </div>
+          <img className="experiment-cta-photo" src={`${LOGO_BASE}images/youth-workshop-hero.jpg`} alt="Indian young adults working together at a TYA-style learning workshop" loading="lazy" />
+        </section>
 
       </main>
 
