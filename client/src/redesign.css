@@ -125,7 +125,7 @@
 .tya-experiment-shell .hero-photo-frame img { display: block; width: 100%; height: clamp(340px, 36vw, 460px); border-radius: 42% 54% 15% 15% / 20% 20% 10% 10%; object-fit: cover; object-position: center; }
 .tya-experiment-shell .hero-photo-frame figcaption { padding: .65rem .8rem .5rem; color: var(--brand-ink); font-family: var(--marker-font); font-size: .9rem; text-align: center; transform: rotate(-1deg); }
 .tya-experiment-shell .mission-snapshot { position: absolute; z-index: 3; bottom: -1rem; left: -7%; width: min(55%, 300px); padding: .6rem .6rem 0; border: 2px solid var(--brand-ink); border-radius: .85rem; background: var(--brand-card); box-shadow: 7px 8px 0 var(--brand-coral); transform: rotate(-4deg); }
-.tya-experiment-shell .mission-snapshot-body { min-height: 175px; border-radius: .5rem; padding: 1rem; background: var(--brand-ink); text-align: left; }
+.tya-experiment-shell .mission-snapshot-body { min-height: 175px; border-radius: .5rem; padding: 1rem; background: var(--brand-charcoal); text-align: left; }
 .tya-experiment-shell .mission-snapshot .mission-number { margin: 0; color: var(--brand-butter); font-size: .63rem; letter-spacing: .16em; }
 .tya-experiment-shell .mission-snapshot .mission-carousel-question { top: 54%; left: 1rem; right: 1rem; color: var(--brand-ivory); font-family: var(--marker-font); font-size: clamp(1.25rem, 2.4vw, 1.8rem); line-height: 1.12; }
 .tya-experiment-shell .mission-snapshot .mission-carousel-progress { bottom: .75rem; left: 1rem; right: 1rem; gap: .3rem; }
@@ -201,7 +201,7 @@
 .tya-experiment-shell .why-tya-block-copy,
 .tya-experiment-shell .why-tya-block-card[data-tone] .why-tya-block-copy { color: var(--brand-muted); font-size: .84rem; }
 
-.tya-experiment-shell .parent-guides-page { background: var(--brand-ink); }
+.tya-experiment-shell .parent-guides-page { background: var(--brand-charcoal); }
 .tya-experiment-shell .parent-guides-intro-title { font-family: var(--marker-font); font-weight: 400; letter-spacing: -.035em; }
 .tya-experiment-shell .parent-guide-section-heading h2,
 .tya-experiment-shell .parent-guide-feature-title { font-family: var(--marker-font); font-weight: 400; }
@@ -242,13 +242,13 @@
 .tya-experiment-shell .experiment-cta-band { position: relative; overflow: hidden; min-height: 460px; display: flex; align-items: center; background: var(--brand-butter); }
 .tya-experiment-shell .experiment-cta-inner { position: relative; z-index: 2; padding-block: 4rem; }
 .tya-experiment-shell .experiment-cta-inner > * { max-width: 600px; }
-.tya-experiment-shell .experiment-cta-eyebrow { margin: 0 0 .8rem; color: var(--brand-coral-text); font-size: .7rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+.tya-experiment-shell .experiment-cta-eyebrow { margin: 0 0 .8rem; color: #a63a20; font-size: .7rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
 .tya-experiment-shell .experiment-cta-inner h2 { margin: 0; color: var(--brand-ink); font-family: var(--marker-font); font-size: clamp(3.1rem, 6vw, 5.5rem); font-weight: 400; line-height: .98; }
-.tya-experiment-shell .experiment-cta-inner h2 span { color: var(--brand-coral-text); }
+.tya-experiment-shell .experiment-cta-inner h2 span { color: #a63a20; }
 .tya-experiment-shell .experiment-cta-inner > p:not(.experiment-cta-eyebrow) { margin: 1.25rem 0 0; color: var(--brand-ink); font-size: 1rem; line-height: 1.7; }
 .tya-experiment-shell .experiment-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
-.tya-experiment-shell .experiment-cta-actions a:first-child { display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px; background: var(--brand-ink); padding: .9rem 1.35rem; color: var(--brand-ivory); font-size: .85rem; font-weight: 800; }
-.tya-experiment-shell .experiment-cta-actions a:last-child { color: var(--brand-ink); font-size: .83rem; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.tya-experiment-shell .experiment-cta-actions a:first-child { display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px; background: var(--brand-charcoal); padding: .9rem 1.35rem; color: var(--brand-ivory); font-size: .85rem; font-weight: 800; }
+.tya-experiment-shell .experiment-cta-actions a:last-child { color: #24282a; font-size: .83rem; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
 .tya-experiment-shell .experiment-cta-photo { position: absolute; top: 0; right: 0; width: 47%; height: 100%; object-fit: cover; object-position: center; clip-path: ellipse(68% 82% at 72% 50%); }
 
 .dark .tya-experiment-shell .home-hero,
@@ -264,8 +264,7 @@
 .dark .tya-experiment-shell .home-manifesto-copy,
 .dark .tya-experiment-shell .section-intro-title,
 .dark .tya-experiment-shell .why-tya-heading h2 { color: var(--brand-ink); }
-.dark .tya-experiment-shell .hero-display-title span,
-.dark .tya-experiment-shell .experiment-cta-inner h2 span { color: var(--brand-coral); }
+.dark .tya-experiment-shell .hero-display-title span { color: var(--brand-coral); }
 .dark .tya-experiment-shell .home-manifesto-copy em { color: var(--brand-ink); }
 .dark .tya-experiment-shell .why-tya-block-card,
 .dark .tya-experiment-shell .why-tya-block-card[data-tone="charcoal"],
@@ -291,6 +290,7 @@
   .tya-experiment-shell .hero-display-title { font-size: clamp(3.35rem, 8.2vw, 5.4rem); }
   .tya-experiment-shell .mission-snapshot { left: -3%; width: 62%; }
   .tya-experiment-shell .why-tya-block-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tya-experiment-shell .experiment-cta-inner > * { max-width: 52%; }
 }
 @media (max-width: 640px) {
   .tya-experiment-shell .home-hero::before { top: 34%; right: -22rem; width: 37rem; }
@@ -315,6 +315,7 @@
   .tya-experiment-shell .why-tya-card-photo { height: 220px; }
   .tya-experiment-shell .experiment-cta-band { min-height: 0; padding-bottom: 12rem; }
   .tya-experiment-shell .experiment-cta-inner { padding-block: 3rem; }
+  .tya-experiment-shell .experiment-cta-inner > * { max-width: 100%; }
   .tya-experiment-shell .experiment-cta-photo { top: auto; bottom: 0; width: 100%; height: 220px; clip-path: ellipse(82% 88% at 67% 100%); }
 }
 @media (prefers-reduced-motion: reduce) {
