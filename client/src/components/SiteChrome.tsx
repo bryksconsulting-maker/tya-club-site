@@ -171,8 +171,8 @@ export function FindCentrePrompt() {
   </section>;
 }
 
-export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: React.ReactNode; intro: string; children?: React.ReactNode }) {
-  return <section className={`grain page-hero overflow-hidden border-b py-20 lg:py-28 ${children ? "page-hero--with-aside" : ""}`}><div className="container min-w-0"><SectionIntro eyebrow={eyebrow} title={title} description={intro} light as="h1" className="page-hero-intro" />{children && <div className="page-hero-aside">{children}</div>}</div></section>;
+export function PageHero({ eyebrow, title, intro, children, className = "" }: { eyebrow: string; title: React.ReactNode; intro: React.ReactNode; children?: React.ReactNode; className?: string }) {
+  return <section className={`grain page-hero overflow-hidden border-b py-20 lg:py-28 ${children ? "page-hero--with-aside" : ""}`}><div className="container min-w-0"><SectionIntro eyebrow={eyebrow} title={title} description={intro} light as="h1" className={`page-hero-intro ${className}`} />{children && <div className="page-hero-aside">{children}</div>}</div></section>;
 }
 
 export function SiteFooter() {
