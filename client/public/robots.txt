@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bryksconsulting-maker.github.io/tya-club-site/sitemap.xml
