@@ -78,7 +78,12 @@ const guides = [
 ] as const;
 
 const featuredGuideIndex = 8;
-const cardGuideIndexes = guides.map((_, index) => index).filter((index) => index !== featuredGuideIndex);
+const pathGuideSteps = [
+  { index: featuredGuideIndex, stage: "Start with confidence" },
+  { index: 0, stage: "Put ideas into action" },
+  { index: 1, stage: "Practise resilience" },
+] as const;
+const remainingGuideIndexes = guides.map((_, index) => index).filter((index) => !pathGuideSteps.some((step) => step.index === index));
 
 function GuideDetails({ guide, id, hidden, className = "" }: { guide: (typeof guides)[number]; id: string; hidden: boolean; className?: string }) {
   return (
@@ -118,6 +123,31 @@ function ParentGuideRow({ index, number, expanded, onToggle }: { index: number; 
   );
 }
 
+function ParentGuidePathStep({ index, number, stage, expanded, onToggle }: { index: number; number: number; stage: string; expanded: boolean; onToggle: () => void }) {
+  const guide = guides[index];
+  const detailsId = `parent-guide-details-${index + 1}`;
+
+  return (
+    <article className="parent-guide-path-step" role="listitem">
+      <div className="parent-guide-path-top">
+        <span className="parent-guide-row-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>
+        <p className="parent-guide-path-stage">{stage}</p>
+        <button type="button" className="parent-guide-row-open" onClick={onToggle} aria-label={`${expanded ? "Close" : "Read"} guide: ${guide.category}`} aria-expanded={expanded} aria-controls={detailsId}>
+          <ArrowUpRight size={21} aria-hidden="true" />
+        </button>
+      </div>
+      <p className="parent-guide-row-category">{guide.category}</p>
+      <h3 className="parent-guide-path-question">
+        <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
+          “{guide.question}”
+        </button>
+      </h3>
+      <p className="parent-guide-path-byline">Notes from the coaches · Parent guide</p>
+      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-path-details" />
+    </article>
+  );
+}
+
 export function ParentGuidesContent({ embedded = false }: { embedded?: boolean } = {}) {
   const [expandedGuides, setExpandedGuides] = useState<Set<number>>(() => new Set());
   const [showAllGuides, setShowAllGuides] = useState(false);
@@ -139,8 +169,6 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   };
 
-  const featuredGuide = guides[featuredGuideIndex];
-
   return (
       <div className={`parent-guides-page ${embedded ? "parent-guides-page--embedded scroll-mt-24" : ""}`} id={embedded ? "parent-guides" : undefined}>
         <section className="parent-guides-intro" aria-labelledby="parent-guides-intro-title">
@@ -156,29 +184,11 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
           </div>
         </section>
 
-        <section className="container parent-guide-library" aria-labelledby="parent-guide-library-title">
-          <div className="parent-guide-section-heading">
-            <h2 id="parent-guide-library-title">Explore the guides.</h2>
-            <p>Pick a topic and begin wherever you are.</p>
-          </div>
-          <div className="parent-guides-feature-grid" aria-label="Featured and related parent guides">
-            <article className="parent-guide-feature">
-              <div className="parent-guide-feature-copy">
-                <p className="parent-guide-feature-kicker">Featured parent guide <span aria-hidden="true">·</span> {featuredGuide.category}</p>
-                <h3 className="parent-guide-feature-title">
-                  <button type="button" className="parent-guide-question-trigger" onClick={() => toggleGuide(featuredGuideIndex)} aria-expanded={expandedGuides.has(featuredGuideIndex)} aria-controls={`parent-guide-details-${featuredGuideIndex + 1}`}>
-                    “She has a voice.<br />I just wish she’d<br /><em>use it more.</em>”
-                  </button>
-                </h3>
-                <p className="parent-guide-feature-byline">Notes from the coaches · Parent guide</p>
-                <GuideDetails guide={featuredGuide} id={`parent-guide-details-${featuredGuideIndex + 1}`} hidden={!expandedGuides.has(featuredGuideIndex)} />
-              </div>
-            </article>
-            <div className="parent-guide-rows" role="list" aria-label="More parent guides">
-              {cardGuideIndexes.slice(0, 3).map((index, position) => (
-                <ParentGuideRow key={guides[index].question} index={index} number={position + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
-              ))}
-            </div>
+        <section className="container parent-guide-library" aria-label="Parent guide listings">
+          <div className="parent-guide-path" role="list" aria-label="A guided path through parent guides">
+            {pathGuideSteps.map(({ index, stage }, position) => (
+              <ParentGuidePathStep key={guides[index].question} index={index} number={position + 1} stage={stage} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+            ))}
           </div>
           <div className="parent-guide-library-footer">
             <p>New guides added as coaches answer more parent questions.</p>
@@ -188,8 +198,8 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
             </button>
           </div>
           {showAllGuides && <div className="parent-guide-rows parent-guide-rows--additional" id="parent-guide-more" role="list" aria-label="More parent guides">
-            {cardGuideIndexes.slice(3).map((index) => (
-              <ParentGuideRow key={guides[index].question} index={index} number={cardGuideIndexes.indexOf(index) + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+            {remainingGuideIndexes.map((index, position) => (
+              <ParentGuideRow key={guides[index].question} index={index} number={position + pathGuideSteps.length + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
             ))}
           </div>}
           {!embedded && <aside className="parent-guide-newsletter">
