@@ -8,21 +8,30 @@ const founders = [
     image: "kiran-babu-p-portrait.jpg",
     imageAlt: "Kiran Babu P.",
     initials: "KBP",
-    summary: "A TEDx Speaker, life-skills coach and entrepreneur whose 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club.",
+    bio: ["A TEDx Speaker, life-skills coach and entrepreneur whose 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club."],
   },
   {
     name: "Anoop Jaju",
     role: "Co-founder",
     imageAlt: "Portrait placeholder for Anoop Jaju.",
     initials: "AJ",
-    summary: "Anoop brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Sreyansh, he helped shape TYA Club’s new identity: Transforming Young Adults.",
+    bio: [
+      "Anoop Jaju is an Entrepreneur and Business Leader with an MBA from SP Jain Institute of Management and Research, Mumbai, and over 25 years of entrepreneurial experience. Anoop Jaju brings deep expertise in textile manufacturing, business management and diversification. He oversees a manufacturing operation producing 10 million metres of value-added fabrics annually, supported by a workforce of 200 people. His group’s diverse interests span textiles, recruitment, real estate and solar energy, with one of its companies listed on the NSE.",
+      "Beyond business, Anoop is passionate about building entrepreneurial communities and nurturing future-ready young adults. Through NIA Surat and TYA Club, he champions meaningful connections, business growth, collaboration and personal development.",
+      "His philosophy is simple—build businesses that create value, connections that create opportunities, and communities that inspire growth.",
+    ],
   },
   {
     name: "Sreyansh Jain",
     role: "Co-founder",
     imageAlt: "Portrait placeholder for Sreyansh Jain.",
     initials: "SJ",
-    summary: "Sreyansh brought fresh perspectives, energy and ideas to the journey. Alongside Kiran and Anoop, he helped shape TYA Club’s new identity: Transforming Young Adults.",
+    bio: [
+      "Sreyansh Jain is an entrepreneur and growth strategist with an experience of over a decade transforming vision into reality through leadership, innovation, and disciplined execution.",
+      "A strong believer in continuous learning and personal growth, Sreyansh is dedicated to helping individuals and organizations unlock their full potential. His experience spans business development, team building, systems thinking, and entrepreneurial growth.",
+      "As a Co-Founder of TYA (Transforming Young Adults), he is committed to empowering the next generation with the skills, mindset, confidence, and values needed to succeed in life. Through experiential learning and practical education, his mission is to bridge the gap between academic knowledge and real-world readiness.",
+      "For Sreyansh, education is not just about preparing for exams; it is about preparing for life.",
+    ],
   },
 ];
 
@@ -60,7 +69,7 @@ export default function OurStory() {
             <div className="founder-profile-copy">
               <p className="founder-profile-role">{founder.role}</p>
               <h3>{founder.name}</h3>
-              <p className="founder-profile-bio">{founder.summary}</p>
+              <div className="founder-profile-bio">{founder.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
             </div>
           </article>)}
         </div>
