@@ -862,8 +862,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .story-narrative-close { color: var(--brand-ink); font-weight: 600; }
 .founder-grid { display: grid; max-width: 1180px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 1rem; margin-inline: auto; }
 .founder-profile { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent); border-radius: 1.2rem; background: var(--brand-card); box-shadow: 0 14px 34px rgba(43,47,50,.08); }
-.founder-card-portrait { position: relative; display: grid; aspect-ratio: 1.48; place-items: center; margin: 0; overflow: hidden; background: var(--brand-charcoal); }
-.founder-card-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+.founder-card-portrait { position: relative; display: grid; aspect-ratio: .76; place-items: center; margin: 0; overflow: hidden; background: var(--brand-charcoal); }
+.founder-card-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 24%; }
 .founder-card-portrait.is-placeholder { background: linear-gradient(145deg, color-mix(in srgb, var(--brand-coral) 15%, var(--brand-soft)), color-mix(in srgb, var(--brand-butter) 32%, var(--brand-soft))); }
 .founder-card-portrait.is-placeholder::before, .founder-card-portrait.is-placeholder::after { position: absolute; border: 1px solid color-mix(in srgb, var(--brand-ink) 13%, transparent); border-radius: 50%; content: ""; }
 .founder-card-portrait.is-placeholder::before { top: -3.7rem; right: -2rem; width: 11rem; height: 11rem; background: color-mix(in srgb, var(--brand-coral) 35%, transparent); }
@@ -883,7 +883,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 }
 @media (max-width: 600px) {
   .founder-grid { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
-  .founder-card-portrait { aspect-ratio: 1.7; }
+  .founder-card-portrait { aspect-ratio: .76; }
   .founder-profile-copy { padding: 1.15rem; }
 }
 .dark .site-footer { background: var(--brand-charcoal); color: var(--brand-ivory); }
