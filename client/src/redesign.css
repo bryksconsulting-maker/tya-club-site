@@ -131,7 +131,7 @@
 .tya-experiment-shell .mission-snapshot .mission-carousel-progress { bottom: .75rem; left: 1rem; right: 1rem; gap: .3rem; }
 .tya-experiment-shell .mission-snapshot .mission-carousel-progress span { height: 3px; border-radius: 2px; background: rgba(255, 249, 239, .24); }
 .tya-experiment-shell .mission-snapshot .mission-carousel-progress span.is-active { background: var(--brand-butter); }
-.tya-experiment-shell .mission-snapshot .mission-polaroid-caption { min-height: 3.7rem; border-radius: 0 0 .45rem .45rem; background: var(--brand-card); }
+.tya-experiment-shell .mission-snapshot .mission-polaroid-caption { min-height: 3.7rem; border-radius: 0 0 .45rem .45rem; background: var(--brand-ivory); color: var(--brand-charcoal); }
 .tya-experiment-shell .mission-snapshot .mission-answer-copy { font-size: .78rem; font-weight: 650; line-height: 1.4; }
 .tya-experiment-shell .mission-snapshot .mission-answer-copy span { display: block; }
 .tya-experiment-shell .mission-snapshot .mission-skill-highlight { color: var(--brand-coral-text); }
