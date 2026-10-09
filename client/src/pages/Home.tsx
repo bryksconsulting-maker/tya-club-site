@@ -138,8 +138,10 @@ const learningSkills = [
 
 function shuffleLearningSkills() {
   const remaining = learningSkills.filter((skill) => skill !== "Communication");
+  let seed = 0x545941;
   for (let index = remaining.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    const swapIndex = Math.floor((seed / 0x100000000) * (index + 1));
     [remaining[index], remaining[swapIndex]] = [remaining[swapIndex], remaining[index]];
   }
   return ["Communication", ...remaining];
@@ -193,8 +195,12 @@ export default function Home() {
   }, [learningCarouselsPaused, learningSkillOrder.length]);
 
   const line = heroLines[heroPosition];
-  const searchParams = new URLSearchParams(window.location.search);
-  const podQuery = (searchParams.get("pod") ?? searchParams.get("centre") ?? "").trim();
+  const [podQuery, setPodQuery] = useState("");
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setPodQuery((searchParams.get("pod") ?? searchParams.get("centre") ?? "").trim());
+  }, []);
 
   function askExperienceQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

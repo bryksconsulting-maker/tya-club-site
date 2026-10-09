@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
@@ -9,4 +9,9 @@ if (import.meta.env.BASE_URL === "/" && /^\/tya-club-site(?=\/|$)/.test(window.l
   window.history.replaceState({}, "", `${path}${window.location.search}${window.location.hash}`);
 }
 
-createRoot(document.getElementById("root")!).render(<App />);
+const rootElement = document.getElementById("root")!;
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(rootElement, <App />);
+} else {
+  createRoot(rootElement).render(<App />);
+}

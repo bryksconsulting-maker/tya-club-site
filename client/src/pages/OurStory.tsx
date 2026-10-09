@@ -3,6 +3,7 @@ import { PageHero, PageShell, SectionIntro } from "../components/SiteChrome";
 
 const founders = [
   {
+    id: "kiran-babu-p",
     name: "Kiran Babu P.",
     role: "Founder",
     image: "kiran-babu-p-portrait.jpg",
@@ -16,6 +17,7 @@ const founders = [
     ],
   },
   {
+    id: "anoop-jaju",
     name: "Anoop Jaju",
     role: "Co-founder",
     image: "anoop-jaju-portrait.jpeg",
@@ -28,6 +30,7 @@ const founders = [
     ],
   },
   {
+    id: "sreyansh-jain",
     name: "Sreyansh Jain",
     role: "Co-founder",
     image: "sreyansh-jain-portrait.jpeg",
@@ -62,7 +65,7 @@ export default function OurStory() {
         <SectionIntro eyebrow="Meet the founders" id="founders-title" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the TYA CLUB.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
 
         <div className="founder-grid mt-9" role="list" aria-label="Founder profiles">
-          {founders.map((founder) => <article className="founder-profile" role="listitem" key={founder.name}>
+          {founders.map((founder) => <article id={founder.id} className="founder-profile" role="listitem" key={founder.name}>
             <figure className={`founder-card-portrait${founder.image ? "" : " is-placeholder"}`} data-founder={founder.initials}>
               {founder.image
                 ? <img src={`${imageBase}${founder.image}`} alt={founder.imageAlt} />

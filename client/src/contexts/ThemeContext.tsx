@@ -25,23 +25,20 @@ export function ThemeProvider({
   defaultTheme = "system",
   switchable = false,
 }: ThemeProviderProps) {
-  const [savedTheme, setSavedTheme] = useState<Theme | null>(() => {
-    if (!switchable) return null;
-    try {
-      const stored = localStorage.getItem(THEME_OVERRIDE_KEY);
-      return stored === "light" || stored === "dark" ? stored : null;
-    } catch {
-      return null;
-    }
-  });
-  const [systemTheme, setSystemTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined" || !window.matchMedia) {
-      return defaultTheme === "dark" ? "dark" : "light";
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
+  const [savedTheme, setSavedTheme] = useState<Theme | null>(null);
+  const [systemTheme, setSystemTheme] = useState<Theme>(defaultTheme === "dark" ? "dark" : "light");
   const systemDefault = defaultTheme === "system" ? systemTheme : defaultTheme;
   const theme = switchable ? (savedTheme ?? systemDefault) : systemDefault;
+
+  useEffect(() => {
+    if (!switchable) return;
+    try {
+      const stored = localStorage.getItem(THEME_OVERRIDE_KEY);
+      if (stored === "light" || stored === "dark") setSavedTheme(stored);
+    } catch {
+      // The default theme still works when browser storage is unavailable.
+    }
+  }, [switchable]);
 
   useEffect(() => {
     if ((switchable && savedTheme) || !window.matchMedia) return;

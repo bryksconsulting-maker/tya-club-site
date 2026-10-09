@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { ChevronDown, Compass, Mail, Menu, MessageCircle, Moon, Phone, Search, Sun, X } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
@@ -143,10 +143,12 @@ export function SectionIntro({ eyebrow, title, description, action, light = fals
 }
 
 export function FindCentreSearch({ id, className = "" }: { id?: string; className?: string }) {
-  const [query, setQuery] = useState(() => {
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get("pod") ?? params.get("centre") ?? "";
-  });
+    setQuery(params.get("pod") ?? params.get("centre") ?? "");
+  }, []);
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const destination = new URL(LOGO_BASE, window.location.origin);

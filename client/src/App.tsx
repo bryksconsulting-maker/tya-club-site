@@ -11,6 +11,186 @@ import Contact from "./pages/Contact";
 import Franchise from "./pages/Franchise";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
+export const SITE_URL = "https://bryksconsulting-maker.github.io/tya-club-site";
+
+const organizationStructuredData = {
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  name: "TYA Club",
+  alternateName: "Transforming Young Adults",
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}/tya-logo-lockup.svg`,
+  description: "A learning community where young adults build confidence and practical life skills through coached Missions, small Pods and hands-on experiences.",
+  areaServed: [
+    { "@type": "City", name: "Hyderabad" },
+    { "@type": "City", name: "Surat" },
+  ],
+  sameAs: ["https://www.facebook.com/thetyaclub", "https://www.instagram.com/tya.club/"],
+};
+
+const founderStructuredData = [
+  {
+    "@type": "Person",
+    "@id": `${SITE_URL}/our-story/#kiran-babu-p`,
+    name: "Kiran Babu P",
+    jobTitle: "Founder",
+    description: "TEDx speaker, life skills coach, management trainer, business architect, author and serial entrepreneur with a 27-year corporate career across India, the US and Europe.",
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+  },
+  {
+    "@type": "Person",
+    "@id": `${SITE_URL}/our-story/#anoop-jaju`,
+    name: "Anoop Jaju",
+    jobTitle: "Co-founder",
+    description: "Entrepreneur and business leader with an MBA from SP Jain Institute of Management and Research and more than 25 years of entrepreneurial experience.",
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+  },
+  {
+    "@type": "Person",
+    "@id": `${SITE_URL}/our-story/#sreyansh-jain`,
+    name: "Sreyansh Jain",
+    jobTitle: "Co-founder",
+    description: "Entrepreneur and growth strategist focused on leadership, innovation, business development and practical education for young adults.",
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+  },
+];
+
+type RouteMetadata = { title: string; description: string; path?: string; robots?: string; structuredData?: Record<string, unknown> };
+
+export const routeMetadata: Record<string, RouteMetadata> = {
+  "/": {
+    title: "TYA Club | Real-World Life Skills for Young Adults",
+    description: "TYA Club helps young adults build confidence and practical life skills through coached Missions, small Pods and hands-on experiences in Hyderabad and Surat.",
+    path: "/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        organizationStructuredData,
+        {
+          "@type": "WebSite",
+          "@id": `${SITE_URL}/#website`,
+          url: `${SITE_URL}/`,
+          name: "TYA Club",
+          inLanguage: "en-IN",
+          publisher: { "@id": `${SITE_URL}/#organization` },
+        },
+      ],
+    },
+  },
+  "/our-story": {
+    title: "Our Story | TYA Club – Transforming Young Adults",
+    description: "Meet TYA Club’s founders and learn how a simple question grew into a space where young adults build confidence, independence and real-world skills.",
+    path: "/our-story/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        organizationStructuredData,
+        {
+          "@type": "AboutPage",
+          "@id": `${SITE_URL}/our-story/#webpage`,
+          url: `${SITE_URL}/our-story/`,
+          name: "Our Story | TYA Club – Transforming Young Adults",
+          inLanguage: "en-IN",
+          about: { "@id": `${SITE_URL}/#organization` },
+          mainEntity: { "@id": `${SITE_URL}/#organization` },
+        },
+        ...founderStructuredData,
+      ],
+    },
+  },
+  "/contact": {
+    title: "Contact TYA Club | Find a Pod in Hyderabad or Surat",
+    description: "Talk with TYA Club about trial sessions, programs and Pod locations in Hyderabad and Surat. Contact our team by phone, WhatsApp or email.",
+    path: "/contact/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        organizationStructuredData,
+        {
+          "@type": "ContactPage",
+          "@id": `${SITE_URL}/contact/#webpage`,
+          url: `${SITE_URL}/contact/`,
+          name: "Contact TYA Club",
+          inLanguage: "en-IN",
+          mainEntity: { "@id": `${SITE_URL}/#organization` },
+        },
+      ],
+    },
+  },
+  "/franchise": {
+    title: "TYA Club Franchise & Partnerships",
+    description: "Explore a partnership with TYA Club to bring practical, experience-led learning and life skills programs for young adults to your city.",
+    robots: "noindex,follow",
+  },
+};
+
+export const notFoundMetadata = {
+  title: "Page Not Found | TYA Club",
+  description: "The page you are looking for could not be found. Visit TYA Club to explore our programs and story.",
+  robots: "noindex,follow",
+};
+
+function RouteMetadata() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const path = location.replace(/\/+$/, "") || "/";
+    const metadata = routeMetadata[path];
+    const title = metadata?.title ?? notFoundMetadata.title;
+    const description = metadata?.description ?? notFoundMetadata.description;
+    document.title = title;
+
+    const setMeta = (attribute: "name" | "property", key: string, content: string) => {
+      let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.content = content;
+    };
+
+    setMeta("name", "description", description);
+    setMeta("name", "robots", metadata?.robots ?? (metadata ? "index,follow" : notFoundMetadata.robots));
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:site_name", "TYA Club");
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("name", "twitter:card", "summary");
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
+
+    let structuredData = document.head.querySelector<HTMLScriptElement>('#seo-structured-data[type="application/ld+json"]');
+    if (metadata?.structuredData) {
+      if (!structuredData) {
+        structuredData = document.createElement("script");
+        structuredData.id = "seo-structured-data";
+        structuredData.type = "application/ld+json";
+        document.head.appendChild(structuredData);
+      }
+      structuredData.textContent = JSON.stringify(metadata.structuredData).replaceAll("<", "\\u003c");
+    } else {
+      structuredData?.remove();
+    }
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (metadata?.path) {
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = `${SITE_URL}${metadata.path === "/" ? "/" : metadata.path}`;
+      setMeta("property", "og:url", canonical.href);
+    } else {
+      canonical?.remove();
+      document.head.querySelector('meta[property="og:url"]')?.remove();
+    }
+  }, [location]);
+
+  return null;
+}
+
 function GithubPagesLinks() {
   useEffect(() => {
     const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -113,12 +293,13 @@ const legacySectionTargets: Record<string, string> = {
   "/centres": "find-a-pod",
 };
 
-function Router() {
+function Router({ ssrPath }: { ssrPath?: string }) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   return (
-    <WouterRouter base={base}>
+    <WouterRouter base={base} ssrPath={ssrPath}>
       <RouteScrollManager />
+      <RouteMetadata />
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/parents" component={LegacySectionRedirect} />
@@ -139,14 +320,14 @@ function Router() {
   );
 }
 
-export default function App() {
+export default function App({ ssrPath }: { ssrPath?: string } = {}) {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="system" switchable>
         <TooltipProvider>
           <GithubPagesLinks />
           <Toaster position="top-right" />
-          <Router />
+          <Router ssrPath={ssrPath} />
           <WhatsAppFloat />
         </TooltipProvider>
       </ThemeProvider>

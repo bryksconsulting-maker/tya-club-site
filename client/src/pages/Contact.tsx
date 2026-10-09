@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
 import { PageHero, PageShell, SectionIntro, CONTACT_EMAIL, GENERAL_EMAIL, PRIMARY_PHONE, SECONDARY_PHONE, WHATSAPP_HREF } from "../components/SiteChrome";
 import { isValidEmail, isValidIndianPhone } from "../lib/validation";
@@ -12,9 +12,14 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
-    message: new URLSearchParams(window.location.search).get("question") ?? "",
+    message: "",
   }));
   const [errors, setErrors] = useState<ContactErrors>({});
+
+  useEffect(() => {
+    const question = new URLSearchParams(window.location.search).get("question");
+    if (question) setFields((current) => ({ ...current, message: question }));
+  }, []);
 
   const updateField = (field: keyof ContactFields, value: string) => {
     setFields((current) => ({ ...current, [field]: value }));
