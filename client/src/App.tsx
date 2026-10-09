@@ -23,6 +23,26 @@ const organizationStructuredData = {
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/tya-logo-lockup.svg`,
   description: "A learning community where young adults build confidence and practical life skills through coached Missions, small Pods and hands-on experiences.",
+  email: "hello@thetyaclub.com",
+  telephone: "+91 888 666 5295",
+  address: [
+    {
+      "@type": "PostalAddress",
+      streetAddress: "Plot 3-804, SS Chambers, 3rd Floor, Mega Hills, Ayyappa Society",
+      addressLocality: "Hyderabad",
+      addressRegion: "Telangana",
+      postalCode: "500081",
+      addressCountry: "IN",
+    },
+    {
+      "@type": "PostalAddress",
+      streetAddress: "408-415, 4th Floor, Homeland City Mall, Opposite J.H. Ambani School, Vesu",
+      addressLocality: "Surat",
+      addressRegion: "Gujarat",
+      postalCode: "395007",
+      addressCountry: "IN",
+    },
+  ],
   areaServed: [
     { "@type": "City", name: "Hyderabad" },
     { "@type": "City", name: "Surat" },
