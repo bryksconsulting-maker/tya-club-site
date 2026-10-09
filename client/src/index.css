@@ -115,9 +115,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .section-intro--light .section-intro-title { color: var(--brand-ivory); }
 .section-intro--light .section-intro-side { color: color-mix(in srgb, var(--brand-ivory) 76%, transparent); }
 .page-hero-intro { margin-bottom: 0; }
-.page-hero-intro--expanded-story { align-items: start; }
+.page-hero-intro--expanded-story { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1.5rem; }
 .page-hero .section-intro-title { max-width: 850px; font-size: clamp(3rem, 6.5vw, 5.4rem); }
 .page-hero .section-intro-side { max-width: 600px; font-size: clamp(1rem, 1.45vw, 1.25rem); }
+.page-hero-intro--expanded-story .section-intro-side { max-width: 850px; }
 .page-hero-aside { margin-top: 0; }
 @media (max-width: 760px) {
   .section-intro { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1rem; margin-bottom: 2rem; }
