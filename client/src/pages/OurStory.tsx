@@ -45,7 +45,7 @@ export default function OurStory() {
     <PageHero eyebrow="Our story" title="Where TYA began." intro="Kiran Babu P founded TYA Club after nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need to become confident, independent and future-ready." />
 
     <section className="container story-narrative py-16 lg:py-24" aria-labelledby="our-story-title">
-      <SectionIntro id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />
+      <SectionIntro eyebrow="The Idea" id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />
       <div className="story-narrative-copy mt-8 text-lg leading-8 text-muted-copy lg:mx-auto lg:max-w-3xl">
         <div className="space-y-5">
           <p>TYA Club was born from a simple question: What if young adults had a space to learn the things that classrooms often don't teach?</p>
