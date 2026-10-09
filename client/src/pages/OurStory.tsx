@@ -9,8 +9,10 @@ const founders = [
     imageAlt: "Portrait of Kiran Babu P.",
     initials: "KBP",
     bio: [
-      "Kiran Babu P. is a TEDx speaker, life-skills coach and entrepreneur. His 27-year corporate career across India, the US and Europe helped shape the idea behind TYA Club.",
-      "After nearly a decade of research, observation and conversations across multiple cities, he founded TYA Club to help young adults become confident, independent and future-ready.",
+      "Kiran Babu P, fondly known as KBP, is a TEDx Speaker, Life Skills Coach, Management Trainer, Business Architect, an author and Serial Entrepreneur. With an extraordinary 27-year corporate career spanning India, the US and Europe, KBP has transformed his experience into a passion for building businesses, developing people and creating possibilities.",
+      "A Six Sigma Black Belt and Certified Networker, his expertise spans business, leadership, training, design and creativity, with qualifications across diverse disciplines.",
+      "Today, his entrepreneurial ventures span creative design and conceptualisation, business networking, business expansion and growth opportunities for entrepreneurs and start-ups, and life-skills development for young adults—including his initiative TYA Club, focused on helping young adults develop the skills, confidence and perspectives they need to navigate real life.",
+      "From corporate boardrooms to entrepreneurship, from creative studios to training rooms, his journey is ultimately about one thing—helping people see possibilities and turn them into reality.",
     ],
   },
   {
@@ -20,7 +22,9 @@ const founders = [
     imageAlt: "Portrait of Anoop Jaju.",
     initials: "AJ",
     bio: [
-      "Anoop Jaju is an entrepreneur and business leader with an MBA from SP Jain Institute of Management and Research, Mumbai, and over 25 years of entrepreneurial experience. He brings deep expertise in textile manufacturing, business management and diversification, supported by a workforce of 200 people. His group’s diverse interests span textiles, recruitment, real estate and solar energy, with one of its companies listed on the NSE.",
+      "Anoop Jaju is an Entrepreneur and Business Leader with an MBA from SP Jain Institute of Management and Research, Mumbai, and over 25 years of entrepreneurial experience. Anoop Jaju brings deep expertise in textile manufacturing, business management and diversification supported by a workforce of 200 people. His group’s diverse interests span textiles, recruitment, real estate and solar energy, with one of its companies listed on the NSE.",
+      "Beyond business, Anoop is passionate about building entrepreneurial communities and nurturing future-ready young adults. Through NIA Surat and TYA Club, he champions meaningful connections, business growth, collaboration and personal development.",
+      "His philosophy is simple—build businesses that create value, connections that create opportunities, and communities that inspire growth.",
     ],
   },
   {
