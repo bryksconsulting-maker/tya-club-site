@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "sonner";
 import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import OurStory from "./pages/OurStory";
@@ -258,7 +257,7 @@ function RouteMetadata() {
   return null;
 }
 
-function GithubPagesLinks() {
+function BasePathLinks() {
   useEffect(() => {
     const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     if (!base) return;
@@ -281,30 +280,6 @@ function GithubPagesLinks() {
 
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, []);
-
-  useEffect(() => {
-    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-    const rewriteImages = () => {
-      document.querySelectorAll<HTMLImageElement>('img[src^="/manus-storage/"]').forEach((image) => {
-        const key = image.getAttribute("src")?.replace(/^\/manus-storage\//, "");
-        if (!key || image.dataset.githubPagesRewritten === "true") return;
-        image.dataset.githubPagesRewritten = "true";
-        image.src = `${base}/images/${key}`;
-        image.addEventListener("error", () => {
-          if (image.dataset.githubPagesFallback === "true") return;
-          const svgKey = key.replace(/\.(jpe?g|png)$/i, ".svg");
-          image.dataset.githubPagesFallback = "true";
-          image.src = `${base}/images/${svgKey}`;
-        }, { once: true });
-      });
-    };
-
-    rewriteImages();
-    const observer = new MutationObserver(rewriteImages);
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
   }, []);
 
   return null;
@@ -412,13 +387,16 @@ export default function App({ ssrPath }: { ssrPath?: string } = {}) {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="system" switchable>
-        <TooltipProvider>
-          <GithubPagesLinks />
-          <Toaster position="top-right" />
-          <Router ssrPath={ssrPath} />
-          <WhatsAppFloat />
-        </TooltipProvider>
+        <BasePathLinks />
+        <SiteToaster />
+        <Router ssrPath={ssrPath} />
+        <WhatsAppFloat />
       </ThemeProvider>
     </ErrorBoundary>
   );
+}
+
+function SiteToaster() {
+  const { theme } = useTheme();
+  return <Toaster position="top-right" theme={theme} />;
 }

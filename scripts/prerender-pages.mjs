@@ -22,8 +22,6 @@ await build({
   jsx: "automatic",
   alias: {
     "@": path.join(projectRoot, "client/src"),
-    "@shared": path.join(projectRoot, "shared"),
-    "@assets": path.join(projectRoot, "attached_assets"),
   },
   define: {
     "import.meta.env": JSON.stringify({
@@ -31,10 +29,6 @@ await build({
       DEV: false,
       PROD: true,
       MODE: "production",
-      VITE_FRONTEND_FORGE_API_KEY: process.env.VITE_FRONTEND_FORGE_API_KEY ?? "",
-      VITE_FRONTEND_FORGE_API_URL: process.env.VITE_FRONTEND_FORGE_API_URL ?? "",
-      VITE_OAUTH_PORTAL_URL: process.env.VITE_OAUTH_PORTAL_URL ?? "",
-      VITE_APP_ID: process.env.VITE_APP_ID ?? "",
     }),
   },
   logLevel: "warning",

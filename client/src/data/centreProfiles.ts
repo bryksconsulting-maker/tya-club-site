@@ -3,22 +3,16 @@ export const compositeTestimonials = [
     quote: "Over the term, our daughter began explaining her ideas without waiting to be asked. The Growth Card helped us notice the smaller changes that can otherwise go unseen.",
     name: "Composite parent story",
     place: "Hyderabad · Class 10 to 12 family",
-    image: "/manus-storage/tya-parent-hyderabad_6694ea96.jpg",
-    alt: "AI-generated representative portrait of an Indian parent in Hyderabad",
   },
   {
     quote: "The biggest change was not that he became louder. He started listening, making a choice and following through with the group.",
     name: "Composite parent story",
     place: "Surat · Class 6 to 9 family",
-    image: "/manus-storage/tya-parent-surat_9ff152ff.svg",
-    alt: "AI-generated illustrative portrait of an Indian parent in Surat",
   },
   {
     quote: "Our graduate began talking about work choices with more clarity and ownership. TYA gave us a shared language without making us manage every decision.",
     name: "Composite parent story",
     place: "Hyderabad · Graduate family",
-    image: "/manus-storage/tya-parent-grad_fb84ef6a.svg",
-    alt: "AI-generated illustrative portrait of an Indian parent in a graduate family",
   },
 ] as const;
 
@@ -67,13 +61,6 @@ export interface CentreProfile {
   gallery: CentreGalleryImage[];
   timetable: CentreTimetableEntry[];
   nextTrial: CentreTrialSlot | null;
-  coach: {
-    title: string;
-    role: string;
-    bio: string;
-    image: string;
-    alt: string;
-  };
 }
 
 // Keep location-specific facts here so dates, photos and timetables can be filled in
@@ -106,13 +93,6 @@ export const centreProfiles: CentreProfile[] = [
     ],
     timetable: [],
     nextTrial: null,
-    coach: {
-      title: "Hyderabad learning coach",
-      role: "Illustrative coach profile",
-      bio: "A calm, observant facilitator who makes room for quieter voices, helps a Pod reflect after each Mission and keeps young adults focused without taking over their decisions.",
-      image: "/manus-storage/tya-coach-hyderabad_2b047ff0.jpg",
-      alt: "AI-generated representative portrait of an Indian learning coach in Hyderabad",
-    },
   },
   {
     city: "Surat",
@@ -141,12 +121,5 @@ export const centreProfiles: CentreProfile[] = [
     ],
     timetable: [],
     nextTrial: null,
-    coach: {
-      title: "Surat learning coach",
-      role: "Illustrative coach profile",
-      bio: "An energetic, reflective facilitator who turns debate into better questions, encourages young adults to test their ideas and helps the group turn setbacks into another attempt.",
-      image: "/manus-storage/tya-coach-surat_fe14b60f.jpg",
-      alt: "AI-generated representative portrait of an Indian learning coach in Surat",
-    },
   },
 ] as const;
