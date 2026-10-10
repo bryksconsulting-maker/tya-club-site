@@ -610,7 +610,7 @@ h2.section-intro-title { font-size: clamp(2.2rem, 4.2vw, 3.2rem); }
 .why-tya-block-icon { display: grid; width: 2.7rem; height: 2.7rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--brand-butter) 22%, var(--brand-bg)); color: var(--brand-ink); }
 .why-tya-block-card[data-tone="charcoal"] .why-tya-block-icon { background: var(--brand-coral); color: var(--brand-charcoal); }
 .why-tya-block-card[data-tone="butter"] .why-tya-block-icon, .why-tya-block-card[data-tone="coral"] .why-tya-block-icon { background: var(--brand-charcoal); color: var(--brand-ivory); }
-.why-tya-block-kicker { margin-top: 1.2rem; color: var(--why-block-accent); font-size: .58rem; font-weight: 800; letter-spacing: .15em; line-height: 1.45; text-transform: uppercase; }
+.why-tya-block-kicker { margin-top: 1.2rem; color: var(--why-block-accent); font-size: .66rem; font-weight: 800; letter-spacing: .15em; line-height: 1.45; text-transform: uppercase; }
 .why-tya-block-card h3 { margin-top: .55rem; color: var(--why-block-text); font-size: 20pt; font-weight: 700; line-height: 1.08; letter-spacing: -.04em; text-wrap: balance; }
 .why-tya-block-copy { margin-top: .75rem; color: var(--why-block-muted); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.72; }
 .headline-accent { font-weight: 600; }
