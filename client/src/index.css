@@ -486,8 +486,10 @@ h2.section-intro-title { font-size: clamp(2.2rem, 4.2vw, 3.2rem); }
 .testimonial-story-byline strong { color: var(--brand-ink); font-size: .8rem; font-weight: 700; }
 .testimonial-story-note { max-width: 100%; color: var(--brand-muted); font-size: .58rem; line-height: 1.5; text-align: left; }
 .testimonial-stories-autoplay-row { display: flex; align-items: center; justify-content: flex-start; gap: 1rem; margin-top: .4rem; color: var(--brand-muted); font-size: .68rem; }
-.testimonial-stories-autoplay-row button { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 999px; padding: .55rem .8rem; color: var(--brand-ink); font-size: .68rem; font-weight: 700; transition: background-color .18s ease, color .18s ease; }
-.testimonial-stories-autoplay-row button:hover { background: var(--brand-charcoal); color: var(--brand-ivory); }
+.testimonial-stories-autoplay-controls { flex-wrap: wrap; }
+.testimonial-stories-autoplay-row .testimonial-stories-controls { padding-bottom: 0; }
+.testimonial-stories-pause { display: inline-flex; align-items: center; gap: .45rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 999px; padding: .55rem .8rem; color: var(--brand-ink); font-size: .68rem; font-weight: 700; transition: background-color .18s ease, color .18s ease; }
+.testimonial-stories-pause:hover { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .dark .testimonial-story-card { border-color: color-mix(in srgb, var(--brand-ivory) 11%, transparent); background: var(--brand-card); box-shadow: 0 18px 45px rgba(0,0,0,.14); }
 .testimonial-story-card[data-tone="mist"] { background: color-mix(in srgb, var(--brand-soft) 84%, var(--brand-card)); }
 .testimonial-story-card[data-tone="peach"] { background: color-mix(in srgb, var(--brand-coral) 9%, var(--brand-card)); }
@@ -509,7 +511,6 @@ h2.section-intro-title { font-size: clamp(2.2rem, 4.2vw, 3.2rem); }
   .experience-question-form { max-width: 440px; }
   .experience-faq-trigger { padding-block: .95rem; font-size: .8rem; }
   .testimonial-stories-heading { align-items: flex-start; flex-direction: column; gap: 1.25rem; }
-  .testimonial-stories-controls { width: 100%; justify-content: flex-end; }
   .testimonial-stories-autoplay-row { align-items: flex-start; flex-direction: column; padding-right: 0; }
   .testimonial-story-card { min-height: 320px; padding: 1.15rem; }
   .testimonial-story-card blockquote { font-size: clamp(1rem, 2.2vw, 1.25rem); }
@@ -584,14 +585,14 @@ h2.section-intro-title { font-size: clamp(2.2rem, 4.2vw, 3.2rem); }
 .dark .home-manifesto-kicker { color: var(--brand-butter); }
 .dark .home-manifesto-copy em { color: var(--brand-coral); }
 .why-tya-section { background: var(--brand-bg); color: var(--brand-ink); }
-.home-how-it-works-intro { grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); align-items: start; }
+.home-how-it-works-intro { grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); align-items: end; }
 .home-how-it-works-intro .section-intro-title { max-width: none; }
 .home-how-it-works-intro .section-intro-title > span { display: block; white-space: nowrap; }
-.home-how-it-works-intro .section-intro-side { align-self: start; margin-top: 2rem; font-size: 24px; line-height: 1.4; }
+.home-how-it-works-intro .section-intro-side { align-self: end; margin-top: 0; transform: translateY(1rem); font-size: 24px; line-height: 1.4; }
 @media (max-width: 760px) {
-  .home-how-it-works-intro { grid-template-columns: minmax(0, 1fr); }
+  .home-how-it-works-intro { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .home-how-it-works-intro .section-intro-title > span { white-space: normal; }
-  .home-how-it-works-intro .section-intro-side { margin-top: 0; }
+  .home-how-it-works-intro .section-intro-side { margin-top: 0; transform: none; }
 }
 .why-tya-heading { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); align-items: end; gap: 2.5rem; }
 .why-tya-heading h2 { max-width: 720px; }

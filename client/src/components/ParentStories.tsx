@@ -128,19 +128,6 @@ export function ParentStories() {
           eyebrow="Parent Stories"
           title="Voices of transformation."
           description="Hearing from parents who notice changes in their young adults’ confidence and capabilities."
-          action={(
-            <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
-              <span className="testimonial-story-count">
-                {String(visibleStart + 1).padStart(2, "0")} <span aria-hidden="true">/</span> {String(visibleEnd).padStart(2, "0")}
-              </span>
-              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(-1)} aria-label="Previous story">
-                <ChevronLeft size={20} />
-              </button>
-              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(1)} aria-label="Next story">
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          )}
           id="parent-stories-title"
           className="parent-stories-heading"
         />
@@ -169,10 +156,21 @@ export function ParentStories() {
         <div className="testimonial-stories-autoplay-row mt-8 flex items-center justify-center gap-2 text-xs font-medium text-muted-foreground">
           <div className="testimonial-stories-autoplay-controls flex items-center gap-4">
             <span>{paused || interactionPaused ? "Story rotation paused" : "Stories move automatically · pause to read"}</span>
-            <button type="button" className="flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => setPaused((current) => !current)}>
+            <button type="button" className="testimonial-stories-pause flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => setPaused((current) => !current)}>
               {paused ? <Play size={12} /> : <Pause size={12} />}
               {paused ? "Resume" : "Pause"}
             </button>
+            <div className="testimonial-stories-controls" role="group" aria-label="Parent story controls">
+              <span className="testimonial-story-count">
+                {String(visibleStart + 1).padStart(2, "0")} <span aria-hidden="true">/</span> {String(visibleEnd).padStart(2, "0")}
+              </span>
+              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(-1)} aria-label="Previous story">
+                <ChevronLeft size={20} />
+              </button>
+              <button type="button" className="testimonial-stories-arrow" onClick={() => moveToStory(1)} aria-label="Next story">
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
