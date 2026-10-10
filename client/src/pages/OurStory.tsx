@@ -61,9 +61,9 @@ export default function OurStory() {
       <p className="story-idea-copy">India’s future lies in the confidence, character and capabilities of its young people. TYA Club aims to bridge the gap between knowing and doing, helping young adults develop essential life skills through hands-on experiences, games, discussions and peer learning. By nurturing independent thinking, communication, emotional intelligence, leadership and entrepreneurial spirit, we empower them to navigate life’s challenges with confidence. More than a club, TYA is a community where young people discover their strengths, learn from one another and grow together. Because transforming young adults today means shaping a more capable, confident and future-ready India tomorrow.</p>
     </section>
 
-    <section className="soft-panel founder-section py-16 lg:py-24" aria-labelledby="founders-title">
+    <section id="founders-title" className="soft-panel founder-section py-16 lg:py-24" aria-labelledby="founders-heading">
       <div className="container">
-        <SectionIntro eyebrow="Meet the founders" id="founders-title" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the TYA CLUB.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
+        <SectionIntro eyebrow="Meet the founders" id="founders-heading" title={<>The people behind <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">the TYA CLUB.</strong></span></>} description="Meet the founders whose experience and ideas shaped TYA Club and its focus on helping young adults grow." />
 
         <div className="founder-grid mt-9" role="list" aria-label="Founder profiles">
           {founders.map((founder) => <article id={founder.id} className="founder-profile" role="listitem" key={founder.name}>

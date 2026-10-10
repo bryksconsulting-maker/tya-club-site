@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
@@ -311,7 +311,15 @@ function GithubPagesLinks() {
 }
 
 function RouteScrollManager() {
-  const [location] = useLocation();
+  const [navigationKey, setNavigationKey] = useState(0);
+
+  useEffect(() => {
+    const handleNavigation = () => setNavigationKey((key) => key + 1);
+    const navigationEvents = ["pushState", "replaceState", "popstate", "hashchange"];
+
+    navigationEvents.forEach((eventName) => window.addEventListener(eventName, handleNavigation));
+    return () => navigationEvents.forEach((eventName) => window.removeEventListener(eventName, handleNavigation));
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -334,7 +342,7 @@ function RouteScrollManager() {
     }
 
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [navigationKey]);
 
   return null;
 }
