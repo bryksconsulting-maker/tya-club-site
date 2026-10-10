@@ -1408,7 +1408,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 }
 .parent-guide-path-top { display: grid; grid-template-columns: 2.65rem minmax(0, 1fr) 2rem; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
 .parent-guide-path-top .parent-guide-row-number { width: 2.65rem; height: 2.65rem; background: var(--brand-butter); color: var(--brand-charcoal); font-size: 20pt; }
-.parent-guide-path-stage { display: flex; min-height: 4.5rem; align-items: center; margin: 0; color: var(--guide-muted); font-size: 20pt; font-weight: 750; letter-spacing: .03em; line-height: 1.15; text-transform: uppercase; }
+.parent-guide-path-stage { display: flex; min-height: 2.65rem; align-items: center; margin: 0; color: var(--guide-muted); font-size: clamp(.75rem, 1vw, .9rem); font-weight: 750; letter-spacing: .03em; line-height: 1.15; text-transform: uppercase; white-space: nowrap; }
 .parent-guide-path-step .parent-guide-row-open { color: var(--brand-coral); }
 .parent-guide-path-question { margin: .7rem 0 0; color: var(--brand-ivory); font-family: inherit; font-size: clamp(1.45rem, 2.15vw, 2rem); font-weight: 500; line-height: 1.18; letter-spacing: -.035em; }
 .parent-guide-path-question .parent-guide-question-trigger { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; line-height: inherit; letter-spacing: inherit; text-align: left; }
