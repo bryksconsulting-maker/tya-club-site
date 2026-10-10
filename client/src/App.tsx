@@ -13,7 +13,7 @@ import Centres from "./pages/Centres";
 import { centreProfiles } from "./data/centreProfiles";
 import { WhatsAppFloat } from "./components/SiteChrome";
 
-export const SITE_URL = "https://bryksconsulting-maker.github.io/tya-club-site";
+export const SITE_URL = "https://thetyaclub.com";
 const SOCIAL_IMAGE_URL = `${SITE_URL}/og-image.png`;
 const SOCIAL_IMAGE_ALT = "TYA Club: real-world skills for young adults, styled in the Club’s charcoal, ivory, mustard and peach colours.";
 
