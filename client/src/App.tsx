@@ -317,8 +317,20 @@ function RouteScrollManager() {
     const hash = window.location.hash;
     if (hash) {
       const targetId = decodeURIComponent(hash.slice(1));
-      requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({ block: "start" }));
-      return;
+      let cancelled = false;
+
+      // Wait for web fonts and the hydration layout to settle before scrolling.
+      // A single animation frame can run before late-loading fonts change the
+      // position of the target on a direct page load.
+      void document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!cancelled) document.getElementById(targetId)?.scrollIntoView({ block: "start" });
+          });
+        });
+      });
+
+      return () => { cancelled = true; };
     }
 
     window.scrollTo(0, 0);
