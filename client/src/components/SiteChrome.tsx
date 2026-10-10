@@ -29,9 +29,9 @@ const navigationItems: NavigationItem[] = [
 
 const desktopNavigationItems: NavigationItem[] = [
   { label: "TYA", href: "#top" },
-  { label: "Skills", href: "#curriculum" },
-  { label: "Parents", href: "#parents" },
-  { label: "Experience", href: "#experience" },
+  { label: "How TYA Works", href: "#how-it-works" },
+  { label: "For Parents", href: "#parents" },
+  { label: "TYA Experience", href: "#experience" },
   { label: "Find a Pod", href: "#centre-results" },
   { label: "Our Story", href: "/our-story" },
   { label: "Founders", href: "/our-story#founders-title" },

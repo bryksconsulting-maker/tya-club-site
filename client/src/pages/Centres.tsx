@@ -50,7 +50,7 @@ export function CentresContent({ embedded = false, initialQuery = "" }: { embedd
 
   const content = <div className={`centre-detail-page ${embedded ? "centre-detail-embedded scroll-mt-24" : ""}`} id={embedded ? "centre-results" : undefined}>
       <div className="container">
-        {embedded && <SectionIntro eyebrow="Find a Pod" title={query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India."} description="Choose a location on the India map to see its address and Pod details." action={<a href={`${import.meta.env.BASE_URL}#find-a-pod`}>Change search</a>} className="centre-results-heading" />}
+        {embedded && <SectionIntro eyebrow="Find a Pod" title={query && queryHasMatch ? `Pods near ${initialQuery}` : "Explore TYA Pods across India."} description="Choose a location on the India map to see its address and Pod details." className="centre-results-heading" />}
         {query && !queryHasMatch && <p className="pod-search-notice" role="status">No exact Pod match for “{initialQuery}” yet. Choose a location below to see its address and Pod details.</p>}
         <section className="pod-discovery-panel" aria-labelledby="pod-discovery-title">
           {embedded ? <h2 id="pod-discovery-title" className="sr-only">Find a Pod</h2> : <SectionIntro eyebrow="Find your community" title="Find a TYA Pod in Hyderabad or Surat." description="TYA Club offers coached, hands-on life-skills experiences for young adults. Explore the official Pods in Madhapur and Vesu, see each address and ask about an introductory session." id="pod-discovery-title" as="h1" action={<span className="pod-network-count">{centres.length.toString().padStart(2, "0")} <small>Pods</small></span>} className="pod-discovery-heading" />}

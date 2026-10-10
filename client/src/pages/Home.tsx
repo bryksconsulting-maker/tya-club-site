@@ -277,7 +277,7 @@ export default function Home() {
 
         <section id="how-it-works" className="grain scroll-mt-24 bg-[#FFFFFF] py-12 sm:py-16 lg:py-20">
           <div className="container">
-            <SectionIntro eyebrow="How TYA works?" title={<><span>One step. One journey.</span>{" "}<span>A stronger, more capable <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span></span></>} description="Take the first leap. Join the movement. We’ll help you take it from there." className="section-intro--stacked home-how-it-works-intro" />
+            <SectionIntro eyebrow="How TYA works?" title={<><span>One step. One journey.</span><span>A stronger, more capable</span><span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Young Adult.</strong></span></>} description="Take the first leap. Join the movement. We’ll help you take it from there." className="home-how-it-works-intro" />
             <div className="mt-4 rounded-[1.5rem] border border-[#2B2F32]/10 bg-[#F3F0EA] p-4 sm:p-6 lg:p-8">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step) => {
@@ -323,7 +323,7 @@ export default function Home() {
 
         <section id="curriculum" className="scroll-mt-24 bg-[#FFFFFF] py-14 sm:py-18 lg:py-24">
           <div className="container">
-            <SectionIntro eyebrow="What they learn?" title={<>Not just <strong className="headline-impact">knowledge.</strong> <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Capability.</strong></span></>} description="Fourteen outcomes and twenty-two practical skills come together through experiences that make learning useful in everyday life." className="home-curriculum-heading" />
+            <SectionIntro eyebrow="What they learn?" title={<>Not just knowledge. <strong className="headline-impact text-black">Capability.</strong></>} description="Fourteen outcomes and twenty-two practical skills come together through experiences that make learning useful in everyday life." className="home-curriculum-heading" />
             <div className="mt-4 rounded-[1.5rem] bg-[#F3F0EA] p-4 sm:p-7 lg:p-10">
               <div className="grid grid-cols-1 items-center gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)_minmax(0,1fr)] lg:gap-6">
                 <div className="order-2 min-w-0 lg:order-1">
@@ -372,7 +372,7 @@ export default function Home() {
 
         <ParentGuidesContent embedded />
 
-        <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><SectionIntro eyebrow="For parents" title={<>A growth card<br />Comes Home.<br />Not a <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">Grade</strong></span></>} description="Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world." action={<button className="btn-primary mt-6 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button>} light className="section-intro--stacked" /><GrowthCardPreview /></div></div></section>
+        <section id="parents" className="scroll-mt-24 bg-[#2B2F32] py-16 text-[#fffdf9] lg:py-24"><div className="container"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><SectionIntro eyebrow="For parents" title={<>A growth card<br />Comes Home.<br />Not a <strong className="headline-impact text-white">Grade</strong></>} description="Every TYA Mission gives your child opportunities to practise skills that matter beyond the Pod — at school, at home, in relationships and eventually in the real world." action={<button className="btn-primary mt-6 rounded-full px-6 py-4 text-sm font-bold" onClick={() => { setTrialSubmitted(false); setTrialOpen(true); }}>See it in a free trial <ArrowRight className="ml-2 inline" size={16} /></button>} light className="section-intro--stacked" /><GrowthCardPreview /></div></div></section>
 
         <ParentStories />
 

@@ -85,13 +85,13 @@ const pathGuideSteps = [
 ] as const;
 const remainingGuideIndexes = guides.map((_, index) => index).filter((index) => !pathGuideSteps.some((step) => step.index === index));
 
-function GuideDetails({ guide, id, hidden, className = "" }: { guide: (typeof guides)[number]; id: string; hidden: boolean; className?: string }) {
+function GuideDetails({ guide, id, hidden, className = "", showWhy = true }: { guide: (typeof guides)[number]; id: string; hidden: boolean; className?: string; showWhy?: boolean }) {
   return (
     <div className={`parent-guide-expanded-copy ${className}`} id={id} hidden={hidden}>
-      <div>
+      {showWhy && <div>
         <p className="parent-guide-expanded-label">Why this happens</p>
         <p>{guide.why}</p>
-      </div>
+      </div>}
       <div>
         <p className="parent-guide-expanded-label">TYA response</p>
         <p>{guide.response}</p>
@@ -136,14 +136,20 @@ function ParentGuidePathStep({ index, number, stage, expanded, onToggle }: { ind
           <ArrowUpRight size={21} aria-hidden="true" />
         </button>
       </div>
-      <p className="parent-guide-row-category">{guide.category}</p>
       <h3 className="parent-guide-path-question">
         <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
           “{guide.question}”
         </button>
       </h3>
-      <p className="parent-guide-path-byline">Notes from the coaches · Parent guide</p>
-      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-path-details" />
+      <div className="parent-guide-path-teaser">
+        <p className="parent-guide-expanded-label">Why this happens</p>
+        <p>{guide.why}</p>
+      </div>
+      <button type="button" className="parent-guide-path-read-more" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
+        {expanded ? "Show less" : "Read more"}
+        <ArrowUpRight size={16} aria-hidden="true" />
+      </button>
+      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-path-details" showWhy={false} />
     </article>
   );
 }
@@ -175,9 +181,8 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
           <div className="container">
             <div className="parent-guides-intro-layout">
               <div className="parent-guides-intro-main">
-                <p className="parent-guides-library-label"><span aria-hidden="true" />Parent guide library</p>
-                <p className="parent-guides-notebook-label">The coach’s notebook</p>
-                {embedded ? <h2 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the coaches,</span><span>not by a <em>marketing team.</em></span></h2> : <h1 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the coaches,</span><span>not by a <em>marketing team.</em></span></h1>}
+                <p className="parent-guides-library-label"><span aria-hidden="true" />For parents</p>
+                {embedded ? <h2 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the <strong>coaches,</strong></span><span>not by a marketing team.</span></h2> : <h1 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the <strong>coaches,</strong></span><span>not by a marketing team.</span></h1>}
               </div>
               <p className="parent-guides-intro-copy">A calm, easy-to-scan guide to the questions families bring to TYA Club — and what our coaches have learned.</p>
             </div>

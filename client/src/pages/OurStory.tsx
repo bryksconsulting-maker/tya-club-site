@@ -10,10 +10,9 @@ const founders = [
     imageAlt: "Portrait of Kiran Babu P.",
     initials: "KBP",
     bio: [
-      "Kiran Babu P, fondly known as KBP, is a TEDx Speaker, Life Skills Coach, Management Trainer, Business Architect, an author and Serial Entrepreneur. With an extraordinary 27-year corporate career spanning India, the US and Europe, KBP has transformed his experience into a passion for building businesses, developing people and creating possibilities.",
+      "Kiran Babu P, fondly known as KBP, is a TEDx Speaker, Life Skills Coach, Management Trainer, Business Architect, an author and Serial Entrepreneur. With an extraordinary 27-year career spanning India, the US and Europe, KBP has transformed his experience into a passion for building businesses, developing people and creating possibilities.",
       "A Six Sigma Black Belt and Certified Networker, his expertise spans business, leadership, training, design and creativity, with qualifications across diverse disciplines.",
-      "Today, his entrepreneurial ventures span creative design and conceptualisation, business networking, business expansion and growth opportunities for entrepreneurs and start-ups, and life-skills development for young adults—including his initiative TYA Club, focused on helping young adults develop the skills, confidence and perspectives they need to navigate real life.",
-      "From corporate boardrooms to entrepreneurship, from creative studios to training rooms, his journey is ultimately about one thing—helping people see possibilities and turn them into reality.",
+      "Today, his entrepreneurial ventures span business networking, business expansion and growth opportunities for entrepreneurs and start-ups, and life-skills development for young adults. From corporate boardrooms to entrepreneurship, from creative studios to training rooms, his journey is ultimately about one thing—helping people see possibilities and turn them into reality.",
     ],
   },
   {
@@ -50,14 +49,16 @@ export default function OurStory() {
 
   return <PageShell>
     <PageHero className="page-hero-intro--expanded-story" eyebrow="Our story" title="Where TYA began." intro={<>
-      <span className="block">Kiran Babu P founded TYA Club after nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need to become confident, independent and future-ready.</span>
-      <span className="mt-4 block">TYA Club was born from a simple question: What if young adults had a space to learn the things that classrooms often don't teach?</span>
+      <span className="block">TYA Club was born from a simple question: What if young adults had a space to learn the things that classrooms often don't teach?</span>
       <span className="mt-4 block">The concept was founded by Kiran Babu P, following nearly a decade of research, observation and conversations across multiple cities, exploring what young adults need... to become confident, independent and future-ready.</span>
       <span className="mt-4 block">Anoop Jaju and Sreyansh Jain joined the journey, bringing fresh perspectives, energy and ideas to the concept. Together, they reimagined the idea and gave it a new identity — TYA Club: Transforming Young Adults.</span>
+      <span className="mt-4 block">Today, TYA is envisioned as a space where young adults don't simply learn from someone at the front of a room. They meet, interact, question, experiment, share, play, reflect and learn from one another.</span>
+      <span className="mt-4 block">Because preparing young adults for the future isn't just about what they know. It's about who they become.</span>
     </>} />
 
     <section className="container story-narrative py-16 lg:py-24" aria-labelledby="our-story-title">
       <SectionIntro eyebrow="The Idea" id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />
+      <p className="story-idea-copy">India’s future lies in the confidence, character and capabilities of its young people. TYA Club aims to bridge the gap between knowing and doing, helping young adults develop essential life skills through hands-on experiences, games, discussions and peer learning. By nurturing independent thinking, communication, emotional intelligence, leadership and entrepreneurial spirit, we empower them to navigate life’s challenges with confidence. More than a club, TYA is a community where young people discover their strengths, learn from one another and grow together. Because transforming young adults today means shaping a more capable, confident and future-ready India tomorrow.</p>
     </section>
 
     <section className="soft-panel founder-section py-16 lg:py-24" aria-labelledby="founders-title">
