@@ -127,7 +127,7 @@ export function ParentStories() {
         <SectionIntro
           eyebrow="Parent Stories"
           title="Voices of transformation."
-          description="Hearing from parents who notice changes in their young adults’ confidence and capabilities."
+          description={<>Hearing from parents who notice changes in<br className="parent-stories-description-break" /> their young adults’ confidence and capabilities.</>}
           id="parent-stories-title"
           className="parent-stories-heading"
         />

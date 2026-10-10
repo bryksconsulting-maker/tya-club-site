@@ -1367,12 +1367,16 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .pod-location-card-link { margin-top: .65rem; padding-top: 0; font-size: .68rem; }
 
 .testimonial-stories-controls { justify-content: flex-end; gap: .65rem; }
+.parent-stories-heading .section-intro-side { max-width: 30rem; font-size: clamp(.95rem, 1.15vw, 1.1rem); }
 .testimonial-stories-arrow { appearance: none; display: grid; width: 2.75rem; min-width: 2.75rem; height: 2.75rem; flex: 0 0 auto; place-items: center; border: 1px solid color-mix(in srgb, var(--brand-ink) 28%, transparent); border-radius: 50%; background: var(--brand-card); padding: 0; color: var(--brand-ink); box-shadow: 0 8px 22px rgba(43,47,50,.14); cursor: pointer; transition: transform .18s ease, background-color .18s ease, color .18s ease; }
 .testimonial-stories-arrow:hover { transform: scale(1.06); background: var(--brand-charcoal); color: var(--brand-ivory); }
 .testimonial-stories-arrow:focus-visible { outline: 3px solid var(--brand-coral-text); outline-offset: 3px; }
 .dark .testimonial-stories-arrow { border-color: color-mix(in srgb, var(--brand-ivory) 35%, transparent); background: var(--brand-card); color: var(--brand-ivory); }
 .dark .testimonial-stories-arrow:hover { background: var(--brand-butter); color: var(--brand-charcoal); }
 .testimonial-stories-track { margin-top: 1.25rem; }
+@media (max-width: 760px) {
+  .parent-stories-description-break { display: none; }
+}
 
 /* Parent guide library: twelve expanded coach-written cards in a horizontal carousel. */
 .parent-guide-carousel-viewport {
