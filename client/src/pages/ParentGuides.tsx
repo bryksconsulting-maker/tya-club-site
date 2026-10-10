@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { CONTACT_EMAIL, PageShell } from "../components/SiteChrome";
 
 const guides = [
@@ -84,88 +84,59 @@ const pathGuideSteps = [
   { index: 1, stage: "Practise resilience" },
 ] as const;
 const remainingGuideIndexes = guides.map((_, index) => index).filter((index) => !pathGuideSteps.some((step) => step.index === index));
+const carouselGuides = [
+  ...pathGuideSteps,
+  ...remainingGuideIndexes.map((index) => ({ index, stage: guides[index].category })),
+] as const;
 
-function GuideDetails({ guide, id, hidden, className = "", showWhy = true }: { guide: (typeof guides)[number]; id: string; hidden: boolean; className?: string; showWhy?: boolean }) {
-  return (
-    <div className={`parent-guide-expanded-copy ${className}`} id={id} hidden={hidden}>
-      {showWhy && <div>
-        <p className="parent-guide-expanded-label">Why this happens</p>
-        <p>{guide.why}</p>
-      </div>}
-      <div>
-        <p className="parent-guide-expanded-label">TYA response</p>
-        <p>{guide.response}</p>
-      </div>
-    </div>
-  );
-}
-
-function ParentGuideRow({ index, number, expanded, onToggle }: { index: number; number: number; expanded: boolean; onToggle: () => void }) {
+function ParentGuideCard({ index, number, stage }: { index: number; number: number; stage: string }) {
   const guide = guides[index];
-  const detailsId = `parent-guide-details-${index + 1}`;
-
-  return (
-    <article className="parent-guide-row" role="listitem">
-      <span className="parent-guide-row-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>
-      <div className="parent-guide-row-copy">
-        <p className="parent-guide-row-category">{guide.category}</p>
-        <h3>
-          <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
-            {guide.question}
-          </button>
-        </h3>
-      </div>
-      <button type="button" className="parent-guide-row-open" onClick={onToggle} aria-label={`${expanded ? "Close" : "Read"} guide: ${guide.category}`} aria-expanded={expanded} aria-controls={detailsId}>
-        <ArrowUpRight size={21} aria-hidden="true" />
-      </button>
-      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-row-details" />
-    </article>
-  );
-}
-
-function ParentGuidePathStep({ index, number, stage, expanded, onToggle }: { index: number; number: number; stage: string; expanded: boolean; onToggle: () => void }) {
-  const guide = guides[index];
-  const detailsId = `parent-guide-details-${index + 1}`;
 
   return (
     <article className="parent-guide-path-step" role="listitem">
       <div className="parent-guide-path-top">
         <span className="parent-guide-row-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>
         <p className="parent-guide-path-stage">{stage}</p>
-        <button type="button" className="parent-guide-row-open" onClick={onToggle} aria-label={`${expanded ? "Close" : "Read"} guide: ${guide.category}`} aria-expanded={expanded} aria-controls={detailsId}>
-          <ArrowUpRight size={21} aria-hidden="true" />
-        </button>
+        <ArrowUpRight className="parent-guide-path-arrow" size={21} aria-hidden="true" />
       </div>
-      <h3 className="parent-guide-path-question">
-        <button type="button" className="parent-guide-question-trigger" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
-          “{guide.question}”
-        </button>
-      </h3>
+      <h3 className="parent-guide-path-question">“{guide.question}”</h3>
       <div className="parent-guide-path-teaser">
         <p className="parent-guide-expanded-label">Why this happens</p>
         <p>{guide.why}</p>
       </div>
-      <button type="button" className="parent-guide-path-read-more" onClick={onToggle} aria-expanded={expanded} aria-controls={detailsId}>
-        {expanded ? "Show less" : "Read more"}
-        <ArrowUpRight size={16} aria-hidden="true" />
-      </button>
-      <GuideDetails guide={guide} id={detailsId} hidden={!expanded} className="parent-guide-path-details" showWhy={false} />
+      <div className="parent-guide-expanded-copy parent-guide-path-details">
+        <p className="parent-guide-expanded-label">TYA response</p>
+        <p>{guide.response}</p>
+      </div>
     </article>
   );
 }
 
 export function ParentGuidesContent({ embedded = false }: { embedded?: boolean } = {}) {
-  const [expandedGuides, setExpandedGuides] = useState<Set<number>>(() => new Set());
-  const [showAllGuides, setShowAllGuides] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeGuide, setActiveGuide] = useState(0);
+  const [canScrollPrevious, setCanScrollPrevious] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
   const [email, setEmail] = useState("");
 
-  const toggleGuide = (index: number) => {
-    setExpandedGuides((current) => {
-      const next = new Set(current);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
+  const showGuide = (nextIndex: number) => {
+    const index = Math.max(0, Math.min(carouselGuides.length - 1, nextIndex));
+    const card = carouselRef.current?.children.item(index) as HTMLElement | null;
+    if (!card) return;
+    carouselRef.current?.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    setActiveGuide(index);
+  };
+
+  const updateActiveGuide = () => {
+    const viewport = carouselRef.current;
+    if (!viewport) return;
+    const cards = Array.from(viewport.children) as HTMLElement[];
+    const nearest = cards.reduce((best, card, index) => (
+      Math.abs(card.offsetLeft - viewport.scrollLeft) < Math.abs(cards[best].offsetLeft - viewport.scrollLeft) ? index : best
+    ), 0);
+    setActiveGuide(nearest);
+    setCanScrollPrevious(viewport.scrollLeft > 2);
+    setCanScrollNext(viewport.scrollLeft < viewport.scrollWidth - viewport.clientWidth - 2);
   };
 
   const requestSubscription = (event: React.FormEvent<HTMLFormElement>) => {
@@ -190,23 +161,19 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
         </section>
 
         <section className="container parent-guide-library" aria-label="Parent guide listings">
-          <div className="parent-guide-path" role="list" aria-label="A guided path through parent guides">
-            {pathGuideSteps.map(({ index, stage }, position) => (
-              <ParentGuidePathStep key={guides[index].question} index={index} number={position + 1} stage={stage} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
+          <div className="parent-guide-carousel-viewport" ref={carouselRef} role="list" aria-label="Twelve parent guides" onScroll={updateActiveGuide}>
+            {carouselGuides.map(({ index, stage }, position) => (
+              <ParentGuideCard key={guides[index].question} index={index} number={position + 1} stage={stage} />
             ))}
           </div>
           <div className="parent-guide-library-footer">
             <p>New guides added as coaches answer more parent questions.</p>
-            <button type="button" className="parent-guide-expand-button" onClick={() => setShowAllGuides((visible) => !visible)} aria-expanded={showAllGuides} aria-controls={showAllGuides ? "parent-guide-more" : undefined}>
-              {showAllGuides ? "Show fewer guides" : "Show all guides"}
-              <ArrowRight className={showAllGuides ? "parent-guide-expand-arrow-open" : "parent-guide-expand-arrow"} size={18} aria-hidden="true" />
-            </button>
+            <div className="parent-guide-carousel-controls" aria-label="Parent guide carousel controls">
+              <span aria-live="polite">{String(activeGuide + 1).padStart(2, "0")} / {String(carouselGuides.length).padStart(2, "0")}</span>
+              <button type="button" onClick={() => showGuide(activeGuide - 1)} disabled={!canScrollPrevious} aria-label="Previous parent guide"><ArrowLeft size={18} aria-hidden="true" /></button>
+              <button type="button" onClick={() => showGuide(activeGuide + 1)} disabled={!canScrollNext} aria-label="Next parent guide"><ArrowRight size={18} aria-hidden="true" /></button>
+            </div>
           </div>
-          {showAllGuides && <div className="parent-guide-rows parent-guide-rows--additional" id="parent-guide-more" role="list" aria-label="More parent guides">
-            {remainingGuideIndexes.map((index, position) => (
-              <ParentGuideRow key={guides[index].question} index={index} number={position + pathGuideSteps.length + 1} expanded={expandedGuides.has(index)} onToggle={() => toggleGuide(index)} />
-            ))}
-          </div>}
           {!embedded && <aside className="parent-guide-newsletter">
               <p className="parent-guide-kicker">Free, monthly</p>
               <h2>One practical idea for your evenings.</h2>
