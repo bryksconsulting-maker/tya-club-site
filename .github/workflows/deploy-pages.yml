@@ -1,4 +1,4 @@
-name: Deploy website to GitHub Pages
+name: Deploy GitHub Pages preview
 
 on:
   push:
@@ -38,6 +38,8 @@ jobs:
 
       - name: Build site
         run: pnpm build
+        env:
+          VITE_BASE_PATH: /tya-club-site/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

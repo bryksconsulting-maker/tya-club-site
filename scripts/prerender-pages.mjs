@@ -8,7 +8,7 @@ import { pathToFileURL } from "node:url";
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const outputRoot = path.join(projectRoot, "dist", "public");
 const bundlePath = path.join(projectRoot, "dist", "prerender-entry.mjs");
-const base = "/";
+const base = process.env.VITE_BASE_PATH || "/";
 const basePath = base.replace(/\/$/, "");
 
 await build({
