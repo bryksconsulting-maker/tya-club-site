@@ -90,7 +90,7 @@ const whyTyaBlocks = [
 const steps = [
   { number: "01", title: "Find your Pod", eyebrow: "Find your people. Find your space.", copy: "Choose the TYA Pod that fits your location and age group. Start with an introductory session and experience what TYA is all about.", tone: "coral" },
   { number: "02", title: "Commit to the journey", eyebrow: "Show up. Get involved. Grow.", copy: "Every TYA experience is thoughtfully designed for the age group. But real transformation happens when you participate, stay curious and commit to the journey.", tone: "butter" },
-  { number: "03", title: "Engage. Explore. Express.", eyebrow: "Discover what you think. Discover who you are.", copy: "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught.", tone: "charcoal" },
+  { number: "03", title: "Engage. Explore. Express.", eyebrow: "", copy: "Question. Discuss. Create. Play. Experiment. Express. Through activities and conversations, learning becomes something you experience—not something you’re simply taught.", tone: "charcoal" },
   { number: "04", title: "Evolve. Make an impact.", eyebrow: "Take what you learn beyond TYA.", copy: "Turn ideas into action. Apply your learning in your community and the world around you, while building confidence, responsibility and a growing record of personal development.", tone: "ivory" },
 ];
 
@@ -223,7 +223,7 @@ export default function Home() {
     <div id="top" className="min-h-screen overflow-x-clip bg-[#F3F0EA] text-[#2B2F32]">
       <SiteHeader variant="home" />
 
-      <main>
+      <main id="main-content">
         <section className="home-hero relative overflow-hidden border-b border-white/10">
           <div className="container grid min-h-0 items-center gap-12 py-12 lg:min-h-[660px] lg:grid-cols-[1.08fr_.92fr] lg:py-14">
             <div className="relative z-10 max-w-[680px]">
@@ -288,7 +288,7 @@ export default function Home() {
                         <h3 className="how-works-card-title">{step.title}</h3>
                       </div>
                       <div className="mt-5">
-                        <p className="how-works-card-eyebrow text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>
+                        {step.eyebrow && <p className="how-works-card-eyebrow text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>}
                         <p className="how-works-card-copy mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
                       </div>
                     </article>

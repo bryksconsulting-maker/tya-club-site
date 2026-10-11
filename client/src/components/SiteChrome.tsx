@@ -56,6 +56,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
   const [desktopGroup, setDesktopGroup] = useState<string | null>(null);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeHomeSection, setActiveHomeSection] = useState("top");
   const isCurrent = (href: string) => location === href || location.startsWith(`${href}/`);
   const closeMenus = () => {
     setDesktopGroup(null);
@@ -63,7 +64,38 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
     setMobileMenuOpen(false);
   };
 
+  useEffect(() => {
+    if (variant !== "home") return undefined;
+    const sectionIds = desktopNavigationItems.flatMap((item) => item.href?.startsWith("#") ? [item.href.slice(1)] : []);
+    const updateActiveSection = () => {
+      const readingLine = window.scrollY + 140;
+      let activeSection = "top";
+      sectionIds.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section && section.offsetTop <= readingLine) activeSection = sectionId;
+      });
+      setActiveHomeSection(activeSection);
+    };
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [variant]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => { closeMenus(); }, [location]);
+
   return <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
     <header className={`site-header sticky top-0 z-40 border-b ${variant === "home" ? "site-header-home" : ""}`} onKeyDown={(event) => { if (event.key === "Escape") closeMenus(); }}>
       <div className="container flex min-h-[76px] items-center justify-between gap-3 xl:gap-5">
         <a href={`${LOGO_BASE}#top`} onClick={closeMenus} className="shrink-0" aria-label="TYA Club home"><img src={`${LOGO_BASE}tya-logo-lockup.svg`} alt="TYA Club" className="logo-light h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /><img src={`${LOGO_BASE}tya-logo-lockup-ivory.svg`} alt="TYA Club" className="logo-dark h-10 w-auto max-w-[140px] object-contain sm:h-11 sm:max-w-[150px]" /></a>
@@ -73,7 +105,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
             const active = item.href && !homeAnchor ? isCurrent(item.href) : item.children?.some((child) => isCurrent(child.href));
             if (!item.children) {
               if (!item.href) return null;
-              if (homeAnchor) return <a key={item.label} className="nav-link" href={`${LOGO_BASE}${item.href}`} onClick={closeMenus}>{item.label}</a>;
+              if (homeAnchor) return <a key={item.label} className="nav-link" href={`${LOGO_BASE}${item.href}`} data-active={variant === "home" && activeHomeSection === item.href.slice(1)} aria-current={variant === "home" && activeHomeSection === item.href.slice(1) ? "location" : undefined} onClick={closeMenus}>{item.label}</a>;
               return <Link key={item.label} className="nav-link" href={item.href} aria-current={active ? "page" : undefined} onClick={closeMenus}>{item.label}</Link>;
             }
             const expanded = desktopGroup === item.label;
@@ -97,7 +129,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
           const submenuId = `site-mobile-menu-${item.label.replaceAll(" ", "-").toLowerCase()}`;
           if (!item.children) {
             if (!item.href) return null;
-            if (item.href.startsWith("#")) return <a key={item.label} className="site-mobile-link" href={`${LOGO_BASE}${item.href}`} onClick={closeMenus}>{item.label}</a>;
+            if (item.href.startsWith("#")) return <a key={item.label} className="site-mobile-link" href={`${LOGO_BASE}${item.href}`} data-active={variant === "home" && activeHomeSection === item.href.slice(1)} aria-current={variant === "home" && activeHomeSection === item.href.slice(1) ? "location" : undefined} onClick={closeMenus}>{item.label}</a>;
             return <Link key={item.label} className="site-mobile-link" href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined} onClick={closeMenus}>{item.label}</Link>;
           }
           return <div className="site-mobile-group" key={item.label}>
@@ -207,4 +239,4 @@ export function WhatsAppFloat() {
   );
 }
 
-export function PageShell({ children }: { children: React.ReactNode }) { return <div className="site-shell min-h-screen"><SiteHeader /><main>{children}</main><FindCentrePrompt /><SiteFooter /></div>; }
+export function PageShell({ children }: { children: React.ReactNode }) { return <div className="site-shell min-h-screen"><SiteHeader /><main id="main-content">{children}</main><FindCentrePrompt /><SiteFooter /></div>; }

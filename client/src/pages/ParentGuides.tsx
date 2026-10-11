@@ -155,7 +155,10 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
         </section>
 
         <section className="container parent-guide-library" aria-label="Parent guide listings">
-          <div className="parent-guide-carousel-viewport" ref={carouselRef} role="list" aria-label="Twelve parent guides" onScroll={updateActiveGuide}>
+          <div className="parent-guide-carousel-viewport" ref={carouselRef} role="list" tabIndex={0} aria-label="Twelve parent guides. Use the left and right arrow keys to move between guides." onScroll={updateActiveGuide} onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") { event.preventDefault(); showGuide(activeGuide - 1); }
+            if (event.key === "ArrowRight") { event.preventDefault(); showGuide(activeGuide + 1); }
+          }}>
             {carouselGuides.map(({ index, stage }, position) => (
               <ParentGuideCard key={guides[index].question} index={index} number={position + 1} stage={stage} />
             ))}

@@ -57,7 +57,7 @@ export default function OurStory() {
     </>} />
 
     <section className="container story-narrative py-16 lg:py-24" aria-labelledby="our-story-title">
-      <SectionIntro eyebrow="The Idea" id="our-story-title" title={<>They meet. They question. They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></>} description="A room for the person they are becoming." />
+      <SectionIntro eyebrow="The Idea" id="our-story-title" title={<><span className="block">They meet.</span><span className="block">They question.</span><span className="block">They <span className="font-display italic headline-accent headline-accent--coral"><strong className="headline-impact">become.</strong></span></span></>} description="A room for the person they are becoming." />
       <p className="story-idea-copy">India’s future lies in the confidence, character and capabilities of its young people. TYA Club aims to bridge the gap between knowing and doing, helping young adults develop essential life skills through hands-on experiences, games, discussions and peer learning. By nurturing independent thinking, communication, emotional intelligence, leadership and entrepreneurial spirit, we empower them to navigate life’s challenges with confidence. More than a club, TYA is a community where young people discover their strengths, learn from one another and grow together. Because transforming young adults today means shaping a more capable, confident and future-ready India tomorrow.</p>
     </section>
 
@@ -69,7 +69,7 @@ export default function OurStory() {
           {founders.map((founder) => <article id={founder.id} className="founder-profile" role="listitem" key={founder.name}>
             <figure className={`founder-card-portrait${founder.image ? "" : " is-placeholder"}`} data-founder={founder.initials}>
               {founder.image
-                ? <img src={`${imageBase}${founder.image}`} alt={founder.imageAlt} />
+                ? <img src={`${imageBase}${founder.image}`} alt={founder.imageAlt} loading="lazy" decoding="async" />
                 : <span className="founder-monogram" role="img" aria-label={founder.imageAlt}>{founder.initials}</span>}
               {!founder.image && <figcaption>Portrait placeholder</figcaption>}
             </figure>

@@ -15,7 +15,7 @@ function CentreGallery({ centre }: { centre: CentreProfile }) {
 
   return <div className="centre-detail-gallery" aria-label={`${centre.locality} Pod photos`}>
     {photos.map((photo, index) => <div className={`centre-gallery-frame ${index === 0 ? "centre-gallery-main" : ""}`} key={photo.label}>
-      <img className="centre-gallery-image" src={photo.image!} alt={photo.alt} />
+      <img className="centre-gallery-image" src={photo.image!} alt={photo.alt} loading="lazy" decoding="async" />
     </div>)}
   </div>;
 }
