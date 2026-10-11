@@ -23,18 +23,17 @@ const navigationItems: NavigationItem[] = [
   { label: "TYA experience", href: "#experience" },
   { label: "Find a Pod", href: "#centre-results" },
   { label: "Our story", href: "/our-story" },
-  { label: "Founders", href: "/our-story#founders-title" },
   { label: "Franchise", href: "/franchise" },
 ];
 
 const desktopNavigationItems: NavigationItem[] = [
   { label: "TYA", href: "#top" },
   { label: "How TYA Works", href: "#how-it-works" },
+  { label: "Skills", href: "#curriculum" },
   { label: "For Parents", href: "#parents" },
   { label: "TYA Experience", href: "#experience" },
   { label: "Find a Pod", href: "#centre-results" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Founders", href: "/our-story#founders-title" },
   { label: "Franchise", href: "/franchise" },
 ];
 
