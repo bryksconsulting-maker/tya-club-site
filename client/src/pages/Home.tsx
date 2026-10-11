@@ -287,7 +287,7 @@ export default function Home() {
                         <span className="how-works-card-number-badge" data-tone={step.tone}>{step.number}</span>
                         <h3 className="how-works-card-title">{step.title}</h3>
                       </div>
-                      <div className="mt-5">
+                      <div className="how-works-card-body mt-5">
                         {step.eyebrow && <p className="how-works-card-eyebrow text-[10px] font-bold leading-4 text-[#7a6316]">{step.eyebrow}</p>}
                         <p className="how-works-card-copy mt-2 text-xs leading-[1.6] text-[#656A6D]">{step.copy}</p>
                       </div>

@@ -993,6 +993,12 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .how-works-card-number-badge[data-tone="charcoal"] { background: var(--brand-charcoal); color: var(--brand-ivory); }
 .how-works-card-number-badge[data-tone="ivory"] { background: var(--brand-ivory); color: var(--brand-charcoal); }
 .how-works-card-title { margin: .05rem 0 0; color: var(--brand-ink); font-size: clamp(1.2rem, 1.55vw, 1.55rem); font-weight: 750; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
+@media (min-width: 640px) {
+  .how-works-card-heading { min-height: 5.2rem; }
+  .how-works-card-body { margin-top: .8rem; }
+  .how-works-card-eyebrow { display: block; min-height: 2.65rem; margin: 0; }
+  .how-works-card-copy { margin-top: .65rem; }
+}
 .experience-faq-list--additional:not([hidden]) { margin-top: 0; }
 .experience-faq-more { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; border: 1px solid color-mix(in srgb, var(--brand-ink) 18%, transparent); border-radius: 999px; background: var(--brand-card); padding: .65rem .95rem; color: var(--brand-ink); font-size: .74rem; font-weight: 700; transition: background-color .18s ease, transform .18s ease; }
 .experience-faq-more:hover { background: var(--brand-soft); transform: translateY(-1px); }
