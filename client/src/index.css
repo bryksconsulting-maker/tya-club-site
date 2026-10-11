@@ -1384,7 +1384,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
   display: grid;
   grid-auto-columns: calc((100% - clamp(2rem, 4.6vw, 3.6rem)) / 3);
   grid-auto-flow: column;
-  align-items: start;
+  align-items: stretch;
   gap: clamp(1rem, 2.3vw, 1.8rem);
   overflow-x: auto;
   overscroll-behavior-inline: contain;
