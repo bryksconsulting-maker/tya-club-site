@@ -178,7 +178,21 @@ export const routeMetadata: Record<string, RouteMetadata> = {
   "/franchise": {
     title: "TYA Club Franchise & Partnerships",
     description: "Explore a partnership with TYA Club to bring practical, experience-led learning and life skills programs for young adults to your city.",
-    robots: "noindex,follow",
+    path: "/franchise/",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        organizationStructuredData,
+        {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/franchise/#webpage`,
+          url: `${SITE_URL}/franchise/`,
+          name: "TYA Club Franchise & Partnerships",
+          inLanguage: "en-IN",
+          about: { "@id": `${SITE_URL}/#organization` },
+        },
+      ],
+    },
   },
 };
 

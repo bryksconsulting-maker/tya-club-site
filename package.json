@@ -8,7 +8,11 @@
     "build": "vite build && node scripts/prerender-pages.mjs",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "verify": "pnpm check && pnpm build",
     "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=20 <23"
   },
   "dependencies": {
     "clsx": "^2.1.1",
