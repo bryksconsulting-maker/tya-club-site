@@ -155,7 +155,11 @@ export function ParentGuidesContent({ embedded = false }: { embedded?: boolean }
                 <p className="parent-guides-library-label"><span aria-hidden="true" />For parents</p>
                 {embedded ? <h2 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the <strong>coaches,</strong></span><span>not by a marketing team.</span></h2> : <h1 id="parent-guides-intro-title" className="parent-guides-intro-title" aria-label="Written by the coaches, not by a marketing team."><span>Written by the <strong>coaches,</strong></span><span>not by a marketing team.</span></h1>}
               </div>
-              <p className="parent-guides-intro-copy">A calm, easy-to-scan guide to the questions families bring to TYA Club — and what our coaches have learned.</p>
+              <p className="parent-guides-intro-copy">
+                A calm, easy-to-scan guide to the
+                <br className="parent-guides-intro-break" /> questions families bring to TYA Club —
+                <br className="parent-guides-intro-break" /> and what our coaches have learned.
+              </p>
             </div>
           </div>
         </section>

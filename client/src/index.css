@@ -1286,7 +1286,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .parent-guides-intro-title { max-width: 760px; margin-top: .75rem; color: var(--brand-ivory); font-size: clamp(2.2rem, 4.2vw, 3.2rem); font-weight: 500; line-height: .99; letter-spacing: -.055em; text-wrap: balance; }
 .parent-guides-intro-title > span { display: block; white-space: nowrap; }
 .parent-guides-intro-title strong { color: var(--brand-ivory); font-weight: 800; }
-.parent-guides-intro-copy { max-width: 32rem; margin: 0 0 .2rem; border-left: 3px solid var(--brand-coral); padding: .15rem 0 .15rem 1.15rem; color: var(--guide-muted); font-size: clamp(1rem, 1.3vw, 1.2rem); font-weight: 400; line-height: 1.72; }
+.parent-guides-intro-copy { max-width: 32rem; margin: 0 0 .2rem; border-left: 3px solid var(--brand-coral); padding: .15rem 0 .15rem 1.15rem; color: var(--guide-muted); font-size: clamp(.95rem, 1.15vw, 1.1rem); font-weight: 400; line-height: 1.72; }
 .parent-guide-library { padding-top: 0; }
 .parent-guide-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--guide-rule); padding: 1.55rem 0 1.1rem; }
 .parent-guide-section-heading h2 { margin: 0; color: var(--brand-ivory); font-size: clamp(1.9rem, 3vw, 2.65rem); font-weight: 650; line-height: 1.1; letter-spacing: -.045em; }
@@ -1340,6 +1340,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
   .parent-guides-intro-title { max-width: 650px; font-size: clamp(1.7rem, 7.8vw, 2.5rem); }
   .parent-guides-intro-title > span { white-space: normal; }
   .parent-guides-intro-copy { max-width: 38rem; }
+  .parent-guides-intro-break { display: none; }
   .parent-guide-section-heading { align-items: flex-start; flex-direction: column; gap: .6rem; }
   .parent-guide-section-heading p { text-align: left; }
   .parent-guides-feature-grid { grid-template-columns: 1fr; }
@@ -1383,7 +1384,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
   display: grid;
   grid-auto-columns: calc((100% - clamp(2rem, 4.6vw, 3.6rem)) / 3);
   grid-auto-flow: column;
-  align-items: stretch;
+  align-items: start;
   gap: clamp(1rem, 2.3vw, 1.8rem);
   overflow-x: auto;
   overscroll-behavior-inline: contain;
@@ -1396,7 +1397,7 @@ header[class*="bg-[#E4B42A]"] .nav-link:hover { color: var(--brand-charcoal) !im
 .parent-guide-path-step {
   display: flex;
   min-width: 0;
-  min-height: 34rem;
+  min-height: 0;
   flex-direction: column;
   border-radius: 1.45rem;
   background: #454a4d;
